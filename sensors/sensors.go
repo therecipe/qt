@@ -2,34 +2,13 @@
 
 package sensors
 
-//#include <stdint.h>
-//#include <stdlib.h>
-//#include <string.h>
-//#include "sensors.h"
-import "C"
 import (
-	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/internal"
 	"strings"
 	"unsafe"
 )
 
-func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
-func cGoUnpackString(s C.struct_QtSensors_PackedString) string {
-	defer cGoFreePacked(s.ptr)
-	if int(s.len) == -1 {
-		return C.GoString(s.data)
-	}
-	return C.GoStringN(s.data, C.int(s.len))
-}
-func cGoUnpackBytes(s C.struct_QtSensors_PackedString) []byte {
-	defer cGoFreePacked(s.ptr)
-	if int(s.len) == -1 {
-		gs := C.GoString(s.data)
-		return []byte(gs)
-	}
-	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
-}
 func unpackStringList(s string) []string {
 	if len(s) == 0 {
 		return make([]string, 0)
@@ -38,7 +17,7 @@ func unpackStringList(s string) []string {
 }
 
 type AndroidAccelerometer struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type AndroidAccelerometer_ITF interface {
@@ -51,14 +30,14 @@ func (ptr *AndroidAccelerometer) AndroidAccelerometer_PTR() *AndroidAcceleromete
 
 func (ptr *AndroidAccelerometer) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *AndroidAccelerometer) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -69,18 +48,17 @@ func PointerFromAndroidAccelerometer(ptr AndroidAccelerometer_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *AndroidAccelerometer) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewAndroidAccelerometerFromPointer(ptr unsafe.Pointer) (n *AndroidAccelerometer) {
 	n = new(AndroidAccelerometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.AndroidAccelerometer")
 	return
 }
-func (ptr *AndroidAccelerometer) DestroyAndroidAccelerometer() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *AndroidAccelerometer) DestroyAndroidAccelerometer() {
 }
 
 type AndroidCompass struct {
@@ -116,14 +94,26 @@ func PointerFromAndroidCompass(ptr AndroidCompass_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *AndroidCompass) InitFromInternal(ptr uintptr, name string) {
+	n.ThreadSafeSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *AndroidCompass) ClassNameInternalF() string {
+	return n.ThreadSafeSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewAndroidCompassFromPointer(ptr unsafe.Pointer) (n *AndroidCompass) {
 	n = new(AndroidCompass)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.AndroidCompass")
 	return
 }
 
+func (ptr *AndroidCompass) DestroyAndroidCompass() {
+}
+
 type AndroidGyroscope struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type AndroidGyroscope_ITF interface {
@@ -136,14 +126,14 @@ func (ptr *AndroidGyroscope) AndroidGyroscope_PTR() *AndroidGyroscope {
 
 func (ptr *AndroidGyroscope) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *AndroidGyroscope) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -154,22 +144,21 @@ func PointerFromAndroidGyroscope(ptr AndroidGyroscope_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *AndroidGyroscope) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewAndroidGyroscopeFromPointer(ptr unsafe.Pointer) (n *AndroidGyroscope) {
 	n = new(AndroidGyroscope)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.AndroidGyroscope")
 	return
 }
-func (ptr *AndroidGyroscope) DestroyAndroidGyroscope() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *AndroidGyroscope) DestroyAndroidGyroscope() {
 }
 
 type AndroidLight struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type AndroidLight_ITF interface {
@@ -182,14 +171,14 @@ func (ptr *AndroidLight) AndroidLight_PTR() *AndroidLight {
 
 func (ptr *AndroidLight) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *AndroidLight) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -200,22 +189,21 @@ func PointerFromAndroidLight(ptr AndroidLight_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *AndroidLight) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewAndroidLightFromPointer(ptr unsafe.Pointer) (n *AndroidLight) {
 	n = new(AndroidLight)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.AndroidLight")
 	return
 }
-func (ptr *AndroidLight) DestroyAndroidLight() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *AndroidLight) DestroyAndroidLight() {
 }
 
 type AndroidMagnetometer struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type AndroidMagnetometer_ITF interface {
@@ -228,14 +216,14 @@ func (ptr *AndroidMagnetometer) AndroidMagnetometer_PTR() *AndroidMagnetometer {
 
 func (ptr *AndroidMagnetometer) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *AndroidMagnetometer) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -246,22 +234,21 @@ func PointerFromAndroidMagnetometer(ptr AndroidMagnetometer_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *AndroidMagnetometer) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewAndroidMagnetometerFromPointer(ptr unsafe.Pointer) (n *AndroidMagnetometer) {
 	n = new(AndroidMagnetometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.AndroidMagnetometer")
 	return
 }
-func (ptr *AndroidMagnetometer) DestroyAndroidMagnetometer() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *AndroidMagnetometer) DestroyAndroidMagnetometer() {
 }
 
 type AndroidPressure struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type AndroidPressure_ITF interface {
@@ -274,14 +261,14 @@ func (ptr *AndroidPressure) AndroidPressure_PTR() *AndroidPressure {
 
 func (ptr *AndroidPressure) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *AndroidPressure) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -292,22 +279,21 @@ func PointerFromAndroidPressure(ptr AndroidPressure_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *AndroidPressure) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewAndroidPressureFromPointer(ptr unsafe.Pointer) (n *AndroidPressure) {
 	n = new(AndroidPressure)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.AndroidPressure")
 	return
 }
-func (ptr *AndroidPressure) DestroyAndroidPressure() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *AndroidPressure) DestroyAndroidPressure() {
 }
 
 type AndroidProximity struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type AndroidProximity_ITF interface {
@@ -320,14 +306,14 @@ func (ptr *AndroidProximity) AndroidProximity_PTR() *AndroidProximity {
 
 func (ptr *AndroidProximity) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *AndroidProximity) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -338,22 +324,21 @@ func PointerFromAndroidProximity(ptr AndroidProximity_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *AndroidProximity) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewAndroidProximityFromPointer(ptr unsafe.Pointer) (n *AndroidProximity) {
 	n = new(AndroidProximity)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.AndroidProximity")
 	return
 }
-func (ptr *AndroidProximity) DestroyAndroidProximity() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *AndroidProximity) DestroyAndroidProximity() {
 }
 
 type AndroidRotation struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type AndroidRotation_ITF interface {
@@ -366,14 +351,14 @@ func (ptr *AndroidRotation) AndroidRotation_PTR() *AndroidRotation {
 
 func (ptr *AndroidRotation) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *AndroidRotation) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -384,22 +369,21 @@ func PointerFromAndroidRotation(ptr AndroidRotation_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *AndroidRotation) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewAndroidRotationFromPointer(ptr unsafe.Pointer) (n *AndroidRotation) {
 	n = new(AndroidRotation)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.AndroidRotation")
 	return
 }
-func (ptr *AndroidRotation) DestroyAndroidRotation() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *AndroidRotation) DestroyAndroidRotation() {
 }
 
 type AndroidTemperature struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type AndroidTemperature_ITF interface {
@@ -412,14 +396,14 @@ func (ptr *AndroidTemperature) AndroidTemperature_PTR() *AndroidTemperature {
 
 func (ptr *AndroidTemperature) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *AndroidTemperature) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -430,18 +414,17 @@ func PointerFromAndroidTemperature(ptr AndroidTemperature_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *AndroidTemperature) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewAndroidTemperatureFromPointer(ptr unsafe.Pointer) (n *AndroidTemperature) {
 	n = new(AndroidTemperature)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.AndroidTemperature")
 	return
 }
-func (ptr *AndroidTemperature) DestroyAndroidTemperature() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *AndroidTemperature) DestroyAndroidTemperature() {
 }
 
 type FunctionEvent struct {
@@ -477,19 +460,22 @@ func PointerFromFunctionEvent(ptr FunctionEvent_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *FunctionEvent) InitFromInternal(ptr uintptr, name string) {
+	n.QEvent_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *FunctionEvent) ClassNameInternalF() string {
+	return n.QEvent_PTR().ClassNameInternalF()
+}
+
 func NewFunctionEventFromPointer(ptr unsafe.Pointer) (n *FunctionEvent) {
 	n = new(FunctionEvent)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.FunctionEvent")
 	return
 }
-func (ptr *FunctionEvent) DestroyFunctionEvent() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *FunctionEvent) DestroyFunctionEvent() {
 }
 
 type GenericTiltSensor struct {
@@ -528,10 +514,23 @@ func PointerFromGenericTiltSensor(ptr GenericTiltSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *GenericTiltSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QAccelerometerFilter_PTR().InitFromInternal(uintptr(ptr), name)
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *GenericTiltSensor) ClassNameInternalF() string {
+	return n.QAccelerometerFilter_PTR().ClassNameInternalF()
+}
+
 func NewGenericTiltSensorFromPointer(ptr unsafe.Pointer) (n *GenericTiltSensor) {
 	n = new(GenericTiltSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.GenericTiltSensor")
 	return
+}
+
+func (ptr *GenericTiltSensor) DestroyGenericTiltSensor() {
 }
 
 type IIOSensorProxyCompass struct {
@@ -567,10 +566,22 @@ func PointerFromIIOSensorProxyCompass(ptr IIOSensorProxyCompass_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *IIOSensorProxyCompass) InitFromInternal(ptr uintptr, name string) {
+	n.IIOSensorProxySensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *IIOSensorProxyCompass) ClassNameInternalF() string {
+	return n.IIOSensorProxySensorBase_PTR().ClassNameInternalF()
+}
+
 func NewIIOSensorProxyCompassFromPointer(ptr unsafe.Pointer) (n *IIOSensorProxyCompass) {
 	n = new(IIOSensorProxyCompass)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.IIOSensorProxyCompass")
 	return
+}
+
+func (ptr *IIOSensorProxyCompass) DestroyIIOSensorProxyCompass() {
 }
 
 type IIOSensorProxyLightSensor struct {
@@ -606,10 +617,22 @@ func PointerFromIIOSensorProxyLightSensor(ptr IIOSensorProxyLightSensor_ITF) uns
 	return nil
 }
 
+func (n *IIOSensorProxyLightSensor) InitFromInternal(ptr uintptr, name string) {
+	n.IIOSensorProxySensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *IIOSensorProxyLightSensor) ClassNameInternalF() string {
+	return n.IIOSensorProxySensorBase_PTR().ClassNameInternalF()
+}
+
 func NewIIOSensorProxyLightSensorFromPointer(ptr unsafe.Pointer) (n *IIOSensorProxyLightSensor) {
 	n = new(IIOSensorProxyLightSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.IIOSensorProxyLightSensor")
 	return
+}
+
+func (ptr *IIOSensorProxyLightSensor) DestroyIIOSensorProxyLightSensor() {
 }
 
 type IIOSensorProxyOrientationSensor struct {
@@ -645,10 +668,22 @@ func PointerFromIIOSensorProxyOrientationSensor(ptr IIOSensorProxyOrientationSen
 	return nil
 }
 
+func (n *IIOSensorProxyOrientationSensor) InitFromInternal(ptr uintptr, name string) {
+	n.IIOSensorProxySensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *IIOSensorProxyOrientationSensor) ClassNameInternalF() string {
+	return n.IIOSensorProxySensorBase_PTR().ClassNameInternalF()
+}
+
 func NewIIOSensorProxyOrientationSensorFromPointer(ptr unsafe.Pointer) (n *IIOSensorProxyOrientationSensor) {
 	n = new(IIOSensorProxyOrientationSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.IIOSensorProxyOrientationSensor")
 	return
+}
+
+func (ptr *IIOSensorProxyOrientationSensor) DestroyIIOSensorProxyOrientationSensor() {
 }
 
 type IIOSensorProxySensorBase struct {
@@ -684,10 +719,22 @@ func PointerFromIIOSensorProxySensorBase(ptr IIOSensorProxySensorBase_ITF) unsaf
 	return nil
 }
 
+func (n *IIOSensorProxySensorBase) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *IIOSensorProxySensorBase) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewIIOSensorProxySensorBaseFromPointer(ptr unsafe.Pointer) (n *IIOSensorProxySensorBase) {
 	n = new(IIOSensorProxySensorBase)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.IIOSensorProxySensorBase")
 	return
+}
+
+func (ptr *IIOSensorProxySensorBase) DestroyIIOSensorProxySensorBase() {
 }
 
 type IOSAccelerometer struct {
@@ -723,10 +770,22 @@ func PointerFromIOSAccelerometer(ptr IOSAccelerometer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *IOSAccelerometer) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *IOSAccelerometer) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewIOSAccelerometerFromPointer(ptr unsafe.Pointer) (n *IOSAccelerometer) {
 	n = new(IOSAccelerometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.IOSAccelerometer")
 	return
+}
+
+func (ptr *IOSAccelerometer) DestroyIOSAccelerometer() {
 }
 
 type IOSCompass struct {
@@ -762,10 +821,22 @@ func PointerFromIOSCompass(ptr IOSCompass_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *IOSCompass) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *IOSCompass) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewIOSCompassFromPointer(ptr unsafe.Pointer) (n *IOSCompass) {
 	n = new(IOSCompass)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.IOSCompass")
 	return
+}
+
+func (ptr *IOSCompass) DestroyIOSCompass() {
 }
 
 type IOSGyroscope struct {
@@ -801,10 +872,22 @@ func PointerFromIOSGyroscope(ptr IOSGyroscope_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *IOSGyroscope) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *IOSGyroscope) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewIOSGyroscopeFromPointer(ptr unsafe.Pointer) (n *IOSGyroscope) {
 	n = new(IOSGyroscope)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.IOSGyroscope")
 	return
+}
+
+func (ptr *IOSGyroscope) DestroyIOSGyroscope() {
 }
 
 type IOSMagnetometer struct {
@@ -840,10 +923,22 @@ func PointerFromIOSMagnetometer(ptr IOSMagnetometer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *IOSMagnetometer) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *IOSMagnetometer) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewIOSMagnetometerFromPointer(ptr unsafe.Pointer) (n *IOSMagnetometer) {
 	n = new(IOSMagnetometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.IOSMagnetometer")
 	return
+}
+
+func (ptr *IOSMagnetometer) DestroyIOSMagnetometer() {
 }
 
 type IOSProximitySensor struct {
@@ -879,10 +974,22 @@ func PointerFromIOSProximitySensor(ptr IOSProximitySensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *IOSProximitySensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *IOSProximitySensor) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewIOSProximitySensorFromPointer(ptr unsafe.Pointer) (n *IOSProximitySensor) {
 	n = new(IOSProximitySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.IOSProximitySensor")
 	return
+}
+
+func (ptr *IOSProximitySensor) DestroyIOSProximitySensor() {
 }
 
 type LinuxSysAccelerometer struct {
@@ -918,10 +1025,22 @@ func PointerFromLinuxSysAccelerometer(ptr LinuxSysAccelerometer_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *LinuxSysAccelerometer) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *LinuxSysAccelerometer) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewLinuxSysAccelerometerFromPointer(ptr unsafe.Pointer) (n *LinuxSysAccelerometer) {
 	n = new(LinuxSysAccelerometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.LinuxSysAccelerometer")
 	return
+}
+
+func (ptr *LinuxSysAccelerometer) DestroyLinuxSysAccelerometer() {
 }
 
 type QAccelerometer struct {
@@ -957,9 +1076,18 @@ func PointerFromQAccelerometer(ptr QAccelerometer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QAccelerometer) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAccelerometer) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQAccelerometerFromPointer(ptr unsafe.Pointer) (n *QAccelerometer) {
 	n = new(QAccelerometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAccelerometer")
 	return
 }
 
@@ -974,124 +1102,58 @@ const (
 )
 
 func NewQAccelerometer(parent core.QObject_ITF) *QAccelerometer {
-	tmpValue := NewQAccelerometerFromPointer(C.QAccelerometer_NewQAccelerometer(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQAccelerometer", "", parent}).(*QAccelerometer)
 }
 
 func (ptr *QAccelerometer) AccelerationMode() QAccelerometer__AccelerationMode {
-	if ptr.Pointer() != nil {
-		return QAccelerometer__AccelerationMode(C.QAccelerometer_AccelerationMode(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQAccelerometer_AccelerationModeChanged
-func callbackQAccelerometer_AccelerationModeChanged(ptr unsafe.Pointer, accelerationMode C.longlong) {
-	if signal := qt.GetSignal(ptr, "accelerationModeChanged"); signal != nil {
-		(*(*func(QAccelerometer__AccelerationMode))(signal))(QAccelerometer__AccelerationMode(accelerationMode))
-	}
-
+	return QAccelerometer__AccelerationMode(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AccelerationMode"}).(float64))
 }
 
 func (ptr *QAccelerometer) ConnectAccelerationModeChanged(f func(accelerationMode QAccelerometer__AccelerationMode)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "accelerationModeChanged") {
-			C.QAccelerometer_ConnectAccelerationModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "accelerationModeChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "accelerationModeChanged"); signal != nil {
-			f := func(accelerationMode QAccelerometer__AccelerationMode) {
-				(*(*func(QAccelerometer__AccelerationMode))(signal))(accelerationMode)
-				f(accelerationMode)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "accelerationModeChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "accelerationModeChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectAccelerationModeChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAccelerometer) DisconnectAccelerationModeChanged() {
-	if ptr.Pointer() != nil {
-		C.QAccelerometer_DisconnectAccelerationModeChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "accelerationModeChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectAccelerationModeChanged"})
 }
 
 func (ptr *QAccelerometer) AccelerationModeChanged(accelerationMode QAccelerometer__AccelerationMode) {
-	if ptr.Pointer() != nil {
-		C.QAccelerometer_AccelerationModeChanged(ptr.Pointer(), C.longlong(accelerationMode))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AccelerationModeChanged", accelerationMode})
 }
 
 func (ptr *QAccelerometer) Reading() *QAccelerometerReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQAccelerometerReadingFromPointer(C.QAccelerometer_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QAccelerometerReading)
 }
 
 func (ptr *QAccelerometer) SetAccelerationMode(accelerationMode QAccelerometer__AccelerationMode) {
-	if ptr.Pointer() != nil {
-		C.QAccelerometer_SetAccelerationMode(ptr.Pointer(), C.longlong(accelerationMode))
-	}
-}
 
-//export callbackQAccelerometer_DestroyQAccelerometer
-func callbackQAccelerometer_DestroyQAccelerometer(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QAccelerometer"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAccelerometerFromPointer(ptr).DestroyQAccelerometerDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAccelerationMode", accelerationMode})
 }
 
 func (ptr *QAccelerometer) ConnectDestroyQAccelerometer(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QAccelerometer"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QAccelerometer", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QAccelerometer", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQAccelerometer", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAccelerometer) DisconnectDestroyQAccelerometer() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QAccelerometer")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQAccelerometer"})
 }
 
 func (ptr *QAccelerometer) DestroyQAccelerometer() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAccelerometer_DestroyQAccelerometer(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAccelerometer"})
 }
 
 func (ptr *QAccelerometer) DestroyQAccelerometerDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAccelerometer_DestroyQAccelerometerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAccelerometerDefault"})
 }
 
 type QAccelerometerFilter struct {
@@ -1127,57 +1189,37 @@ func PointerFromQAccelerometerFilter(ptr QAccelerometerFilter_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *QAccelerometerFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAccelerometerFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQAccelerometerFilterFromPointer(ptr unsafe.Pointer) (n *QAccelerometerFilter) {
 	n = new(QAccelerometerFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAccelerometerFilter")
 	return
 }
+
 func (ptr *QAccelerometerFilter) DestroyQAccelerometerFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQAccelerometerFilter_Filter
-func callbackQAccelerometerFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QAccelerometerReading) bool)(signal))(NewQAccelerometerReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QAccelerometerFilter) ConnectFilter(f func(reading *QAccelerometerReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QAccelerometerReading) bool {
-				(*(*func(*QAccelerometerReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAccelerometerFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QAccelerometerFilter) Filter(reading QAccelerometerReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAccelerometerFilter_Filter(ptr.Pointer(), PointerFromQAccelerometerReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QAccelerometerReading struct {
@@ -1213,48 +1255,52 @@ func PointerFromQAccelerometerReading(ptr QAccelerometerReading_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *QAccelerometerReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAccelerometerReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQAccelerometerReadingFromPointer(ptr unsafe.Pointer) (n *QAccelerometerReading) {
 	n = new(QAccelerometerReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAccelerometerReading")
 	return
 }
+
+func (ptr *QAccelerometerReading) DestroyQAccelerometerReading() {
+}
+
 func (ptr *QAccelerometerReading) SetX(x float64) {
-	if ptr.Pointer() != nil {
-		C.QAccelerometerReading_SetX(ptr.Pointer(), C.double(x))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetX", x})
 }
 
 func (ptr *QAccelerometerReading) SetY(y float64) {
-	if ptr.Pointer() != nil {
-		C.QAccelerometerReading_SetY(ptr.Pointer(), C.double(y))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetY", y})
 }
 
 func (ptr *QAccelerometerReading) SetZ(z float64) {
-	if ptr.Pointer() != nil {
-		C.QAccelerometerReading_SetZ(ptr.Pointer(), C.double(z))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetZ", z})
 }
 
 func (ptr *QAccelerometerReading) X() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QAccelerometerReading_X(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "X"}).(float64)
 }
 
 func (ptr *QAccelerometerReading) Y() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QAccelerometerReading_Y(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Y"}).(float64)
 }
 
 func (ptr *QAccelerometerReading) Z() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QAccelerometerReading_Z(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Z"}).(float64)
 }
 
 type QAltimeter struct {
@@ -1290,77 +1336,48 @@ func PointerFromQAltimeter(ptr QAltimeter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QAltimeter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAltimeter) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQAltimeterFromPointer(ptr unsafe.Pointer) (n *QAltimeter) {
 	n = new(QAltimeter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAltimeter")
 	return
 }
 func NewQAltimeter(parent core.QObject_ITF) *QAltimeter {
-	tmpValue := NewQAltimeterFromPointer(C.QAltimeter_NewQAltimeter(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQAltimeter", "", parent}).(*QAltimeter)
 }
 
 func (ptr *QAltimeter) Reading() *QAltimeterReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQAltimeterReadingFromPointer(C.QAltimeter_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQAltimeter_DestroyQAltimeter
-func callbackQAltimeter_DestroyQAltimeter(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QAltimeter"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAltimeterFromPointer(ptr).DestroyQAltimeterDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QAltimeterReading)
 }
 
 func (ptr *QAltimeter) ConnectDestroyQAltimeter(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QAltimeter"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QAltimeter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QAltimeter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQAltimeter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAltimeter) DisconnectDestroyQAltimeter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QAltimeter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQAltimeter"})
 }
 
 func (ptr *QAltimeter) DestroyQAltimeter() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAltimeter_DestroyQAltimeter(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAltimeter"})
 }
 
 func (ptr *QAltimeter) DestroyQAltimeterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAltimeter_DestroyQAltimeterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAltimeterDefault"})
 }
 
 type QAltimeterFilter struct {
@@ -1396,57 +1413,37 @@ func PointerFromQAltimeterFilter(ptr QAltimeterFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QAltimeterFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAltimeterFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQAltimeterFilterFromPointer(ptr unsafe.Pointer) (n *QAltimeterFilter) {
 	n = new(QAltimeterFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAltimeterFilter")
 	return
 }
+
 func (ptr *QAltimeterFilter) DestroyQAltimeterFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQAltimeterFilter_Filter
-func callbackQAltimeterFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QAltimeterReading) bool)(signal))(NewQAltimeterReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QAltimeterFilter) ConnectFilter(f func(reading *QAltimeterReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QAltimeterReading) bool {
-				(*(*func(*QAltimeterReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAltimeterFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QAltimeterFilter) Filter(reading QAltimeterReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAltimeterFilter_Filter(ptr.Pointer(), PointerFromQAltimeterReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QAltimeterReading struct {
@@ -1482,22 +1479,32 @@ func PointerFromQAltimeterReading(ptr QAltimeterReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QAltimeterReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAltimeterReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQAltimeterReadingFromPointer(ptr unsafe.Pointer) (n *QAltimeterReading) {
 	n = new(QAltimeterReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAltimeterReading")
 	return
 }
+
+func (ptr *QAltimeterReading) DestroyQAltimeterReading() {
+}
+
 func (ptr *QAltimeterReading) Altitude() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QAltimeterReading_Altitude(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Altitude"}).(float64)
 }
 
 func (ptr *QAltimeterReading) SetAltitude(altitude float64) {
-	if ptr.Pointer() != nil {
-		C.QAltimeterReading_SetAltitude(ptr.Pointer(), C.double(altitude))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAltitude", altitude})
 }
 
 type QAmbientLightFilter struct {
@@ -1533,57 +1540,37 @@ func PointerFromQAmbientLightFilter(ptr QAmbientLightFilter_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *QAmbientLightFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAmbientLightFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQAmbientLightFilterFromPointer(ptr unsafe.Pointer) (n *QAmbientLightFilter) {
 	n = new(QAmbientLightFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAmbientLightFilter")
 	return
 }
+
 func (ptr *QAmbientLightFilter) DestroyQAmbientLightFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQAmbientLightFilter_Filter
-func callbackQAmbientLightFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QAmbientLightReading) bool)(signal))(NewQAmbientLightReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QAmbientLightFilter) ConnectFilter(f func(reading *QAmbientLightReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QAmbientLightReading) bool {
-				(*(*func(*QAmbientLightReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAmbientLightFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QAmbientLightFilter) Filter(reading QAmbientLightReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAmbientLightFilter_Filter(ptr.Pointer(), PointerFromQAmbientLightReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QAmbientLightReading struct {
@@ -1619,10 +1606,22 @@ func PointerFromQAmbientLightReading(ptr QAmbientLightReading_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *QAmbientLightReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAmbientLightReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQAmbientLightReadingFromPointer(ptr unsafe.Pointer) (n *QAmbientLightReading) {
 	n = new(QAmbientLightReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAmbientLightReading")
 	return
+}
+
+func (ptr *QAmbientLightReading) DestroyQAmbientLightReading() {
 }
 
 //go:generate stringer -type=QAmbientLightReading__LightLevel
@@ -1639,16 +1638,13 @@ const (
 )
 
 func (ptr *QAmbientLightReading) LightLevel() QAmbientLightReading__LightLevel {
-	if ptr.Pointer() != nil {
-		return QAmbientLightReading__LightLevel(C.QAmbientLightReading_LightLevel(ptr.Pointer()))
-	}
-	return 0
+
+	return QAmbientLightReading__LightLevel(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LightLevel"}).(float64))
 }
 
 func (ptr *QAmbientLightReading) SetLightLevel(lightLevel QAmbientLightReading__LightLevel) {
-	if ptr.Pointer() != nil {
-		C.QAmbientLightReading_SetLightLevel(ptr.Pointer(), C.longlong(lightLevel))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLightLevel", lightLevel})
 }
 
 type QAmbientLightSensor struct {
@@ -1684,77 +1680,48 @@ func PointerFromQAmbientLightSensor(ptr QAmbientLightSensor_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *QAmbientLightSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAmbientLightSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQAmbientLightSensorFromPointer(ptr unsafe.Pointer) (n *QAmbientLightSensor) {
 	n = new(QAmbientLightSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAmbientLightSensor")
 	return
 }
 func NewQAmbientLightSensor(parent core.QObject_ITF) *QAmbientLightSensor {
-	tmpValue := NewQAmbientLightSensorFromPointer(C.QAmbientLightSensor_NewQAmbientLightSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQAmbientLightSensor", "", parent}).(*QAmbientLightSensor)
 }
 
 func (ptr *QAmbientLightSensor) Reading() *QAmbientLightReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQAmbientLightReadingFromPointer(C.QAmbientLightSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQAmbientLightSensor_DestroyQAmbientLightSensor
-func callbackQAmbientLightSensor_DestroyQAmbientLightSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QAmbientLightSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAmbientLightSensorFromPointer(ptr).DestroyQAmbientLightSensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QAmbientLightReading)
 }
 
 func (ptr *QAmbientLightSensor) ConnectDestroyQAmbientLightSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QAmbientLightSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QAmbientLightSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QAmbientLightSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQAmbientLightSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAmbientLightSensor) DisconnectDestroyQAmbientLightSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QAmbientLightSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQAmbientLightSensor"})
 }
 
 func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAmbientLightSensor_DestroyQAmbientLightSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAmbientLightSensor"})
 }
 
 func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAmbientLightSensor_DestroyQAmbientLightSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAmbientLightSensorDefault"})
 }
 
 type QAmbientTemperatureFilter struct {
@@ -1790,57 +1757,37 @@ func PointerFromQAmbientTemperatureFilter(ptr QAmbientTemperatureFilter_ITF) uns
 	return nil
 }
 
+func (n *QAmbientTemperatureFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAmbientTemperatureFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQAmbientTemperatureFilterFromPointer(ptr unsafe.Pointer) (n *QAmbientTemperatureFilter) {
 	n = new(QAmbientTemperatureFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAmbientTemperatureFilter")
 	return
 }
+
 func (ptr *QAmbientTemperatureFilter) DestroyQAmbientTemperatureFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQAmbientTemperatureFilter_Filter
-func callbackQAmbientTemperatureFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QAmbientTemperatureReading) bool)(signal))(NewQAmbientTemperatureReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QAmbientTemperatureFilter) ConnectFilter(f func(reading *QAmbientTemperatureReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QAmbientTemperatureReading) bool {
-				(*(*func(*QAmbientTemperatureReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAmbientTemperatureFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QAmbientTemperatureFilter) Filter(reading QAmbientTemperatureReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAmbientTemperatureFilter_Filter(ptr.Pointer(), PointerFromQAmbientTemperatureReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QAmbientTemperatureReading struct {
@@ -1876,22 +1823,32 @@ func PointerFromQAmbientTemperatureReading(ptr QAmbientTemperatureReading_ITF) u
 	return nil
 }
 
+func (n *QAmbientTemperatureReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAmbientTemperatureReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQAmbientTemperatureReadingFromPointer(ptr unsafe.Pointer) (n *QAmbientTemperatureReading) {
 	n = new(QAmbientTemperatureReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAmbientTemperatureReading")
 	return
 }
+
+func (ptr *QAmbientTemperatureReading) DestroyQAmbientTemperatureReading() {
+}
+
 func (ptr *QAmbientTemperatureReading) SetTemperature(temperature float64) {
-	if ptr.Pointer() != nil {
-		C.QAmbientTemperatureReading_SetTemperature(ptr.Pointer(), C.double(temperature))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetTemperature", temperature})
 }
 
 func (ptr *QAmbientTemperatureReading) Temperature() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QAmbientTemperatureReading_Temperature(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Temperature"}).(float64)
 }
 
 type QAmbientTemperatureSensor struct {
@@ -1927,77 +1884,48 @@ func PointerFromQAmbientTemperatureSensor(ptr QAmbientTemperatureSensor_ITF) uns
 	return nil
 }
 
+func (n *QAmbientTemperatureSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAmbientTemperatureSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQAmbientTemperatureSensorFromPointer(ptr unsafe.Pointer) (n *QAmbientTemperatureSensor) {
 	n = new(QAmbientTemperatureSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QAmbientTemperatureSensor")
 	return
 }
 func NewQAmbientTemperatureSensor(parent core.QObject_ITF) *QAmbientTemperatureSensor {
-	tmpValue := NewQAmbientTemperatureSensorFromPointer(C.QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQAmbientTemperatureSensor", "", parent}).(*QAmbientTemperatureSensor)
 }
 
 func (ptr *QAmbientTemperatureSensor) Reading() *QAmbientTemperatureReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQAmbientTemperatureReadingFromPointer(C.QAmbientTemperatureSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor
-func callbackQAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QAmbientTemperatureSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAmbientTemperatureSensorFromPointer(ptr).DestroyQAmbientTemperatureSensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QAmbientTemperatureReading)
 }
 
 func (ptr *QAmbientTemperatureSensor) ConnectDestroyQAmbientTemperatureSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QAmbientTemperatureSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QAmbientTemperatureSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QAmbientTemperatureSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQAmbientTemperatureSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAmbientTemperatureSensor) DisconnectDestroyQAmbientTemperatureSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QAmbientTemperatureSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQAmbientTemperatureSensor"})
 }
 
 func (ptr *QAmbientTemperatureSensor) DestroyQAmbientTemperatureSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAmbientTemperatureSensor"})
 }
 
 func (ptr *QAmbientTemperatureSensor) DestroyQAmbientTemperatureSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAmbientTemperatureSensorDefault"})
 }
 
 type QCompass struct {
@@ -2033,77 +1961,48 @@ func PointerFromQCompass(ptr QCompass_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QCompass) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QCompass) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQCompassFromPointer(ptr unsafe.Pointer) (n *QCompass) {
 	n = new(QCompass)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QCompass")
 	return
 }
 func NewQCompass(parent core.QObject_ITF) *QCompass {
-	tmpValue := NewQCompassFromPointer(C.QCompass_NewQCompass(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQCompass", "", parent}).(*QCompass)
 }
 
 func (ptr *QCompass) Reading() *QCompassReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQCompassReadingFromPointer(C.QCompass_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQCompass_DestroyQCompass
-func callbackQCompass_DestroyQCompass(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QCompass"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQCompassFromPointer(ptr).DestroyQCompassDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QCompassReading)
 }
 
 func (ptr *QCompass) ConnectDestroyQCompass(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QCompass"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QCompass", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QCompass", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQCompass", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QCompass) DisconnectDestroyQCompass() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QCompass")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQCompass"})
 }
 
 func (ptr *QCompass) DestroyQCompass() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QCompass_DestroyQCompass(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQCompass"})
 }
 
 func (ptr *QCompass) DestroyQCompassDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QCompass_DestroyQCompassDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQCompassDefault"})
 }
 
 type QCompassFilter struct {
@@ -2139,57 +2038,37 @@ func PointerFromQCompassFilter(ptr QCompassFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QCompassFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QCompassFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQCompassFilterFromPointer(ptr unsafe.Pointer) (n *QCompassFilter) {
 	n = new(QCompassFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QCompassFilter")
 	return
 }
+
 func (ptr *QCompassFilter) DestroyQCompassFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQCompassFilter_Filter
-func callbackQCompassFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QCompassReading) bool)(signal))(NewQCompassReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QCompassFilter) ConnectFilter(f func(reading *QCompassReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QCompassReading) bool {
-				(*(*func(*QCompassReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QCompassFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QCompassFilter) Filter(reading QCompassReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QCompassFilter_Filter(ptr.Pointer(), PointerFromQCompassReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QCompassReading struct {
@@ -2225,35 +2104,42 @@ func PointerFromQCompassReading(ptr QCompassReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QCompassReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QCompassReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQCompassReadingFromPointer(ptr unsafe.Pointer) (n *QCompassReading) {
 	n = new(QCompassReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QCompassReading")
 	return
 }
+
+func (ptr *QCompassReading) DestroyQCompassReading() {
+}
+
 func (ptr *QCompassReading) Azimuth() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QCompassReading_Azimuth(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Azimuth"}).(float64)
 }
 
 func (ptr *QCompassReading) CalibrationLevel() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QCompassReading_CalibrationLevel(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CalibrationLevel"}).(float64)
 }
 
 func (ptr *QCompassReading) SetAzimuth(azimuth float64) {
-	if ptr.Pointer() != nil {
-		C.QCompassReading_SetAzimuth(ptr.Pointer(), C.double(azimuth))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAzimuth", azimuth})
 }
 
 func (ptr *QCompassReading) SetCalibrationLevel(calibrationLevel float64) {
-	if ptr.Pointer() != nil {
-		C.QCompassReading_SetCalibrationLevel(ptr.Pointer(), C.double(calibrationLevel))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCalibrationLevel", calibrationLevel})
 }
 
 type QDistanceFilter struct {
@@ -2289,57 +2175,37 @@ func PointerFromQDistanceFilter(ptr QDistanceFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QDistanceFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QDistanceFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQDistanceFilterFromPointer(ptr unsafe.Pointer) (n *QDistanceFilter) {
 	n = new(QDistanceFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QDistanceFilter")
 	return
 }
+
 func (ptr *QDistanceFilter) DestroyQDistanceFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQDistanceFilter_Filter
-func callbackQDistanceFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QDistanceReading) bool)(signal))(NewQDistanceReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDistanceFilter) ConnectFilter(f func(reading *QDistanceReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QDistanceReading) bool {
-				(*(*func(*QDistanceReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QDistanceFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QDistanceFilter) Filter(reading QDistanceReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QDistanceFilter_Filter(ptr.Pointer(), PointerFromQDistanceReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QDistanceReading struct {
@@ -2375,22 +2241,32 @@ func PointerFromQDistanceReading(ptr QDistanceReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QDistanceReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QDistanceReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQDistanceReadingFromPointer(ptr unsafe.Pointer) (n *QDistanceReading) {
 	n = new(QDistanceReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QDistanceReading")
 	return
 }
+
+func (ptr *QDistanceReading) DestroyQDistanceReading() {
+}
+
 func (ptr *QDistanceReading) Distance() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QDistanceReading_Distance(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Distance"}).(float64)
 }
 
 func (ptr *QDistanceReading) SetDistance(distance float64) {
-	if ptr.Pointer() != nil {
-		C.QDistanceReading_SetDistance(ptr.Pointer(), C.double(distance))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDistance", distance})
 }
 
 type QDistanceSensor struct {
@@ -2426,77 +2302,48 @@ func PointerFromQDistanceSensor(ptr QDistanceSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QDistanceSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QDistanceSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQDistanceSensorFromPointer(ptr unsafe.Pointer) (n *QDistanceSensor) {
 	n = new(QDistanceSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QDistanceSensor")
 	return
 }
 func NewQDistanceSensor(parent core.QObject_ITF) *QDistanceSensor {
-	tmpValue := NewQDistanceSensorFromPointer(C.QDistanceSensor_NewQDistanceSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQDistanceSensor", "", parent}).(*QDistanceSensor)
 }
 
 func (ptr *QDistanceSensor) Reading() *QDistanceReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQDistanceReadingFromPointer(C.QDistanceSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQDistanceSensor_DestroyQDistanceSensor
-func callbackQDistanceSensor_DestroyQDistanceSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QDistanceSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQDistanceSensorFromPointer(ptr).DestroyQDistanceSensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QDistanceReading)
 }
 
 func (ptr *QDistanceSensor) ConnectDestroyQDistanceSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QDistanceSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QDistanceSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QDistanceSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQDistanceSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QDistanceSensor) DisconnectDestroyQDistanceSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QDistanceSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQDistanceSensor"})
 }
 
 func (ptr *QDistanceSensor) DestroyQDistanceSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QDistanceSensor_DestroyQDistanceSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQDistanceSensor"})
 }
 
 func (ptr *QDistanceSensor) DestroyQDistanceSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QDistanceSensor_DestroyQDistanceSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQDistanceSensorDefault"})
 }
 
 type QGyroscope struct {
@@ -2532,77 +2379,48 @@ func PointerFromQGyroscope(ptr QGyroscope_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QGyroscope) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QGyroscope) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQGyroscopeFromPointer(ptr unsafe.Pointer) (n *QGyroscope) {
 	n = new(QGyroscope)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QGyroscope")
 	return
 }
 func NewQGyroscope(parent core.QObject_ITF) *QGyroscope {
-	tmpValue := NewQGyroscopeFromPointer(C.QGyroscope_NewQGyroscope(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQGyroscope", "", parent}).(*QGyroscope)
 }
 
 func (ptr *QGyroscope) Reading() *QGyroscopeReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQGyroscopeReadingFromPointer(C.QGyroscope_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQGyroscope_DestroyQGyroscope
-func callbackQGyroscope_DestroyQGyroscope(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QGyroscope"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQGyroscopeFromPointer(ptr).DestroyQGyroscopeDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QGyroscopeReading)
 }
 
 func (ptr *QGyroscope) ConnectDestroyQGyroscope(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QGyroscope"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QGyroscope", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QGyroscope", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQGyroscope", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QGyroscope) DisconnectDestroyQGyroscope() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QGyroscope")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQGyroscope"})
 }
 
 func (ptr *QGyroscope) DestroyQGyroscope() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QGyroscope_DestroyQGyroscope(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQGyroscope"})
 }
 
 func (ptr *QGyroscope) DestroyQGyroscopeDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QGyroscope_DestroyQGyroscopeDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQGyroscopeDefault"})
 }
 
 type QGyroscopeFilter struct {
@@ -2638,57 +2456,37 @@ func PointerFromQGyroscopeFilter(ptr QGyroscopeFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QGyroscopeFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QGyroscopeFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQGyroscopeFilterFromPointer(ptr unsafe.Pointer) (n *QGyroscopeFilter) {
 	n = new(QGyroscopeFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QGyroscopeFilter")
 	return
 }
+
 func (ptr *QGyroscopeFilter) DestroyQGyroscopeFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQGyroscopeFilter_Filter
-func callbackQGyroscopeFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QGyroscopeReading) bool)(signal))(NewQGyroscopeReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QGyroscopeFilter) ConnectFilter(f func(reading *QGyroscopeReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QGyroscopeReading) bool {
-				(*(*func(*QGyroscopeReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QGyroscopeFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QGyroscopeFilter) Filter(reading QGyroscopeReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QGyroscopeFilter_Filter(ptr.Pointer(), PointerFromQGyroscopeReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QGyroscopeReading struct {
@@ -2724,48 +2522,52 @@ func PointerFromQGyroscopeReading(ptr QGyroscopeReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QGyroscopeReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QGyroscopeReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQGyroscopeReadingFromPointer(ptr unsafe.Pointer) (n *QGyroscopeReading) {
 	n = new(QGyroscopeReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QGyroscopeReading")
 	return
 }
+
+func (ptr *QGyroscopeReading) DestroyQGyroscopeReading() {
+}
+
 func (ptr *QGyroscopeReading) SetX(x float64) {
-	if ptr.Pointer() != nil {
-		C.QGyroscopeReading_SetX(ptr.Pointer(), C.double(x))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetX", x})
 }
 
 func (ptr *QGyroscopeReading) SetY(y float64) {
-	if ptr.Pointer() != nil {
-		C.QGyroscopeReading_SetY(ptr.Pointer(), C.double(y))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetY", y})
 }
 
 func (ptr *QGyroscopeReading) SetZ(z float64) {
-	if ptr.Pointer() != nil {
-		C.QGyroscopeReading_SetZ(ptr.Pointer(), C.double(z))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetZ", z})
 }
 
 func (ptr *QGyroscopeReading) X() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QGyroscopeReading_X(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "X"}).(float64)
 }
 
 func (ptr *QGyroscopeReading) Y() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QGyroscopeReading_Y(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Y"}).(float64)
 }
 
 func (ptr *QGyroscopeReading) Z() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QGyroscopeReading_Z(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Z"}).(float64)
 }
 
 type QHolsterFilter struct {
@@ -2801,57 +2603,37 @@ func PointerFromQHolsterFilter(ptr QHolsterFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHolsterFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QHolsterFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQHolsterFilterFromPointer(ptr unsafe.Pointer) (n *QHolsterFilter) {
 	n = new(QHolsterFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QHolsterFilter")
 	return
 }
+
 func (ptr *QHolsterFilter) DestroyQHolsterFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQHolsterFilter_Filter
-func callbackQHolsterFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QHolsterReading) bool)(signal))(NewQHolsterReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QHolsterFilter) ConnectFilter(f func(reading *QHolsterReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QHolsterReading) bool {
-				(*(*func(*QHolsterReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QHolsterFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QHolsterFilter) Filter(reading QHolsterReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHolsterFilter_Filter(ptr.Pointer(), PointerFromQHolsterReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QHolsterReading struct {
@@ -2887,22 +2669,32 @@ func PointerFromQHolsterReading(ptr QHolsterReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHolsterReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QHolsterReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQHolsterReadingFromPointer(ptr unsafe.Pointer) (n *QHolsterReading) {
 	n = new(QHolsterReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QHolsterReading")
 	return
 }
+
+func (ptr *QHolsterReading) DestroyQHolsterReading() {
+}
+
 func (ptr *QHolsterReading) Holstered() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHolsterReading_Holstered(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Holstered"}).(bool)
 }
 
 func (ptr *QHolsterReading) SetHolstered(holstered bool) {
-	if ptr.Pointer() != nil {
-		C.QHolsterReading_SetHolstered(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(holstered))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHolstered", holstered})
 }
 
 type QHolsterSensor struct {
@@ -2938,77 +2730,48 @@ func PointerFromQHolsterSensor(ptr QHolsterSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHolsterSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QHolsterSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQHolsterSensorFromPointer(ptr unsafe.Pointer) (n *QHolsterSensor) {
 	n = new(QHolsterSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QHolsterSensor")
 	return
 }
 func NewQHolsterSensor(parent core.QObject_ITF) *QHolsterSensor {
-	tmpValue := NewQHolsterSensorFromPointer(C.QHolsterSensor_NewQHolsterSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQHolsterSensor", "", parent}).(*QHolsterSensor)
 }
 
 func (ptr *QHolsterSensor) Reading() *QHolsterReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHolsterReadingFromPointer(C.QHolsterSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQHolsterSensor_DestroyQHolsterSensor
-func callbackQHolsterSensor_DestroyQHolsterSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QHolsterSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQHolsterSensorFromPointer(ptr).DestroyQHolsterSensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QHolsterReading)
 }
 
 func (ptr *QHolsterSensor) ConnectDestroyQHolsterSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QHolsterSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QHolsterSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QHolsterSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQHolsterSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QHolsterSensor) DisconnectDestroyQHolsterSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QHolsterSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQHolsterSensor"})
 }
 
 func (ptr *QHolsterSensor) DestroyQHolsterSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHolsterSensor_DestroyQHolsterSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQHolsterSensor"})
 }
 
 func (ptr *QHolsterSensor) DestroyQHolsterSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHolsterSensor_DestroyQHolsterSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQHolsterSensorDefault"})
 }
 
 type QHumidityFilter struct {
@@ -3044,57 +2807,37 @@ func PointerFromQHumidityFilter(ptr QHumidityFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHumidityFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QHumidityFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQHumidityFilterFromPointer(ptr unsafe.Pointer) (n *QHumidityFilter) {
 	n = new(QHumidityFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QHumidityFilter")
 	return
 }
+
 func (ptr *QHumidityFilter) DestroyQHumidityFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQHumidityFilter_Filter
-func callbackQHumidityFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QHumidityReading) bool)(signal))(NewQHumidityReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QHumidityFilter) ConnectFilter(f func(reading *QHumidityReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QHumidityReading) bool {
-				(*(*func(*QHumidityReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QHumidityFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QHumidityFilter) Filter(reading QHumidityReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHumidityFilter_Filter(ptr.Pointer(), PointerFromQHumidityReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QHumidityReading struct {
@@ -3130,35 +2873,42 @@ func PointerFromQHumidityReading(ptr QHumidityReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHumidityReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QHumidityReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQHumidityReadingFromPointer(ptr unsafe.Pointer) (n *QHumidityReading) {
 	n = new(QHumidityReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QHumidityReading")
 	return
 }
+
+func (ptr *QHumidityReading) DestroyQHumidityReading() {
+}
+
 func (ptr *QHumidityReading) AbsoluteHumidity() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QHumidityReading_AbsoluteHumidity(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AbsoluteHumidity"}).(float64)
 }
 
 func (ptr *QHumidityReading) RelativeHumidity() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QHumidityReading_RelativeHumidity(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RelativeHumidity"}).(float64)
 }
 
 func (ptr *QHumidityReading) SetAbsoluteHumidity(value float64) {
-	if ptr.Pointer() != nil {
-		C.QHumidityReading_SetAbsoluteHumidity(ptr.Pointer(), C.double(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAbsoluteHumidity", value})
 }
 
 func (ptr *QHumidityReading) SetRelativeHumidity(humidity float64) {
-	if ptr.Pointer() != nil {
-		C.QHumidityReading_SetRelativeHumidity(ptr.Pointer(), C.double(humidity))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetRelativeHumidity", humidity})
 }
 
 type QHumiditySensor struct {
@@ -3194,77 +2944,48 @@ func PointerFromQHumiditySensor(ptr QHumiditySensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHumiditySensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QHumiditySensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQHumiditySensorFromPointer(ptr unsafe.Pointer) (n *QHumiditySensor) {
 	n = new(QHumiditySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QHumiditySensor")
 	return
 }
 func NewQHumiditySensor(parent core.QObject_ITF) *QHumiditySensor {
-	tmpValue := NewQHumiditySensorFromPointer(C.QHumiditySensor_NewQHumiditySensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQHumiditySensor", "", parent}).(*QHumiditySensor)
 }
 
 func (ptr *QHumiditySensor) Reading() *QHumidityReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHumidityReadingFromPointer(C.QHumiditySensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQHumiditySensor_DestroyQHumiditySensor
-func callbackQHumiditySensor_DestroyQHumiditySensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QHumiditySensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQHumiditySensorFromPointer(ptr).DestroyQHumiditySensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QHumidityReading)
 }
 
 func (ptr *QHumiditySensor) ConnectDestroyQHumiditySensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QHumiditySensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QHumiditySensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QHumiditySensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQHumiditySensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QHumiditySensor) DisconnectDestroyQHumiditySensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QHumiditySensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQHumiditySensor"})
 }
 
 func (ptr *QHumiditySensor) DestroyQHumiditySensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHumiditySensor_DestroyQHumiditySensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQHumiditySensor"})
 }
 
 func (ptr *QHumiditySensor) DestroyQHumiditySensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHumiditySensor_DestroyQHumiditySensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQHumiditySensorDefault"})
 }
 
 type QIRProximityFilter struct {
@@ -3300,57 +3021,37 @@ func PointerFromQIRProximityFilter(ptr QIRProximityFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QIRProximityFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QIRProximityFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQIRProximityFilterFromPointer(ptr unsafe.Pointer) (n *QIRProximityFilter) {
 	n = new(QIRProximityFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QIRProximityFilter")
 	return
 }
+
 func (ptr *QIRProximityFilter) DestroyQIRProximityFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQIRProximityFilter_Filter
-func callbackQIRProximityFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QIRProximityReading) bool)(signal))(NewQIRProximityReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QIRProximityFilter) ConnectFilter(f func(reading *QIRProximityReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QIRProximityReading) bool {
-				(*(*func(*QIRProximityReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QIRProximityFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QIRProximityFilter) Filter(reading QIRProximityReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QIRProximityFilter_Filter(ptr.Pointer(), PointerFromQIRProximityReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QIRProximityReading struct {
@@ -3386,22 +3087,32 @@ func PointerFromQIRProximityReading(ptr QIRProximityReading_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *QIRProximityReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QIRProximityReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQIRProximityReadingFromPointer(ptr unsafe.Pointer) (n *QIRProximityReading) {
 	n = new(QIRProximityReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QIRProximityReading")
 	return
 }
+
+func (ptr *QIRProximityReading) DestroyQIRProximityReading() {
+}
+
 func (ptr *QIRProximityReading) Reflectance() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QIRProximityReading_Reflectance(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reflectance"}).(float64)
 }
 
 func (ptr *QIRProximityReading) SetReflectance(reflectance float64) {
-	if ptr.Pointer() != nil {
-		C.QIRProximityReading_SetReflectance(ptr.Pointer(), C.double(reflectance))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetReflectance", reflectance})
 }
 
 type QIRProximitySensor struct {
@@ -3437,77 +3148,48 @@ func PointerFromQIRProximitySensor(ptr QIRProximitySensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QIRProximitySensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QIRProximitySensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQIRProximitySensorFromPointer(ptr unsafe.Pointer) (n *QIRProximitySensor) {
 	n = new(QIRProximitySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QIRProximitySensor")
 	return
 }
 func NewQIRProximitySensor(parent core.QObject_ITF) *QIRProximitySensor {
-	tmpValue := NewQIRProximitySensorFromPointer(C.QIRProximitySensor_NewQIRProximitySensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQIRProximitySensor", "", parent}).(*QIRProximitySensor)
 }
 
 func (ptr *QIRProximitySensor) Reading() *QIRProximityReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQIRProximityReadingFromPointer(C.QIRProximitySensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQIRProximitySensor_DestroyQIRProximitySensor
-func callbackQIRProximitySensor_DestroyQIRProximitySensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QIRProximitySensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQIRProximitySensorFromPointer(ptr).DestroyQIRProximitySensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QIRProximityReading)
 }
 
 func (ptr *QIRProximitySensor) ConnectDestroyQIRProximitySensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QIRProximitySensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QIRProximitySensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QIRProximitySensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQIRProximitySensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QIRProximitySensor) DisconnectDestroyQIRProximitySensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QIRProximitySensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQIRProximitySensor"})
 }
 
 func (ptr *QIRProximitySensor) DestroyQIRProximitySensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QIRProximitySensor_DestroyQIRProximitySensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQIRProximitySensor"})
 }
 
 func (ptr *QIRProximitySensor) DestroyQIRProximitySensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QIRProximitySensor_DestroyQIRProximitySensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQIRProximitySensorDefault"})
 }
 
 type QLidFilter struct {
@@ -3543,57 +3225,37 @@ func PointerFromQLidFilter(ptr QLidFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QLidFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QLidFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQLidFilterFromPointer(ptr unsafe.Pointer) (n *QLidFilter) {
 	n = new(QLidFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QLidFilter")
 	return
 }
+
 func (ptr *QLidFilter) DestroyQLidFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQLidFilter_Filter
-func callbackQLidFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QLidReading) bool)(signal))(NewQLidReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QLidFilter) ConnectFilter(f func(reading *QLidReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QLidReading) bool {
-				(*(*func(*QLidReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLidFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QLidFilter) Filter(reading QLidReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLidFilter_Filter(ptr.Pointer(), PointerFromQLidReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QLidReading struct {
@@ -3629,35 +3291,42 @@ func PointerFromQLidReading(ptr QLidReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QLidReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QLidReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQLidReadingFromPointer(ptr unsafe.Pointer) (n *QLidReading) {
 	n = new(QLidReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QLidReading")
 	return
 }
+
+func (ptr *QLidReading) DestroyQLidReading() {
+}
+
 func (ptr *QLidReading) BackLidClosed() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLidReading_BackLidClosed(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BackLidClosed"}).(bool)
 }
 
 func (ptr *QLidReading) FrontLidClosed() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLidReading_FrontLidClosed(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "FrontLidClosed"}).(bool)
 }
 
 func (ptr *QLidReading) SetBackLidClosed(closed bool) {
-	if ptr.Pointer() != nil {
-		C.QLidReading_SetBackLidClosed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(closed))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetBackLidClosed", closed})
 }
 
 func (ptr *QLidReading) SetFrontLidClosed(closed bool) {
-	if ptr.Pointer() != nil {
-		C.QLidReading_SetFrontLidClosed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(closed))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetFrontLidClosed", closed})
 }
 
 type QLidSensor struct {
@@ -3693,77 +3362,48 @@ func PointerFromQLidSensor(ptr QLidSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QLidSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QLidSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQLidSensorFromPointer(ptr unsafe.Pointer) (n *QLidSensor) {
 	n = new(QLidSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QLidSensor")
 	return
 }
 func NewQLidSensor(parent core.QObject_ITF) *QLidSensor {
-	tmpValue := NewQLidSensorFromPointer(C.QLidSensor_NewQLidSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQLidSensor", "", parent}).(*QLidSensor)
 }
 
 func (ptr *QLidSensor) Reading() *QLidReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQLidReadingFromPointer(C.QLidSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQLidSensor_DestroyQLidSensor
-func callbackQLidSensor_DestroyQLidSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QLidSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQLidSensorFromPointer(ptr).DestroyQLidSensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QLidReading)
 }
 
 func (ptr *QLidSensor) ConnectDestroyQLidSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QLidSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QLidSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QLidSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQLidSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLidSensor) DisconnectDestroyQLidSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QLidSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQLidSensor"})
 }
 
 func (ptr *QLidSensor) DestroyQLidSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QLidSensor_DestroyQLidSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQLidSensor"})
 }
 
 func (ptr *QLidSensor) DestroyQLidSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QLidSensor_DestroyQLidSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQLidSensorDefault"})
 }
 
 type QLightFilter struct {
@@ -3799,57 +3439,37 @@ func PointerFromQLightFilter(ptr QLightFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QLightFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QLightFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQLightFilterFromPointer(ptr unsafe.Pointer) (n *QLightFilter) {
 	n = new(QLightFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QLightFilter")
 	return
 }
+
 func (ptr *QLightFilter) DestroyQLightFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQLightFilter_Filter
-func callbackQLightFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QLightReading) bool)(signal))(NewQLightReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QLightFilter) ConnectFilter(f func(reading *QLightReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QLightReading) bool {
-				(*(*func(*QLightReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLightFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QLightFilter) Filter(reading QLightReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLightFilter_Filter(ptr.Pointer(), PointerFromQLightReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QLightReading struct {
@@ -3885,22 +3505,32 @@ func PointerFromQLightReading(ptr QLightReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QLightReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QLightReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQLightReadingFromPointer(ptr unsafe.Pointer) (n *QLightReading) {
 	n = new(QLightReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QLightReading")
 	return
 }
+
+func (ptr *QLightReading) DestroyQLightReading() {
+}
+
 func (ptr *QLightReading) Lux() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QLightReading_Lux(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Lux"}).(float64)
 }
 
 func (ptr *QLightReading) SetLux(lux float64) {
-	if ptr.Pointer() != nil {
-		C.QLightReading_SetLux(ptr.Pointer(), C.double(lux))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLux", lux})
 }
 
 type QLightSensor struct {
@@ -3936,130 +3566,73 @@ func PointerFromQLightSensor(ptr QLightSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QLightSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QLightSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQLightSensorFromPointer(ptr unsafe.Pointer) (n *QLightSensor) {
 	n = new(QLightSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QLightSensor")
 	return
 }
 func NewQLightSensor(parent core.QObject_ITF) *QLightSensor {
-	tmpValue := NewQLightSensorFromPointer(C.QLightSensor_NewQLightSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQLightSensor", "", parent}).(*QLightSensor)
 }
 
 func (ptr *QLightSensor) FieldOfView() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QLightSensor_FieldOfView(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQLightSensor_FieldOfViewChanged
-func callbackQLightSensor_FieldOfViewChanged(ptr unsafe.Pointer, fieldOfView C.double) {
-	if signal := qt.GetSignal(ptr, "fieldOfViewChanged"); signal != nil {
-		(*(*func(float64))(signal))(float64(fieldOfView))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "FieldOfView"}).(float64)
 }
 
 func (ptr *QLightSensor) ConnectFieldOfViewChanged(f func(fieldOfView float64)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "fieldOfViewChanged") {
-			C.QLightSensor_ConnectFieldOfViewChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "fieldOfViewChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "fieldOfViewChanged"); signal != nil {
-			f := func(fieldOfView float64) {
-				(*(*func(float64))(signal))(fieldOfView)
-				f(fieldOfView)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "fieldOfViewChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "fieldOfViewChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFieldOfViewChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLightSensor) DisconnectFieldOfViewChanged() {
-	if ptr.Pointer() != nil {
-		C.QLightSensor_DisconnectFieldOfViewChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "fieldOfViewChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFieldOfViewChanged"})
 }
 
 func (ptr *QLightSensor) FieldOfViewChanged(fieldOfView float64) {
-	if ptr.Pointer() != nil {
-		C.QLightSensor_FieldOfViewChanged(ptr.Pointer(), C.double(fieldOfView))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "FieldOfViewChanged", fieldOfView})
 }
 
 func (ptr *QLightSensor) Reading() *QLightReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQLightReadingFromPointer(C.QLightSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QLightReading)
 }
 
 func (ptr *QLightSensor) SetFieldOfView(fieldOfView float64) {
-	if ptr.Pointer() != nil {
-		C.QLightSensor_SetFieldOfView(ptr.Pointer(), C.double(fieldOfView))
-	}
-}
 
-//export callbackQLightSensor_DestroyQLightSensor
-func callbackQLightSensor_DestroyQLightSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QLightSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQLightSensorFromPointer(ptr).DestroyQLightSensorDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetFieldOfView", fieldOfView})
 }
 
 func (ptr *QLightSensor) ConnectDestroyQLightSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QLightSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QLightSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QLightSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQLightSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLightSensor) DisconnectDestroyQLightSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QLightSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQLightSensor"})
 }
 
 func (ptr *QLightSensor) DestroyQLightSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QLightSensor_DestroyQLightSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQLightSensor"})
 }
 
 func (ptr *QLightSensor) DestroyQLightSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QLightSensor_DestroyQLightSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQLightSensorDefault"})
 }
 
 type QMagnetometer struct {
@@ -4095,130 +3668,73 @@ func PointerFromQMagnetometer(ptr QMagnetometer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QMagnetometer) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QMagnetometer) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQMagnetometerFromPointer(ptr unsafe.Pointer) (n *QMagnetometer) {
 	n = new(QMagnetometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QMagnetometer")
 	return
 }
 func NewQMagnetometer(parent core.QObject_ITF) *QMagnetometer {
-	tmpValue := NewQMagnetometerFromPointer(C.QMagnetometer_NewQMagnetometer(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQMagnetometer", "", parent}).(*QMagnetometer)
 }
 
 func (ptr *QMagnetometer) Reading() *QMagnetometerReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQMagnetometerReadingFromPointer(C.QMagnetometer_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QMagnetometerReading)
 }
 
 func (ptr *QMagnetometer) ReturnGeoValues() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QMagnetometer_ReturnGeoValues(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQMagnetometer_ReturnGeoValuesChanged
-func callbackQMagnetometer_ReturnGeoValuesChanged(ptr unsafe.Pointer, returnGeoValues C.char) {
-	if signal := qt.GetSignal(ptr, "returnGeoValuesChanged"); signal != nil {
-		(*(*func(bool))(signal))(int8(returnGeoValues) != 0)
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReturnGeoValues"}).(bool)
 }
 
 func (ptr *QMagnetometer) ConnectReturnGeoValuesChanged(f func(returnGeoValues bool)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "returnGeoValuesChanged") {
-			C.QMagnetometer_ConnectReturnGeoValuesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "returnGeoValuesChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "returnGeoValuesChanged"); signal != nil {
-			f := func(returnGeoValues bool) {
-				(*(*func(bool))(signal))(returnGeoValues)
-				f(returnGeoValues)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "returnGeoValuesChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "returnGeoValuesChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectReturnGeoValuesChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QMagnetometer) DisconnectReturnGeoValuesChanged() {
-	if ptr.Pointer() != nil {
-		C.QMagnetometer_DisconnectReturnGeoValuesChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "returnGeoValuesChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectReturnGeoValuesChanged"})
 }
 
 func (ptr *QMagnetometer) ReturnGeoValuesChanged(returnGeoValues bool) {
-	if ptr.Pointer() != nil {
-		C.QMagnetometer_ReturnGeoValuesChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(returnGeoValues))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReturnGeoValuesChanged", returnGeoValues})
 }
 
 func (ptr *QMagnetometer) SetReturnGeoValues(returnGeoValues bool) {
-	if ptr.Pointer() != nil {
-		C.QMagnetometer_SetReturnGeoValues(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(returnGeoValues))))
-	}
-}
 
-//export callbackQMagnetometer_DestroyQMagnetometer
-func callbackQMagnetometer_DestroyQMagnetometer(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QMagnetometer"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQMagnetometerFromPointer(ptr).DestroyQMagnetometerDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetReturnGeoValues", returnGeoValues})
 }
 
 func (ptr *QMagnetometer) ConnectDestroyQMagnetometer(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QMagnetometer"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QMagnetometer", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QMagnetometer", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQMagnetometer", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QMagnetometer) DisconnectDestroyQMagnetometer() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QMagnetometer")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQMagnetometer"})
 }
 
 func (ptr *QMagnetometer) DestroyQMagnetometer() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QMagnetometer_DestroyQMagnetometer(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQMagnetometer"})
 }
 
 func (ptr *QMagnetometer) DestroyQMagnetometerDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QMagnetometer_DestroyQMagnetometerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQMagnetometerDefault"})
 }
 
 type QMagnetometerFilter struct {
@@ -4254,57 +3770,37 @@ func PointerFromQMagnetometerFilter(ptr QMagnetometerFilter_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *QMagnetometerFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QMagnetometerFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQMagnetometerFilterFromPointer(ptr unsafe.Pointer) (n *QMagnetometerFilter) {
 	n = new(QMagnetometerFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QMagnetometerFilter")
 	return
 }
+
 func (ptr *QMagnetometerFilter) DestroyQMagnetometerFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQMagnetometerFilter_Filter
-func callbackQMagnetometerFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QMagnetometerReading) bool)(signal))(NewQMagnetometerReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QMagnetometerFilter) ConnectFilter(f func(reading *QMagnetometerReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QMagnetometerReading) bool {
-				(*(*func(*QMagnetometerReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QMagnetometerFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QMagnetometerFilter) Filter(reading QMagnetometerReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QMagnetometerFilter_Filter(ptr.Pointer(), PointerFromQMagnetometerReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QMagnetometerReading struct {
@@ -4340,61 +3836,62 @@ func PointerFromQMagnetometerReading(ptr QMagnetometerReading_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *QMagnetometerReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QMagnetometerReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQMagnetometerReadingFromPointer(ptr unsafe.Pointer) (n *QMagnetometerReading) {
 	n = new(QMagnetometerReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QMagnetometerReading")
 	return
 }
+
+func (ptr *QMagnetometerReading) DestroyQMagnetometerReading() {
+}
+
 func (ptr *QMagnetometerReading) CalibrationLevel() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QMagnetometerReading_CalibrationLevel(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CalibrationLevel"}).(float64)
 }
 
 func (ptr *QMagnetometerReading) SetCalibrationLevel(calibrationLevel float64) {
-	if ptr.Pointer() != nil {
-		C.QMagnetometerReading_SetCalibrationLevel(ptr.Pointer(), C.double(calibrationLevel))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCalibrationLevel", calibrationLevel})
 }
 
 func (ptr *QMagnetometerReading) SetX(x float64) {
-	if ptr.Pointer() != nil {
-		C.QMagnetometerReading_SetX(ptr.Pointer(), C.double(x))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetX", x})
 }
 
 func (ptr *QMagnetometerReading) SetY(y float64) {
-	if ptr.Pointer() != nil {
-		C.QMagnetometerReading_SetY(ptr.Pointer(), C.double(y))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetY", y})
 }
 
 func (ptr *QMagnetometerReading) SetZ(z float64) {
-	if ptr.Pointer() != nil {
-		C.QMagnetometerReading_SetZ(ptr.Pointer(), C.double(z))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetZ", z})
 }
 
 func (ptr *QMagnetometerReading) X() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QMagnetometerReading_X(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "X"}).(float64)
 }
 
 func (ptr *QMagnetometerReading) Y() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QMagnetometerReading_Y(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Y"}).(float64)
 }
 
 func (ptr *QMagnetometerReading) Z() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QMagnetometerReading_Z(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Z"}).(float64)
 }
 
 type QOrientationFilter struct {
@@ -4430,57 +3927,37 @@ func PointerFromQOrientationFilter(ptr QOrientationFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QOrientationFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QOrientationFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQOrientationFilterFromPointer(ptr unsafe.Pointer) (n *QOrientationFilter) {
 	n = new(QOrientationFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QOrientationFilter")
 	return
 }
+
 func (ptr *QOrientationFilter) DestroyQOrientationFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQOrientationFilter_Filter
-func callbackQOrientationFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QOrientationReading) bool)(signal))(NewQOrientationReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QOrientationFilter) ConnectFilter(f func(reading *QOrientationReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QOrientationReading) bool {
-				(*(*func(*QOrientationReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QOrientationFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QOrientationFilter) Filter(reading QOrientationReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QOrientationFilter_Filter(ptr.Pointer(), PointerFromQOrientationReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QOrientationReading struct {
@@ -4516,10 +3993,22 @@ func PointerFromQOrientationReading(ptr QOrientationReading_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *QOrientationReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QOrientationReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQOrientationReadingFromPointer(ptr unsafe.Pointer) (n *QOrientationReading) {
 	n = new(QOrientationReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QOrientationReading")
 	return
+}
+
+func (ptr *QOrientationReading) DestroyQOrientationReading() {
 }
 
 //go:generate stringer -type=QOrientationReading__Orientation
@@ -4537,16 +4026,13 @@ const (
 )
 
 func (ptr *QOrientationReading) Orientation() QOrientationReading__Orientation {
-	if ptr.Pointer() != nil {
-		return QOrientationReading__Orientation(C.QOrientationReading_Orientation(ptr.Pointer()))
-	}
-	return 0
+
+	return QOrientationReading__Orientation(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Orientation"}).(float64))
 }
 
 func (ptr *QOrientationReading) SetOrientation(orientation QOrientationReading__Orientation) {
-	if ptr.Pointer() != nil {
-		C.QOrientationReading_SetOrientation(ptr.Pointer(), C.longlong(orientation))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetOrientation", orientation})
 }
 
 type QOrientationSensor struct {
@@ -4582,77 +4068,48 @@ func PointerFromQOrientationSensor(ptr QOrientationSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QOrientationSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QOrientationSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQOrientationSensorFromPointer(ptr unsafe.Pointer) (n *QOrientationSensor) {
 	n = new(QOrientationSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QOrientationSensor")
 	return
 }
 func NewQOrientationSensor(parent core.QObject_ITF) *QOrientationSensor {
-	tmpValue := NewQOrientationSensorFromPointer(C.QOrientationSensor_NewQOrientationSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQOrientationSensor", "", parent}).(*QOrientationSensor)
 }
 
 func (ptr *QOrientationSensor) Reading() *QOrientationReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQOrientationReadingFromPointer(C.QOrientationSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQOrientationSensor_DestroyQOrientationSensor
-func callbackQOrientationSensor_DestroyQOrientationSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QOrientationSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQOrientationSensorFromPointer(ptr).DestroyQOrientationSensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QOrientationReading)
 }
 
 func (ptr *QOrientationSensor) ConnectDestroyQOrientationSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QOrientationSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QOrientationSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QOrientationSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQOrientationSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QOrientationSensor) DisconnectDestroyQOrientationSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QOrientationSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQOrientationSensor"})
 }
 
 func (ptr *QOrientationSensor) DestroyQOrientationSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QOrientationSensor_DestroyQOrientationSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQOrientationSensor"})
 }
 
 func (ptr *QOrientationSensor) DestroyQOrientationSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QOrientationSensor_DestroyQOrientationSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQOrientationSensorDefault"})
 }
 
 type QPressureFilter struct {
@@ -4688,57 +4145,37 @@ func PointerFromQPressureFilter(ptr QPressureFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QPressureFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QPressureFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQPressureFilterFromPointer(ptr unsafe.Pointer) (n *QPressureFilter) {
 	n = new(QPressureFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QPressureFilter")
 	return
 }
+
 func (ptr *QPressureFilter) DestroyQPressureFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQPressureFilter_Filter
-func callbackQPressureFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QPressureReading) bool)(signal))(NewQPressureReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QPressureFilter) ConnectFilter(f func(reading *QPressureReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QPressureReading) bool {
-				(*(*func(*QPressureReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QPressureFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QPressureFilter) Filter(reading QPressureReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QPressureFilter_Filter(ptr.Pointer(), PointerFromQPressureReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QPressureReading struct {
@@ -4774,35 +4211,42 @@ func PointerFromQPressureReading(ptr QPressureReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QPressureReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QPressureReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQPressureReadingFromPointer(ptr unsafe.Pointer) (n *QPressureReading) {
 	n = new(QPressureReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QPressureReading")
 	return
 }
+
+func (ptr *QPressureReading) DestroyQPressureReading() {
+}
+
 func (ptr *QPressureReading) Pressure() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QPressureReading_Pressure(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Pressure"}).(float64)
 }
 
 func (ptr *QPressureReading) SetPressure(pressure float64) {
-	if ptr.Pointer() != nil {
-		C.QPressureReading_SetPressure(ptr.Pointer(), C.double(pressure))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPressure", pressure})
 }
 
 func (ptr *QPressureReading) SetTemperature(temperature float64) {
-	if ptr.Pointer() != nil {
-		C.QPressureReading_SetTemperature(ptr.Pointer(), C.double(temperature))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetTemperature", temperature})
 }
 
 func (ptr *QPressureReading) Temperature() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QPressureReading_Temperature(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Temperature"}).(float64)
 }
 
 type QPressureSensor struct {
@@ -4838,77 +4282,48 @@ func PointerFromQPressureSensor(ptr QPressureSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QPressureSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QPressureSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQPressureSensorFromPointer(ptr unsafe.Pointer) (n *QPressureSensor) {
 	n = new(QPressureSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QPressureSensor")
 	return
 }
 func NewQPressureSensor(parent core.QObject_ITF) *QPressureSensor {
-	tmpValue := NewQPressureSensorFromPointer(C.QPressureSensor_NewQPressureSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQPressureSensor", "", parent}).(*QPressureSensor)
 }
 
 func (ptr *QPressureSensor) Reading() *QPressureReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQPressureReadingFromPointer(C.QPressureSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQPressureSensor_DestroyQPressureSensor
-func callbackQPressureSensor_DestroyQPressureSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QPressureSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQPressureSensorFromPointer(ptr).DestroyQPressureSensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QPressureReading)
 }
 
 func (ptr *QPressureSensor) ConnectDestroyQPressureSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QPressureSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QPressureSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QPressureSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQPressureSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QPressureSensor) DisconnectDestroyQPressureSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QPressureSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQPressureSensor"})
 }
 
 func (ptr *QPressureSensor) DestroyQPressureSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QPressureSensor_DestroyQPressureSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQPressureSensor"})
 }
 
 func (ptr *QPressureSensor) DestroyQPressureSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QPressureSensor_DestroyQPressureSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQPressureSensorDefault"})
 }
 
 type QProximityFilter struct {
@@ -4944,57 +4359,37 @@ func PointerFromQProximityFilter(ptr QProximityFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QProximityFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QProximityFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQProximityFilterFromPointer(ptr unsafe.Pointer) (n *QProximityFilter) {
 	n = new(QProximityFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QProximityFilter")
 	return
 }
+
 func (ptr *QProximityFilter) DestroyQProximityFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQProximityFilter_Filter
-func callbackQProximityFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QProximityReading) bool)(signal))(NewQProximityReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QProximityFilter) ConnectFilter(f func(reading *QProximityReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QProximityReading) bool {
-				(*(*func(*QProximityReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QProximityFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QProximityFilter) Filter(reading QProximityReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QProximityFilter_Filter(ptr.Pointer(), PointerFromQProximityReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QProximityReading struct {
@@ -5030,22 +4425,32 @@ func PointerFromQProximityReading(ptr QProximityReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QProximityReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QProximityReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQProximityReadingFromPointer(ptr unsafe.Pointer) (n *QProximityReading) {
 	n = new(QProximityReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QProximityReading")
 	return
 }
+
+func (ptr *QProximityReading) DestroyQProximityReading() {
+}
+
 func (ptr *QProximityReading) Close() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QProximityReading_Close(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Close"}).(bool)
 }
 
 func (ptr *QProximityReading) SetClose(close bool) {
-	if ptr.Pointer() != nil {
-		C.QProximityReading_SetClose(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(close))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetClose", close})
 }
 
 type QProximitySensor struct {
@@ -5081,77 +4486,48 @@ func PointerFromQProximitySensor(ptr QProximitySensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QProximitySensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QProximitySensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQProximitySensorFromPointer(ptr unsafe.Pointer) (n *QProximitySensor) {
 	n = new(QProximitySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QProximitySensor")
 	return
 }
 func NewQProximitySensor(parent core.QObject_ITF) *QProximitySensor {
-	tmpValue := NewQProximitySensorFromPointer(C.QProximitySensor_NewQProximitySensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQProximitySensor", "", parent}).(*QProximitySensor)
 }
 
 func (ptr *QProximitySensor) Reading() *QProximityReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQProximityReadingFromPointer(C.QProximitySensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQProximitySensor_DestroyQProximitySensor
-func callbackQProximitySensor_DestroyQProximitySensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QProximitySensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQProximitySensorFromPointer(ptr).DestroyQProximitySensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QProximityReading)
 }
 
 func (ptr *QProximitySensor) ConnectDestroyQProximitySensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QProximitySensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QProximitySensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QProximitySensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQProximitySensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QProximitySensor) DisconnectDestroyQProximitySensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QProximitySensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQProximitySensor"})
 }
 
 func (ptr *QProximitySensor) DestroyQProximitySensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QProximitySensor_DestroyQProximitySensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQProximitySensor"})
 }
 
 func (ptr *QProximitySensor) DestroyQProximitySensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QProximitySensor_DestroyQProximitySensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQProximitySensorDefault"})
 }
 
 type QRotationFilter struct {
@@ -5187,57 +4563,37 @@ func PointerFromQRotationFilter(ptr QRotationFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QRotationFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QRotationFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQRotationFilterFromPointer(ptr unsafe.Pointer) (n *QRotationFilter) {
 	n = new(QRotationFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QRotationFilter")
 	return
 }
+
 func (ptr *QRotationFilter) DestroyQRotationFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQRotationFilter_Filter
-func callbackQRotationFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QRotationReading) bool)(signal))(NewQRotationReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QRotationFilter) ConnectFilter(f func(reading *QRotationReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QRotationReading) bool {
-				(*(*func(*QRotationReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QRotationFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QRotationFilter) Filter(reading QRotationReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QRotationFilter_Filter(ptr.Pointer(), PointerFromQRotationReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QRotationReading struct {
@@ -5273,36 +4629,42 @@ func PointerFromQRotationReading(ptr QRotationReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QRotationReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QRotationReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQRotationReadingFromPointer(ptr unsafe.Pointer) (n *QRotationReading) {
 	n = new(QRotationReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QRotationReading")
 	return
 }
+
+func (ptr *QRotationReading) DestroyQRotationReading() {
+}
+
 func (ptr *QRotationReading) SetFromEuler(x float64, y float64, z float64) {
-	if ptr.Pointer() != nil {
-		C.QRotationReading_SetFromEuler(ptr.Pointer(), C.double(x), C.double(y), C.double(z))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetFromEuler", x, y, z})
 }
 
 func (ptr *QRotationReading) X() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QRotationReading_X(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "X"}).(float64)
 }
 
 func (ptr *QRotationReading) Y() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QRotationReading_Y(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Y"}).(float64)
 }
 
 func (ptr *QRotationReading) Z() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QRotationReading_Z(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Z"}).(float64)
 }
 
 type QRotationSensor struct {
@@ -5338,130 +4700,73 @@ func PointerFromQRotationSensor(ptr QRotationSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QRotationSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QRotationSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQRotationSensorFromPointer(ptr unsafe.Pointer) (n *QRotationSensor) {
 	n = new(QRotationSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QRotationSensor")
 	return
 }
 func NewQRotationSensor(parent core.QObject_ITF) *QRotationSensor {
-	tmpValue := NewQRotationSensorFromPointer(C.QRotationSensor_NewQRotationSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQRotationSensor", "", parent}).(*QRotationSensor)
 }
 
 func (ptr *QRotationSensor) HasZ() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QRotationSensor_HasZ(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQRotationSensor_HasZChanged
-func callbackQRotationSensor_HasZChanged(ptr unsafe.Pointer, hasZ C.char) {
-	if signal := qt.GetSignal(ptr, "hasZChanged"); signal != nil {
-		(*(*func(bool))(signal))(int8(hasZ) != 0)
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasZ"}).(bool)
 }
 
 func (ptr *QRotationSensor) ConnectHasZChanged(f func(hasZ bool)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "hasZChanged") {
-			C.QRotationSensor_ConnectHasZChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hasZChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "hasZChanged"); signal != nil {
-			f := func(hasZ bool) {
-				(*(*func(bool))(signal))(hasZ)
-				f(hasZ)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "hasZChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasZChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectHasZChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QRotationSensor) DisconnectHasZChanged() {
-	if ptr.Pointer() != nil {
-		C.QRotationSensor_DisconnectHasZChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "hasZChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectHasZChanged"})
 }
 
 func (ptr *QRotationSensor) HasZChanged(hasZ bool) {
-	if ptr.Pointer() != nil {
-		C.QRotationSensor_HasZChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hasZ))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasZChanged", hasZ})
 }
 
 func (ptr *QRotationSensor) Reading() *QRotationReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQRotationReadingFromPointer(C.QRotationSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QRotationReading)
 }
 
 func (ptr *QRotationSensor) SetHasZ(hasZ bool) {
-	if ptr.Pointer() != nil {
-		C.QRotationSensor_SetHasZ(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hasZ))))
-	}
-}
 
-//export callbackQRotationSensor_DestroyQRotationSensor
-func callbackQRotationSensor_DestroyQRotationSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QRotationSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQRotationSensorFromPointer(ptr).DestroyQRotationSensorDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHasZ", hasZ})
 }
 
 func (ptr *QRotationSensor) ConnectDestroyQRotationSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QRotationSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QRotationSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QRotationSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQRotationSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QRotationSensor) DisconnectDestroyQRotationSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QRotationSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQRotationSensor"})
 }
 
 func (ptr *QRotationSensor) DestroyQRotationSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QRotationSensor_DestroyQRotationSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQRotationSensor"})
 }
 
 func (ptr *QRotationSensor) DestroyQRotationSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QRotationSensor_DestroyQRotationSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQRotationSensorDefault"})
 }
 
 type QSensor struct {
@@ -5497,9 +4802,18 @@ func PointerFromQSensor(ptr QSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QSensor) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQSensorFromPointer(ptr unsafe.Pointer) (n *QSensor) {
 	n = new(QSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensor")
 	return
 }
 
@@ -5530,1303 +4844,633 @@ const (
 )
 
 func NewQSensor(ty core.QByteArray_ITF, parent core.QObject_ITF) *QSensor {
-	tmpValue := NewQSensorFromPointer(C.QSensor_NewQSensor(core.PointerFromQByteArray(ty), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQSensor_ActiveChanged
-func callbackQSensor_ActiveChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "activeChanged"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQSensor", "", ty, parent}).(*QSensor)
 }
 
 func (ptr *QSensor) ConnectActiveChanged(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "activeChanged") {
-			C.QSensor_ConnectActiveChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "activeChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "activeChanged"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "activeChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "activeChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectActiveChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectActiveChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectActiveChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "activeChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectActiveChanged"})
 }
 
 func (ptr *QSensor) ActiveChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_ActiveChanged(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ActiveChanged"})
 }
 
 func (ptr *QSensor) AddFilter(filter QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor_AddFilter(ptr.Pointer(), PointerFromQSensorFilter(filter))
-	}
-}
 
-//export callbackQSensor_AlwaysOnChanged
-func callbackQSensor_AlwaysOnChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "alwaysOnChanged"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AddFilter", filter})
 }
 
 func (ptr *QSensor) ConnectAlwaysOnChanged(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "alwaysOnChanged") {
-			C.QSensor_ConnectAlwaysOnChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "alwaysOnChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "alwaysOnChanged"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "alwaysOnChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "alwaysOnChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectAlwaysOnChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectAlwaysOnChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectAlwaysOnChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "alwaysOnChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectAlwaysOnChanged"})
 }
 
 func (ptr *QSensor) AlwaysOnChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_AlwaysOnChanged(ptr.Pointer())
-	}
-}
 
-//export callbackQSensor_AvailableSensorsChanged
-func callbackQSensor_AvailableSensorsChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "availableSensorsChanged"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AlwaysOnChanged"})
 }
 
 func (ptr *QSensor) ConnectAvailableSensorsChanged(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "availableSensorsChanged") {
-			C.QSensor_ConnectAvailableSensorsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "availableSensorsChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "availableSensorsChanged"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "availableSensorsChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "availableSensorsChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectAvailableSensorsChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectAvailableSensorsChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectAvailableSensorsChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "availableSensorsChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectAvailableSensorsChanged"})
 }
 
 func (ptr *QSensor) AvailableSensorsChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_AvailableSensorsChanged(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AvailableSensorsChanged"})
 }
 
 func (ptr *QSensor) AxesOrientationMode() QSensor__AxesOrientationMode {
-	if ptr.Pointer() != nil {
-		return QSensor__AxesOrientationMode(C.QSensor_AxesOrientationMode(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQSensor_AxesOrientationModeChanged
-func callbackQSensor_AxesOrientationModeChanged(ptr unsafe.Pointer, axesOrientationMode C.longlong) {
-	if signal := qt.GetSignal(ptr, "axesOrientationModeChanged"); signal != nil {
-		(*(*func(QSensor__AxesOrientationMode))(signal))(QSensor__AxesOrientationMode(axesOrientationMode))
-	}
-
+	return QSensor__AxesOrientationMode(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AxesOrientationMode"}).(float64))
 }
 
 func (ptr *QSensor) ConnectAxesOrientationModeChanged(f func(axesOrientationMode QSensor__AxesOrientationMode)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "axesOrientationModeChanged") {
-			C.QSensor_ConnectAxesOrientationModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "axesOrientationModeChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "axesOrientationModeChanged"); signal != nil {
-			f := func(axesOrientationMode QSensor__AxesOrientationMode) {
-				(*(*func(QSensor__AxesOrientationMode))(signal))(axesOrientationMode)
-				f(axesOrientationMode)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "axesOrientationModeChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "axesOrientationModeChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectAxesOrientationModeChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectAxesOrientationModeChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectAxesOrientationModeChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "axesOrientationModeChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectAxesOrientationModeChanged"})
 }
 
 func (ptr *QSensor) AxesOrientationModeChanged(axesOrientationMode QSensor__AxesOrientationMode) {
-	if ptr.Pointer() != nil {
-		C.QSensor_AxesOrientationModeChanged(ptr.Pointer(), C.longlong(axesOrientationMode))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AxesOrientationModeChanged", axesOrientationMode})
 }
 
 func (ptr *QSensor) BufferSize() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_BufferSize(ptr.Pointer())))
-	}
-	return 0
-}
 
-//export callbackQSensor_BufferSizeChanged
-func callbackQSensor_BufferSizeChanged(ptr unsafe.Pointer, bufferSize C.int) {
-	if signal := qt.GetSignal(ptr, "bufferSizeChanged"); signal != nil {
-		(*(*func(int))(signal))(int(int32(bufferSize)))
-	}
-
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BufferSize"}).(float64))
 }
 
 func (ptr *QSensor) ConnectBufferSizeChanged(f func(bufferSize int)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "bufferSizeChanged") {
-			C.QSensor_ConnectBufferSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "bufferSizeChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "bufferSizeChanged"); signal != nil {
-			f := func(bufferSize int) {
-				(*(*func(int))(signal))(bufferSize)
-				f(bufferSize)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "bufferSizeChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "bufferSizeChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectBufferSizeChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectBufferSizeChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectBufferSizeChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "bufferSizeChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectBufferSizeChanged"})
 }
 
 func (ptr *QSensor) BufferSizeChanged(bufferSize int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_BufferSizeChanged(ptr.Pointer(), C.int(int32(bufferSize)))
-	}
-}
 
-//export callbackQSensor_BusyChanged
-func callbackQSensor_BusyChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "busyChanged"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BufferSizeChanged", bufferSize})
 }
 
 func (ptr *QSensor) ConnectBusyChanged(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "busyChanged") {
-			C.QSensor_ConnectBusyChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "busyChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "busyChanged"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "busyChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "busyChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectBusyChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectBusyChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectBusyChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "busyChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectBusyChanged"})
 }
 
 func (ptr *QSensor) BusyChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_BusyChanged(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BusyChanged"})
 }
 
 func (ptr *QSensor) ConnectToBackend() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_ConnectToBackend(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToBackend"}).(bool)
 }
 
 func (ptr *QSensor) CurrentOrientation() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_CurrentOrientation(ptr.Pointer())))
-	}
-	return 0
-}
 
-//export callbackQSensor_CurrentOrientationChanged
-func callbackQSensor_CurrentOrientationChanged(ptr unsafe.Pointer, currentOrientation C.int) {
-	if signal := qt.GetSignal(ptr, "currentOrientationChanged"); signal != nil {
-		(*(*func(int))(signal))(int(int32(currentOrientation)))
-	}
-
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CurrentOrientation"}).(float64))
 }
 
 func (ptr *QSensor) ConnectCurrentOrientationChanged(f func(currentOrientation int)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "currentOrientationChanged") {
-			C.QSensor_ConnectCurrentOrientationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "currentOrientationChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "currentOrientationChanged"); signal != nil {
-			f := func(currentOrientation int) {
-				(*(*func(int))(signal))(currentOrientation)
-				f(currentOrientation)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "currentOrientationChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "currentOrientationChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectCurrentOrientationChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectCurrentOrientationChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectCurrentOrientationChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "currentOrientationChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectCurrentOrientationChanged"})
 }
 
 func (ptr *QSensor) CurrentOrientationChanged(currentOrientation int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_CurrentOrientationChanged(ptr.Pointer(), C.int(int32(currentOrientation)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CurrentOrientationChanged", currentOrientation})
 }
 
 func (ptr *QSensor) DataRate() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_DataRate(ptr.Pointer())))
-	}
-	return 0
-}
 
-//export callbackQSensor_DataRateChanged
-func callbackQSensor_DataRateChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "dataRateChanged"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DataRate"}).(float64))
 }
 
 func (ptr *QSensor) ConnectDataRateChanged(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "dataRateChanged") {
-			C.QSensor_ConnectDataRateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataRateChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "dataRateChanged"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "dataRateChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "dataRateChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDataRateChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectDataRateChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectDataRateChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "dataRateChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDataRateChanged"})
 }
 
 func (ptr *QSensor) DataRateChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DataRateChanged(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DataRateChanged"})
 }
 
 func QSensor_DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
-	qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensor_DefaultSensorForType", "", ty}).(*core.QByteArray)
 }
 
 func (ptr *QSensor) DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
-	qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensor_DefaultSensorForType", "", ty}).(*core.QByteArray)
 }
 
 func (ptr *QSensor) Description() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSensor_Description(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Description"}).(string)
 }
 
 func (ptr *QSensor) EfficientBufferSize() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_EfficientBufferSize(ptr.Pointer())))
-	}
-	return 0
-}
 
-//export callbackQSensor_EfficientBufferSizeChanged
-func callbackQSensor_EfficientBufferSizeChanged(ptr unsafe.Pointer, efficientBufferSize C.int) {
-	if signal := qt.GetSignal(ptr, "efficientBufferSizeChanged"); signal != nil {
-		(*(*func(int))(signal))(int(int32(efficientBufferSize)))
-	}
-
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EfficientBufferSize"}).(float64))
 }
 
 func (ptr *QSensor) ConnectEfficientBufferSizeChanged(f func(efficientBufferSize int)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "efficientBufferSizeChanged") {
-			C.QSensor_ConnectEfficientBufferSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "efficientBufferSizeChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "efficientBufferSizeChanged"); signal != nil {
-			f := func(efficientBufferSize int) {
-				(*(*func(int))(signal))(efficientBufferSize)
-				f(efficientBufferSize)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "efficientBufferSizeChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "efficientBufferSizeChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectEfficientBufferSizeChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectEfficientBufferSizeChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectEfficientBufferSizeChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "efficientBufferSizeChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectEfficientBufferSizeChanged"})
 }
 
 func (ptr *QSensor) EfficientBufferSizeChanged(efficientBufferSize int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_EfficientBufferSizeChanged(ptr.Pointer(), C.int(int32(efficientBufferSize)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EfficientBufferSizeChanged", efficientBufferSize})
 }
 
 func (ptr *QSensor) Error() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_Error(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error"}).(float64))
 }
 
 func (ptr *QSensor) Filters() []*QSensorFilter {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSensors_PackedList) []*QSensorFilter {
-			out := make([]*QSensorFilter, int(l.len))
-			tmpList := NewQSensorFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__filters_atList(i)
-			}
-			return out
-		}(C.QSensor_Filters(ptr.Pointer()))
-	}
-	return make([]*QSensorFilter, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filters"}).([]*QSensorFilter)
 }
 
 func (ptr *QSensor) Identifier() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSensor_Identifier(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Identifier"}).(*core.QByteArray)
 }
 
 func (ptr *QSensor) IsActive() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_IsActive(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsActive"}).(bool)
 }
 
 func (ptr *QSensor) IsAlwaysOn() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_IsAlwaysOn(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsAlwaysOn"}).(bool)
 }
 
 func (ptr *QSensor) IsBusy() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_IsBusy(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsBusy"}).(bool)
 }
 
 func (ptr *QSensor) IsConnectedToBackend() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_IsConnectedToBackend(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsConnectedToBackend"}).(bool)
 }
 
 func (ptr *QSensor) IsFeatureSupported(feature QSensor__Feature) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_IsFeatureSupported(ptr.Pointer(), C.longlong(feature))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsFeatureSupported", feature}).(bool)
 }
 
 func (ptr *QSensor) MaxBufferSize() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_MaxBufferSize(ptr.Pointer())))
-	}
-	return 0
-}
 
-//export callbackQSensor_MaxBufferSizeChanged
-func callbackQSensor_MaxBufferSizeChanged(ptr unsafe.Pointer, maxBufferSize C.int) {
-	if signal := qt.GetSignal(ptr, "maxBufferSizeChanged"); signal != nil {
-		(*(*func(int))(signal))(int(int32(maxBufferSize)))
-	}
-
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MaxBufferSize"}).(float64))
 }
 
 func (ptr *QSensor) ConnectMaxBufferSizeChanged(f func(maxBufferSize int)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "maxBufferSizeChanged") {
-			C.QSensor_ConnectMaxBufferSizeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "maxBufferSizeChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "maxBufferSizeChanged"); signal != nil {
-			f := func(maxBufferSize int) {
-				(*(*func(int))(signal))(maxBufferSize)
-				f(maxBufferSize)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "maxBufferSizeChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "maxBufferSizeChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectMaxBufferSizeChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectMaxBufferSizeChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectMaxBufferSizeChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "maxBufferSizeChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectMaxBufferSizeChanged"})
 }
 
 func (ptr *QSensor) MaxBufferSizeChanged(maxBufferSize int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_MaxBufferSizeChanged(ptr.Pointer(), C.int(int32(maxBufferSize)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MaxBufferSizeChanged", maxBufferSize})
 }
 
 func (ptr *QSensor) OutputRange() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_OutputRange(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "OutputRange"}).(float64))
 }
 
 func (ptr *QSensor) Reading() *QSensorReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSensorReadingFromPointer(C.QSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQSensor_ReadingChanged
-func callbackQSensor_ReadingChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "readingChanged"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QSensorReading)
 }
 
 func (ptr *QSensor) ConnectReadingChanged(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "readingChanged") {
-			C.QSensor_ConnectReadingChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "readingChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "readingChanged"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "readingChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "readingChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectReadingChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectReadingChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectReadingChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "readingChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectReadingChanged"})
 }
 
 func (ptr *QSensor) ReadingChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_ReadingChanged(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadingChanged"})
 }
 
 func (ptr *QSensor) RemoveFilter(filter QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor_RemoveFilter(ptr.Pointer(), PointerFromQSensorFilter(filter))
-	}
-}
 
-//export callbackQSensor_SensorError
-func callbackQSensor_SensorError(ptr unsafe.Pointer, error C.int) {
-	if signal := qt.GetSignal(ptr, "sensorError"); signal != nil {
-		(*(*func(int))(signal))(int(int32(error)))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RemoveFilter", filter})
 }
 
 func (ptr *QSensor) ConnectSensorError(f func(error int)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "sensorError") {
-			C.QSensor_ConnectSensorError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sensorError")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "sensorError"); signal != nil {
-			f := func(error int) {
-				(*(*func(int))(signal))(error)
-				f(error)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "sensorError", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "sensorError", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSensorError", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectSensorError() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectSensorError(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "sensorError")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSensorError"})
 }
 
 func (ptr *QSensor) SensorError(error int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SensorError(ptr.Pointer(), C.int(int32(error)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SensorError", error})
 }
 
 func QSensor_SensorTypes() []*core.QByteArray {
-	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
-		out := make([]*core.QByteArray, int(l.len))
-		tmpList := NewQSensorFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__sensorTypes_atList(i)
-		}
-		return out
-	}(C.QSensor_QSensor_SensorTypes())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensor_SensorTypes", ""}).([]*core.QByteArray)
 }
 
 func (ptr *QSensor) SensorTypes() []*core.QByteArray {
-	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
-		out := make([]*core.QByteArray, int(l.len))
-		tmpList := NewQSensorFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__sensorTypes_atList(i)
-		}
-		return out
-	}(C.QSensor_QSensor_SensorTypes())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensor_SensorTypes", ""}).([]*core.QByteArray)
 }
 
 func QSensor_SensorsForType(ty core.QByteArray_ITF) []*core.QByteArray {
-	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
-		out := make([]*core.QByteArray, int(l.len))
-		tmpList := NewQSensorFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__sensorsForType_atList(i)
-		}
-		return out
-	}(C.QSensor_QSensor_SensorsForType(core.PointerFromQByteArray(ty)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensor_SensorsForType", "", ty}).([]*core.QByteArray)
 }
 
 func (ptr *QSensor) SensorsForType(ty core.QByteArray_ITF) []*core.QByteArray {
-	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
-		out := make([]*core.QByteArray, int(l.len))
-		tmpList := NewQSensorFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__sensorsForType_atList(i)
-		}
-		return out
-	}(C.QSensor_QSensor_SensorsForType(core.PointerFromQByteArray(ty)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensor_SensorsForType", "", ty}).([]*core.QByteArray)
 }
 
 func (ptr *QSensor) SetActive(active bool) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetActive(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(active))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetActive", active})
 }
 
 func (ptr *QSensor) SetAlwaysOn(alwaysOn bool) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetAlwaysOn(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(alwaysOn))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAlwaysOn", alwaysOn})
 }
 
 func (ptr *QSensor) SetAxesOrientationMode(axesOrientationMode QSensor__AxesOrientationMode) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetAxesOrientationMode(ptr.Pointer(), C.longlong(axesOrientationMode))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAxesOrientationMode", axesOrientationMode})
 }
 
 func (ptr *QSensor) SetBufferSize(bufferSize int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetBufferSize(ptr.Pointer(), C.int(int32(bufferSize)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetBufferSize", bufferSize})
 }
 
 func (ptr *QSensor) SetCurrentOrientation(currentOrientation int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetCurrentOrientation(ptr.Pointer(), C.int(int32(currentOrientation)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCurrentOrientation", currentOrientation})
 }
 
 func (ptr *QSensor) SetDataRate(rate int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetDataRate(ptr.Pointer(), C.int(int32(rate)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDataRate", rate})
 }
 
 func (ptr *QSensor) SetEfficientBufferSize(efficientBufferSize int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetEfficientBufferSize(ptr.Pointer(), C.int(int32(efficientBufferSize)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetEfficientBufferSize", efficientBufferSize})
 }
 
 func (ptr *QSensor) SetIdentifier(identifier core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetIdentifier(ptr.Pointer(), core.PointerFromQByteArray(identifier))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetIdentifier", identifier})
 }
 
 func (ptr *QSensor) SetMaxBufferSize(maxBufferSize int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetMaxBufferSize(ptr.Pointer(), C.int(int32(maxBufferSize)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetMaxBufferSize", maxBufferSize})
 }
 
 func (ptr *QSensor) SetOutputRange(index int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetOutputRange(ptr.Pointer(), C.int(int32(index)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetOutputRange", index})
 }
 
 func (ptr *QSensor) SetSkipDuplicates(skipDuplicates bool) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetSkipDuplicates(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(skipDuplicates))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSkipDuplicates", skipDuplicates})
 }
 
 func (ptr *QSensor) SetUserOrientation(userOrientation int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetUserOrientation(ptr.Pointer(), C.int(int32(userOrientation)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetUserOrientation", userOrientation})
 }
 
 func (ptr *QSensor) SkipDuplicates() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_SkipDuplicates(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQSensor_SkipDuplicatesChanged
-func callbackQSensor_SkipDuplicatesChanged(ptr unsafe.Pointer, skipDuplicates C.char) {
-	if signal := qt.GetSignal(ptr, "skipDuplicatesChanged"); signal != nil {
-		(*(*func(bool))(signal))(int8(skipDuplicates) != 0)
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SkipDuplicates"}).(bool)
 }
 
 func (ptr *QSensor) ConnectSkipDuplicatesChanged(f func(skipDuplicates bool)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "skipDuplicatesChanged") {
-			C.QSensor_ConnectSkipDuplicatesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "skipDuplicatesChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "skipDuplicatesChanged"); signal != nil {
-			f := func(skipDuplicates bool) {
-				(*(*func(bool))(signal))(skipDuplicates)
-				f(skipDuplicates)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "skipDuplicatesChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "skipDuplicatesChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSkipDuplicatesChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectSkipDuplicatesChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectSkipDuplicatesChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "skipDuplicatesChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSkipDuplicatesChanged"})
 }
 
 func (ptr *QSensor) SkipDuplicatesChanged(skipDuplicates bool) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SkipDuplicatesChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(skipDuplicates))))
-	}
-}
 
-//export callbackQSensor_Start
-func callbackQSensor_Start(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "start"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorFromPointer(ptr).StartDefault())))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SkipDuplicatesChanged", skipDuplicates})
 }
 
 func (ptr *QSensor) ConnectStart(f func() bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStart", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectStart() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "start")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStart"})
 }
 
 func (ptr *QSensor) Start() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_Start(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Start"}).(bool)
 }
 
 func (ptr *QSensor) StartDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_StartDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQSensor_Stop
-func callbackQSensor_Stop(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "stop"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorFromPointer(ptr).StopDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StartDefault"}).(bool)
 }
 
 func (ptr *QSensor) ConnectStop(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "stop"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStop", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectStop() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "stop")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStop"})
 }
 
 func (ptr *QSensor) Stop() {
-	if ptr.Pointer() != nil {
-		C.QSensor_Stop(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Stop"})
 }
 
 func (ptr *QSensor) StopDefault() {
-	if ptr.Pointer() != nil {
-		C.QSensor_StopDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StopDefault"})
 }
 
 func (ptr *QSensor) Type() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSensor_Type(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Type"}).(*core.QByteArray)
 }
 
 func (ptr *QSensor) UserOrientation() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_UserOrientation(ptr.Pointer())))
-	}
-	return 0
-}
 
-//export callbackQSensor_UserOrientationChanged
-func callbackQSensor_UserOrientationChanged(ptr unsafe.Pointer, userOrientation C.int) {
-	if signal := qt.GetSignal(ptr, "userOrientationChanged"); signal != nil {
-		(*(*func(int))(signal))(int(int32(userOrientation)))
-	}
-
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UserOrientation"}).(float64))
 }
 
 func (ptr *QSensor) ConnectUserOrientationChanged(f func(userOrientation int)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "userOrientationChanged") {
-			C.QSensor_ConnectUserOrientationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "userOrientationChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "userOrientationChanged"); signal != nil {
-			f := func(userOrientation int) {
-				(*(*func(int))(signal))(userOrientation)
-				f(userOrientation)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "userOrientationChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "userOrientationChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectUserOrientationChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectUserOrientationChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectUserOrientationChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "userOrientationChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectUserOrientationChanged"})
 }
 
 func (ptr *QSensor) UserOrientationChanged(userOrientation int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_UserOrientationChanged(ptr.Pointer(), C.int(int32(userOrientation)))
-	}
-}
 
-//export callbackQSensor_DestroyQSensor
-func callbackQSensor_DestroyQSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorFromPointer(ptr).DestroyQSensorDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UserOrientationChanged", userOrientation})
 }
 
 func (ptr *QSensor) ConnectDestroyQSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensor) DisconnectDestroyQSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQSensor"})
 }
 
 func (ptr *QSensor) DestroyQSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensor_DestroyQSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensor"})
 }
 
 func (ptr *QSensor) DestroyQSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensor_DestroyQSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorDefault"})
 }
 
 func (ptr *QSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__filters_atList", i}).(*QSensorFilter)
 }
 
 func (ptr *QSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__filters_setList", i})
 }
 
 func (ptr *QSensor) __filters_newList() unsafe.Pointer {
-	return C.QSensor___filters_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__filters_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensor) __sensorTypes_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sensorTypes_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sensorTypes_setList", i})
 }
 
 func (ptr *QSensor) __sensorTypes_newList() unsafe.Pointer {
-	return C.QSensor___sensorTypes_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sensorTypes_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensor) __sensorsForType_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sensorsForType_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sensorsForType_setList", i})
 }
 
 func (ptr *QSensor) __sensorsForType_newList() unsafe.Pointer {
-	return C.QSensor___sensorsForType_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sensorsForType_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensor) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensor___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensor) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QSensor) __children_newList() unsafe.Pointer {
-	return C.QSensor___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensor) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSensor___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSensor) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QSensor) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QSensor___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensor) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensor___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensor) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QSensor) __findChildren_newList() unsafe.Pointer {
-	return C.QSensor___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensor) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensor___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QSensor) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QSensor) __findChildren_newList3() unsafe.Pointer {
-	return C.QSensor___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQSensor_ChildEvent
-func callbackQSensor_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQSensorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensor) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQSensor_ConnectNotify
-func callbackQSensor_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QSensor) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensor_CustomEvent
-func callbackQSensor_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQSensorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QSensor) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQSensor_DeleteLater
-func callbackQSensor_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QSensor) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensor_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQSensor_Destroyed
-func callbackQSensor_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQSensor_DisconnectNotify
-func callbackQSensor_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QSensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensor_Event
-func callbackQSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QSensor) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQSensor_EventFilter
-func callbackQSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQSensor_MetaObject
-func callbackQSensor_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQSensorFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QSensor) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSensor_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQSensor_ObjectNameChanged
-func callbackQSensor_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSensors_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQSensor_TimerEvent
-func callbackQSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QSensorBackend struct {
@@ -6862,443 +5506,231 @@ func PointerFromQSensorBackend(ptr QSensorBackend_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSensorBackend) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QSensorBackend) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQSensorBackendFromPointer(ptr unsafe.Pointer) (n *QSensorBackend) {
 	n = new(QSensorBackend)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorBackend")
 	return
 }
+
+func (ptr *QSensorBackend) DestroyQSensorBackend() {
+}
+
 func (ptr *QSensorBackend) AddDataRate(min float64, max float64) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_AddDataRate(ptr.Pointer(), C.double(min), C.double(max))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AddDataRate", min, max})
 }
 
 func (ptr *QSensorBackend) AddOutputRange(min float64, max float64, accuracy float64) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_AddOutputRange(ptr.Pointer(), C.double(min), C.double(max), C.double(accuracy))
-	}
-}
 
-//export callbackQSensorBackend_IsFeatureSupported
-func callbackQSensorBackend_IsFeatureSupported(ptr unsafe.Pointer, feature C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "isFeatureSupported"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(QSensor__Feature) bool)(signal))(QSensor__Feature(feature)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorBackendFromPointer(ptr).IsFeatureSupportedDefault(QSensor__Feature(feature)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AddOutputRange", min, max, accuracy})
 }
 
 func (ptr *QSensorBackend) ConnectIsFeatureSupported(f func(feature QSensor__Feature) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "isFeatureSupported"); signal != nil {
-			f := func(feature QSensor__Feature) bool {
-				(*(*func(QSensor__Feature) bool)(signal))(feature)
-				return f(feature)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "isFeatureSupported", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "isFeatureSupported", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectIsFeatureSupported", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorBackend) DisconnectIsFeatureSupported() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "isFeatureSupported")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectIsFeatureSupported"})
 }
 
 func (ptr *QSensorBackend) IsFeatureSupported(feature QSensor__Feature) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorBackend_IsFeatureSupported(ptr.Pointer(), C.longlong(feature))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsFeatureSupported", feature}).(bool)
 }
 
 func (ptr *QSensorBackend) IsFeatureSupportedDefault(feature QSensor__Feature) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorBackend_IsFeatureSupportedDefault(ptr.Pointer(), C.longlong(feature))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsFeatureSupportedDefault", feature}).(bool)
 }
 
 func (ptr *QSensorBackend) NewReadingAvailable() {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_NewReadingAvailable(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NewReadingAvailable"})
 }
 
 func (ptr *QSensorBackend) Reading() *QSensorReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSensorReadingFromPointer(C.QSensorBackend_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QSensorReading)
 }
 
 func (ptr *QSensorBackend) Sensor() *QSensor {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSensorFromPointer(C.QSensorBackend_Sensor(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Sensor"}).(*QSensor)
 }
 
 func (ptr *QSensorBackend) SensorBusy() {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_SensorBusy(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SensorBusy"})
 }
 
 func (ptr *QSensorBackend) SensorError(error int) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_SensorError(ptr.Pointer(), C.int(int32(error)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SensorError", error})
 }
 
 func (ptr *QSensorBackend) SensorStopped() {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_SensorStopped(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SensorStopped"})
 }
 
 func (ptr *QSensorBackend) SetDataRates(otherSensor QSensor_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_SetDataRates(ptr.Pointer(), PointerFromQSensor(otherSensor))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDataRates", otherSensor})
 }
 
 func (ptr *QSensorBackend) SetDescription(description string) {
-	if ptr.Pointer() != nil {
-		var descriptionC *C.char
-		if description != "" {
-			descriptionC = C.CString(description)
-			defer C.free(unsafe.Pointer(descriptionC))
-		}
-		C.QSensorBackend_SetDescription(ptr.Pointer(), C.struct_QtSensors_PackedString{data: descriptionC, len: C.longlong(len(description))})
-	}
-}
 
-//export callbackQSensorBackend_Start
-func callbackQSensorBackend_Start(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "start"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDescription", description})
 }
 
 func (ptr *QSensorBackend) ConnectStart(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStart", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorBackend) DisconnectStart() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "start")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStart"})
 }
 
 func (ptr *QSensorBackend) Start() {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_Start(ptr.Pointer())
-	}
-}
 
-//export callbackQSensorBackend_Stop
-func callbackQSensorBackend_Stop(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "stop"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Start"})
 }
 
 func (ptr *QSensorBackend) ConnectStop(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "stop"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStop", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorBackend) DisconnectStop() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "stop")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStop"})
 }
 
 func (ptr *QSensorBackend) Stop() {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_Stop(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Stop"})
 }
 
 func (ptr *QSensorBackend) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorBackend___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensorBackend) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QSensorBackend) __children_newList() unsafe.Pointer {
-	return C.QSensorBackend___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorBackend) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSensorBackend___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSensorBackend) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QSensorBackend) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QSensorBackend___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorBackend) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorBackend___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensorBackend) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QSensorBackend) __findChildren_newList() unsafe.Pointer {
-	return C.QSensorBackend___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorBackend) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorBackend___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QSensorBackend) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QSensorBackend) __findChildren_newList3() unsafe.Pointer {
-	return C.QSensorBackend___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQSensorBackend_ChildEvent
-func callbackQSensorBackend_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQSensorBackendFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorBackend) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQSensorBackend_ConnectNotify
-func callbackQSensorBackend_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorBackendFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QSensorBackend) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensorBackend_CustomEvent
-func callbackQSensorBackend_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQSensorBackendFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QSensorBackend) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQSensorBackend_DeleteLater
-func callbackQSensorBackend_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorBackendFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QSensorBackend) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorBackend_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQSensorBackend_Destroyed
-func callbackQSensorBackend_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQSensorBackend_DisconnectNotify
-func callbackQSensorBackend_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorBackendFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QSensorBackend) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensorBackend_Event
-func callbackQSensorBackend_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorBackendFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QSensorBackend) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorBackend_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorBackend_EventFilter
-func callbackQSensorBackend_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorBackendFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QSensorBackend) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorBackend_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorBackend_MetaObject
-func callbackQSensorBackend_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQSensorBackendFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QSensorBackend) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSensorBackend_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQSensorBackend_ObjectNameChanged
-func callbackQSensorBackend_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSensors_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQSensorBackend_TimerEvent
-func callbackQSensorBackend_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorBackendFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QSensorBackend) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QSensorBackendFactory struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSensorBackendFactory_ITF interface {
@@ -7311,14 +5743,14 @@ func (ptr *QSensorBackendFactory) QSensorBackendFactory_PTR() *QSensorBackendFac
 
 func (ptr *QSensorBackendFactory) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSensorBackendFactory) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -7329,65 +5761,36 @@ func PointerFromQSensorBackendFactory(ptr QSensorBackendFactory_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *QSensorBackendFactory) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSensorBackendFactoryFromPointer(ptr unsafe.Pointer) (n *QSensorBackendFactory) {
 	n = new(QSensorBackendFactory)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorBackendFactory")
 	return
 }
+
 func (ptr *QSensorBackendFactory) DestroyQSensorBackendFactory() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQSensorBackendFactory_CreateBackend
-func callbackQSensorBackendFactory_CreateBackend(ptr unsafe.Pointer, sensor unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "createBackend"); signal != nil {
-		return PointerFromQSensorBackend((*(*func(*QSensor) *QSensorBackend)(signal))(NewQSensorFromPointer(sensor)))
-	}
-
-	return PointerFromQSensorBackend(nil)
 }
 
 func (ptr *QSensorBackendFactory) ConnectCreateBackend(f func(sensor *QSensor) *QSensorBackend) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "createBackend"); signal != nil {
-			f := func(sensor *QSensor) *QSensorBackend {
-				(*(*func(*QSensor) *QSensorBackend)(signal))(sensor)
-				return f(sensor)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "createBackend", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "createBackend", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectCreateBackend", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorBackendFactory) DisconnectCreateBackend() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "createBackend")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectCreateBackend"})
 }
 
 func (ptr *QSensorBackendFactory) CreateBackend(sensor QSensor_ITF) *QSensorBackend {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSensorBackendFromPointer(C.QSensorBackendFactory_CreateBackend(ptr.Pointer(), PointerFromQSensor(sensor)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CreateBackend", sensor}).(*QSensorBackend)
 }
 
 type QSensorChangesInterface struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSensorChangesInterface_ITF interface {
@@ -7400,14 +5803,14 @@ func (ptr *QSensorChangesInterface) QSensorChangesInterface_PTR() *QSensorChange
 
 func (ptr *QSensorChangesInterface) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSensorChangesInterface) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -7418,59 +5821,36 @@ func PointerFromQSensorChangesInterface(ptr QSensorChangesInterface_ITF) unsafe.
 	return nil
 }
 
+func (n *QSensorChangesInterface) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSensorChangesInterfaceFromPointer(ptr unsafe.Pointer) (n *QSensorChangesInterface) {
 	n = new(QSensorChangesInterface)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorChangesInterface")
 	return
 }
+
 func (ptr *QSensorChangesInterface) DestroyQSensorChangesInterface() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQSensorChangesInterface_SensorsChanged
-func callbackQSensorChangesInterface_SensorsChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "sensorsChanged"); signal != nil {
-		(*(*func())(signal))()
-	}
-
 }
 
 func (ptr *QSensorChangesInterface) ConnectSensorsChanged(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "sensorsChanged"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "sensorsChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "sensorsChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSensorsChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorChangesInterface) DisconnectSensorsChanged() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "sensorsChanged")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSensorsChanged"})
 }
 
 func (ptr *QSensorChangesInterface) SensorsChanged() {
-	if ptr.Pointer() != nil {
-		C.QSensorChangesInterface_SensorsChanged(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SensorsChanged"})
 }
 
 type QSensorFilter struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSensorFilter_ITF interface {
@@ -7483,14 +5863,14 @@ func (ptr *QSensorFilter) QSensorFilter_PTR() *QSensorFilter {
 
 func (ptr *QSensorFilter) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSensorFilter) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -7501,93 +5881,48 @@ func PointerFromQSensorFilter(ptr QSensorFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSensorFilter) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSensorFilterFromPointer(ptr unsafe.Pointer) (n *QSensorFilter) {
 	n = new(QSensorFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorFilter")
 	return
 }
-
-//export callbackQSensorFilter_Filter
-func callbackQSensorFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QSensorReading) bool)(signal))(NewQSensorReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
-}
-
 func (ptr *QSensorFilter) ConnectFilter(f func(reading *QSensorReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QSensorReading) bool {
-				(*(*func(*QSensorReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QSensorFilter) Filter(reading QSensorReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorFilter_Filter(ptr.Pointer(), PointerFromQSensorReading(reading))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorFilter_DestroyQSensorFilter
-func callbackQSensorFilter_DestroyQSensorFilter(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QSensorFilter"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorFilterFromPointer(ptr).DestroyQSensorFilterDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 func (ptr *QSensorFilter) ConnectDestroyQSensorFilter(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QSensorFilter"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QSensorFilter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QSensorFilter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQSensorFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorFilter) DisconnectDestroyQSensorFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QSensorFilter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQSensorFilter"})
 }
 
 func (ptr *QSensorFilter) DestroyQSensorFilter() {
-	if ptr.Pointer() != nil {
-		C.QSensorFilter_DestroyQSensorFilter(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorFilter"})
 }
 
 func (ptr *QSensorFilter) DestroyQSensorFilterDefault() {
-	if ptr.Pointer() != nil {
-		C.QSensorFilter_DestroyQSensorFilterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorFilterDefault"})
 }
 
 type QSensorGesture struct {
@@ -7623,391 +5958,193 @@ func PointerFromQSensorGesture(ptr QSensorGesture_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSensorGesture) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QSensorGesture) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQSensorGestureFromPointer(ptr unsafe.Pointer) (n *QSensorGesture) {
 	n = new(QSensorGesture)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorGesture")
 	return
 }
 func NewQSensorGesture(ids []string, parent core.QObject_ITF) *QSensorGesture {
-	idsC := C.CString(strings.Join(ids, "¡¦!"))
-	defer C.free(unsafe.Pointer(idsC))
-	tmpValue := NewQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(C.struct_QtSensors_PackedString{data: idsC, len: C.longlong(len(strings.Join(ids, "¡¦!")))}, core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQSensorGesture_Detected
-func callbackQSensorGesture_Detected(ptr unsafe.Pointer, vqs C.struct_QtSensors_PackedString) {
-	if signal := qt.GetSignal(ptr, "detected"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(vqs))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQSensorGesture", "", ids, parent}).(*QSensorGesture)
 }
 
 func (ptr *QSensorGesture) ConnectDetected(f func(vqs string)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "detected") {
-			C.QSensorGesture_ConnectDetected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "detected")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "detected"); signal != nil {
-			f := func(vqs string) {
-				(*(*func(string))(signal))(vqs)
-				f(vqs)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "detected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "detected", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDetected", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGesture) DisconnectDetected() {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_DisconnectDetected(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "detected")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDetected"})
 }
 
 func (ptr *QSensorGesture) Detected(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC *C.char
-		if vqs != "" {
-			vqsC = C.CString(vqs)
-			defer C.free(unsafe.Pointer(vqsC))
-		}
-		C.QSensorGesture_Detected(ptr.Pointer(), C.struct_QtSensors_PackedString{data: vqsC, len: C.longlong(len(vqs))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Detected", vqs})
 }
 
 func (ptr *QSensorGesture) GestureSignals() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSensorGesture_GestureSignals(ptr.Pointer())))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "GestureSignals"}).([]string)
 }
 
 func (ptr *QSensorGesture) InvalidIds() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSensorGesture_InvalidIds(ptr.Pointer())))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InvalidIds"}).([]string)
 }
 
 func (ptr *QSensorGesture) IsActive() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGesture_IsActive(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsActive"}).(bool)
 }
 
 func (ptr *QSensorGesture) StartDetection() {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_StartDetection(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StartDetection"})
 }
 
 func (ptr *QSensorGesture) StopDetection() {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_StopDetection(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StopDetection"})
 }
 
 func (ptr *QSensorGesture) ValidIds() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSensorGesture_ValidIds(ptr.Pointer())))
-	}
-	return make([]string, 0)
-}
 
-//export callbackQSensorGesture_DestroyQSensorGesture
-func callbackQSensorGesture_DestroyQSensorGesture(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QSensorGesture"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorGestureFromPointer(ptr).DestroyQSensorGestureDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ValidIds"}).([]string)
 }
 
 func (ptr *QSensorGesture) ConnectDestroyQSensorGesture(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QSensorGesture"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QSensorGesture", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QSensorGesture", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQSensorGesture", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGesture) DisconnectDestroyQSensorGesture() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QSensorGesture")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQSensorGesture"})
 }
 
 func (ptr *QSensorGesture) DestroyQSensorGesture() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorGesture_DestroyQSensorGesture(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorGesture"})
 }
 
 func (ptr *QSensorGesture) DestroyQSensorGestureDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorGesture_DestroyQSensorGestureDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorGestureDefault"})
 }
 
 func (ptr *QSensorGesture) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorGesture___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensorGesture) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QSensorGesture) __children_newList() unsafe.Pointer {
-	return C.QSensorGesture___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGesture) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSensorGesture___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSensorGesture) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QSensorGesture) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QSensorGesture___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGesture) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorGesture___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensorGesture) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QSensorGesture) __findChildren_newList() unsafe.Pointer {
-	return C.QSensorGesture___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGesture) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorGesture___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QSensorGesture) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QSensorGesture) __findChildren_newList3() unsafe.Pointer {
-	return C.QSensorGesture___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQSensorGesture_ChildEvent
-func callbackQSensorGesture_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQSensorGestureFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGesture) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQSensorGesture_ConnectNotify
-func callbackQSensorGesture_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorGestureFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QSensorGesture) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensorGesture_CustomEvent
-func callbackQSensorGesture_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQSensorGestureFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QSensorGesture) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQSensorGesture_DeleteLater
-func callbackQSensorGesture_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorGestureFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QSensorGesture) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorGesture_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQSensorGesture_Destroyed
-func callbackQSensorGesture_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQSensorGesture_DisconnectNotify
-func callbackQSensorGesture_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorGestureFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QSensorGesture) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensorGesture_Event
-func callbackQSensorGesture_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QSensorGesture) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGesture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorGesture_EventFilter
-func callbackQSensorGesture_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QSensorGesture) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGesture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorGesture_MetaObject
-func callbackQSensorGesture_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQSensorGestureFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QSensorGesture) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSensorGesture_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQSensorGesture_ObjectNameChanged
-func callbackQSensorGesture_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSensors_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQSensorGesture_TimerEvent
-func callbackQSensorGesture_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorGestureFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QSensorGesture) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QSensorGestureManager struct {
@@ -8043,400 +6180,192 @@ func PointerFromQSensorGestureManager(ptr QSensorGestureManager_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *QSensorGestureManager) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QSensorGestureManager) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQSensorGestureManagerFromPointer(ptr unsafe.Pointer) (n *QSensorGestureManager) {
 	n = new(QSensorGestureManager)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorGestureManager")
 	return
 }
 func NewQSensorGestureManager(parent core.QObject_ITF) *QSensorGestureManager {
-	tmpValue := NewQSensorGestureManagerFromPointer(C.QSensorGestureManager_NewQSensorGestureManager(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQSensorGestureManager", "", parent}).(*QSensorGestureManager)
 }
 
 func (ptr *QSensorGestureManager) GestureIds() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSensorGestureManager_GestureIds(ptr.Pointer())))
-	}
-	return make([]string, 0)
-}
 
-//export callbackQSensorGestureManager_NewSensorGestureAvailable
-func callbackQSensorGestureManager_NewSensorGestureAvailable(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "newSensorGestureAvailable"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "GestureIds"}).([]string)
 }
 
 func (ptr *QSensorGestureManager) ConnectNewSensorGestureAvailable(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "newSensorGestureAvailable") {
-			C.QSensorGestureManager_ConnectNewSensorGestureAvailable(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newSensorGestureAvailable")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "newSensorGestureAvailable"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "newSensorGestureAvailable", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "newSensorGestureAvailable", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNewSensorGestureAvailable", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGestureManager) DisconnectNewSensorGestureAvailable() {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager_DisconnectNewSensorGestureAvailable(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "newSensorGestureAvailable")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNewSensorGestureAvailable"})
 }
 
 func (ptr *QSensorGestureManager) NewSensorGestureAvailable() {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager_NewSensorGestureAvailable(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NewSensorGestureAvailable"})
 }
 
 func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
-	if ptr.Pointer() != nil {
-		var gestureIdC *C.char
-		if gestureId != "" {
-			gestureIdC = C.CString(gestureId)
-			defer C.free(unsafe.Pointer(gestureIdC))
-		}
-		return unpackStringList(cGoUnpackString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), C.struct_QtSensors_PackedString{data: gestureIdC, len: C.longlong(len(gestureId))})))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RecognizerSignals", gestureId}).([]string)
 }
 
 func (ptr *QSensorGestureManager) RegisterSensorGestureRecognizer(recognizer QSensorGestureRecognizer_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGestureManager_RegisterSensorGestureRecognizer(ptr.Pointer(), PointerFromQSensorGestureRecognizer(recognizer))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RegisterSensorGestureRecognizer", recognizer}).(bool)
 }
 
 func QSensorGestureManager_SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
-	var idC *C.char
-	if id != "" {
-		idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
-	}
-	tmpValue := NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(C.struct_QtSensors_PackedString{data: idC, len: C.longlong(len(id))}))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorGestureManager_SensorGestureRecognizer", "", id}).(*QSensorGestureRecognizer)
 }
 
 func (ptr *QSensorGestureManager) SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
-	var idC *C.char
-	if id != "" {
-		idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
-	}
-	tmpValue := NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(C.struct_QtSensors_PackedString{data: idC, len: C.longlong(len(id))}))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQSensorGestureManager_DestroyQSensorGestureManager
-func callbackQSensorGestureManager_DestroyQSensorGestureManager(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QSensorGestureManager"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorGestureManagerFromPointer(ptr).DestroyQSensorGestureManagerDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorGestureManager_SensorGestureRecognizer", "", id}).(*QSensorGestureRecognizer)
 }
 
 func (ptr *QSensorGestureManager) ConnectDestroyQSensorGestureManager(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QSensorGestureManager"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QSensorGestureManager", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QSensorGestureManager", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQSensorGestureManager", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGestureManager) DisconnectDestroyQSensorGestureManager() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QSensorGestureManager")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQSensorGestureManager"})
 }
 
 func (ptr *QSensorGestureManager) DestroyQSensorGestureManager() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorGestureManager_DestroyQSensorGestureManager(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorGestureManager"})
 }
 
 func (ptr *QSensorGestureManager) DestroyQSensorGestureManagerDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorGestureManager_DestroyQSensorGestureManagerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorGestureManagerDefault"})
 }
 
 func (ptr *QSensorGestureManager) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorGestureManager___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensorGestureManager) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QSensorGestureManager) __children_newList() unsafe.Pointer {
-	return C.QSensorGestureManager___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGestureManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSensorGestureManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSensorGestureManager) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QSensorGestureManager) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QSensorGestureManager___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGestureManager) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorGestureManager___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensorGestureManager) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QSensorGestureManager) __findChildren_newList() unsafe.Pointer {
-	return C.QSensorGestureManager___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGestureManager) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorGestureManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QSensorGestureManager) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QSensorGestureManager) __findChildren_newList3() unsafe.Pointer {
-	return C.QSensorGestureManager___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQSensorGestureManager_ChildEvent
-func callbackQSensorGestureManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQSensorGestureManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGestureManager) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQSensorGestureManager_ConnectNotify
-func callbackQSensorGestureManager_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorGestureManagerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QSensorGestureManager) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensorGestureManager_CustomEvent
-func callbackQSensorGestureManager_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQSensorGestureManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QSensorGestureManager) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQSensorGestureManager_DeleteLater
-func callbackQSensorGestureManager_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorGestureManagerFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QSensorGestureManager) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorGestureManager_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQSensorGestureManager_Destroyed
-func callbackQSensorGestureManager_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQSensorGestureManager_DisconnectNotify
-func callbackQSensorGestureManager_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorGestureManagerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QSensorGestureManager) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensorGestureManager_Event
-func callbackQSensorGestureManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QSensorGestureManager) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGestureManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorGestureManager_EventFilter
-func callbackQSensorGestureManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QSensorGestureManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGestureManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorGestureManager_MetaObject
-func callbackQSensorGestureManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQSensorGestureManagerFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QSensorGestureManager) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSensorGestureManager_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQSensorGestureManager_ObjectNameChanged
-func callbackQSensorGestureManager_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSensors_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQSensorGestureManager_TimerEvent
-func callbackQSensorGestureManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorGestureManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QSensorGestureManager) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QSensorGesturePluginInterface struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSensorGesturePluginInterface_ITF interface {
@@ -8449,14 +6378,14 @@ func (ptr *QSensorGesturePluginInterface) QSensorGesturePluginInterface_PTR() *Q
 
 func (ptr *QSensorGesturePluginInterface) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSensorGesturePluginInterface) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -8467,214 +6396,98 @@ func PointerFromQSensorGesturePluginInterface(ptr QSensorGesturePluginInterface_
 	return nil
 }
 
+func (n *QSensorGesturePluginInterface) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSensorGesturePluginInterfaceFromPointer(ptr unsafe.Pointer) (n *QSensorGesturePluginInterface) {
 	n = new(QSensorGesturePluginInterface)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorGesturePluginInterface")
 	return
 }
 func NewQSensorGesturePluginInterface() *QSensorGesturePluginInterface {
-	return NewQSensorGesturePluginInterfaceFromPointer(C.QSensorGesturePluginInterface_NewQSensorGesturePluginInterface())
-}
 
-//export callbackQSensorGesturePluginInterface_CreateRecognizers
-func callbackQSensorGesturePluginInterface_CreateRecognizers(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "createRecognizers"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQSensorGesturePluginInterfaceFromPointer(NewQSensorGesturePluginInterfaceFromPointer(nil).__createRecognizers_newList())
-			for _, v := range (*(*func() []*QSensorGestureRecognizer)(signal))() {
-				tmpList.__createRecognizers_setList(v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQSensorGesturePluginInterfaceFromPointer(NewQSensorGesturePluginInterfaceFromPointer(nil).__createRecognizers_newList())
-		for _, v := range make([]*QSensorGestureRecognizer, 0) {
-			tmpList.__createRecognizers_setList(v)
-		}
-		return tmpList.Pointer()
-	}()
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQSensorGesturePluginInterface", ""}).(*QSensorGesturePluginInterface)
 }
 
 func (ptr *QSensorGesturePluginInterface) ConnectCreateRecognizers(f func() []*QSensorGestureRecognizer) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "createRecognizers"); signal != nil {
-			f := func() []*QSensorGestureRecognizer {
-				(*(*func() []*QSensorGestureRecognizer)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "createRecognizers", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "createRecognizers", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectCreateRecognizers", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGesturePluginInterface) DisconnectCreateRecognizers() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "createRecognizers")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectCreateRecognizers"})
 }
 
 func (ptr *QSensorGesturePluginInterface) CreateRecognizers() []*QSensorGestureRecognizer {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSensors_PackedList) []*QSensorGestureRecognizer {
-			out := make([]*QSensorGestureRecognizer, int(l.len))
-			tmpList := NewQSensorGesturePluginInterfaceFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__createRecognizers_atList(i)
-			}
-			return out
-		}(C.QSensorGesturePluginInterface_CreateRecognizers(ptr.Pointer()))
-	}
-	return make([]*QSensorGestureRecognizer, 0)
-}
 
-//export callbackQSensorGesturePluginInterface_Name
-func callbackQSensorGesturePluginInterface_Name(ptr unsafe.Pointer) C.struct_QtSensors_PackedString {
-	if signal := qt.GetSignal(ptr, "name"); signal != nil {
-		tempVal := (*(*func() string)(signal))()
-		return C.struct_QtSensors_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := ""
-	return C.struct_QtSensors_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CreateRecognizers"}).([]*QSensorGestureRecognizer)
 }
 
 func (ptr *QSensorGesturePluginInterface) ConnectName(f func() string) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "name"); signal != nil {
-			f := func() string {
-				(*(*func() string)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "name", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "name", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectName", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGesturePluginInterface) DisconnectName() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "name")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectName"})
 }
 
 func (ptr *QSensorGesturePluginInterface) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSensorGesturePluginInterface_Name(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQSensorGesturePluginInterface_SupportedIds
-func callbackQSensorGesturePluginInterface_SupportedIds(ptr unsafe.Pointer) C.struct_QtSensors_PackedString {
-	if signal := qt.GetSignal(ptr, "supportedIds"); signal != nil {
-		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtSensors_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
-	}
-	tempVal := make([]string, 0)
-	return C.struct_QtSensors_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QSensorGesturePluginInterface) ConnectSupportedIds(f func() []string) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "supportedIds"); signal != nil {
-			f := func() []string {
-				(*(*func() []string)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "supportedIds", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "supportedIds", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSupportedIds", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGesturePluginInterface) DisconnectSupportedIds() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "supportedIds")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSupportedIds"})
 }
 
 func (ptr *QSensorGesturePluginInterface) SupportedIds() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSensorGesturePluginInterface_SupportedIds(ptr.Pointer())))
-	}
-	return make([]string, 0)
-}
 
-//export callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface
-func callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QSensorGesturePluginInterface"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorGesturePluginInterfaceFromPointer(ptr).DestroyQSensorGesturePluginInterfaceDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SupportedIds"}).([]string)
 }
 
 func (ptr *QSensorGesturePluginInterface) ConnectDestroyQSensorGesturePluginInterface(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QSensorGesturePluginInterface"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QSensorGesturePluginInterface", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QSensorGesturePluginInterface", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQSensorGesturePluginInterface", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGesturePluginInterface) DisconnectDestroyQSensorGesturePluginInterface() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QSensorGesturePluginInterface")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQSensorGesturePluginInterface"})
 }
 
 func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterface() {
-	if ptr.Pointer() != nil {
-		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorGesturePluginInterface"})
 }
 
 func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterfaceDefault() {
-	if ptr.Pointer() != nil {
-		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterfaceDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorGesturePluginInterfaceDefault"})
 }
 
 func (ptr *QSensorGesturePluginInterface) __createRecognizers_atList(i int) *QSensorGestureRecognizer {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSensorGestureRecognizerFromPointer(C.QSensorGesturePluginInterface___createRecognizers_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__createRecognizers_atList", i}).(*QSensorGestureRecognizer)
 }
 
 func (ptr *QSensorGesturePluginInterface) __createRecognizers_setList(i QSensorGestureRecognizer_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesturePluginInterface___createRecognizers_setList(ptr.Pointer(), PointerFromQSensorGestureRecognizer(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__createRecognizers_setList", i})
 }
 
 func (ptr *QSensorGesturePluginInterface) __createRecognizers_newList() unsafe.Pointer {
-	return C.QSensorGesturePluginInterface___createRecognizers_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__createRecognizers_newList"}).(unsafe.Pointer)
 }
 
 type QSensorGestureRecognizer struct {
@@ -8710,567 +6523,262 @@ func PointerFromQSensorGestureRecognizer(ptr QSensorGestureRecognizer_ITF) unsaf
 	return nil
 }
 
+func (n *QSensorGestureRecognizer) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QSensorGestureRecognizer) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQSensorGestureRecognizerFromPointer(ptr unsafe.Pointer) (n *QSensorGestureRecognizer) {
 	n = new(QSensorGestureRecognizer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorGestureRecognizer")
 	return
 }
 func NewQSensorGestureRecognizer(parent core.QObject_ITF) *QSensorGestureRecognizer {
-	tmpValue := NewQSensorGestureRecognizerFromPointer(C.QSensorGestureRecognizer_NewQSensorGestureRecognizer(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQSensorGestureRecognizer_Create
-func callbackQSensorGestureRecognizer_Create(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "create"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQSensorGestureRecognizer", "", parent}).(*QSensorGestureRecognizer)
 }
 
 func (ptr *QSensorGestureRecognizer) ConnectCreate(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "create"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "create", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "create", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectCreate", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGestureRecognizer) DisconnectCreate() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "create")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectCreate"})
 }
 
 func (ptr *QSensorGestureRecognizer) Create() {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_Create(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Create"})
 }
 
 func (ptr *QSensorGestureRecognizer) CreateBackend() {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_CreateBackend(ptr.Pointer())
-	}
-}
 
-//export callbackQSensorGestureRecognizer_Detected
-func callbackQSensorGestureRecognizer_Detected(ptr unsafe.Pointer, vqs C.struct_QtSensors_PackedString) {
-	if signal := qt.GetSignal(ptr, "detected"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(vqs))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CreateBackend"})
 }
 
 func (ptr *QSensorGestureRecognizer) ConnectDetected(f func(vqs string)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "detected") {
-			C.QSensorGestureRecognizer_ConnectDetected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "detected")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "detected"); signal != nil {
-			f := func(vqs string) {
-				(*(*func(string))(signal))(vqs)
-				f(vqs)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "detected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "detected", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDetected", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGestureRecognizer) DisconnectDetected() {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_DisconnectDetected(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "detected")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDetected"})
 }
 
 func (ptr *QSensorGestureRecognizer) Detected(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC *C.char
-		if vqs != "" {
-			vqsC = C.CString(vqs)
-			defer C.free(unsafe.Pointer(vqsC))
-		}
-		C.QSensorGestureRecognizer_Detected(ptr.Pointer(), C.struct_QtSensors_PackedString{data: vqsC, len: C.longlong(len(vqs))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Detected", vqs})
 }
 
 func (ptr *QSensorGestureRecognizer) GestureSignals() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSensorGestureRecognizer_GestureSignals(ptr.Pointer())))
-	}
-	return make([]string, 0)
-}
 
-//export callbackQSensorGestureRecognizer_Id
-func callbackQSensorGestureRecognizer_Id(ptr unsafe.Pointer) C.struct_QtSensors_PackedString {
-	if signal := qt.GetSignal(ptr, "id"); signal != nil {
-		tempVal := (*(*func() string)(signal))()
-		return C.struct_QtSensors_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := ""
-	return C.struct_QtSensors_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "GestureSignals"}).([]string)
 }
 
 func (ptr *QSensorGestureRecognizer) ConnectId(f func() string) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "id"); signal != nil {
-			f := func() string {
-				(*(*func() string)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "id", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "id", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectId", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGestureRecognizer) DisconnectId() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "id")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectId"})
 }
 
 func (ptr *QSensorGestureRecognizer) Id() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSensorGestureRecognizer_Id(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQSensorGestureRecognizer_IsActive
-func callbackQSensorGestureRecognizer_IsActive(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "isActive"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Id"}).(string)
 }
 
 func (ptr *QSensorGestureRecognizer) ConnectIsActive(f func() bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "isActive"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "isActive", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "isActive", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectIsActive", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGestureRecognizer) DisconnectIsActive() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "isActive")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectIsActive"})
 }
 
 func (ptr *QSensorGestureRecognizer) IsActive() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGestureRecognizer_IsActive(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQSensorGestureRecognizer_Start
-func callbackQSensorGestureRecognizer_Start(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "start"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsActive"}).(bool)
 }
 
 func (ptr *QSensorGestureRecognizer) ConnectStart(f func() bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStart", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGestureRecognizer) DisconnectStart() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "start")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStart"})
 }
 
 func (ptr *QSensorGestureRecognizer) Start() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGestureRecognizer_Start(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Start"}).(bool)
 }
 
 func (ptr *QSensorGestureRecognizer) StartBackend() {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_StartBackend(ptr.Pointer())
-	}
-}
 
-//export callbackQSensorGestureRecognizer_Stop
-func callbackQSensorGestureRecognizer_Stop(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "stop"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StartBackend"})
 }
 
 func (ptr *QSensorGestureRecognizer) ConnectStop(f func() bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "stop"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStop", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGestureRecognizer) DisconnectStop() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "stop")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStop"})
 }
 
 func (ptr *QSensorGestureRecognizer) Stop() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGestureRecognizer_Stop(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Stop"}).(bool)
 }
 
 func (ptr *QSensorGestureRecognizer) StopBackend() {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_StopBackend(ptr.Pointer())
-	}
-}
 
-//export callbackQSensorGestureRecognizer_DestroyQSensorGestureRecognizer
-func callbackQSensorGestureRecognizer_DestroyQSensorGestureRecognizer(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QSensorGestureRecognizer"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorGestureRecognizerFromPointer(ptr).DestroyQSensorGestureRecognizerDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StopBackend"})
 }
 
 func (ptr *QSensorGestureRecognizer) ConnectDestroyQSensorGestureRecognizer(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QSensorGestureRecognizer"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QSensorGestureRecognizer", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QSensorGestureRecognizer", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQSensorGestureRecognizer", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorGestureRecognizer) DisconnectDestroyQSensorGestureRecognizer() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QSensorGestureRecognizer")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQSensorGestureRecognizer"})
 }
 
 func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizer() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorGestureRecognizer"})
 }
 
 func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizerDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorGestureRecognizer_DestroyQSensorGestureRecognizerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSensorGestureRecognizerDefault"})
 }
 
 func (ptr *QSensorGestureRecognizer) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorGestureRecognizer___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensorGestureRecognizer) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QSensorGestureRecognizer) __children_newList() unsafe.Pointer {
-	return C.QSensorGestureRecognizer___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGestureRecognizer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSensorGestureRecognizer___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSensorGestureRecognizer) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QSensorGestureRecognizer) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QSensorGestureRecognizer___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGestureRecognizer) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorGestureRecognizer___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensorGestureRecognizer) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QSensorGestureRecognizer) __findChildren_newList() unsafe.Pointer {
-	return C.QSensorGestureRecognizer___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGestureRecognizer) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorGestureRecognizer___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QSensorGestureRecognizer) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QSensorGestureRecognizer) __findChildren_newList3() unsafe.Pointer {
-	return C.QSensorGestureRecognizer___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQSensorGestureRecognizer_ChildEvent
-func callbackQSensorGestureRecognizer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQSensorGestureRecognizerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorGestureRecognizer) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQSensorGestureRecognizer_ConnectNotify
-func callbackQSensorGestureRecognizer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorGestureRecognizerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QSensorGestureRecognizer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensorGestureRecognizer_CustomEvent
-func callbackQSensorGestureRecognizer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQSensorGestureRecognizerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QSensorGestureRecognizer) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQSensorGestureRecognizer_DeleteLater
-func callbackQSensorGestureRecognizer_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorGestureRecognizerFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QSensorGestureRecognizer) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorGestureRecognizer_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQSensorGestureRecognizer_Destroyed
-func callbackQSensorGestureRecognizer_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQSensorGestureRecognizer_DisconnectNotify
-func callbackQSensorGestureRecognizer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorGestureRecognizerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QSensorGestureRecognizer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensorGestureRecognizer_Event
-func callbackQSensorGestureRecognizer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureRecognizerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QSensorGestureRecognizer) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGestureRecognizer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorGestureRecognizer_EventFilter
-func callbackQSensorGestureRecognizer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureRecognizerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QSensorGestureRecognizer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorGestureRecognizer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorGestureRecognizer_MetaObject
-func callbackQSensorGestureRecognizer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQSensorGestureRecognizerFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QSensorGestureRecognizer) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSensorGestureRecognizer_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQSensorGestureRecognizer_ObjectNameChanged
-func callbackQSensorGestureRecognizer_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSensors_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQSensorGestureRecognizer_TimerEvent
-func callbackQSensorGestureRecognizer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorGestureRecognizerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QSensorGestureRecognizer) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QSensorManager struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSensorManager_ITF interface {
@@ -9283,14 +6791,14 @@ func (ptr *QSensorManager) QSensorManager_PTR() *QSensorManager {
 
 func (ptr *QSensorManager) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSensorManager) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -9301,69 +6809,71 @@ func PointerFromQSensorManager(ptr QSensorManager_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSensorManager) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSensorManagerFromPointer(ptr unsafe.Pointer) (n *QSensorManager) {
 	n = new(QSensorManager)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorManager")
 	return
 }
-func (ptr *QSensorManager) DestroyQSensorManager() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *QSensorManager) DestroyQSensorManager() {
 }
+
 func QSensorManager_CreateBackend(sensor QSensor_ITF) *QSensorBackend {
-	tmpValue := NewQSensorBackendFromPointer(C.QSensorManager_QSensorManager_CreateBackend(PointerFromQSensor(sensor)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorManager_CreateBackend", "", sensor}).(*QSensorBackend)
 }
 
 func (ptr *QSensorManager) CreateBackend(sensor QSensor_ITF) *QSensorBackend {
-	tmpValue := NewQSensorBackendFromPointer(C.QSensorManager_QSensorManager_CreateBackend(PointerFromQSensor(sensor)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorManager_CreateBackend", "", sensor}).(*QSensorBackend)
 }
 
 func QSensorManager_IsBackendRegistered(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) bool {
-	return int8(C.QSensorManager_QSensorManager_IsBackendRegistered(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorManager_IsBackendRegistered", "", ty, identifier}).(bool)
 }
 
 func (ptr *QSensorManager) IsBackendRegistered(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) bool {
-	return int8(C.QSensorManager_QSensorManager_IsBackendRegistered(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorManager_IsBackendRegistered", "", ty, identifier}).(bool)
 }
 
 func QSensorManager_RegisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF, factory QSensorBackendFactory_ITF) {
-	C.QSensorManager_QSensorManager_RegisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier), PointerFromQSensorBackendFactory(factory))
+
+	internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorManager_RegisterBackend", "", ty, identifier, factory})
 }
 
 func (ptr *QSensorManager) RegisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF, factory QSensorBackendFactory_ITF) {
-	C.QSensorManager_QSensorManager_RegisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier), PointerFromQSensorBackendFactory(factory))
+
+	internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorManager_RegisterBackend", "", ty, identifier, factory})
 }
 
 func QSensorManager_SetDefaultBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
-	C.QSensorManager_QSensorManager_SetDefaultBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
+
+	internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorManager_SetDefaultBackend", "", ty, identifier})
 }
 
 func (ptr *QSensorManager) SetDefaultBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
-	C.QSensorManager_QSensorManager_SetDefaultBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
+
+	internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorManager_SetDefaultBackend", "", ty, identifier})
 }
 
 func QSensorManager_UnregisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
-	C.QSensorManager_QSensorManager_UnregisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
+
+	internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorManager_UnregisterBackend", "", ty, identifier})
 }
 
 func (ptr *QSensorManager) UnregisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
-	C.QSensorManager_QSensorManager_UnregisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
+
+	internal.CallLocalFunction([]interface{}{"", "", "sensors.QSensorManager_UnregisterBackend", "", ty, identifier})
 }
 
 type QSensorPluginInterface struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSensorPluginInterface_ITF interface {
@@ -9376,14 +6886,14 @@ func (ptr *QSensorPluginInterface) QSensorPluginInterface_PTR() *QSensorPluginIn
 
 func (ptr *QSensorPluginInterface) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSensorPluginInterface) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -9394,55 +6904,32 @@ func PointerFromQSensorPluginInterface(ptr QSensorPluginInterface_ITF) unsafe.Po
 	return nil
 }
 
+func (n *QSensorPluginInterface) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSensorPluginInterfaceFromPointer(ptr unsafe.Pointer) (n *QSensorPluginInterface) {
 	n = new(QSensorPluginInterface)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorPluginInterface")
 	return
 }
+
 func (ptr *QSensorPluginInterface) DestroyQSensorPluginInterface() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQSensorPluginInterface_RegisterSensors
-func callbackQSensorPluginInterface_RegisterSensors(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "registerSensors"); signal != nil {
-		(*(*func())(signal))()
-	}
-
 }
 
 func (ptr *QSensorPluginInterface) ConnectRegisterSensors(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "registerSensors"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "registerSensors", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "registerSensors", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectRegisterSensors", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSensorPluginInterface) DisconnectRegisterSensors() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "registerSensors")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectRegisterSensors"})
 }
 
 func (ptr *QSensorPluginInterface) RegisterSensors() {
-	if ptr.Pointer() != nil {
-		C.QSensorPluginInterface_RegisterSensors(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RegisterSensors"})
 }
 
 type QSensorReading struct {
@@ -9478,276 +6965,147 @@ func PointerFromQSensorReading(ptr QSensorReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSensorReading) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QSensorReading) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQSensorReadingFromPointer(ptr unsafe.Pointer) (n *QSensorReading) {
 	n = new(QSensorReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QSensorReading")
 	return
 }
+
+func (ptr *QSensorReading) DestroyQSensorReading() {
+}
+
 func (ptr *QSensorReading) SetTimestamp(timestamp uint64) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading_SetTimestamp(ptr.Pointer(), C.ulonglong(timestamp))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetTimestamp", timestamp})
 }
 
 func (ptr *QSensorReading) Timestamp() uint64 {
-	if ptr.Pointer() != nil {
-		return uint64(C.QSensorReading_Timestamp(ptr.Pointer()))
-	}
-	return 0
+
+	return uint64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Timestamp"}).(float64))
 }
 
 func (ptr *QSensorReading) Value(index int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSensorReading_Value(ptr.Pointer(), C.int(int32(index))))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Value", index}).(*core.QVariant)
 }
 
 func (ptr *QSensorReading) ValueCount() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensorReading_ValueCount(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ValueCount"}).(float64))
 }
 
 func (ptr *QSensorReading) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorReading___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensorReading) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QSensorReading) __children_newList() unsafe.Pointer {
-	return C.QSensorReading___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorReading) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSensorReading___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSensorReading) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QSensorReading) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QSensorReading___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorReading) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorReading___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QSensorReading) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QSensorReading) __findChildren_newList() unsafe.Pointer {
-	return C.QSensorReading___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorReading) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSensorReading___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QSensorReading) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QSensorReading) __findChildren_newList3() unsafe.Pointer {
-	return C.QSensorReading___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQSensorReading_ChildEvent
-func callbackQSensorReading_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQSensorReadingFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QSensorReading) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQSensorReading_ConnectNotify
-func callbackQSensorReading_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorReadingFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QSensorReading) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensorReading_CustomEvent
-func callbackQSensorReading_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQSensorReadingFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QSensorReading) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQSensorReading_DeleteLater
-func callbackQSensorReading_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSensorReadingFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QSensorReading) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSensorReading_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQSensorReading_Destroyed
-func callbackQSensorReading_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQSensorReading_DisconnectNotify
-func callbackQSensorReading_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQSensorReadingFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QSensorReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQSensorReading_Event
-func callbackQSensorReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QSensorReading) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorReading_EventFilter
-func callbackQSensorReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QSensorReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSensorReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQSensorReading_MetaObject
-func callbackQSensorReading_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQSensorReadingFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QSensorReading) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSensorReading_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQSensorReading_ObjectNameChanged
-func callbackQSensorReading_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtSensors_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQSensorReading_TimerEvent
-func callbackQSensorReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QSensorReading) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QTapFilter struct {
@@ -9783,57 +7141,37 @@ func PointerFromQTapFilter(ptr QTapFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QTapFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QTapFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQTapFilterFromPointer(ptr unsafe.Pointer) (n *QTapFilter) {
 	n = new(QTapFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QTapFilter")
 	return
 }
+
 func (ptr *QTapFilter) DestroyQTapFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQTapFilter_Filter
-func callbackQTapFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QTapReading) bool)(signal))(NewQTapReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QTapFilter) ConnectFilter(f func(reading *QTapReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QTapReading) bool {
-				(*(*func(*QTapReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTapFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QTapFilter) Filter(reading QTapReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QTapFilter_Filter(ptr.Pointer(), PointerFromQTapReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QTapReading struct {
@@ -9869,10 +7207,22 @@ func PointerFromQTapReading(ptr QTapReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QTapReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QTapReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQTapReadingFromPointer(ptr unsafe.Pointer) (n *QTapReading) {
 	n = new(QTapReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QTapReading")
 	return
+}
+
+func (ptr *QTapReading) DestroyQTapReading() {
 }
 
 //go:generate stringer -type=QTapReading__TapDirection
@@ -9896,29 +7246,23 @@ const (
 )
 
 func (ptr *QTapReading) IsDoubleTap() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QTapReading_IsDoubleTap(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsDoubleTap"}).(bool)
 }
 
 func (ptr *QTapReading) SetDoubleTap(doubleTap bool) {
-	if ptr.Pointer() != nil {
-		C.QTapReading_SetDoubleTap(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(doubleTap))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDoubleTap", doubleTap})
 }
 
 func (ptr *QTapReading) SetTapDirection(tapDirection QTapReading__TapDirection) {
-	if ptr.Pointer() != nil {
-		C.QTapReading_SetTapDirection(ptr.Pointer(), C.longlong(tapDirection))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetTapDirection", tapDirection})
 }
 
 func (ptr *QTapReading) TapDirection() QTapReading__TapDirection {
-	if ptr.Pointer() != nil {
-		return QTapReading__TapDirection(C.QTapReading_TapDirection(ptr.Pointer()))
-	}
-	return 0
+
+	return QTapReading__TapDirection(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TapDirection"}).(float64))
 }
 
 type QTapSensor struct {
@@ -9954,130 +7298,73 @@ func PointerFromQTapSensor(ptr QTapSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QTapSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QTapSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQTapSensorFromPointer(ptr unsafe.Pointer) (n *QTapSensor) {
 	n = new(QTapSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QTapSensor")
 	return
 }
 func NewQTapSensor(parent core.QObject_ITF) *QTapSensor {
-	tmpValue := NewQTapSensorFromPointer(C.QTapSensor_NewQTapSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQTapSensor", "", parent}).(*QTapSensor)
 }
 
 func (ptr *QTapSensor) Reading() *QTapReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQTapReadingFromPointer(C.QTapSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QTapReading)
 }
 
 func (ptr *QTapSensor) ReturnDoubleTapEvents() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QTapSensor_ReturnDoubleTapEvents(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQTapSensor_ReturnDoubleTapEventsChanged
-func callbackQTapSensor_ReturnDoubleTapEventsChanged(ptr unsafe.Pointer, returnDoubleTapEvents C.char) {
-	if signal := qt.GetSignal(ptr, "returnDoubleTapEventsChanged"); signal != nil {
-		(*(*func(bool))(signal))(int8(returnDoubleTapEvents) != 0)
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReturnDoubleTapEvents"}).(bool)
 }
 
 func (ptr *QTapSensor) ConnectReturnDoubleTapEventsChanged(f func(returnDoubleTapEvents bool)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "returnDoubleTapEventsChanged") {
-			C.QTapSensor_ConnectReturnDoubleTapEventsChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "returnDoubleTapEventsChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "returnDoubleTapEventsChanged"); signal != nil {
-			f := func(returnDoubleTapEvents bool) {
-				(*(*func(bool))(signal))(returnDoubleTapEvents)
-				f(returnDoubleTapEvents)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "returnDoubleTapEventsChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "returnDoubleTapEventsChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectReturnDoubleTapEventsChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTapSensor) DisconnectReturnDoubleTapEventsChanged() {
-	if ptr.Pointer() != nil {
-		C.QTapSensor_DisconnectReturnDoubleTapEventsChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "returnDoubleTapEventsChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectReturnDoubleTapEventsChanged"})
 }
 
 func (ptr *QTapSensor) ReturnDoubleTapEventsChanged(returnDoubleTapEvents bool) {
-	if ptr.Pointer() != nil {
-		C.QTapSensor_ReturnDoubleTapEventsChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(returnDoubleTapEvents))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReturnDoubleTapEventsChanged", returnDoubleTapEvents})
 }
 
 func (ptr *QTapSensor) SetReturnDoubleTapEvents(returnDoubleTapEvents bool) {
-	if ptr.Pointer() != nil {
-		C.QTapSensor_SetReturnDoubleTapEvents(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(returnDoubleTapEvents))))
-	}
-}
 
-//export callbackQTapSensor_DestroyQTapSensor
-func callbackQTapSensor_DestroyQTapSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QTapSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQTapSensorFromPointer(ptr).DestroyQTapSensorDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetReturnDoubleTapEvents", returnDoubleTapEvents})
 }
 
 func (ptr *QTapSensor) ConnectDestroyQTapSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QTapSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QTapSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QTapSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQTapSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTapSensor) DisconnectDestroyQTapSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QTapSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQTapSensor"})
 }
 
 func (ptr *QTapSensor) DestroyQTapSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QTapSensor_DestroyQTapSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQTapSensor"})
 }
 
 func (ptr *QTapSensor) DestroyQTapSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QTapSensor_DestroyQTapSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQTapSensorDefault"})
 }
 
 type QTiltFilter struct {
@@ -10113,57 +7400,37 @@ func PointerFromQTiltFilter(ptr QTiltFilter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QTiltFilter) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QTiltFilter) ClassNameInternalF() string {
+	return n.QSensorFilter_PTR().ClassNameInternalF()
+}
+
 func NewQTiltFilterFromPointer(ptr unsafe.Pointer) (n *QTiltFilter) {
 	n = new(QTiltFilter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QTiltFilter")
 	return
 }
+
 func (ptr *QTiltFilter) DestroyQTiltFilter() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
-
-		qt.DisconnectAllSignals(ptr.Pointer(), "")
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQTiltFilter_Filter
-func callbackQTiltFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QTiltReading) bool)(signal))(NewQTiltReadingFromPointer(reading)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QTiltFilter) ConnectFilter(f func(reading *QTiltReading) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
-			f := func(reading *QTiltReading) bool {
-				(*(*func(*QTiltReading) bool)(signal))(reading)
-				return f(reading)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "filter", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFilter", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTiltFilter) DisconnectFilter() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "filter")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFilter"})
 }
 
 func (ptr *QTiltFilter) Filter(reading QTiltReading_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QTiltFilter_Filter(ptr.Pointer(), PointerFromQTiltReading(reading))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Filter", reading}).(bool)
 }
 
 type QTiltReading struct {
@@ -10199,35 +7466,42 @@ func PointerFromQTiltReading(ptr QTiltReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QTiltReading) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QTiltReading) ClassNameInternalF() string {
+	return n.QSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQTiltReadingFromPointer(ptr unsafe.Pointer) (n *QTiltReading) {
 	n = new(QTiltReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QTiltReading")
 	return
 }
+
+func (ptr *QTiltReading) DestroyQTiltReading() {
+}
+
 func (ptr *QTiltReading) SetXRotation(x float64) {
-	if ptr.Pointer() != nil {
-		C.QTiltReading_SetXRotation(ptr.Pointer(), C.double(x))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetXRotation", x})
 }
 
 func (ptr *QTiltReading) SetYRotation(y float64) {
-	if ptr.Pointer() != nil {
-		C.QTiltReading_SetYRotation(ptr.Pointer(), C.double(y))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetYRotation", y})
 }
 
 func (ptr *QTiltReading) XRotation() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QTiltReading_XRotation(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "XRotation"}).(float64)
 }
 
 func (ptr *QTiltReading) YRotation() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QTiltReading_YRotation(ptr.Pointer()))
-	}
-	return 0
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "YRotation"}).(float64)
 }
 
 type QTiltSensor struct {
@@ -10263,83 +7537,53 @@ func PointerFromQTiltSensor(ptr QTiltSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QTiltSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QTiltSensor) ClassNameInternalF() string {
+	return n.QSensor_PTR().ClassNameInternalF()
+}
+
 func NewQTiltSensorFromPointer(ptr unsafe.Pointer) (n *QTiltSensor) {
 	n = new(QTiltSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QTiltSensor")
 	return
 }
 func NewQTiltSensor(parent core.QObject_ITF) *QTiltSensor {
-	tmpValue := NewQTiltSensorFromPointer(C.QTiltSensor_NewQTiltSensor(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "sensors.NewQTiltSensor", "", parent}).(*QTiltSensor)
 }
 
 func (ptr *QTiltSensor) Calibrate() {
-	if ptr.Pointer() != nil {
-		C.QTiltSensor_Calibrate(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Calibrate"})
 }
 
 func (ptr *QTiltSensor) Reading() *QTiltReading {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQTiltReadingFromPointer(C.QTiltSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQTiltSensor_DestroyQTiltSensor
-func callbackQTiltSensor_DestroyQTiltSensor(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QTiltSensor"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQTiltSensorFromPointer(ptr).DestroyQTiltSensorDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reading"}).(*QTiltReading)
 }
 
 func (ptr *QTiltSensor) ConnectDestroyQTiltSensor(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QTiltSensor"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QTiltSensor", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QTiltSensor", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQTiltSensor", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTiltSensor) DisconnectDestroyQTiltSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QTiltSensor")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQTiltSensor"})
 }
 
 func (ptr *QTiltSensor) DestroyQTiltSensor() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QTiltSensor_DestroyQTiltSensor(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQTiltSensor"})
 }
 
 func (ptr *QTiltSensor) DestroyQTiltSensorDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QTiltSensor_DestroyQTiltSensorDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQTiltSensorDefault"})
 }
 
 type QmlAccelerometer struct {
@@ -10375,10 +7619,22 @@ func PointerFromQmlAccelerometer(ptr QmlAccelerometer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlAccelerometer) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlAccelerometer) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlAccelerometerFromPointer(ptr unsafe.Pointer) (n *QmlAccelerometer) {
 	n = new(QmlAccelerometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlAccelerometer")
 	return
+}
+
+func (ptr *QmlAccelerometer) DestroyQmlAccelerometer() {
 }
 
 type QmlAccelerometerReading struct {
@@ -10414,10 +7670,22 @@ func PointerFromQmlAccelerometerReading(ptr QmlAccelerometerReading_ITF) unsafe.
 	return nil
 }
 
+func (n *QmlAccelerometerReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlAccelerometerReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlAccelerometerReadingFromPointer(ptr unsafe.Pointer) (n *QmlAccelerometerReading) {
 	n = new(QmlAccelerometerReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlAccelerometerReading")
 	return
+}
+
+func (ptr *QmlAccelerometerReading) DestroyQmlAccelerometerReading() {
 }
 
 type QmlAltimeter struct {
@@ -10453,10 +7721,22 @@ func PointerFromQmlAltimeter(ptr QmlAltimeter_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlAltimeter) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlAltimeter) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlAltimeterFromPointer(ptr unsafe.Pointer) (n *QmlAltimeter) {
 	n = new(QmlAltimeter)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlAltimeter")
 	return
+}
+
+func (ptr *QmlAltimeter) DestroyQmlAltimeter() {
 }
 
 type QmlAltimeterReading struct {
@@ -10492,10 +7772,22 @@ func PointerFromQmlAltimeterReading(ptr QmlAltimeterReading_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *QmlAltimeterReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlAltimeterReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlAltimeterReadingFromPointer(ptr unsafe.Pointer) (n *QmlAltimeterReading) {
 	n = new(QmlAltimeterReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlAltimeterReading")
 	return
+}
+
+func (ptr *QmlAltimeterReading) DestroyQmlAltimeterReading() {
 }
 
 type QmlAmbientLightSensor struct {
@@ -10531,10 +7823,22 @@ func PointerFromQmlAmbientLightSensor(ptr QmlAmbientLightSensor_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *QmlAmbientLightSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlAmbientLightSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlAmbientLightSensorFromPointer(ptr unsafe.Pointer) (n *QmlAmbientLightSensor) {
 	n = new(QmlAmbientLightSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlAmbientLightSensor")
 	return
+}
+
+func (ptr *QmlAmbientLightSensor) DestroyQmlAmbientLightSensor() {
 }
 
 type QmlAmbientLightSensorReading struct {
@@ -10570,10 +7874,22 @@ func PointerFromQmlAmbientLightSensorReading(ptr QmlAmbientLightSensorReading_IT
 	return nil
 }
 
+func (n *QmlAmbientLightSensorReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlAmbientLightSensorReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlAmbientLightSensorReadingFromPointer(ptr unsafe.Pointer) (n *QmlAmbientLightSensorReading) {
 	n = new(QmlAmbientLightSensorReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlAmbientLightSensorReading")
 	return
+}
+
+func (ptr *QmlAmbientLightSensorReading) DestroyQmlAmbientLightSensorReading() {
 }
 
 type QmlAmbientTemperatureReading struct {
@@ -10609,10 +7925,22 @@ func PointerFromQmlAmbientTemperatureReading(ptr QmlAmbientTemperatureReading_IT
 	return nil
 }
 
+func (n *QmlAmbientTemperatureReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlAmbientTemperatureReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlAmbientTemperatureReadingFromPointer(ptr unsafe.Pointer) (n *QmlAmbientTemperatureReading) {
 	n = new(QmlAmbientTemperatureReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlAmbientTemperatureReading")
 	return
+}
+
+func (ptr *QmlAmbientTemperatureReading) DestroyQmlAmbientTemperatureReading() {
 }
 
 type QmlAmbientTemperatureSensor struct {
@@ -10648,10 +7976,22 @@ func PointerFromQmlAmbientTemperatureSensor(ptr QmlAmbientTemperatureSensor_ITF)
 	return nil
 }
 
+func (n *QmlAmbientTemperatureSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlAmbientTemperatureSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlAmbientTemperatureSensorFromPointer(ptr unsafe.Pointer) (n *QmlAmbientTemperatureSensor) {
 	n = new(QmlAmbientTemperatureSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlAmbientTemperatureSensor")
 	return
+}
+
+func (ptr *QmlAmbientTemperatureSensor) DestroyQmlAmbientTemperatureSensor() {
 }
 
 type QmlCompass struct {
@@ -10687,10 +8027,22 @@ func PointerFromQmlCompass(ptr QmlCompass_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlCompass) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlCompass) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlCompassFromPointer(ptr unsafe.Pointer) (n *QmlCompass) {
 	n = new(QmlCompass)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlCompass")
 	return
+}
+
+func (ptr *QmlCompass) DestroyQmlCompass() {
 }
 
 type QmlCompassReading struct {
@@ -10726,10 +8078,22 @@ func PointerFromQmlCompassReading(ptr QmlCompassReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlCompassReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlCompassReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlCompassReadingFromPointer(ptr unsafe.Pointer) (n *QmlCompassReading) {
 	n = new(QmlCompassReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlCompassReading")
 	return
+}
+
+func (ptr *QmlCompassReading) DestroyQmlCompassReading() {
 }
 
 type QmlDistanceReading struct {
@@ -10765,10 +8129,22 @@ func PointerFromQmlDistanceReading(ptr QmlDistanceReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlDistanceReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlDistanceReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlDistanceReadingFromPointer(ptr unsafe.Pointer) (n *QmlDistanceReading) {
 	n = new(QmlDistanceReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlDistanceReading")
 	return
+}
+
+func (ptr *QmlDistanceReading) DestroyQmlDistanceReading() {
 }
 
 type QmlDistanceSensor struct {
@@ -10804,10 +8180,22 @@ func PointerFromQmlDistanceSensor(ptr QmlDistanceSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlDistanceSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlDistanceSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlDistanceSensorFromPointer(ptr unsafe.Pointer) (n *QmlDistanceSensor) {
 	n = new(QmlDistanceSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlDistanceSensor")
 	return
+}
+
+func (ptr *QmlDistanceSensor) DestroyQmlDistanceSensor() {
 }
 
 type QmlGyroscope struct {
@@ -10843,10 +8231,22 @@ func PointerFromQmlGyroscope(ptr QmlGyroscope_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlGyroscope) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlGyroscope) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlGyroscopeFromPointer(ptr unsafe.Pointer) (n *QmlGyroscope) {
 	n = new(QmlGyroscope)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlGyroscope")
 	return
+}
+
+func (ptr *QmlGyroscope) DestroyQmlGyroscope() {
 }
 
 type QmlGyroscopeReading struct {
@@ -10882,10 +8282,22 @@ func PointerFromQmlGyroscopeReading(ptr QmlGyroscopeReading_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *QmlGyroscopeReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlGyroscopeReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlGyroscopeReadingFromPointer(ptr unsafe.Pointer) (n *QmlGyroscopeReading) {
 	n = new(QmlGyroscopeReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlGyroscopeReading")
 	return
+}
+
+func (ptr *QmlGyroscopeReading) DestroyQmlGyroscopeReading() {
 }
 
 type QmlHolsterReading struct {
@@ -10921,10 +8333,22 @@ func PointerFromQmlHolsterReading(ptr QmlHolsterReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlHolsterReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlHolsterReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlHolsterReadingFromPointer(ptr unsafe.Pointer) (n *QmlHolsterReading) {
 	n = new(QmlHolsterReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlHolsterReading")
 	return
+}
+
+func (ptr *QmlHolsterReading) DestroyQmlHolsterReading() {
 }
 
 type QmlHolsterSensor struct {
@@ -10960,10 +8384,22 @@ func PointerFromQmlHolsterSensor(ptr QmlHolsterSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlHolsterSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlHolsterSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlHolsterSensorFromPointer(ptr unsafe.Pointer) (n *QmlHolsterSensor) {
 	n = new(QmlHolsterSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlHolsterSensor")
 	return
+}
+
+func (ptr *QmlHolsterSensor) DestroyQmlHolsterSensor() {
 }
 
 type QmlHumidityReading struct {
@@ -10999,10 +8435,22 @@ func PointerFromQmlHumidityReading(ptr QmlHumidityReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlHumidityReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlHumidityReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlHumidityReadingFromPointer(ptr unsafe.Pointer) (n *QmlHumidityReading) {
 	n = new(QmlHumidityReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlHumidityReading")
 	return
+}
+
+func (ptr *QmlHumidityReading) DestroyQmlHumidityReading() {
 }
 
 type QmlHumiditySensor struct {
@@ -11038,10 +8486,22 @@ func PointerFromQmlHumiditySensor(ptr QmlHumiditySensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlHumiditySensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlHumiditySensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlHumiditySensorFromPointer(ptr unsafe.Pointer) (n *QmlHumiditySensor) {
 	n = new(QmlHumiditySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlHumiditySensor")
 	return
+}
+
+func (ptr *QmlHumiditySensor) DestroyQmlHumiditySensor() {
 }
 
 type QmlIRProximitySensor struct {
@@ -11077,10 +8537,22 @@ func PointerFromQmlIRProximitySensor(ptr QmlIRProximitySensor_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *QmlIRProximitySensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlIRProximitySensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlIRProximitySensorFromPointer(ptr unsafe.Pointer) (n *QmlIRProximitySensor) {
 	n = new(QmlIRProximitySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlIRProximitySensor")
 	return
+}
+
+func (ptr *QmlIRProximitySensor) DestroyQmlIRProximitySensor() {
 }
 
 type QmlIRProximitySensorReading struct {
@@ -11116,10 +8588,22 @@ func PointerFromQmlIRProximitySensorReading(ptr QmlIRProximitySensorReading_ITF)
 	return nil
 }
 
+func (n *QmlIRProximitySensorReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlIRProximitySensorReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlIRProximitySensorReadingFromPointer(ptr unsafe.Pointer) (n *QmlIRProximitySensorReading) {
 	n = new(QmlIRProximitySensorReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlIRProximitySensorReading")
 	return
+}
+
+func (ptr *QmlIRProximitySensorReading) DestroyQmlIRProximitySensorReading() {
 }
 
 type QmlLidReading struct {
@@ -11155,10 +8639,22 @@ func PointerFromQmlLidReading(ptr QmlLidReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlLidReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlLidReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlLidReadingFromPointer(ptr unsafe.Pointer) (n *QmlLidReading) {
 	n = new(QmlLidReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlLidReading")
 	return
+}
+
+func (ptr *QmlLidReading) DestroyQmlLidReading() {
 }
 
 type QmlLidSensor struct {
@@ -11194,10 +8690,22 @@ func PointerFromQmlLidSensor(ptr QmlLidSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlLidSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlLidSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlLidSensorFromPointer(ptr unsafe.Pointer) (n *QmlLidSensor) {
 	n = new(QmlLidSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlLidSensor")
 	return
+}
+
+func (ptr *QmlLidSensor) DestroyQmlLidSensor() {
 }
 
 type QmlLightSensor struct {
@@ -11233,10 +8741,22 @@ func PointerFromQmlLightSensor(ptr QmlLightSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlLightSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlLightSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlLightSensorFromPointer(ptr unsafe.Pointer) (n *QmlLightSensor) {
 	n = new(QmlLightSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlLightSensor")
 	return
+}
+
+func (ptr *QmlLightSensor) DestroyQmlLightSensor() {
 }
 
 type QmlLightSensorReading struct {
@@ -11272,10 +8792,22 @@ func PointerFromQmlLightSensorReading(ptr QmlLightSensorReading_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *QmlLightSensorReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlLightSensorReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlLightSensorReadingFromPointer(ptr unsafe.Pointer) (n *QmlLightSensorReading) {
 	n = new(QmlLightSensorReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlLightSensorReading")
 	return
+}
+
+func (ptr *QmlLightSensorReading) DestroyQmlLightSensorReading() {
 }
 
 type QmlMagnetometer struct {
@@ -11311,10 +8843,22 @@ func PointerFromQmlMagnetometer(ptr QmlMagnetometer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlMagnetometer) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlMagnetometer) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlMagnetometerFromPointer(ptr unsafe.Pointer) (n *QmlMagnetometer) {
 	n = new(QmlMagnetometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlMagnetometer")
 	return
+}
+
+func (ptr *QmlMagnetometer) DestroyQmlMagnetometer() {
 }
 
 type QmlMagnetometerReading struct {
@@ -11350,10 +8894,22 @@ func PointerFromQmlMagnetometerReading(ptr QmlMagnetometerReading_ITF) unsafe.Po
 	return nil
 }
 
+func (n *QmlMagnetometerReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlMagnetometerReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlMagnetometerReadingFromPointer(ptr unsafe.Pointer) (n *QmlMagnetometerReading) {
 	n = new(QmlMagnetometerReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlMagnetometerReading")
 	return
+}
+
+func (ptr *QmlMagnetometerReading) DestroyQmlMagnetometerReading() {
 }
 
 type QmlOrientationSensor struct {
@@ -11389,10 +8945,22 @@ func PointerFromQmlOrientationSensor(ptr QmlOrientationSensor_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *QmlOrientationSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlOrientationSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlOrientationSensorFromPointer(ptr unsafe.Pointer) (n *QmlOrientationSensor) {
 	n = new(QmlOrientationSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlOrientationSensor")
 	return
+}
+
+func (ptr *QmlOrientationSensor) DestroyQmlOrientationSensor() {
 }
 
 type QmlOrientationSensorReading struct {
@@ -11428,10 +8996,22 @@ func PointerFromQmlOrientationSensorReading(ptr QmlOrientationSensorReading_ITF)
 	return nil
 }
 
+func (n *QmlOrientationSensorReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlOrientationSensorReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlOrientationSensorReadingFromPointer(ptr unsafe.Pointer) (n *QmlOrientationSensorReading) {
 	n = new(QmlOrientationSensorReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlOrientationSensorReading")
 	return
+}
+
+func (ptr *QmlOrientationSensorReading) DestroyQmlOrientationSensorReading() {
 }
 
 type QmlPressureReading struct {
@@ -11467,10 +9047,22 @@ func PointerFromQmlPressureReading(ptr QmlPressureReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlPressureReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlPressureReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlPressureReadingFromPointer(ptr unsafe.Pointer) (n *QmlPressureReading) {
 	n = new(QmlPressureReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlPressureReading")
 	return
+}
+
+func (ptr *QmlPressureReading) DestroyQmlPressureReading() {
 }
 
 type QmlPressureSensor struct {
@@ -11506,10 +9098,22 @@ func PointerFromQmlPressureSensor(ptr QmlPressureSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlPressureSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlPressureSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlPressureSensorFromPointer(ptr unsafe.Pointer) (n *QmlPressureSensor) {
 	n = new(QmlPressureSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlPressureSensor")
 	return
+}
+
+func (ptr *QmlPressureSensor) DestroyQmlPressureSensor() {
 }
 
 type QmlProximitySensor struct {
@@ -11545,10 +9149,22 @@ func PointerFromQmlProximitySensor(ptr QmlProximitySensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlProximitySensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlProximitySensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlProximitySensorFromPointer(ptr unsafe.Pointer) (n *QmlProximitySensor) {
 	n = new(QmlProximitySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlProximitySensor")
 	return
+}
+
+func (ptr *QmlProximitySensor) DestroyQmlProximitySensor() {
 }
 
 type QmlProximitySensorReading struct {
@@ -11584,10 +9200,22 @@ func PointerFromQmlProximitySensorReading(ptr QmlProximitySensorReading_ITF) uns
 	return nil
 }
 
+func (n *QmlProximitySensorReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlProximitySensorReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlProximitySensorReadingFromPointer(ptr unsafe.Pointer) (n *QmlProximitySensorReading) {
 	n = new(QmlProximitySensorReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlProximitySensorReading")
 	return
+}
+
+func (ptr *QmlProximitySensorReading) DestroyQmlProximitySensorReading() {
 }
 
 type QmlRotationSensor struct {
@@ -11623,10 +9251,22 @@ func PointerFromQmlRotationSensor(ptr QmlRotationSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlRotationSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlRotationSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlRotationSensorFromPointer(ptr unsafe.Pointer) (n *QmlRotationSensor) {
 	n = new(QmlRotationSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlRotationSensor")
 	return
+}
+
+func (ptr *QmlRotationSensor) DestroyQmlRotationSensor() {
 }
 
 type QmlRotationSensorReading struct {
@@ -11662,10 +9302,22 @@ func PointerFromQmlRotationSensorReading(ptr QmlRotationSensorReading_ITF) unsaf
 	return nil
 }
 
+func (n *QmlRotationSensorReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlRotationSensorReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlRotationSensorReadingFromPointer(ptr unsafe.Pointer) (n *QmlRotationSensorReading) {
 	n = new(QmlRotationSensorReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlRotationSensorReading")
 	return
+}
+
+func (ptr *QmlRotationSensorReading) DestroyQmlRotationSensorReading() {
 }
 
 type QmlSensor struct {
@@ -11701,10 +9353,22 @@ func PointerFromQmlSensor(ptr QmlSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlSensor) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQmlSensorFromPointer(ptr unsafe.Pointer) (n *QmlSensor) {
 	n = new(QmlSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlSensor")
 	return
+}
+
+func (ptr *QmlSensor) DestroyQmlSensor() {
 }
 
 type QmlSensorGesture struct {
@@ -11740,10 +9404,22 @@ func PointerFromQmlSensorGesture(ptr QmlSensorGesture_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlSensorGesture) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlSensorGesture) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQmlSensorGestureFromPointer(ptr unsafe.Pointer) (n *QmlSensorGesture) {
 	n = new(QmlSensorGesture)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlSensorGesture")
 	return
+}
+
+func (ptr *QmlSensorGesture) DestroyQmlSensorGesture() {
 }
 
 type QmlSensorGlobal struct {
@@ -11779,10 +9455,22 @@ func PointerFromQmlSensorGlobal(ptr QmlSensorGlobal_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlSensorGlobal) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlSensorGlobal) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQmlSensorGlobalFromPointer(ptr unsafe.Pointer) (n *QmlSensorGlobal) {
 	n = new(QmlSensorGlobal)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlSensorGlobal")
 	return
+}
+
+func (ptr *QmlSensorGlobal) DestroyQmlSensorGlobal() {
 }
 
 type QmlSensorOutputRange struct {
@@ -11818,10 +9506,22 @@ func PointerFromQmlSensorOutputRange(ptr QmlSensorOutputRange_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *QmlSensorOutputRange) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlSensorOutputRange) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQmlSensorOutputRangeFromPointer(ptr unsafe.Pointer) (n *QmlSensorOutputRange) {
 	n = new(QmlSensorOutputRange)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlSensorOutputRange")
 	return
+}
+
+func (ptr *QmlSensorOutputRange) DestroyQmlSensorOutputRange() {
 }
 
 type QmlSensorRange struct {
@@ -11857,10 +9557,22 @@ func PointerFromQmlSensorRange(ptr QmlSensorRange_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlSensorRange) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlSensorRange) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQmlSensorRangeFromPointer(ptr unsafe.Pointer) (n *QmlSensorRange) {
 	n = new(QmlSensorRange)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlSensorRange")
 	return
+}
+
+func (ptr *QmlSensorRange) DestroyQmlSensorRange() {
 }
 
 type QmlSensorReading struct {
@@ -11896,10 +9608,22 @@ func PointerFromQmlSensorReading(ptr QmlSensorReading_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlSensorReading) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlSensorReading) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQmlSensorReadingFromPointer(ptr unsafe.Pointer) (n *QmlSensorReading) {
 	n = new(QmlSensorReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlSensorReading")
 	return
+}
+
+func (ptr *QmlSensorReading) DestroyQmlSensorReading() {
 }
 
 type QmlTapSensor struct {
@@ -11935,10 +9659,22 @@ func PointerFromQmlTapSensor(ptr QmlTapSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlTapSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlTapSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlTapSensorFromPointer(ptr unsafe.Pointer) (n *QmlTapSensor) {
 	n = new(QmlTapSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlTapSensor")
 	return
+}
+
+func (ptr *QmlTapSensor) DestroyQmlTapSensor() {
 }
 
 type QmlTapSensorReading struct {
@@ -11974,10 +9710,22 @@ func PointerFromQmlTapSensorReading(ptr QmlTapSensorReading_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *QmlTapSensorReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlTapSensorReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlTapSensorReadingFromPointer(ptr unsafe.Pointer) (n *QmlTapSensorReading) {
 	n = new(QmlTapSensorReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlTapSensorReading")
 	return
+}
+
+func (ptr *QmlTapSensorReading) DestroyQmlTapSensorReading() {
 }
 
 type QmlTiltSensor struct {
@@ -12013,10 +9761,22 @@ func PointerFromQmlTiltSensor(ptr QmlTiltSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QmlTiltSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensor_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlTiltSensor) ClassNameInternalF() string {
+	return n.QmlSensor_PTR().ClassNameInternalF()
+}
+
 func NewQmlTiltSensorFromPointer(ptr unsafe.Pointer) (n *QmlTiltSensor) {
 	n = new(QmlTiltSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlTiltSensor")
 	return
+}
+
+func (ptr *QmlTiltSensor) DestroyQmlTiltSensor() {
 }
 
 type QmlTiltSensorReading struct {
@@ -12052,10 +9812,22 @@ func PointerFromQmlTiltSensorReading(ptr QmlTiltSensorReading_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *QmlTiltSensorReading) InitFromInternal(ptr uintptr, name string) {
+	n.QmlSensorReading_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QmlTiltSensorReading) ClassNameInternalF() string {
+	return n.QmlSensorReading_PTR().ClassNameInternalF()
+}
+
 func NewQmlTiltSensorReadingFromPointer(ptr unsafe.Pointer) (n *QmlTiltSensorReading) {
 	n = new(QmlTiltSensorReading)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.QmlTiltSensorReading")
 	return
+}
+
+func (ptr *QmlTiltSensorReading) DestroyQmlTiltSensorReading() {
 }
 
 type SensorEventQueue struct {
@@ -12091,10 +9863,22 @@ func PointerFromSensorEventQueue(ptr SensorEventQueue_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorEventQueue) InitFromInternal(ptr uintptr, name string) {
+	n.ThreadSafeSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorEventQueue) ClassNameInternalF() string {
+	return n.ThreadSafeSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewSensorEventQueueFromPointer(ptr unsafe.Pointer) (n *SensorEventQueue) {
 	n = new(SensorEventQueue)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorEventQueue")
 	return
+}
+
+func (ptr *SensorEventQueue) DestroySensorEventQueue() {
 }
 
 type SensorManager struct {
@@ -12130,10 +9914,22 @@ func PointerFromSensorManager(ptr SensorManager_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorManager) InitFromInternal(ptr uintptr, name string) {
+	n.QThread_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorManager) ClassNameInternalF() string {
+	return n.QThread_PTR().ClassNameInternalF()
+}
+
 func NewSensorManagerFromPointer(ptr unsafe.Pointer) (n *SensorManager) {
 	n = new(SensorManager)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorManager")
 	return
+}
+
+func (ptr *SensorManager) DestroySensorManager() {
 }
 
 type SensorTagAccelerometer struct {
@@ -12169,10 +9965,22 @@ func PointerFromSensorTagAccelerometer(ptr SensorTagAccelerometer_ITF) unsafe.Po
 	return nil
 }
 
+func (n *SensorTagAccelerometer) InitFromInternal(ptr uintptr, name string) {
+	n.SensorTagBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorTagAccelerometer) ClassNameInternalF() string {
+	return n.SensorTagBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorTagAccelerometerFromPointer(ptr unsafe.Pointer) (n *SensorTagAccelerometer) {
 	n = new(SensorTagAccelerometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorTagAccelerometer")
 	return
+}
+
+func (ptr *SensorTagAccelerometer) DestroySensorTagAccelerometer() {
 }
 
 type SensorTagAls struct {
@@ -12208,10 +10016,22 @@ func PointerFromSensorTagAls(ptr SensorTagAls_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorTagAls) InitFromInternal(ptr uintptr, name string) {
+	n.SensorTagBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorTagAls) ClassNameInternalF() string {
+	return n.SensorTagBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorTagAlsFromPointer(ptr unsafe.Pointer) (n *SensorTagAls) {
 	n = new(SensorTagAls)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorTagAls")
 	return
+}
+
+func (ptr *SensorTagAls) DestroySensorTagAls() {
 }
 
 type SensorTagBase struct {
@@ -12247,10 +10067,22 @@ func PointerFromSensorTagBase(ptr SensorTagBase_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorTagBase) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorTagBase) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewSensorTagBaseFromPointer(ptr unsafe.Pointer) (n *SensorTagBase) {
 	n = new(SensorTagBase)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorTagBase")
 	return
+}
+
+func (ptr *SensorTagBase) DestroySensorTagBase() {
 }
 
 type SensorTagGyroscope struct {
@@ -12286,10 +10118,22 @@ func PointerFromSensorTagGyroscope(ptr SensorTagGyroscope_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorTagGyroscope) InitFromInternal(ptr uintptr, name string) {
+	n.SensorTagBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorTagGyroscope) ClassNameInternalF() string {
+	return n.SensorTagBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorTagGyroscopeFromPointer(ptr unsafe.Pointer) (n *SensorTagGyroscope) {
 	n = new(SensorTagGyroscope)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorTagGyroscope")
 	return
+}
+
+func (ptr *SensorTagGyroscope) DestroySensorTagGyroscope() {
 }
 
 type SensorTagHumiditySensor struct {
@@ -12325,10 +10169,22 @@ func PointerFromSensorTagHumiditySensor(ptr SensorTagHumiditySensor_ITF) unsafe.
 	return nil
 }
 
+func (n *SensorTagHumiditySensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorTagBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorTagHumiditySensor) ClassNameInternalF() string {
+	return n.SensorTagBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorTagHumiditySensorFromPointer(ptr unsafe.Pointer) (n *SensorTagHumiditySensor) {
 	n = new(SensorTagHumiditySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorTagHumiditySensor")
 	return
+}
+
+func (ptr *SensorTagHumiditySensor) DestroySensorTagHumiditySensor() {
 }
 
 type SensorTagLightSensor struct {
@@ -12364,10 +10220,22 @@ func PointerFromSensorTagLightSensor(ptr SensorTagLightSensor_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *SensorTagLightSensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorTagBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorTagLightSensor) ClassNameInternalF() string {
+	return n.SensorTagBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorTagLightSensorFromPointer(ptr unsafe.Pointer) (n *SensorTagLightSensor) {
 	n = new(SensorTagLightSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorTagLightSensor")
 	return
+}
+
+func (ptr *SensorTagLightSensor) DestroySensorTagLightSensor() {
 }
 
 type SensorTagMagnetometer struct {
@@ -12403,10 +10271,22 @@ func PointerFromSensorTagMagnetometer(ptr SensorTagMagnetometer_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *SensorTagMagnetometer) InitFromInternal(ptr uintptr, name string) {
+	n.SensorTagBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorTagMagnetometer) ClassNameInternalF() string {
+	return n.SensorTagBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorTagMagnetometerFromPointer(ptr unsafe.Pointer) (n *SensorTagMagnetometer) {
 	n = new(SensorTagMagnetometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorTagMagnetometer")
 	return
+}
+
+func (ptr *SensorTagMagnetometer) DestroySensorTagMagnetometer() {
 }
 
 type SensorTagPressureSensor struct {
@@ -12442,10 +10322,22 @@ func PointerFromSensorTagPressureSensor(ptr SensorTagPressureSensor_ITF) unsafe.
 	return nil
 }
 
+func (n *SensorTagPressureSensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorTagBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorTagPressureSensor) ClassNameInternalF() string {
+	return n.SensorTagBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorTagPressureSensorFromPointer(ptr unsafe.Pointer) (n *SensorTagPressureSensor) {
 	n = new(SensorTagPressureSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorTagPressureSensor")
 	return
+}
+
+func (ptr *SensorTagPressureSensor) DestroySensorTagPressureSensor() {
 }
 
 type SensorTagTemperatureSensor struct {
@@ -12481,10 +10373,22 @@ func PointerFromSensorTagTemperatureSensor(ptr SensorTagTemperatureSensor_ITF) u
 	return nil
 }
 
+func (n *SensorTagTemperatureSensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorTagBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorTagTemperatureSensor) ClassNameInternalF() string {
+	return n.SensorTagBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorTagTemperatureSensorFromPointer(ptr unsafe.Pointer) (n *SensorTagTemperatureSensor) {
 	n = new(SensorTagTemperatureSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorTagTemperatureSensor")
 	return
+}
+
+func (ptr *SensorTagTemperatureSensor) DestroySensorTagTemperatureSensor() {
 }
 
 type SensorfwCompass struct {
@@ -12520,10 +10424,22 @@ func PointerFromSensorfwCompass(ptr SensorfwCompass_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorfwCompass) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwCompass) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwCompassFromPointer(ptr unsafe.Pointer) (n *SensorfwCompass) {
 	n = new(SensorfwCompass)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwCompass")
 	return
+}
+
+func (ptr *SensorfwCompass) DestroySensorfwCompass() {
 }
 
 type SensorfwGyroscope struct {
@@ -12559,10 +10475,22 @@ func PointerFromSensorfwGyroscope(ptr SensorfwGyroscope_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorfwGyroscope) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwGyroscope) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwGyroscopeFromPointer(ptr unsafe.Pointer) (n *SensorfwGyroscope) {
 	n = new(SensorfwGyroscope)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwGyroscope")
 	return
+}
+
+func (ptr *SensorfwGyroscope) DestroySensorfwGyroscope() {
 }
 
 type SensorfwIrProximitySensor struct {
@@ -12598,10 +10526,22 @@ func PointerFromSensorfwIrProximitySensor(ptr SensorfwIrProximitySensor_ITF) uns
 	return nil
 }
 
+func (n *SensorfwIrProximitySensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwIrProximitySensor) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwIrProximitySensorFromPointer(ptr unsafe.Pointer) (n *SensorfwIrProximitySensor) {
 	n = new(SensorfwIrProximitySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwIrProximitySensor")
 	return
+}
+
+func (ptr *SensorfwIrProximitySensor) DestroySensorfwIrProximitySensor() {
 }
 
 type SensorfwLidSensor struct {
@@ -12637,10 +10577,22 @@ func PointerFromSensorfwLidSensor(ptr SensorfwLidSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorfwLidSensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwLidSensor) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwLidSensorFromPointer(ptr unsafe.Pointer) (n *SensorfwLidSensor) {
 	n = new(SensorfwLidSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwLidSensor")
 	return
+}
+
+func (ptr *SensorfwLidSensor) DestroySensorfwLidSensor() {
 }
 
 type SensorfwLightSensor struct {
@@ -12676,10 +10628,22 @@ func PointerFromSensorfwLightSensor(ptr SensorfwLightSensor_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *SensorfwLightSensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwLightSensor) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwLightSensorFromPointer(ptr unsafe.Pointer) (n *SensorfwLightSensor) {
 	n = new(SensorfwLightSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwLightSensor")
 	return
+}
+
+func (ptr *SensorfwLightSensor) DestroySensorfwLightSensor() {
 }
 
 type SensorfwMagnetometer struct {
@@ -12715,10 +10679,22 @@ func PointerFromSensorfwMagnetometer(ptr SensorfwMagnetometer_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *SensorfwMagnetometer) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwMagnetometer) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwMagnetometerFromPointer(ptr unsafe.Pointer) (n *SensorfwMagnetometer) {
 	n = new(SensorfwMagnetometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwMagnetometer")
 	return
+}
+
+func (ptr *SensorfwMagnetometer) DestroySensorfwMagnetometer() {
 }
 
 type SensorfwOrientationSensor struct {
@@ -12754,10 +10730,22 @@ func PointerFromSensorfwOrientationSensor(ptr SensorfwOrientationSensor_ITF) uns
 	return nil
 }
 
+func (n *SensorfwOrientationSensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwOrientationSensor) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwOrientationSensorFromPointer(ptr unsafe.Pointer) (n *SensorfwOrientationSensor) {
 	n = new(SensorfwOrientationSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwOrientationSensor")
 	return
+}
+
+func (ptr *SensorfwOrientationSensor) DestroySensorfwOrientationSensor() {
 }
 
 type SensorfwProximitySensor struct {
@@ -12793,10 +10781,22 @@ func PointerFromSensorfwProximitySensor(ptr SensorfwProximitySensor_ITF) unsafe.
 	return nil
 }
 
+func (n *SensorfwProximitySensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwProximitySensor) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwProximitySensorFromPointer(ptr unsafe.Pointer) (n *SensorfwProximitySensor) {
 	n = new(SensorfwProximitySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwProximitySensor")
 	return
+}
+
+func (ptr *SensorfwProximitySensor) DestroySensorfwProximitySensor() {
 }
 
 type SensorfwRotationSensor struct {
@@ -12832,10 +10832,22 @@ func PointerFromSensorfwRotationSensor(ptr SensorfwRotationSensor_ITF) unsafe.Po
 	return nil
 }
 
+func (n *SensorfwRotationSensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwRotationSensor) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwRotationSensorFromPointer(ptr unsafe.Pointer) (n *SensorfwRotationSensor) {
 	n = new(SensorfwRotationSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwRotationSensor")
 	return
+}
+
+func (ptr *SensorfwRotationSensor) DestroySensorfwRotationSensor() {
 }
 
 type SensorfwSensorBase struct {
@@ -12871,10 +10883,22 @@ func PointerFromSensorfwSensorBase(ptr SensorfwSensorBase_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorfwSensorBase) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwSensorBase) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwSensorBaseFromPointer(ptr unsafe.Pointer) (n *SensorfwSensorBase) {
 	n = new(SensorfwSensorBase)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwSensorBase")
 	return
+}
+
+func (ptr *SensorfwSensorBase) DestroySensorfwSensorBase() {
 }
 
 type SensorfwTapSensor struct {
@@ -12910,10 +10934,22 @@ func PointerFromSensorfwTapSensor(ptr SensorfwTapSensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorfwTapSensor) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorfwTapSensor) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwTapSensorFromPointer(ptr unsafe.Pointer) (n *SensorfwTapSensor) {
 	n = new(SensorfwTapSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorfwTapSensor")
 	return
+}
+
+func (ptr *SensorfwTapSensor) DestroySensorfwTapSensor() {
 }
 
 type Sensorfwals struct {
@@ -12949,10 +10985,22 @@ func PointerFromSensorfwals(ptr Sensorfwals_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *Sensorfwals) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *Sensorfwals) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwalsFromPointer(ptr unsafe.Pointer) (n *Sensorfwals) {
 	n = new(Sensorfwals)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.Sensorfwals")
 	return
+}
+
+func (ptr *Sensorfwals) DestroySensorfwals() {
 }
 
 type SensorsConnection struct {
@@ -12988,10 +11036,22 @@ func PointerFromSensorsConnection(ptr SensorsConnection_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SensorsConnection) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SensorsConnection) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewSensorsConnectionFromPointer(ptr unsafe.Pointer) (n *SensorsConnection) {
 	n = new(SensorsConnection)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SensorsConnection")
 	return
+}
+
+func (ptr *SensorsConnection) DestroySensorsConnection() {
 }
 
 type SimulatorAccelerometer struct {
@@ -13027,10 +11087,22 @@ func PointerFromSimulatorAccelerometer(ptr SimulatorAccelerometer_ITF) unsafe.Po
 	return nil
 }
 
+func (n *SimulatorAccelerometer) InitFromInternal(ptr uintptr, name string) {
+	n.SimulatorCommon_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SimulatorAccelerometer) ClassNameInternalF() string {
+	return n.SimulatorCommon_PTR().ClassNameInternalF()
+}
+
 func NewSimulatorAccelerometerFromPointer(ptr unsafe.Pointer) (n *SimulatorAccelerometer) {
 	n = new(SimulatorAccelerometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SimulatorAccelerometer")
 	return
+}
+
+func (ptr *SimulatorAccelerometer) DestroySimulatorAccelerometer() {
 }
 
 type SimulatorAmbientLightSensor struct {
@@ -13066,10 +11138,22 @@ func PointerFromSimulatorAmbientLightSensor(ptr SimulatorAmbientLightSensor_ITF)
 	return nil
 }
 
+func (n *SimulatorAmbientLightSensor) InitFromInternal(ptr uintptr, name string) {
+	n.SimulatorCommon_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SimulatorAmbientLightSensor) ClassNameInternalF() string {
+	return n.SimulatorCommon_PTR().ClassNameInternalF()
+}
+
 func NewSimulatorAmbientLightSensorFromPointer(ptr unsafe.Pointer) (n *SimulatorAmbientLightSensor) {
 	n = new(SimulatorAmbientLightSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SimulatorAmbientLightSensor")
 	return
+}
+
+func (ptr *SimulatorAmbientLightSensor) DestroySimulatorAmbientLightSensor() {
 }
 
 type SimulatorCommon struct {
@@ -13105,10 +11189,22 @@ func PointerFromSimulatorCommon(ptr SimulatorCommon_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SimulatorCommon) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SimulatorCommon) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewSimulatorCommonFromPointer(ptr unsafe.Pointer) (n *SimulatorCommon) {
 	n = new(SimulatorCommon)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SimulatorCommon")
 	return
+}
+
+func (ptr *SimulatorCommon) DestroySimulatorCommon() {
 }
 
 type SimulatorCompass struct {
@@ -13144,10 +11240,22 @@ func PointerFromSimulatorCompass(ptr SimulatorCompass_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SimulatorCompass) InitFromInternal(ptr uintptr, name string) {
+	n.SimulatorCommon_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SimulatorCompass) ClassNameInternalF() string {
+	return n.SimulatorCommon_PTR().ClassNameInternalF()
+}
+
 func NewSimulatorCompassFromPointer(ptr unsafe.Pointer) (n *SimulatorCompass) {
 	n = new(SimulatorCompass)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SimulatorCompass")
 	return
+}
+
+func (ptr *SimulatorCompass) DestroySimulatorCompass() {
 }
 
 type SimulatorIRProximitySensor struct {
@@ -13183,10 +11291,22 @@ func PointerFromSimulatorIRProximitySensor(ptr SimulatorIRProximitySensor_ITF) u
 	return nil
 }
 
+func (n *SimulatorIRProximitySensor) InitFromInternal(ptr uintptr, name string) {
+	n.SimulatorCommon_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SimulatorIRProximitySensor) ClassNameInternalF() string {
+	return n.SimulatorCommon_PTR().ClassNameInternalF()
+}
+
 func NewSimulatorIRProximitySensorFromPointer(ptr unsafe.Pointer) (n *SimulatorIRProximitySensor) {
 	n = new(SimulatorIRProximitySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SimulatorIRProximitySensor")
 	return
+}
+
+func (ptr *SimulatorIRProximitySensor) DestroySimulatorIRProximitySensor() {
 }
 
 type SimulatorLightSensor struct {
@@ -13222,10 +11342,22 @@ func PointerFromSimulatorLightSensor(ptr SimulatorLightSensor_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *SimulatorLightSensor) InitFromInternal(ptr uintptr, name string) {
+	n.SimulatorCommon_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SimulatorLightSensor) ClassNameInternalF() string {
+	return n.SimulatorCommon_PTR().ClassNameInternalF()
+}
+
 func NewSimulatorLightSensorFromPointer(ptr unsafe.Pointer) (n *SimulatorLightSensor) {
 	n = new(SimulatorLightSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SimulatorLightSensor")
 	return
+}
+
+func (ptr *SimulatorLightSensor) DestroySimulatorLightSensor() {
 }
 
 type SimulatorMagnetometer struct {
@@ -13261,10 +11393,22 @@ func PointerFromSimulatorMagnetometer(ptr SimulatorMagnetometer_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *SimulatorMagnetometer) InitFromInternal(ptr uintptr, name string) {
+	n.SimulatorCommon_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SimulatorMagnetometer) ClassNameInternalF() string {
+	return n.SimulatorCommon_PTR().ClassNameInternalF()
+}
+
 func NewSimulatorMagnetometerFromPointer(ptr unsafe.Pointer) (n *SimulatorMagnetometer) {
 	n = new(SimulatorMagnetometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SimulatorMagnetometer")
 	return
+}
+
+func (ptr *SimulatorMagnetometer) DestroySimulatorMagnetometer() {
 }
 
 type SimulatorProximitySensor struct {
@@ -13300,10 +11444,22 @@ func PointerFromSimulatorProximitySensor(ptr SimulatorProximitySensor_ITF) unsaf
 	return nil
 }
 
+func (n *SimulatorProximitySensor) InitFromInternal(ptr uintptr, name string) {
+	n.SimulatorCommon_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *SimulatorProximitySensor) ClassNameInternalF() string {
+	return n.SimulatorCommon_PTR().ClassNameInternalF()
+}
+
 func NewSimulatorProximitySensorFromPointer(ptr unsafe.Pointer) (n *SimulatorProximitySensor) {
 	n = new(SimulatorProximitySensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.SimulatorProximitySensor")
 	return
+}
+
+func (ptr *SimulatorProximitySensor) DestroySimulatorProximitySensor() {
 }
 
 type ThreadSafeSensorBackend struct {
@@ -13339,10 +11495,22 @@ func PointerFromThreadSafeSensorBackend(ptr ThreadSafeSensorBackend_ITF) unsafe.
 	return nil
 }
 
+func (n *ThreadSafeSensorBackend) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *ThreadSafeSensorBackend) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewThreadSafeSensorBackendFromPointer(ptr unsafe.Pointer) (n *ThreadSafeSensorBackend) {
 	n = new(ThreadSafeSensorBackend)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.ThreadSafeSensorBackend")
 	return
+}
+
+func (ptr *ThreadSafeSensorBackend) DestroyThreadSafeSensorBackend() {
 }
 
 type WinRtAccelerometer struct {
@@ -13378,10 +11546,22 @@ func PointerFromWinRtAccelerometer(ptr WinRtAccelerometer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *WinRtAccelerometer) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *WinRtAccelerometer) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewWinRtAccelerometerFromPointer(ptr unsafe.Pointer) (n *WinRtAccelerometer) {
 	n = new(WinRtAccelerometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.WinRtAccelerometer")
 	return
+}
+
+func (ptr *WinRtAccelerometer) DestroyWinRtAccelerometer() {
 }
 
 type WinRtAmbientLightSensor struct {
@@ -13417,10 +11597,22 @@ func PointerFromWinRtAmbientLightSensor(ptr WinRtAmbientLightSensor_ITF) unsafe.
 	return nil
 }
 
+func (n *WinRtAmbientLightSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *WinRtAmbientLightSensor) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewWinRtAmbientLightSensorFromPointer(ptr unsafe.Pointer) (n *WinRtAmbientLightSensor) {
 	n = new(WinRtAmbientLightSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.WinRtAmbientLightSensor")
 	return
+}
+
+func (ptr *WinRtAmbientLightSensor) DestroyWinRtAmbientLightSensor() {
 }
 
 type WinRtCompass struct {
@@ -13456,10 +11648,22 @@ func PointerFromWinRtCompass(ptr WinRtCompass_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *WinRtCompass) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *WinRtCompass) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewWinRtCompassFromPointer(ptr unsafe.Pointer) (n *WinRtCompass) {
 	n = new(WinRtCompass)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.WinRtCompass")
 	return
+}
+
+func (ptr *WinRtCompass) DestroyWinRtCompass() {
 }
 
 type WinRtGyroscope struct {
@@ -13495,10 +11699,22 @@ func PointerFromWinRtGyroscope(ptr WinRtGyroscope_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *WinRtGyroscope) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *WinRtGyroscope) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewWinRtGyroscopeFromPointer(ptr unsafe.Pointer) (n *WinRtGyroscope) {
 	n = new(WinRtGyroscope)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.WinRtGyroscope")
 	return
+}
+
+func (ptr *WinRtGyroscope) DestroyWinRtGyroscope() {
 }
 
 type WinRtOrientationSensor struct {
@@ -13534,10 +11750,22 @@ func PointerFromWinRtOrientationSensor(ptr WinRtOrientationSensor_ITF) unsafe.Po
 	return nil
 }
 
+func (n *WinRtOrientationSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *WinRtOrientationSensor) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewWinRtOrientationSensorFromPointer(ptr unsafe.Pointer) (n *WinRtOrientationSensor) {
 	n = new(WinRtOrientationSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.WinRtOrientationSensor")
 	return
+}
+
+func (ptr *WinRtOrientationSensor) DestroyWinRtOrientationSensor() {
 }
 
 type WinRtRotationSensor struct {
@@ -13573,10 +11801,22 @@ func PointerFromWinRtRotationSensor(ptr WinRtRotationSensor_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *WinRtRotationSensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *WinRtRotationSensor) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewWinRtRotationSensorFromPointer(ptr unsafe.Pointer) (n *WinRtRotationSensor) {
 	n = new(WinRtRotationSensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.WinRtRotationSensor")
 	return
+}
+
+func (ptr *WinRtRotationSensor) DestroyWinRtRotationSensor() {
 }
 
 type dummyaccelerometer struct {
@@ -13612,10 +11852,22 @@ func PointerFromDummyaccelerometer(ptr dummyaccelerometer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *dummyaccelerometer) InitFromInternal(ptr uintptr, name string) {
+	n.dummycommon_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *dummyaccelerometer) ClassNameInternalF() string {
+	return n.dummycommon_PTR().ClassNameInternalF()
+}
+
 func NewDummyaccelerometerFromPointer(ptr unsafe.Pointer) (n *dummyaccelerometer) {
 	n = new(dummyaccelerometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.dummyaccelerometer")
 	return
+}
+
+func (ptr *dummyaccelerometer) DestroyDummyaccelerometer() {
 }
 
 type dummycommon struct {
@@ -13651,10 +11903,22 @@ func PointerFromDummycommon(ptr dummycommon_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *dummycommon) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *dummycommon) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewDummycommonFromPointer(ptr unsafe.Pointer) (n *dummycommon) {
 	n = new(dummycommon)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.dummycommon")
 	return
+}
+
+func (ptr *dummycommon) DestroyDummycommon() {
 }
 
 type dummylightsensor struct {
@@ -13690,10 +11954,22 @@ func PointerFromDummylightsensor(ptr dummylightsensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *dummylightsensor) InitFromInternal(ptr uintptr, name string) {
+	n.dummycommon_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *dummylightsensor) ClassNameInternalF() string {
+	return n.dummycommon_PTR().ClassNameInternalF()
+}
+
 func NewDummylightsensorFromPointer(ptr unsafe.Pointer) (n *dummylightsensor) {
 	n = new(dummylightsensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.dummylightsensor")
 	return
+}
+
+func (ptr *dummylightsensor) DestroyDummylightsensor() {
 }
 
 type genericalssensor struct {
@@ -13732,10 +12008,23 @@ func PointerFromGenericalssensor(ptr genericalssensor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *genericalssensor) InitFromInternal(ptr uintptr, name string) {
+	n.QLightFilter_PTR().InitFromInternal(uintptr(ptr), name)
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *genericalssensor) ClassNameInternalF() string {
+	return n.QLightFilter_PTR().ClassNameInternalF()
+}
+
 func NewGenericalssensorFromPointer(ptr unsafe.Pointer) (n *genericalssensor) {
 	n = new(genericalssensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.genericalssensor")
 	return
+}
+
+func (ptr *genericalssensor) DestroyGenericalssensor() {
 }
 
 type genericorientationsensor struct {
@@ -13774,10 +12063,23 @@ func PointerFromGenericorientationsensor(ptr genericorientationsensor_ITF) unsaf
 	return nil
 }
 
+func (n *genericorientationsensor) InitFromInternal(ptr uintptr, name string) {
+	n.QAccelerometerFilter_PTR().InitFromInternal(uintptr(ptr), name)
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *genericorientationsensor) ClassNameInternalF() string {
+	return n.QAccelerometerFilter_PTR().ClassNameInternalF()
+}
+
 func NewGenericorientationsensorFromPointer(ptr unsafe.Pointer) (n *genericorientationsensor) {
 	n = new(genericorientationsensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.genericorientationsensor")
 	return
+}
+
+func (ptr *genericorientationsensor) DestroyGenericorientationsensor() {
 }
 
 type genericrotationsensor struct {
@@ -13816,10 +12118,23 @@ func PointerFromGenericrotationsensor(ptr genericrotationsensor_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *genericrotationsensor) InitFromInternal(ptr uintptr, name string) {
+	n.QSensorBackend_PTR().InitFromInternal(uintptr(ptr), name)
+	n.QSensorFilter_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *genericrotationsensor) ClassNameInternalF() string {
+	return n.QSensorBackend_PTR().ClassNameInternalF()
+}
+
 func NewGenericrotationsensorFromPointer(ptr unsafe.Pointer) (n *genericrotationsensor) {
 	n = new(genericrotationsensor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.genericrotationsensor")
 	return
+}
+
+func (ptr *genericrotationsensor) DestroyGenericrotationsensor() {
 }
 
 type sensorfwaccelerometer struct {
@@ -13855,264 +12170,92 @@ func PointerFromSensorfwaccelerometer(ptr sensorfwaccelerometer_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *sensorfwaccelerometer) InitFromInternal(ptr uintptr, name string) {
+	n.SensorfwSensorBase_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *sensorfwaccelerometer) ClassNameInternalF() string {
+	return n.SensorfwSensorBase_PTR().ClassNameInternalF()
+}
+
 func NewSensorfwaccelerometerFromPointer(ptr unsafe.Pointer) (n *sensorfwaccelerometer) {
 	n = new(sensorfwaccelerometer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sensors.sensorfwaccelerometer")
 	return
 }
+
+func (ptr *sensorfwaccelerometer) DestroySensorfwaccelerometer() {
+}
+
 func init() {
-	qt.ItfMap["sensors.AndroidAccelerometer_ITF"] = AndroidAccelerometer{}
-	qt.ItfMap["sensors.AndroidCompass_ITF"] = AndroidCompass{}
-	qt.ItfMap["sensors.AndroidGyroscope_ITF"] = AndroidGyroscope{}
-	qt.ItfMap["sensors.AndroidLight_ITF"] = AndroidLight{}
-	qt.ItfMap["sensors.AndroidMagnetometer_ITF"] = AndroidMagnetometer{}
-	qt.ItfMap["sensors.AndroidPressure_ITF"] = AndroidPressure{}
-	qt.ItfMap["sensors.AndroidProximity_ITF"] = AndroidProximity{}
-	qt.ItfMap["sensors.AndroidRotation_ITF"] = AndroidRotation{}
-	qt.ItfMap["sensors.AndroidTemperature_ITF"] = AndroidTemperature{}
-	qt.ItfMap["sensors.FunctionEvent_ITF"] = FunctionEvent{}
-	qt.ItfMap["sensors.GenericTiltSensor_ITF"] = GenericTiltSensor{}
-	qt.ItfMap["sensors.IIOSensorProxyCompass_ITF"] = IIOSensorProxyCompass{}
-	qt.ItfMap["sensors.IIOSensorProxyLightSensor_ITF"] = IIOSensorProxyLightSensor{}
-	qt.ItfMap["sensors.IIOSensorProxyOrientationSensor_ITF"] = IIOSensorProxyOrientationSensor{}
-	qt.ItfMap["sensors.IIOSensorProxySensorBase_ITF"] = IIOSensorProxySensorBase{}
-	qt.ItfMap["sensors.IOSAccelerometer_ITF"] = IOSAccelerometer{}
-	qt.ItfMap["sensors.IOSCompass_ITF"] = IOSCompass{}
-	qt.ItfMap["sensors.IOSGyroscope_ITF"] = IOSGyroscope{}
-	qt.ItfMap["sensors.IOSMagnetometer_ITF"] = IOSMagnetometer{}
-	qt.ItfMap["sensors.IOSProximitySensor_ITF"] = IOSProximitySensor{}
-	qt.ItfMap["sensors.LinuxSysAccelerometer_ITF"] = LinuxSysAccelerometer{}
-	qt.ItfMap["sensors.QAccelerometer_ITF"] = QAccelerometer{}
-	qt.FuncMap["sensors.NewQAccelerometer"] = NewQAccelerometer
-	qt.EnumMap["sensors.QAccelerometer__Combined"] = int64(QAccelerometer__Combined)
-	qt.EnumMap["sensors.QAccelerometer__Gravity"] = int64(QAccelerometer__Gravity)
-	qt.EnumMap["sensors.QAccelerometer__User"] = int64(QAccelerometer__User)
-	qt.ItfMap["sensors.QAccelerometerFilter_ITF"] = QAccelerometerFilter{}
-	qt.ItfMap["sensors.QAccelerometerReading_ITF"] = QAccelerometerReading{}
-	qt.ItfMap["sensors.QAltimeter_ITF"] = QAltimeter{}
-	qt.FuncMap["sensors.NewQAltimeter"] = NewQAltimeter
-	qt.ItfMap["sensors.QAltimeterFilter_ITF"] = QAltimeterFilter{}
-	qt.ItfMap["sensors.QAltimeterReading_ITF"] = QAltimeterReading{}
-	qt.ItfMap["sensors.QAmbientLightFilter_ITF"] = QAmbientLightFilter{}
-	qt.ItfMap["sensors.QAmbientLightReading_ITF"] = QAmbientLightReading{}
-	qt.EnumMap["sensors.QAmbientLightReading__Undefined"] = int64(QAmbientLightReading__Undefined)
-	qt.EnumMap["sensors.QAmbientLightReading__Dark"] = int64(QAmbientLightReading__Dark)
-	qt.EnumMap["sensors.QAmbientLightReading__Twilight"] = int64(QAmbientLightReading__Twilight)
-	qt.EnumMap["sensors.QAmbientLightReading__Light"] = int64(QAmbientLightReading__Light)
-	qt.EnumMap["sensors.QAmbientLightReading__Bright"] = int64(QAmbientLightReading__Bright)
-	qt.EnumMap["sensors.QAmbientLightReading__Sunny"] = int64(QAmbientLightReading__Sunny)
-	qt.ItfMap["sensors.QAmbientLightSensor_ITF"] = QAmbientLightSensor{}
-	qt.FuncMap["sensors.NewQAmbientLightSensor"] = NewQAmbientLightSensor
-	qt.ItfMap["sensors.QAmbientTemperatureFilter_ITF"] = QAmbientTemperatureFilter{}
-	qt.ItfMap["sensors.QAmbientTemperatureReading_ITF"] = QAmbientTemperatureReading{}
-	qt.ItfMap["sensors.QAmbientTemperatureSensor_ITF"] = QAmbientTemperatureSensor{}
-	qt.FuncMap["sensors.NewQAmbientTemperatureSensor"] = NewQAmbientTemperatureSensor
-	qt.ItfMap["sensors.QCompass_ITF"] = QCompass{}
-	qt.FuncMap["sensors.NewQCompass"] = NewQCompass
-	qt.ItfMap["sensors.QCompassFilter_ITF"] = QCompassFilter{}
-	qt.ItfMap["sensors.QCompassReading_ITF"] = QCompassReading{}
-	qt.ItfMap["sensors.QDistanceFilter_ITF"] = QDistanceFilter{}
-	qt.ItfMap["sensors.QDistanceReading_ITF"] = QDistanceReading{}
-	qt.ItfMap["sensors.QDistanceSensor_ITF"] = QDistanceSensor{}
-	qt.FuncMap["sensors.NewQDistanceSensor"] = NewQDistanceSensor
-	qt.ItfMap["sensors.QGyroscope_ITF"] = QGyroscope{}
-	qt.FuncMap["sensors.NewQGyroscope"] = NewQGyroscope
-	qt.ItfMap["sensors.QGyroscopeFilter_ITF"] = QGyroscopeFilter{}
-	qt.ItfMap["sensors.QGyroscopeReading_ITF"] = QGyroscopeReading{}
-	qt.ItfMap["sensors.QHolsterFilter_ITF"] = QHolsterFilter{}
-	qt.ItfMap["sensors.QHolsterReading_ITF"] = QHolsterReading{}
-	qt.ItfMap["sensors.QHolsterSensor_ITF"] = QHolsterSensor{}
-	qt.FuncMap["sensors.NewQHolsterSensor"] = NewQHolsterSensor
-	qt.ItfMap["sensors.QHumidityFilter_ITF"] = QHumidityFilter{}
-	qt.ItfMap["sensors.QHumidityReading_ITF"] = QHumidityReading{}
-	qt.ItfMap["sensors.QHumiditySensor_ITF"] = QHumiditySensor{}
-	qt.FuncMap["sensors.NewQHumiditySensor"] = NewQHumiditySensor
-	qt.ItfMap["sensors.QIRProximityFilter_ITF"] = QIRProximityFilter{}
-	qt.ItfMap["sensors.QIRProximityReading_ITF"] = QIRProximityReading{}
-	qt.ItfMap["sensors.QIRProximitySensor_ITF"] = QIRProximitySensor{}
-	qt.FuncMap["sensors.NewQIRProximitySensor"] = NewQIRProximitySensor
-	qt.ItfMap["sensors.QLidFilter_ITF"] = QLidFilter{}
-	qt.ItfMap["sensors.QLidReading_ITF"] = QLidReading{}
-	qt.ItfMap["sensors.QLidSensor_ITF"] = QLidSensor{}
-	qt.FuncMap["sensors.NewQLidSensor"] = NewQLidSensor
-	qt.ItfMap["sensors.QLightFilter_ITF"] = QLightFilter{}
-	qt.ItfMap["sensors.QLightReading_ITF"] = QLightReading{}
-	qt.ItfMap["sensors.QLightSensor_ITF"] = QLightSensor{}
-	qt.FuncMap["sensors.NewQLightSensor"] = NewQLightSensor
-	qt.ItfMap["sensors.QMagnetometer_ITF"] = QMagnetometer{}
-	qt.FuncMap["sensors.NewQMagnetometer"] = NewQMagnetometer
-	qt.ItfMap["sensors.QMagnetometerFilter_ITF"] = QMagnetometerFilter{}
-	qt.ItfMap["sensors.QMagnetometerReading_ITF"] = QMagnetometerReading{}
-	qt.ItfMap["sensors.QOrientationFilter_ITF"] = QOrientationFilter{}
-	qt.ItfMap["sensors.QOrientationReading_ITF"] = QOrientationReading{}
-	qt.EnumMap["sensors.QOrientationReading__Undefined"] = int64(QOrientationReading__Undefined)
-	qt.EnumMap["sensors.QOrientationReading__TopUp"] = int64(QOrientationReading__TopUp)
-	qt.EnumMap["sensors.QOrientationReading__TopDown"] = int64(QOrientationReading__TopDown)
-	qt.EnumMap["sensors.QOrientationReading__LeftUp"] = int64(QOrientationReading__LeftUp)
-	qt.EnumMap["sensors.QOrientationReading__RightUp"] = int64(QOrientationReading__RightUp)
-	qt.EnumMap["sensors.QOrientationReading__FaceUp"] = int64(QOrientationReading__FaceUp)
-	qt.EnumMap["sensors.QOrientationReading__FaceDown"] = int64(QOrientationReading__FaceDown)
-	qt.ItfMap["sensors.QOrientationSensor_ITF"] = QOrientationSensor{}
-	qt.FuncMap["sensors.NewQOrientationSensor"] = NewQOrientationSensor
-	qt.ItfMap["sensors.QPressureFilter_ITF"] = QPressureFilter{}
-	qt.ItfMap["sensors.QPressureReading_ITF"] = QPressureReading{}
-	qt.ItfMap["sensors.QPressureSensor_ITF"] = QPressureSensor{}
-	qt.FuncMap["sensors.NewQPressureSensor"] = NewQPressureSensor
-	qt.ItfMap["sensors.QProximityFilter_ITF"] = QProximityFilter{}
-	qt.ItfMap["sensors.QProximityReading_ITF"] = QProximityReading{}
-	qt.ItfMap["sensors.QProximitySensor_ITF"] = QProximitySensor{}
-	qt.FuncMap["sensors.NewQProximitySensor"] = NewQProximitySensor
-	qt.ItfMap["sensors.QRotationFilter_ITF"] = QRotationFilter{}
-	qt.ItfMap["sensors.QRotationReading_ITF"] = QRotationReading{}
-	qt.ItfMap["sensors.QRotationSensor_ITF"] = QRotationSensor{}
-	qt.FuncMap["sensors.NewQRotationSensor"] = NewQRotationSensor
-	qt.ItfMap["sensors.QSensor_ITF"] = QSensor{}
-	qt.FuncMap["sensors.NewQSensor"] = NewQSensor
-	qt.FuncMap["sensors.QSensor_DefaultSensorForType"] = QSensor_DefaultSensorForType
-	qt.FuncMap["sensors.QSensor_SensorTypes"] = QSensor_SensorTypes
-	qt.FuncMap["sensors.QSensor_SensorsForType"] = QSensor_SensorsForType
-	qt.EnumMap["sensors.QSensor__Buffering"] = int64(QSensor__Buffering)
-	qt.EnumMap["sensors.QSensor__AlwaysOn"] = int64(QSensor__AlwaysOn)
-	qt.EnumMap["sensors.QSensor__GeoValues"] = int64(QSensor__GeoValues)
-	qt.EnumMap["sensors.QSensor__FieldOfView"] = int64(QSensor__FieldOfView)
-	qt.EnumMap["sensors.QSensor__AccelerationMode"] = int64(QSensor__AccelerationMode)
-	qt.EnumMap["sensors.QSensor__SkipDuplicates"] = int64(QSensor__SkipDuplicates)
-	qt.EnumMap["sensors.QSensor__AxesOrientation"] = int64(QSensor__AxesOrientation)
-	qt.EnumMap["sensors.QSensor__PressureSensorTemperature"] = int64(QSensor__PressureSensorTemperature)
-	qt.EnumMap["sensors.QSensor__Reserved"] = int64(QSensor__Reserved)
-	qt.EnumMap["sensors.QSensor__FixedOrientation"] = int64(QSensor__FixedOrientation)
-	qt.EnumMap["sensors.QSensor__AutomaticOrientation"] = int64(QSensor__AutomaticOrientation)
-	qt.EnumMap["sensors.QSensor__UserOrientation"] = int64(QSensor__UserOrientation)
-	qt.ItfMap["sensors.QSensorBackend_ITF"] = QSensorBackend{}
-	qt.ItfMap["sensors.QSensorBackendFactory_ITF"] = QSensorBackendFactory{}
-	qt.ItfMap["sensors.QSensorChangesInterface_ITF"] = QSensorChangesInterface{}
-	qt.ItfMap["sensors.QSensorFilter_ITF"] = QSensorFilter{}
-	qt.ItfMap["sensors.QSensorGesture_ITF"] = QSensorGesture{}
-	qt.FuncMap["sensors.NewQSensorGesture"] = NewQSensorGesture
-	qt.ItfMap["sensors.QSensorGestureManager_ITF"] = QSensorGestureManager{}
-	qt.FuncMap["sensors.NewQSensorGestureManager"] = NewQSensorGestureManager
-	qt.FuncMap["sensors.QSensorGestureManager_SensorGestureRecognizer"] = QSensorGestureManager_SensorGestureRecognizer
-	qt.ItfMap["sensors.QSensorGesturePluginInterface_ITF"] = QSensorGesturePluginInterface{}
-	qt.FuncMap["sensors.NewQSensorGesturePluginInterface"] = NewQSensorGesturePluginInterface
-	qt.ItfMap["sensors.QSensorGestureRecognizer_ITF"] = QSensorGestureRecognizer{}
-	qt.FuncMap["sensors.NewQSensorGestureRecognizer"] = NewQSensorGestureRecognizer
-	qt.ItfMap["sensors.QSensorManager_ITF"] = QSensorManager{}
-	qt.FuncMap["sensors.QSensorManager_CreateBackend"] = QSensorManager_CreateBackend
-	qt.FuncMap["sensors.QSensorManager_IsBackendRegistered"] = QSensorManager_IsBackendRegistered
-	qt.FuncMap["sensors.QSensorManager_RegisterBackend"] = QSensorManager_RegisterBackend
-	qt.FuncMap["sensors.QSensorManager_SetDefaultBackend"] = QSensorManager_SetDefaultBackend
-	qt.FuncMap["sensors.QSensorManager_UnregisterBackend"] = QSensorManager_UnregisterBackend
-	qt.ItfMap["sensors.QSensorPluginInterface_ITF"] = QSensorPluginInterface{}
-	qt.ItfMap["sensors.QSensorReading_ITF"] = QSensorReading{}
-	qt.ItfMap["sensors.QTapFilter_ITF"] = QTapFilter{}
-	qt.ItfMap["sensors.QTapReading_ITF"] = QTapReading{}
-	qt.EnumMap["sensors.QTapReading__Undefined"] = int64(QTapReading__Undefined)
-	qt.EnumMap["sensors.QTapReading__X"] = int64(QTapReading__X)
-	qt.EnumMap["sensors.QTapReading__Y"] = int64(QTapReading__Y)
-	qt.EnumMap["sensors.QTapReading__Z"] = int64(QTapReading__Z)
-	qt.EnumMap["sensors.QTapReading__X_Pos"] = int64(QTapReading__X_Pos)
-	qt.EnumMap["sensors.QTapReading__Y_Pos"] = int64(QTapReading__Y_Pos)
-	qt.EnumMap["sensors.QTapReading__Z_Pos"] = int64(QTapReading__Z_Pos)
-	qt.EnumMap["sensors.QTapReading__X_Neg"] = int64(QTapReading__X_Neg)
-	qt.EnumMap["sensors.QTapReading__Y_Neg"] = int64(QTapReading__Y_Neg)
-	qt.EnumMap["sensors.QTapReading__Z_Neg"] = int64(QTapReading__Z_Neg)
-	qt.EnumMap["sensors.QTapReading__X_Both"] = int64(QTapReading__X_Both)
-	qt.EnumMap["sensors.QTapReading__Y_Both"] = int64(QTapReading__Y_Both)
-	qt.EnumMap["sensors.QTapReading__Z_Both"] = int64(QTapReading__Z_Both)
-	qt.ItfMap["sensors.QTapSensor_ITF"] = QTapSensor{}
-	qt.FuncMap["sensors.NewQTapSensor"] = NewQTapSensor
-	qt.ItfMap["sensors.QTiltFilter_ITF"] = QTiltFilter{}
-	qt.ItfMap["sensors.QTiltReading_ITF"] = QTiltReading{}
-	qt.ItfMap["sensors.QTiltSensor_ITF"] = QTiltSensor{}
-	qt.FuncMap["sensors.NewQTiltSensor"] = NewQTiltSensor
-	qt.ItfMap["sensors.QmlAccelerometer_ITF"] = QmlAccelerometer{}
-	qt.ItfMap["sensors.QmlAccelerometerReading_ITF"] = QmlAccelerometerReading{}
-	qt.ItfMap["sensors.QmlAltimeter_ITF"] = QmlAltimeter{}
-	qt.ItfMap["sensors.QmlAltimeterReading_ITF"] = QmlAltimeterReading{}
-	qt.ItfMap["sensors.QmlAmbientLightSensor_ITF"] = QmlAmbientLightSensor{}
-	qt.ItfMap["sensors.QmlAmbientLightSensorReading_ITF"] = QmlAmbientLightSensorReading{}
-	qt.ItfMap["sensors.QmlAmbientTemperatureReading_ITF"] = QmlAmbientTemperatureReading{}
-	qt.ItfMap["sensors.QmlAmbientTemperatureSensor_ITF"] = QmlAmbientTemperatureSensor{}
-	qt.ItfMap["sensors.QmlCompass_ITF"] = QmlCompass{}
-	qt.ItfMap["sensors.QmlCompassReading_ITF"] = QmlCompassReading{}
-	qt.ItfMap["sensors.QmlDistanceReading_ITF"] = QmlDistanceReading{}
-	qt.ItfMap["sensors.QmlDistanceSensor_ITF"] = QmlDistanceSensor{}
-	qt.ItfMap["sensors.QmlGyroscope_ITF"] = QmlGyroscope{}
-	qt.ItfMap["sensors.QmlGyroscopeReading_ITF"] = QmlGyroscopeReading{}
-	qt.ItfMap["sensors.QmlHolsterReading_ITF"] = QmlHolsterReading{}
-	qt.ItfMap["sensors.QmlHolsterSensor_ITF"] = QmlHolsterSensor{}
-	qt.ItfMap["sensors.QmlHumidityReading_ITF"] = QmlHumidityReading{}
-	qt.ItfMap["sensors.QmlHumiditySensor_ITF"] = QmlHumiditySensor{}
-	qt.ItfMap["sensors.QmlIRProximitySensor_ITF"] = QmlIRProximitySensor{}
-	qt.ItfMap["sensors.QmlIRProximitySensorReading_ITF"] = QmlIRProximitySensorReading{}
-	qt.ItfMap["sensors.QmlLidReading_ITF"] = QmlLidReading{}
-	qt.ItfMap["sensors.QmlLidSensor_ITF"] = QmlLidSensor{}
-	qt.ItfMap["sensors.QmlLightSensor_ITF"] = QmlLightSensor{}
-	qt.ItfMap["sensors.QmlLightSensorReading_ITF"] = QmlLightSensorReading{}
-	qt.ItfMap["sensors.QmlMagnetometer_ITF"] = QmlMagnetometer{}
-	qt.ItfMap["sensors.QmlMagnetometerReading_ITF"] = QmlMagnetometerReading{}
-	qt.ItfMap["sensors.QmlOrientationSensor_ITF"] = QmlOrientationSensor{}
-	qt.ItfMap["sensors.QmlOrientationSensorReading_ITF"] = QmlOrientationSensorReading{}
-	qt.ItfMap["sensors.QmlPressureReading_ITF"] = QmlPressureReading{}
-	qt.ItfMap["sensors.QmlPressureSensor_ITF"] = QmlPressureSensor{}
-	qt.ItfMap["sensors.QmlProximitySensor_ITF"] = QmlProximitySensor{}
-	qt.ItfMap["sensors.QmlProximitySensorReading_ITF"] = QmlProximitySensorReading{}
-	qt.ItfMap["sensors.QmlRotationSensor_ITF"] = QmlRotationSensor{}
-	qt.ItfMap["sensors.QmlRotationSensorReading_ITF"] = QmlRotationSensorReading{}
-	qt.ItfMap["sensors.QmlSensor_ITF"] = QmlSensor{}
-	qt.ItfMap["sensors.QmlSensorGesture_ITF"] = QmlSensorGesture{}
-	qt.ItfMap["sensors.QmlSensorGlobal_ITF"] = QmlSensorGlobal{}
-	qt.ItfMap["sensors.QmlSensorOutputRange_ITF"] = QmlSensorOutputRange{}
-	qt.ItfMap["sensors.QmlSensorRange_ITF"] = QmlSensorRange{}
-	qt.ItfMap["sensors.QmlSensorReading_ITF"] = QmlSensorReading{}
-	qt.ItfMap["sensors.QmlTapSensor_ITF"] = QmlTapSensor{}
-	qt.ItfMap["sensors.QmlTapSensorReading_ITF"] = QmlTapSensorReading{}
-	qt.ItfMap["sensors.QmlTiltSensor_ITF"] = QmlTiltSensor{}
-	qt.ItfMap["sensors.QmlTiltSensorReading_ITF"] = QmlTiltSensorReading{}
-	qt.ItfMap["sensors.SensorEventQueue_ITF"] = SensorEventQueue{}
-	qt.ItfMap["sensors.SensorManager_ITF"] = SensorManager{}
-	qt.ItfMap["sensors.SensorTagAccelerometer_ITF"] = SensorTagAccelerometer{}
-	qt.ItfMap["sensors.SensorTagAls_ITF"] = SensorTagAls{}
-	qt.ItfMap["sensors.SensorTagBase_ITF"] = SensorTagBase{}
-	qt.ItfMap["sensors.SensorTagGyroscope_ITF"] = SensorTagGyroscope{}
-	qt.ItfMap["sensors.SensorTagHumiditySensor_ITF"] = SensorTagHumiditySensor{}
-	qt.ItfMap["sensors.SensorTagLightSensor_ITF"] = SensorTagLightSensor{}
-	qt.ItfMap["sensors.SensorTagMagnetometer_ITF"] = SensorTagMagnetometer{}
-	qt.ItfMap["sensors.SensorTagPressureSensor_ITF"] = SensorTagPressureSensor{}
-	qt.ItfMap["sensors.SensorTagTemperatureSensor_ITF"] = SensorTagTemperatureSensor{}
-	qt.ItfMap["sensors.SensorfwCompass_ITF"] = SensorfwCompass{}
-	qt.ItfMap["sensors.SensorfwGyroscope_ITF"] = SensorfwGyroscope{}
-	qt.ItfMap["sensors.SensorfwIrProximitySensor_ITF"] = SensorfwIrProximitySensor{}
-	qt.ItfMap["sensors.SensorfwLidSensor_ITF"] = SensorfwLidSensor{}
-	qt.ItfMap["sensors.SensorfwLightSensor_ITF"] = SensorfwLightSensor{}
-	qt.ItfMap["sensors.SensorfwMagnetometer_ITF"] = SensorfwMagnetometer{}
-	qt.ItfMap["sensors.SensorfwOrientationSensor_ITF"] = SensorfwOrientationSensor{}
-	qt.ItfMap["sensors.SensorfwProximitySensor_ITF"] = SensorfwProximitySensor{}
-	qt.ItfMap["sensors.SensorfwRotationSensor_ITF"] = SensorfwRotationSensor{}
-	qt.ItfMap["sensors.SensorfwSensorBase_ITF"] = SensorfwSensorBase{}
-	qt.ItfMap["sensors.SensorfwTapSensor_ITF"] = SensorfwTapSensor{}
-	qt.ItfMap["sensors.Sensorfwals_ITF"] = Sensorfwals{}
-	qt.ItfMap["sensors.SensorsConnection_ITF"] = SensorsConnection{}
-	qt.ItfMap["sensors.SimulatorAccelerometer_ITF"] = SimulatorAccelerometer{}
-	qt.ItfMap["sensors.SimulatorAmbientLightSensor_ITF"] = SimulatorAmbientLightSensor{}
-	qt.ItfMap["sensors.SimulatorCommon_ITF"] = SimulatorCommon{}
-	qt.ItfMap["sensors.SimulatorCompass_ITF"] = SimulatorCompass{}
-	qt.ItfMap["sensors.SimulatorIRProximitySensor_ITF"] = SimulatorIRProximitySensor{}
-	qt.ItfMap["sensors.SimulatorLightSensor_ITF"] = SimulatorLightSensor{}
-	qt.ItfMap["sensors.SimulatorMagnetometer_ITF"] = SimulatorMagnetometer{}
-	qt.ItfMap["sensors.SimulatorProximitySensor_ITF"] = SimulatorProximitySensor{}
-	qt.ItfMap["sensors.ThreadSafeSensorBackend_ITF"] = ThreadSafeSensorBackend{}
-	qt.ItfMap["sensors.WinRtAccelerometer_ITF"] = WinRtAccelerometer{}
-	qt.ItfMap["sensors.WinRtAmbientLightSensor_ITF"] = WinRtAmbientLightSensor{}
-	qt.ItfMap["sensors.WinRtCompass_ITF"] = WinRtCompass{}
-	qt.ItfMap["sensors.WinRtGyroscope_ITF"] = WinRtGyroscope{}
-	qt.ItfMap["sensors.WinRtOrientationSensor_ITF"] = WinRtOrientationSensor{}
-	qt.ItfMap["sensors.WinRtRotationSensor_ITF"] = WinRtRotationSensor{}
-	qt.ItfMap["sensors.dummyaccelerometer_ITF"] = dummyaccelerometer{}
-	qt.ItfMap["sensors.dummycommon_ITF"] = dummycommon{}
-	qt.ItfMap["sensors.dummylightsensor_ITF"] = dummylightsensor{}
-	qt.ItfMap["sensors.genericalssensor_ITF"] = genericalssensor{}
-	qt.ItfMap["sensors.genericorientationsensor_ITF"] = genericorientationsensor{}
-	qt.ItfMap["sensors.genericrotationsensor_ITF"] = genericrotationsensor{}
-	qt.ItfMap["sensors.sensorfwaccelerometer_ITF"] = sensorfwaccelerometer{}
+	internal.ConstructorTable["sensors.QAccelerometer"] = NewQAccelerometerFromPointer
+	internal.ConstructorTable["sensors.QAccelerometerFilter"] = NewQAccelerometerFilterFromPointer
+	internal.ConstructorTable["sensors.QAccelerometerReading"] = NewQAccelerometerReadingFromPointer
+	internal.ConstructorTable["sensors.QAltimeter"] = NewQAltimeterFromPointer
+	internal.ConstructorTable["sensors.QAltimeterFilter"] = NewQAltimeterFilterFromPointer
+	internal.ConstructorTable["sensors.QAltimeterReading"] = NewQAltimeterReadingFromPointer
+	internal.ConstructorTable["sensors.QAmbientLightFilter"] = NewQAmbientLightFilterFromPointer
+	internal.ConstructorTable["sensors.QAmbientLightReading"] = NewQAmbientLightReadingFromPointer
+	internal.ConstructorTable["sensors.QAmbientLightSensor"] = NewQAmbientLightSensorFromPointer
+	internal.ConstructorTable["sensors.QAmbientTemperatureFilter"] = NewQAmbientTemperatureFilterFromPointer
+	internal.ConstructorTable["sensors.QAmbientTemperatureReading"] = NewQAmbientTemperatureReadingFromPointer
+	internal.ConstructorTable["sensors.QAmbientTemperatureSensor"] = NewQAmbientTemperatureSensorFromPointer
+	internal.ConstructorTable["sensors.QCompass"] = NewQCompassFromPointer
+	internal.ConstructorTable["sensors.QCompassFilter"] = NewQCompassFilterFromPointer
+	internal.ConstructorTable["sensors.QCompassReading"] = NewQCompassReadingFromPointer
+	internal.ConstructorTable["sensors.QDistanceFilter"] = NewQDistanceFilterFromPointer
+	internal.ConstructorTable["sensors.QDistanceReading"] = NewQDistanceReadingFromPointer
+	internal.ConstructorTable["sensors.QDistanceSensor"] = NewQDistanceSensorFromPointer
+	internal.ConstructorTable["sensors.QGyroscope"] = NewQGyroscopeFromPointer
+	internal.ConstructorTable["sensors.QGyroscopeFilter"] = NewQGyroscopeFilterFromPointer
+	internal.ConstructorTable["sensors.QGyroscopeReading"] = NewQGyroscopeReadingFromPointer
+	internal.ConstructorTable["sensors.QHolsterFilter"] = NewQHolsterFilterFromPointer
+	internal.ConstructorTable["sensors.QHolsterReading"] = NewQHolsterReadingFromPointer
+	internal.ConstructorTable["sensors.QHolsterSensor"] = NewQHolsterSensorFromPointer
+	internal.ConstructorTable["sensors.QHumidityFilter"] = NewQHumidityFilterFromPointer
+	internal.ConstructorTable["sensors.QHumidityReading"] = NewQHumidityReadingFromPointer
+	internal.ConstructorTable["sensors.QHumiditySensor"] = NewQHumiditySensorFromPointer
+	internal.ConstructorTable["sensors.QIRProximityFilter"] = NewQIRProximityFilterFromPointer
+	internal.ConstructorTable["sensors.QIRProximityReading"] = NewQIRProximityReadingFromPointer
+	internal.ConstructorTable["sensors.QIRProximitySensor"] = NewQIRProximitySensorFromPointer
+	internal.ConstructorTable["sensors.QLidFilter"] = NewQLidFilterFromPointer
+	internal.ConstructorTable["sensors.QLidReading"] = NewQLidReadingFromPointer
+	internal.ConstructorTable["sensors.QLidSensor"] = NewQLidSensorFromPointer
+	internal.ConstructorTable["sensors.QLightFilter"] = NewQLightFilterFromPointer
+	internal.ConstructorTable["sensors.QLightReading"] = NewQLightReadingFromPointer
+	internal.ConstructorTable["sensors.QLightSensor"] = NewQLightSensorFromPointer
+	internal.ConstructorTable["sensors.QMagnetometer"] = NewQMagnetometerFromPointer
+	internal.ConstructorTable["sensors.QMagnetometerFilter"] = NewQMagnetometerFilterFromPointer
+	internal.ConstructorTable["sensors.QMagnetometerReading"] = NewQMagnetometerReadingFromPointer
+	internal.ConstructorTable["sensors.QOrientationFilter"] = NewQOrientationFilterFromPointer
+	internal.ConstructorTable["sensors.QOrientationReading"] = NewQOrientationReadingFromPointer
+	internal.ConstructorTable["sensors.QOrientationSensor"] = NewQOrientationSensorFromPointer
+	internal.ConstructorTable["sensors.QPressureFilter"] = NewQPressureFilterFromPointer
+	internal.ConstructorTable["sensors.QPressureReading"] = NewQPressureReadingFromPointer
+	internal.ConstructorTable["sensors.QPressureSensor"] = NewQPressureSensorFromPointer
+	internal.ConstructorTable["sensors.QProximityFilter"] = NewQProximityFilterFromPointer
+	internal.ConstructorTable["sensors.QProximityReading"] = NewQProximityReadingFromPointer
+	internal.ConstructorTable["sensors.QProximitySensor"] = NewQProximitySensorFromPointer
+	internal.ConstructorTable["sensors.QRotationFilter"] = NewQRotationFilterFromPointer
+	internal.ConstructorTable["sensors.QRotationReading"] = NewQRotationReadingFromPointer
+	internal.ConstructorTable["sensors.QRotationSensor"] = NewQRotationSensorFromPointer
+	internal.ConstructorTable["sensors.QSensor"] = NewQSensorFromPointer
+	internal.ConstructorTable["sensors.QSensorBackend"] = NewQSensorBackendFromPointer
+	internal.ConstructorTable["sensors.QSensorBackendFactory"] = NewQSensorBackendFactoryFromPointer
+	internal.ConstructorTable["sensors.QSensorChangesInterface"] = NewQSensorChangesInterfaceFromPointer
+	internal.ConstructorTable["sensors.QSensorFilter"] = NewQSensorFilterFromPointer
+	internal.ConstructorTable["sensors.QSensorGesture"] = NewQSensorGestureFromPointer
+	internal.ConstructorTable["sensors.QSensorGestureManager"] = NewQSensorGestureManagerFromPointer
+	internal.ConstructorTable["sensors.QSensorGesturePluginInterface"] = NewQSensorGesturePluginInterfaceFromPointer
+	internal.ConstructorTable["sensors.QSensorGestureRecognizer"] = NewQSensorGestureRecognizerFromPointer
+	internal.ConstructorTable["sensors.QSensorManager"] = NewQSensorManagerFromPointer
+	internal.ConstructorTable["sensors.QSensorPluginInterface"] = NewQSensorPluginInterfaceFromPointer
+	internal.ConstructorTable["sensors.QSensorReading"] = NewQSensorReadingFromPointer
+	internal.ConstructorTable["sensors.QTapFilter"] = NewQTapFilterFromPointer
+	internal.ConstructorTable["sensors.QTapReading"] = NewQTapReadingFromPointer
+	internal.ConstructorTable["sensors.QTapSensor"] = NewQTapSensorFromPointer
+	internal.ConstructorTable["sensors.QTiltFilter"] = NewQTiltFilterFromPointer
+	internal.ConstructorTable["sensors.QTiltReading"] = NewQTiltReadingFromPointer
+	internal.ConstructorTable["sensors.QTiltSensor"] = NewQTiltSensorFromPointer
 }

@@ -2,35 +2,13 @@
 
 package network
 
-//#include <stdint.h>
-//#include <stdlib.h>
-//#include <string.h>
-//#include "network.h"
-import "C"
 import (
-	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
-	"reflect"
+	"github.com/therecipe/qt/internal"
 	"strings"
 	"unsafe"
 )
 
-func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
-func cGoUnpackString(s C.struct_QtNetwork_PackedString) string {
-	defer cGoFreePacked(s.ptr)
-	if int(s.len) == -1 {
-		return C.GoString(s.data)
-	}
-	return C.GoStringN(s.data, C.int(s.len))
-}
-func cGoUnpackBytes(s C.struct_QtNetwork_PackedString) []byte {
-	defer cGoFreePacked(s.ptr)
-	if int(s.len) == -1 {
-		gs := C.GoString(s.data)
-		return []byte(gs)
-	}
-	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
-}
 func unpackStringList(s string) []string {
 	if len(s) == 0 {
 		return make([]string, 0)
@@ -71,612 +49,268 @@ func PointerFromQAbstractNetworkCache(ptr QAbstractNetworkCache_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *QAbstractNetworkCache) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAbstractNetworkCache) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQAbstractNetworkCacheFromPointer(ptr unsafe.Pointer) (n *QAbstractNetworkCache) {
 	n = new(QAbstractNetworkCache)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QAbstractNetworkCache")
 	return
 }
 func NewQAbstractNetworkCache(parent core.QObject_ITF) *QAbstractNetworkCache {
-	tmpValue := NewQAbstractNetworkCacheFromPointer(C.QAbstractNetworkCache_NewQAbstractNetworkCache(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQAbstractNetworkCache_CacheSize
-func callbackQAbstractNetworkCache_CacheSize(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "cacheSize"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(0)
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQAbstractNetworkCache", "", parent}).(*QAbstractNetworkCache)
 }
 
 func (ptr *QAbstractNetworkCache) ConnectCacheSize(f func() int64) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "cacheSize"); signal != nil {
-			f := func() int64 {
-				(*(*func() int64)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "cacheSize", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "cacheSize", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectCacheSize", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractNetworkCache) DisconnectCacheSize() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "cacheSize")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectCacheSize"})
 }
 
 func (ptr *QAbstractNetworkCache) CacheSize() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QAbstractNetworkCache_CacheSize(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQAbstractNetworkCache_Clear
-func callbackQAbstractNetworkCache_Clear(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "clear"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CacheSize"}).(float64))
 }
 
 func (ptr *QAbstractNetworkCache) ConnectClear(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "clear"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "clear", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "clear", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectClear", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractNetworkCache) DisconnectClear() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "clear")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectClear"})
 }
 
 func (ptr *QAbstractNetworkCache) Clear() {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache_Clear(ptr.Pointer())
-	}
-}
 
-//export callbackQAbstractNetworkCache_Data
-func callbackQAbstractNetworkCache_Data(ptr unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "data"); signal != nil {
-		return core.PointerFromQIODevice((*(*func(*core.QUrl) *core.QIODevice)(signal))(core.NewQUrlFromPointer(url)))
-	}
-
-	return core.PointerFromQIODevice(core.NewQIODevice())
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Clear"})
 }
 
 func (ptr *QAbstractNetworkCache) ConnectData(f func(url *core.QUrl) *core.QIODevice) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "data"); signal != nil {
-			f := func(url *core.QUrl) *core.QIODevice {
-				(*(*func(*core.QUrl) *core.QIODevice)(signal))(url)
-				return f(url)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "data", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "data", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractNetworkCache) DisconnectData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "data")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectData"})
 }
 
 func (ptr *QAbstractNetworkCache) Data(url core.QUrl_ITF) *core.QIODevice {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQIODeviceFromPointer(C.QAbstractNetworkCache_Data(ptr.Pointer(), core.PointerFromQUrl(url)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQAbstractNetworkCache_Insert
-func callbackQAbstractNetworkCache_Insert(ptr unsafe.Pointer, device unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "insert"); signal != nil {
-		(*(*func(*core.QIODevice))(signal))(core.NewQIODeviceFromPointer(device))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Data", url}).(*core.QIODevice)
 }
 
 func (ptr *QAbstractNetworkCache) ConnectInsert(f func(device *core.QIODevice)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "insert"); signal != nil {
-			f := func(device *core.QIODevice) {
-				(*(*func(*core.QIODevice))(signal))(device)
-				f(device)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "insert", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "insert", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectInsert", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractNetworkCache) DisconnectInsert() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "insert")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectInsert"})
 }
 
 func (ptr *QAbstractNetworkCache) Insert(device core.QIODevice_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache_Insert(ptr.Pointer(), core.PointerFromQIODevice(device))
-	}
-}
 
-//export callbackQAbstractNetworkCache_MetaData
-func callbackQAbstractNetworkCache_MetaData(ptr unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaData"); signal != nil {
-		return PointerFromQNetworkCacheMetaData((*(*func(*core.QUrl) *QNetworkCacheMetaData)(signal))(core.NewQUrlFromPointer(url)))
-	}
-
-	return PointerFromQNetworkCacheMetaData(NewQNetworkCacheMetaData())
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Insert", device})
 }
 
 func (ptr *QAbstractNetworkCache) ConnectMetaData(f func(url *core.QUrl) *QNetworkCacheMetaData) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "metaData"); signal != nil {
-			f := func(url *core.QUrl) *QNetworkCacheMetaData {
-				(*(*func(*core.QUrl) *QNetworkCacheMetaData)(signal))(url)
-				return f(url)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "metaData", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "metaData", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectMetaData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractNetworkCache) DisconnectMetaData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "metaData")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectMetaData"})
 }
 
 func (ptr *QAbstractNetworkCache) MetaData(url core.QUrl_ITF) *QNetworkCacheMetaData {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QAbstractNetworkCache_MetaData(ptr.Pointer(), core.PointerFromQUrl(url)))
-		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQAbstractNetworkCache_Prepare
-func callbackQAbstractNetworkCache_Prepare(ptr unsafe.Pointer, metaData unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "prepare"); signal != nil {
-		return core.PointerFromQIODevice((*(*func(*QNetworkCacheMetaData) *core.QIODevice)(signal))(NewQNetworkCacheMetaDataFromPointer(metaData)))
-	}
-
-	return core.PointerFromQIODevice(core.NewQIODevice())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaData", url}).(*QNetworkCacheMetaData)
 }
 
 func (ptr *QAbstractNetworkCache) ConnectPrepare(f func(metaData *QNetworkCacheMetaData) *core.QIODevice) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "prepare"); signal != nil {
-			f := func(metaData *QNetworkCacheMetaData) *core.QIODevice {
-				(*(*func(*QNetworkCacheMetaData) *core.QIODevice)(signal))(metaData)
-				return f(metaData)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "prepare", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "prepare", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectPrepare", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractNetworkCache) DisconnectPrepare() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "prepare")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectPrepare"})
 }
 
 func (ptr *QAbstractNetworkCache) Prepare(metaData QNetworkCacheMetaData_ITF) *core.QIODevice {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQIODeviceFromPointer(C.QAbstractNetworkCache_Prepare(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQAbstractNetworkCache_Remove
-func callbackQAbstractNetworkCache_Remove(ptr unsafe.Pointer, url unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "remove"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QUrl) bool)(signal))(core.NewQUrlFromPointer(url)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Prepare", metaData}).(*core.QIODevice)
 }
 
 func (ptr *QAbstractNetworkCache) ConnectRemove(f func(url *core.QUrl) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "remove"); signal != nil {
-			f := func(url *core.QUrl) bool {
-				(*(*func(*core.QUrl) bool)(signal))(url)
-				return f(url)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "remove", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "remove", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectRemove", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractNetworkCache) DisconnectRemove() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "remove")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectRemove"})
 }
 
 func (ptr *QAbstractNetworkCache) Remove(url core.QUrl_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractNetworkCache_Remove(ptr.Pointer(), core.PointerFromQUrl(url))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractNetworkCache_UpdateMetaData
-func callbackQAbstractNetworkCache_UpdateMetaData(ptr unsafe.Pointer, metaData unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "updateMetaData"); signal != nil {
-		(*(*func(*QNetworkCacheMetaData))(signal))(NewQNetworkCacheMetaDataFromPointer(metaData))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Remove", url}).(bool)
 }
 
 func (ptr *QAbstractNetworkCache) ConnectUpdateMetaData(f func(metaData *QNetworkCacheMetaData)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "updateMetaData"); signal != nil {
-			f := func(metaData *QNetworkCacheMetaData) {
-				(*(*func(*QNetworkCacheMetaData))(signal))(metaData)
-				f(metaData)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "updateMetaData", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "updateMetaData", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectUpdateMetaData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractNetworkCache) DisconnectUpdateMetaData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "updateMetaData")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectUpdateMetaData"})
 }
 
 func (ptr *QAbstractNetworkCache) UpdateMetaData(metaData QNetworkCacheMetaData_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache_UpdateMetaData(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData))
-	}
-}
 
-//export callbackQAbstractNetworkCache_DestroyQAbstractNetworkCache
-func callbackQAbstractNetworkCache_DestroyQAbstractNetworkCache(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QAbstractNetworkCache"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAbstractNetworkCacheFromPointer(ptr).DestroyQAbstractNetworkCacheDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UpdateMetaData", metaData})
 }
 
 func (ptr *QAbstractNetworkCache) ConnectDestroyQAbstractNetworkCache(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QAbstractNetworkCache"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QAbstractNetworkCache", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QAbstractNetworkCache", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQAbstractNetworkCache", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractNetworkCache) DisconnectDestroyQAbstractNetworkCache() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QAbstractNetworkCache")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQAbstractNetworkCache"})
 }
 
 func (ptr *QAbstractNetworkCache) DestroyQAbstractNetworkCache() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAbstractNetworkCache_DestroyQAbstractNetworkCache(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAbstractNetworkCache"})
 }
 
 func (ptr *QAbstractNetworkCache) DestroyQAbstractNetworkCacheDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAbstractNetworkCache_DestroyQAbstractNetworkCacheDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAbstractNetworkCacheDefault"})
 }
 
 func (ptr *QAbstractNetworkCache) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QAbstractNetworkCache___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QAbstractNetworkCache) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QAbstractNetworkCache) __children_newList() unsafe.Pointer {
-	return C.QAbstractNetworkCache___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QAbstractNetworkCache) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractNetworkCache___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QAbstractNetworkCache) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QAbstractNetworkCache) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QAbstractNetworkCache___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QAbstractNetworkCache) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QAbstractNetworkCache___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QAbstractNetworkCache) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QAbstractNetworkCache) __findChildren_newList() unsafe.Pointer {
-	return C.QAbstractNetworkCache___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QAbstractNetworkCache) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QAbstractNetworkCache___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QAbstractNetworkCache) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QAbstractNetworkCache) __findChildren_newList3() unsafe.Pointer {
-	return C.QAbstractNetworkCache___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQAbstractNetworkCache_ChildEvent
-func callbackQAbstractNetworkCache_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQAbstractNetworkCacheFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QAbstractNetworkCache) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQAbstractNetworkCache_ConnectNotify
-func callbackQAbstractNetworkCache_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQAbstractNetworkCacheFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QAbstractNetworkCache) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQAbstractNetworkCache_CustomEvent
-func callbackQAbstractNetworkCache_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQAbstractNetworkCacheFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QAbstractNetworkCache) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQAbstractNetworkCache_DeleteLater
-func callbackQAbstractNetworkCache_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAbstractNetworkCacheFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QAbstractNetworkCache) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAbstractNetworkCache_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQAbstractNetworkCache_Destroyed
-func callbackQAbstractNetworkCache_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQAbstractNetworkCache_DisconnectNotify
-func callbackQAbstractNetworkCache_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQAbstractNetworkCacheFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QAbstractNetworkCache) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQAbstractNetworkCache_Event
-func callbackQAbstractNetworkCache_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractNetworkCacheFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QAbstractNetworkCache) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractNetworkCache_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractNetworkCache_EventFilter
-func callbackQAbstractNetworkCache_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractNetworkCacheFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QAbstractNetworkCache) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractNetworkCache_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractNetworkCache_MetaObject
-func callbackQAbstractNetworkCache_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQAbstractNetworkCacheFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QAbstractNetworkCache) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QAbstractNetworkCache_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQAbstractNetworkCache_ObjectNameChanged
-func callbackQAbstractNetworkCache_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQAbstractNetworkCache_TimerEvent
-func callbackQAbstractNetworkCache_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAbstractNetworkCacheFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QAbstractNetworkCache) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractNetworkCache_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QAbstractSocket struct {
@@ -712,9 +346,18 @@ func PointerFromQAbstractSocket(ptr QAbstractSocket_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QAbstractSocket) InitFromInternal(ptr uintptr, name string) {
+	n.QIODevice_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QAbstractSocket) ClassNameInternalF() string {
+	return n.QIODevice_PTR().ClassNameInternalF()
+}
+
 func NewQAbstractSocketFromPointer(ptr unsafe.Pointer) (n *QAbstractSocket) {
 	n = new(QAbstractSocket)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QAbstractSocket")
 	return
 }
 
@@ -821,1537 +464,652 @@ const (
 )
 
 func NewQAbstractSocket(socketType QAbstractSocket__SocketType, parent core.QObject_ITF) *QAbstractSocket {
-	tmpValue := NewQAbstractSocketFromPointer(C.QAbstractSocket_NewQAbstractSocket(C.longlong(socketType), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQAbstractSocket", "", socketType, parent}).(*QAbstractSocket)
 }
 
 func (ptr *QAbstractSocket) Abort() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_Abort(ptr.Pointer())
-	}
-}
 
-//export callbackQAbstractSocket_AtEnd
-func callbackQAbstractSocket_AtEnd(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "atEnd"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).AtEndDefault())))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Abort"})
 }
 
 func (ptr *QAbstractSocket) AtEndDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_AtEndDefault(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AtEndDefault"}).(bool)
 }
 
 func (ptr *QAbstractSocket) Bind(address QHostAddress_ITF, port uint16, mode QAbstractSocket__BindFlag) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_Bind(ptr.Pointer(), PointerFromQHostAddress(address), C.ushort(port), C.longlong(mode))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Bind", address, port, mode}).(bool)
 }
 
 func (ptr *QAbstractSocket) Bind2(port uint16, mode QAbstractSocket__BindFlag) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_Bind2(ptr.Pointer(), C.ushort(port), C.longlong(mode))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_BytesAvailable
-func callbackQAbstractSocket_BytesAvailable(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "bytesAvailable"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQAbstractSocketFromPointer(ptr).BytesAvailableDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Bind2", port, mode}).(bool)
 }
 
 func (ptr *QAbstractSocket) BytesAvailableDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QAbstractSocket_BytesAvailableDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQAbstractSocket_BytesToWrite
-func callbackQAbstractSocket_BytesToWrite(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "bytesToWrite"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQAbstractSocketFromPointer(ptr).BytesToWriteDefault())
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BytesAvailableDefault"}).(float64))
 }
 
 func (ptr *QAbstractSocket) BytesToWriteDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QAbstractSocket_BytesToWriteDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQAbstractSocket_CanReadLine
-func callbackQAbstractSocket_CanReadLine(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canReadLine"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).CanReadLineDefault())))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BytesToWriteDefault"}).(float64))
 }
 
 func (ptr *QAbstractSocket) CanReadLineDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_CanReadLineDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_Close
-func callbackQAbstractSocket_Close(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "close"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAbstractSocketFromPointer(ptr).CloseDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CanReadLineDefault"}).(bool)
 }
 
 func (ptr *QAbstractSocket) CloseDefault() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_CloseDefault(ptr.Pointer())
-	}
-}
 
-//export callbackQAbstractSocket_ConnectToHost
-func callbackQAbstractSocket_ConnectToHost(ptr unsafe.Pointer, hostName C.struct_QtNetwork_PackedString, port C.ushort, openMode C.longlong, protoc C.longlong) {
-	if signal := qt.GetSignal(ptr, "connectToHost"); signal != nil {
-		(*(*func(string, uint16, core.QIODevice__OpenModeFlag, QAbstractSocket__NetworkLayerProtocol))(signal))(cGoUnpackString(hostName), uint16(port), core.QIODevice__OpenModeFlag(openMode), QAbstractSocket__NetworkLayerProtocol(protoc))
-	} else {
-		NewQAbstractSocketFromPointer(ptr).ConnectToHostDefault(cGoUnpackString(hostName), uint16(port), core.QIODevice__OpenModeFlag(openMode), QAbstractSocket__NetworkLayerProtocol(protoc))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CloseDefault"})
 }
 
 func (ptr *QAbstractSocket) ConnectConnectToHost(f func(hostName string, port uint16, openMode core.QIODevice__OpenModeFlag, protoc QAbstractSocket__NetworkLayerProtocol)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "connectToHost"); signal != nil {
-			f := func(hostName string, port uint16, openMode core.QIODevice__OpenModeFlag, protoc QAbstractSocket__NetworkLayerProtocol) {
-				(*(*func(string, uint16, core.QIODevice__OpenModeFlag, QAbstractSocket__NetworkLayerProtocol))(signal))(hostName, port, openMode, protoc)
-				f(hostName, port, openMode, protoc)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "connectToHost", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "connectToHost", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectConnectToHost", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectConnectToHost() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "connectToHost")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectConnectToHost"})
 }
 
 func (ptr *QAbstractSocket) ConnectToHost(hostName string, port uint16, openMode core.QIODevice__OpenModeFlag, protoc QAbstractSocket__NetworkLayerProtocol) {
-	if ptr.Pointer() != nil {
-		var hostNameC *C.char
-		if hostName != "" {
-			hostNameC = C.CString(hostName)
-			defer C.free(unsafe.Pointer(hostNameC))
-		}
-		C.QAbstractSocket_ConnectToHost(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.longlong(openMode), C.longlong(protoc))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToHost", hostName, port, openMode, protoc})
 }
 
 func (ptr *QAbstractSocket) ConnectToHostDefault(hostName string, port uint16, openMode core.QIODevice__OpenModeFlag, protoc QAbstractSocket__NetworkLayerProtocol) {
-	if ptr.Pointer() != nil {
-		var hostNameC *C.char
-		if hostName != "" {
-			hostNameC = C.CString(hostName)
-			defer C.free(unsafe.Pointer(hostNameC))
-		}
-		C.QAbstractSocket_ConnectToHostDefault(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.longlong(openMode), C.longlong(protoc))
-	}
-}
 
-//export callbackQAbstractSocket_ConnectToHost2
-func callbackQAbstractSocket_ConnectToHost2(ptr unsafe.Pointer, address unsafe.Pointer, port C.ushort, openMode C.longlong) {
-	if signal := qt.GetSignal(ptr, "connectToHost2"); signal != nil {
-		(*(*func(*QHostAddress, uint16, core.QIODevice__OpenModeFlag))(signal))(NewQHostAddressFromPointer(address), uint16(port), core.QIODevice__OpenModeFlag(openMode))
-	} else {
-		NewQAbstractSocketFromPointer(ptr).ConnectToHost2Default(NewQHostAddressFromPointer(address), uint16(port), core.QIODevice__OpenModeFlag(openMode))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToHostDefault", hostName, port, openMode, protoc})
 }
 
 func (ptr *QAbstractSocket) ConnectConnectToHost2(f func(address *QHostAddress, port uint16, openMode core.QIODevice__OpenModeFlag)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "connectToHost2"); signal != nil {
-			f := func(address *QHostAddress, port uint16, openMode core.QIODevice__OpenModeFlag) {
-				(*(*func(*QHostAddress, uint16, core.QIODevice__OpenModeFlag))(signal))(address, port, openMode)
-				f(address, port, openMode)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "connectToHost2", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "connectToHost2", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectConnectToHost2", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectConnectToHost2() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "connectToHost2")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectConnectToHost2"})
 }
 
 func (ptr *QAbstractSocket) ConnectToHost2(address QHostAddress_ITF, port uint16, openMode core.QIODevice__OpenModeFlag) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ConnectToHost2(ptr.Pointer(), PointerFromQHostAddress(address), C.ushort(port), C.longlong(openMode))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToHost2", address, port, openMode})
 }
 
 func (ptr *QAbstractSocket) ConnectToHost2Default(address QHostAddress_ITF, port uint16, openMode core.QIODevice__OpenModeFlag) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ConnectToHost2Default(ptr.Pointer(), PointerFromQHostAddress(address), C.ushort(port), C.longlong(openMode))
-	}
-}
 
-//export callbackQAbstractSocket_Connected
-func callbackQAbstractSocket_Connected(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connected"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToHost2Default", address, port, openMode})
 }
 
 func (ptr *QAbstractSocket) ConnectConnected(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "connected") {
-			C.QAbstractSocket_ConnectConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connected")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "connected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "connected", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectConnected", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectConnected() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_DisconnectConnected(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "connected")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectConnected"})
 }
 
 func (ptr *QAbstractSocket) Connected() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_Connected(ptr.Pointer())
-	}
-}
 
-//export callbackQAbstractSocket_DisconnectFromHost
-func callbackQAbstractSocket_DisconnectFromHost(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectFromHost"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAbstractSocketFromPointer(ptr).DisconnectFromHostDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Connected"})
 }
 
 func (ptr *QAbstractSocket) ConnectDisconnectFromHost(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "disconnectFromHost"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "disconnectFromHost", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "disconnectFromHost", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDisconnectFromHost", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectDisconnectFromHost() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "disconnectFromHost")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDisconnectFromHost"})
 }
 
 func (ptr *QAbstractSocket) DisconnectFromHost() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_DisconnectFromHost(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFromHost"})
 }
 
 func (ptr *QAbstractSocket) DisconnectFromHostDefault() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_DisconnectFromHostDefault(ptr.Pointer())
-	}
-}
 
-//export callbackQAbstractSocket_Disconnected
-func callbackQAbstractSocket_Disconnected(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnected"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFromHostDefault"})
 }
 
 func (ptr *QAbstractSocket) ConnectDisconnected(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QAbstractSocket_ConnectDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "disconnected")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDisconnected", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectDisconnected() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_DisconnectDisconnected(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "disconnected")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDisconnected"})
 }
 
 func (ptr *QAbstractSocket) Disconnected() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_Disconnected(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Disconnected"})
 }
 
 func (ptr *QAbstractSocket) Error() QAbstractSocket__SocketError {
-	if ptr.Pointer() != nil {
-		return QAbstractSocket__SocketError(C.QAbstractSocket_Error(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQAbstractSocket_Error2
-func callbackQAbstractSocket_Error2(ptr unsafe.Pointer, socketError C.longlong) {
-	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		(*(*func(QAbstractSocket__SocketError))(signal))(QAbstractSocket__SocketError(socketError))
-	}
-
+	return QAbstractSocket__SocketError(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error"}).(float64))
 }
 
 func (ptr *QAbstractSocket) ConnectError2(f func(socketError QAbstractSocket__SocketError)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QAbstractSocket_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			f := func(socketError QAbstractSocket__SocketError) {
-				(*(*func(QAbstractSocket__SocketError))(signal))(socketError)
-				f(socketError)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectError2", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectError2() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "error2")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectError2"})
 }
 
 func (ptr *QAbstractSocket) Error2(socketError QAbstractSocket__SocketError) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_Error2(ptr.Pointer(), C.longlong(socketError))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error2", socketError})
 }
 
 func (ptr *QAbstractSocket) Flush() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_Flush(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_HostFound
-func callbackQAbstractSocket_HostFound(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "hostFound"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Flush"}).(bool)
 }
 
 func (ptr *QAbstractSocket) ConnectHostFound(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "hostFound") {
-			C.QAbstractSocket_ConnectHostFound(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "hostFound")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "hostFound"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "hostFound", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hostFound", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectHostFound", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectHostFound() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_DisconnectHostFound(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "hostFound")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectHostFound"})
 }
 
 func (ptr *QAbstractSocket) HostFound() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_HostFound(ptr.Pointer())
-	}
-}
 
-//export callbackQAbstractSocket_IsSequential
-func callbackQAbstractSocket_IsSequential(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "isSequential"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).IsSequentialDefault())))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HostFound"})
 }
 
 func (ptr *QAbstractSocket) IsSequentialDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_IsSequentialDefault(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsSequentialDefault"}).(bool)
 }
 
 func (ptr *QAbstractSocket) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_IsValid(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsValid"}).(bool)
 }
 
 func (ptr *QAbstractSocket) LocalAddress() *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QAbstractSocket_LocalAddress(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LocalAddress"}).(*QHostAddress)
 }
 
 func (ptr *QAbstractSocket) LocalPort() uint16 {
-	if ptr.Pointer() != nil {
-		return uint16(C.QAbstractSocket_LocalPort(ptr.Pointer()))
-	}
-	return 0
+
+	return uint16(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LocalPort"}).(float64))
 }
 
 func (ptr *QAbstractSocket) PauseMode() QAbstractSocket__PauseMode {
-	if ptr.Pointer() != nil {
-		return QAbstractSocket__PauseMode(C.QAbstractSocket_PauseMode(ptr.Pointer()))
-	}
-	return 0
+
+	return QAbstractSocket__PauseMode(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PauseMode"}).(float64))
 }
 
 func (ptr *QAbstractSocket) PeerAddress() *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QAbstractSocket_PeerAddress(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerAddress"}).(*QHostAddress)
 }
 
 func (ptr *QAbstractSocket) PeerName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QAbstractSocket_PeerName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerName"}).(string)
 }
 
 func (ptr *QAbstractSocket) PeerPort() uint16 {
-	if ptr.Pointer() != nil {
-		return uint16(C.QAbstractSocket_PeerPort(ptr.Pointer()))
-	}
-	return 0
+
+	return uint16(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerPort"}).(float64))
 }
 
 func (ptr *QAbstractSocket) ProtocolTag() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QAbstractSocket_ProtocolTag(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ProtocolTag"}).(string)
 }
 
 func (ptr *QAbstractSocket) Proxy() *QNetworkProxy {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkProxyFromPointer(C.QAbstractSocket_Proxy(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQAbstractSocket_ProxyAuthenticationRequired
-func callbackQAbstractSocket_ProxyAuthenticationRequired(ptr unsafe.Pointer, proxy unsafe.Pointer, authenticator unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "proxyAuthenticationRequired"); signal != nil {
-		(*(*func(*QNetworkProxy, *QAuthenticator))(signal))(NewQNetworkProxyFromPointer(proxy), NewQAuthenticatorFromPointer(authenticator))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Proxy"}).(*QNetworkProxy)
 }
 
 func (ptr *QAbstractSocket) ConnectProxyAuthenticationRequired(f func(proxy *QNetworkProxy, authenticator *QAuthenticator)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "proxyAuthenticationRequired") {
-			C.QAbstractSocket_ConnectProxyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "proxyAuthenticationRequired")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "proxyAuthenticationRequired"); signal != nil {
-			f := func(proxy *QNetworkProxy, authenticator *QAuthenticator) {
-				(*(*func(*QNetworkProxy, *QAuthenticator))(signal))(proxy, authenticator)
-				f(proxy, authenticator)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "proxyAuthenticationRequired", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "proxyAuthenticationRequired", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectProxyAuthenticationRequired", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectProxyAuthenticationRequired() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_DisconnectProxyAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "proxyAuthenticationRequired")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectProxyAuthenticationRequired"})
 }
 
 func (ptr *QAbstractSocket) ProxyAuthenticationRequired(proxy QNetworkProxy_ITF, authenticator QAuthenticator_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ProxyAuthenticationRequired(ptr.Pointer(), PointerFromQNetworkProxy(proxy), PointerFromQAuthenticator(authenticator))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ProxyAuthenticationRequired", proxy, authenticator})
 }
 
 func (ptr *QAbstractSocket) ReadBufferSize() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QAbstractSocket_ReadBufferSize(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQAbstractSocket_ReadData
-func callbackQAbstractSocket_ReadData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxSize C.longlong) C.longlong {
-	if signal := qt.GetSignal(ptr, "readData"); signal != nil {
-		retS := cGoUnpackString(data)
-		ret := C.longlong((*(*func(*string, int64) int64)(signal))(&retS, int64(maxSize)))
-		if ret > 0 {
-			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
-		}
-		return ret
-	}
-	retS := cGoUnpackString(data)
-	ret := C.longlong(NewQAbstractSocketFromPointer(ptr).ReadDataDefault(&retS, int64(maxSize)))
-	if ret > 0 {
-		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
-	}
-	return ret
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadBufferSize"}).(float64))
 }
 
 func (ptr *QAbstractSocket) ConnectReadData(f func(data *string, maxSize int64) int64) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "readData"); signal != nil {
-			f := func(data *string, maxSize int64) int64 {
-				(*(*func(*string, int64) int64)(signal))(data, maxSize)
-				return f(data, maxSize)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "readData", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "readData", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectReadData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectReadData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "readData")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectReadData"})
 }
 
 func (ptr *QAbstractSocket) ReadData(data *string, maxSize int64) int64 {
-	if ptr.Pointer() != nil {
-		dataC := C.CString(strings.Repeat("0", int(maxSize)))
-		defer C.free(unsafe.Pointer(dataC))
-		ret := int64(C.QAbstractSocket_ReadData(ptr.Pointer(), dataC, C.longlong(maxSize)))
-		if ret > 0 {
-			*data = C.GoStringN(dataC, C.int(ret))
-		}
-		return ret
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadData", data, maxSize}).(float64))
 }
 
 func (ptr *QAbstractSocket) ReadDataDefault(data *string, maxSize int64) int64 {
-	if ptr.Pointer() != nil {
-		dataC := C.CString(strings.Repeat("0", int(maxSize)))
-		defer C.free(unsafe.Pointer(dataC))
-		ret := int64(C.QAbstractSocket_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
-		if ret > 0 {
-			*data = C.GoStringN(dataC, C.int(ret))
-		}
-		return ret
-	}
-	return 0
-}
 
-//export callbackQAbstractSocket_ReadLineData
-func callbackQAbstractSocket_ReadLineData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxlen C.longlong) C.longlong {
-	if signal := qt.GetSignal(ptr, "readLineData"); signal != nil {
-		return C.longlong((*(*func([]byte, int64) int64)(signal))(cGoUnpackBytes(data), int64(maxlen)))
-	}
-
-	return C.longlong(NewQAbstractSocketFromPointer(ptr).ReadLineDataDefault(cGoUnpackBytes(data), int64(maxlen)))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadDataDefault", data, maxSize}).(float64))
 }
 
 func (ptr *QAbstractSocket) ReadLineDataDefault(data []byte, maxlen int64) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QAbstractSocket_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxlen)))
-	}
-	return 0
-}
 
-//export callbackQAbstractSocket_Resume
-func callbackQAbstractSocket_Resume(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "resume"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAbstractSocketFromPointer(ptr).ResumeDefault()
-	}
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadLineDataDefault", data, maxlen}).(float64))
 }
 
 func (ptr *QAbstractSocket) ConnectResume(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "resume"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "resume", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "resume", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectResume", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectResume() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "resume")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectResume"})
 }
 
 func (ptr *QAbstractSocket) Resume() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_Resume(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Resume"})
 }
 
 func (ptr *QAbstractSocket) ResumeDefault() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ResumeDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ResumeDefault"})
 }
 
 func (ptr *QAbstractSocket) SetLocalAddress(address QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetLocalAddress(ptr.Pointer(), PointerFromQHostAddress(address))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLocalAddress", address})
 }
 
 func (ptr *QAbstractSocket) SetLocalPort(port uint16) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetLocalPort(ptr.Pointer(), C.ushort(port))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLocalPort", port})
 }
 
 func (ptr *QAbstractSocket) SetPauseMode(pauseMode QAbstractSocket__PauseMode) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetPauseMode(ptr.Pointer(), C.longlong(pauseMode))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPauseMode", pauseMode})
 }
 
 func (ptr *QAbstractSocket) SetPeerAddress(address QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetPeerAddress(ptr.Pointer(), PointerFromQHostAddress(address))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerAddress", address})
 }
 
 func (ptr *QAbstractSocket) SetPeerName(name string) {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QAbstractSocket_SetPeerName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerName", name})
 }
 
 func (ptr *QAbstractSocket) SetPeerPort(port uint16) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetPeerPort(ptr.Pointer(), C.ushort(port))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerPort", port})
 }
 
 func (ptr *QAbstractSocket) SetProtocolTag(tag string) {
-	if ptr.Pointer() != nil {
-		var tagC *C.char
-		if tag != "" {
-			tagC = C.CString(tag)
-			defer C.free(unsafe.Pointer(tagC))
-		}
-		C.QAbstractSocket_SetProtocolTag(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: tagC, len: C.longlong(len(tag))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetProtocolTag", tag})
 }
 
 func (ptr *QAbstractSocket) SetProxy(networkProxy QNetworkProxy_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetProxy(ptr.Pointer(), PointerFromQNetworkProxy(networkProxy))
-	}
-}
 
-//export callbackQAbstractSocket_SetReadBufferSize
-func callbackQAbstractSocket_SetReadBufferSize(ptr unsafe.Pointer, size C.longlong) {
-	if signal := qt.GetSignal(ptr, "setReadBufferSize"); signal != nil {
-		(*(*func(int64))(signal))(int64(size))
-	} else {
-		NewQAbstractSocketFromPointer(ptr).SetReadBufferSizeDefault(int64(size))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetProxy", networkProxy})
 }
 
 func (ptr *QAbstractSocket) ConnectSetReadBufferSize(f func(size int64)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setReadBufferSize"); signal != nil {
-			f := func(size int64) {
-				(*(*func(int64))(signal))(size)
-				f(size)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setReadBufferSize", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setReadBufferSize", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetReadBufferSize", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectSetReadBufferSize() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setReadBufferSize")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetReadBufferSize"})
 }
 
 func (ptr *QAbstractSocket) SetReadBufferSize(size int64) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetReadBufferSize(ptr.Pointer(), C.longlong(size))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetReadBufferSize", size})
 }
 
 func (ptr *QAbstractSocket) SetReadBufferSizeDefault(size int64) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetReadBufferSizeDefault(ptr.Pointer(), C.longlong(size))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetReadBufferSizeDefault", size})
 }
 
 func (ptr *QAbstractSocket) SetSocketError(socketError QAbstractSocket__SocketError) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetSocketError(ptr.Pointer(), C.longlong(socketError))
-	}
-}
 
-//export callbackQAbstractSocket_SetSocketOption
-func callbackQAbstractSocket_SetSocketOption(ptr unsafe.Pointer, option C.longlong, value unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "setSocketOption"); signal != nil {
-		(*(*func(QAbstractSocket__SocketOption, *core.QVariant))(signal))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
-	} else {
-		NewQAbstractSocketFromPointer(ptr).SetSocketOptionDefault(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSocketError", socketError})
 }
 
 func (ptr *QAbstractSocket) ConnectSetSocketOption(f func(option QAbstractSocket__SocketOption, value *core.QVariant)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setSocketOption"); signal != nil {
-			f := func(option QAbstractSocket__SocketOption, value *core.QVariant) {
-				(*(*func(QAbstractSocket__SocketOption, *core.QVariant))(signal))(option, value)
-				f(option, value)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setSocketOption", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setSocketOption", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetSocketOption", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectSetSocketOption() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setSocketOption")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetSocketOption"})
 }
 
 func (ptr *QAbstractSocket) SetSocketOption(option QAbstractSocket__SocketOption, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetSocketOption(ptr.Pointer(), C.longlong(option), core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSocketOption", option, value})
 }
 
 func (ptr *QAbstractSocket) SetSocketOptionDefault(option QAbstractSocket__SocketOption, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetSocketOptionDefault(ptr.Pointer(), C.longlong(option), core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSocketOptionDefault", option, value})
 }
 
 func (ptr *QAbstractSocket) SetSocketState(state QAbstractSocket__SocketState) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_SetSocketState(ptr.Pointer(), C.longlong(state))
-	}
-}
 
-//export callbackQAbstractSocket_SocketOption
-func callbackQAbstractSocket_SocketOption(ptr unsafe.Pointer, option C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "socketOption"); signal != nil {
-		return core.PointerFromQVariant((*(*func(QAbstractSocket__SocketOption) *core.QVariant)(signal))(QAbstractSocket__SocketOption(option)))
-	}
-
-	return core.PointerFromQVariant(NewQAbstractSocketFromPointer(ptr).SocketOptionDefault(QAbstractSocket__SocketOption(option)))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSocketState", state})
 }
 
 func (ptr *QAbstractSocket) ConnectSocketOption(f func(option QAbstractSocket__SocketOption) *core.QVariant) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "socketOption"); signal != nil {
-			f := func(option QAbstractSocket__SocketOption) *core.QVariant {
-				(*(*func(QAbstractSocket__SocketOption) *core.QVariant)(signal))(option)
-				return f(option)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "socketOption", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "socketOption", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSocketOption", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectSocketOption() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "socketOption")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSocketOption"})
 }
 
 func (ptr *QAbstractSocket) SocketOption(option QAbstractSocket__SocketOption) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QAbstractSocket_SocketOption(ptr.Pointer(), C.longlong(option)))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SocketOption", option}).(*core.QVariant)
 }
 
 func (ptr *QAbstractSocket) SocketOptionDefault(option QAbstractSocket__SocketOption) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QAbstractSocket_SocketOptionDefault(ptr.Pointer(), C.longlong(option)))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SocketOptionDefault", option}).(*core.QVariant)
 }
 
 func (ptr *QAbstractSocket) SocketType() QAbstractSocket__SocketType {
-	if ptr.Pointer() != nil {
-		return QAbstractSocket__SocketType(C.QAbstractSocket_SocketType(ptr.Pointer()))
-	}
-	return 0
+
+	return QAbstractSocket__SocketType(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SocketType"}).(float64))
 }
 
 func (ptr *QAbstractSocket) State() QAbstractSocket__SocketState {
-	if ptr.Pointer() != nil {
-		return QAbstractSocket__SocketState(C.QAbstractSocket_State(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQAbstractSocket_StateChanged
-func callbackQAbstractSocket_StateChanged(ptr unsafe.Pointer, socketState C.longlong) {
-	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
-		(*(*func(QAbstractSocket__SocketState))(signal))(QAbstractSocket__SocketState(socketState))
-	}
-
+	return QAbstractSocket__SocketState(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "State"}).(float64))
 }
 
 func (ptr *QAbstractSocket) ConnectStateChanged(f func(socketState QAbstractSocket__SocketState)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QAbstractSocket_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
-			f := func(socketState QAbstractSocket__SocketState) {
-				(*(*func(QAbstractSocket__SocketState))(signal))(socketState)
-				f(socketState)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStateChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectStateChanged() {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_DisconnectStateChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "stateChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStateChanged"})
 }
 
 func (ptr *QAbstractSocket) StateChanged(socketState QAbstractSocket__SocketState) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_StateChanged(ptr.Pointer(), C.longlong(socketState))
-	}
-}
 
-//export callbackQAbstractSocket_WaitForBytesWritten
-func callbackQAbstractSocket_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
-	if signal := qt.GetSignal(ptr, "waitForBytesWritten"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(msecs))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(int32(msecs))))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StateChanged", socketState})
 }
 
 func (ptr *QAbstractSocket) WaitForBytesWrittenDefault(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_WaitForConnected
-func callbackQAbstractSocket_WaitForConnected(ptr unsafe.Pointer, msecs C.int) C.char {
-	if signal := qt.GetSignal(ptr, "waitForConnected"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(msecs))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).WaitForConnectedDefault(int(int32(msecs))))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForBytesWrittenDefault", msecs}).(bool)
 }
 
 func (ptr *QAbstractSocket) ConnectWaitForConnected(f func(msecs int) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "waitForConnected"); signal != nil {
-			f := func(msecs int) bool {
-				(*(*func(int) bool)(signal))(msecs)
-				return f(msecs)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "waitForConnected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "waitForConnected", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectWaitForConnected", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectWaitForConnected() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "waitForConnected")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectWaitForConnected"})
 }
 
 func (ptr *QAbstractSocket) WaitForConnected(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_WaitForConnected(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForConnected", msecs}).(bool)
 }
 
 func (ptr *QAbstractSocket) WaitForConnectedDefault(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_WaitForConnectedDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_WaitForDisconnected
-func callbackQAbstractSocket_WaitForDisconnected(ptr unsafe.Pointer, msecs C.int) C.char {
-	if signal := qt.GetSignal(ptr, "waitForDisconnected"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(msecs))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).WaitForDisconnectedDefault(int(int32(msecs))))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForConnectedDefault", msecs}).(bool)
 }
 
 func (ptr *QAbstractSocket) ConnectWaitForDisconnected(f func(msecs int) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "waitForDisconnected"); signal != nil {
-			f := func(msecs int) bool {
-				(*(*func(int) bool)(signal))(msecs)
-				return f(msecs)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "waitForDisconnected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "waitForDisconnected", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectWaitForDisconnected", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectWaitForDisconnected() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "waitForDisconnected")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectWaitForDisconnected"})
 }
 
 func (ptr *QAbstractSocket) WaitForDisconnected(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_WaitForDisconnected(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForDisconnected", msecs}).(bool)
 }
 
 func (ptr *QAbstractSocket) WaitForDisconnectedDefault(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_WaitForDisconnectedDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_WaitForReadyRead
-func callbackQAbstractSocket_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
-	if signal := qt.GetSignal(ptr, "waitForReadyRead"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(msecs))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).WaitForReadyReadDefault(int(int32(msecs))))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForDisconnectedDefault", msecs}).(bool)
 }
 
 func (ptr *QAbstractSocket) WaitForReadyReadDefault(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_WriteData
-func callbackQAbstractSocket_WriteData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, size C.longlong) C.longlong {
-	if signal := qt.GetSignal(ptr, "writeData"); signal != nil {
-		return C.longlong((*(*func([]byte, int64) int64)(signal))(cGoUnpackBytes(data), int64(size)))
-	}
-
-	return C.longlong(NewQAbstractSocketFromPointer(ptr).WriteDataDefault(cGoUnpackBytes(data), int64(size)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForReadyReadDefault", msecs}).(bool)
 }
 
 func (ptr *QAbstractSocket) ConnectWriteData(f func(data []byte, size int64) int64) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "writeData"); signal != nil {
-			f := func(data []byte, size int64) int64 {
-				(*(*func([]byte, int64) int64)(signal))(data, size)
-				return f(data, size)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "writeData", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "writeData", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectWriteData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectWriteData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "writeData")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectWriteData"})
 }
 
 func (ptr *QAbstractSocket) WriteData(data []byte, size int64) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QAbstractSocket_WriteData(ptr.Pointer(), dataC, C.longlong(size)))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WriteData", data, size}).(float64))
 }
 
 func (ptr *QAbstractSocket) WriteDataDefault(data []byte, size int64) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QAbstractSocket_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(size)))
-	}
-	return 0
-}
 
-//export callbackQAbstractSocket_DestroyQAbstractSocket
-func callbackQAbstractSocket_DestroyQAbstractSocket(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QAbstractSocket"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAbstractSocketFromPointer(ptr).DestroyQAbstractSocketDefault()
-	}
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WriteDataDefault", data, size}).(float64))
 }
 
 func (ptr *QAbstractSocket) ConnectDestroyQAbstractSocket(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QAbstractSocket"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QAbstractSocket", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QAbstractSocket", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQAbstractSocket", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QAbstractSocket) DisconnectDestroyQAbstractSocket() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QAbstractSocket")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQAbstractSocket"})
 }
 
 func (ptr *QAbstractSocket) DestroyQAbstractSocket() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAbstractSocket_DestroyQAbstractSocket(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAbstractSocket"})
 }
 
 func (ptr *QAbstractSocket) DestroyQAbstractSocketDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAbstractSocket_DestroyQAbstractSocketDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAbstractSocketDefault"})
 }
 
 func (ptr *QAbstractSocket) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QAbstractSocket___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QAbstractSocket) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QAbstractSocket) __children_newList() unsafe.Pointer {
-	return C.QAbstractSocket___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QAbstractSocket) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractSocket___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QAbstractSocket) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QAbstractSocket) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QAbstractSocket___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QAbstractSocket) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QAbstractSocket___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QAbstractSocket) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QAbstractSocket) __findChildren_newList() unsafe.Pointer {
-	return C.QAbstractSocket___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QAbstractSocket) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QAbstractSocket___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QAbstractSocket) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QAbstractSocket) __findChildren_newList3() unsafe.Pointer {
-	return C.QAbstractSocket___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQAbstractSocket_AboutToClose
-func callbackQAbstractSocket_AboutToClose(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "aboutToClose"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQAbstractSocket_BytesWritten
-func callbackQAbstractSocket_BytesWritten(ptr unsafe.Pointer, bytes C.longlong) {
-	if signal := qt.GetSignal(ptr, "bytesWritten"); signal != nil {
-		(*(*func(int64))(signal))(int64(bytes))
-	}
-
-}
-
-//export callbackQAbstractSocket_ChannelBytesWritten
-func callbackQAbstractSocket_ChannelBytesWritten(ptr unsafe.Pointer, channel C.int, bytes C.longlong) {
-	if signal := qt.GetSignal(ptr, "channelBytesWritten"); signal != nil {
-		(*(*func(int, int64))(signal))(int(int32(channel)), int64(bytes))
-	}
-
-}
-
-//export callbackQAbstractSocket_ChannelReadyRead
-func callbackQAbstractSocket_ChannelReadyRead(ptr unsafe.Pointer, channel C.int) {
-	if signal := qt.GetSignal(ptr, "channelReadyRead"); signal != nil {
-		(*(*func(int))(signal))(int(int32(channel)))
-	}
-
-}
-
-//export callbackQAbstractSocket_Open
-func callbackQAbstractSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "open"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(core.QIODevice__OpenModeFlag) bool)(signal))(core.QIODevice__OpenModeFlag(mode)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).OpenDefault(core.QIODevice__OpenModeFlag(mode)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QAbstractSocket) OpenDefault(mode core.QIODevice__OpenModeFlag) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_OpenDefault(ptr.Pointer(), C.longlong(mode))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_Pos
-func callbackQAbstractSocket_Pos(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "pos"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQAbstractSocketFromPointer(ptr).PosDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "OpenDefault", mode}).(bool)
 }
 
 func (ptr *QAbstractSocket) PosDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QAbstractSocket_PosDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQAbstractSocket_ReadChannelFinished
-func callbackQAbstractSocket_ReadChannelFinished(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "readChannelFinished"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQAbstractSocket_ReadyRead
-func callbackQAbstractSocket_ReadyRead(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "readyRead"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQAbstractSocket_Reset
-func callbackQAbstractSocket_Reset(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "reset"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).ResetDefault())))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PosDefault"}).(float64))
 }
 
 func (ptr *QAbstractSocket) ResetDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_ResetDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_Seek
-func callbackQAbstractSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "seek"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int64) bool)(signal))(int64(pos)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).SeekDefault(int64(pos)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ResetDefault"}).(bool)
 }
 
 func (ptr *QAbstractSocket) SeekDefault(pos int64) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_SeekDefault(ptr.Pointer(), C.longlong(pos))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_Size
-func callbackQAbstractSocket_Size(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "size"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQAbstractSocketFromPointer(ptr).SizeDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SeekDefault", pos}).(bool)
 }
 
 func (ptr *QAbstractSocket) SizeDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QAbstractSocket_SizeDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQAbstractSocket_ChildEvent
-func callbackQAbstractSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQAbstractSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SizeDefault"}).(float64))
 }
 
 func (ptr *QAbstractSocket) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQAbstractSocket_ConnectNotify
-func callbackQAbstractSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQAbstractSocketFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QAbstractSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQAbstractSocket_CustomEvent
-func callbackQAbstractSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQAbstractSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QAbstractSocket) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQAbstractSocket_DeleteLater
-func callbackQAbstractSocket_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQAbstractSocketFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QAbstractSocket) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAbstractSocket_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQAbstractSocket_Destroyed
-func callbackQAbstractSocket_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQAbstractSocket_DisconnectNotify
-func callbackQAbstractSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQAbstractSocketFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QAbstractSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQAbstractSocket_Event
-func callbackQAbstractSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QAbstractSocket) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_EventFilter
-func callbackQAbstractSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QAbstractSocket) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAbstractSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQAbstractSocket_MetaObject
-func callbackQAbstractSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQAbstractSocketFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QAbstractSocket) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QAbstractSocket_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQAbstractSocket_ObjectNameChanged
-func callbackQAbstractSocket_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQAbstractSocket_TimerEvent
-func callbackQAbstractSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAbstractSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QAbstractSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QAuthenticator struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QAuthenticator_ITF interface {
@@ -2364,14 +1122,14 @@ func (ptr *QAuthenticator) QAuthenticator_PTR() *QAuthenticator {
 
 func (ptr *QAuthenticator) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QAuthenticator) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -2382,189 +1140,112 @@ func PointerFromQAuthenticator(ptr QAuthenticator_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QAuthenticator) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQAuthenticatorFromPointer(ptr unsafe.Pointer) (n *QAuthenticator) {
 	n = new(QAuthenticator)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QAuthenticator")
 	return
 }
 func NewQAuthenticator() *QAuthenticator {
-	tmpValue := NewQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator())
-	qt.SetFinalizer(tmpValue, (*QAuthenticator).DestroyQAuthenticator)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQAuthenticator", ""}).(*QAuthenticator)
 }
 
 func NewQAuthenticator2(other QAuthenticator_ITF) *QAuthenticator {
-	tmpValue := NewQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator2(PointerFromQAuthenticator(other)))
-	qt.SetFinalizer(tmpValue, (*QAuthenticator).DestroyQAuthenticator)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQAuthenticator2", "", other}).(*QAuthenticator)
 }
 
 func (ptr *QAuthenticator) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QAuthenticator_IsNull(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsNull"}).(bool)
 }
 
 func (ptr *QAuthenticator) Option(opt string) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var optC *C.char
-		if opt != "" {
-			optC = C.CString(opt)
-			defer C.free(unsafe.Pointer(optC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QAuthenticator_Option(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: optC, len: C.longlong(len(opt))}))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Option", opt}).(*core.QVariant)
 }
 
 func (ptr *QAuthenticator) Options() map[string]*core.QVariant {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) map[string]*core.QVariant {
-			out := make(map[string]*core.QVariant, int(l.len))
-			tmpList := NewQAuthenticatorFromPointer(l.data)
-			for i, v := range tmpList.__options_keyList() {
-				out[v] = tmpList.__options_atList(v, i)
-			}
-			return out
-		}(C.QAuthenticator_Options(ptr.Pointer()))
-	}
-	return make(map[string]*core.QVariant, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Options"}).(map[string]*core.QVariant)
 }
 
 func (ptr *QAuthenticator) Password() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QAuthenticator_Password(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Password"}).(string)
 }
 
 func (ptr *QAuthenticator) Realm() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QAuthenticator_Realm(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Realm"}).(string)
 }
 
 func (ptr *QAuthenticator) SetOption(opt string, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		var optC *C.char
-		if opt != "" {
-			optC = C.CString(opt)
-			defer C.free(unsafe.Pointer(optC))
-		}
-		C.QAuthenticator_SetOption(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: optC, len: C.longlong(len(opt))}, core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetOption", opt, value})
 }
 
 func (ptr *QAuthenticator) SetPassword(password string) {
-	if ptr.Pointer() != nil {
-		var passwordC *C.char
-		if password != "" {
-			passwordC = C.CString(password)
-			defer C.free(unsafe.Pointer(passwordC))
-		}
-		C.QAuthenticator_SetPassword(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: passwordC, len: C.longlong(len(password))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPassword", password})
 }
 
 func (ptr *QAuthenticator) SetUser(user string) {
-	if ptr.Pointer() != nil {
-		var userC *C.char
-		if user != "" {
-			userC = C.CString(user)
-			defer C.free(unsafe.Pointer(userC))
-		}
-		C.QAuthenticator_SetUser(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: userC, len: C.longlong(len(user))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetUser", user})
 }
 
 func (ptr *QAuthenticator) User() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QAuthenticator_User(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "User"}).(string)
 }
 
 func (ptr *QAuthenticator) DestroyQAuthenticator() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QAuthenticator_DestroyQAuthenticator(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQAuthenticator"})
 }
 
 func (ptr *QAuthenticator) __options_atList(v string, i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var vC *C.char
-		if v != "" {
-			vC = C.CString(v)
-			defer C.free(unsafe.Pointer(vC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QAuthenticator___options_atList(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__options_atList", v, i}).(*core.QVariant)
 }
 
 func (ptr *QAuthenticator) __options_setList(key string, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		C.QAuthenticator___options_setList(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__options_setList", key, i})
 }
 
 func (ptr *QAuthenticator) __options_newList() unsafe.Pointer {
-	return C.QAuthenticator___options_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__options_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QAuthenticator) __options_keyList() []string {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []string {
-			out := make([]string, int(l.len))
-			tmpList := NewQAuthenticatorFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____options_keyList_atList(i)
-			}
-			return out
-		}(C.QAuthenticator___options_keyList(ptr.Pointer()))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__options_keyList"}).([]string)
 }
 
 func (ptr *QAuthenticator) ____options_keyList_atList(i int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QAuthenticator_____options_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____options_keyList_atList", i}).(string)
 }
 
 func (ptr *QAuthenticator) ____options_keyList_setList(i string) {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
-		}
-		C.QAuthenticator_____options_keyList_setList(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: iC, len: C.longlong(len(i))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____options_keyList_setList", i})
 }
 
 func (ptr *QAuthenticator) ____options_keyList_newList() unsafe.Pointer {
-	return C.QAuthenticator_____options_keyList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____options_keyList_newList"}).(unsafe.Pointer)
 }
 
 type QDnsDomainNameRecord struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QDnsDomainNameRecord_ITF interface {
@@ -2577,14 +1258,14 @@ func (ptr *QDnsDomainNameRecord) QDnsDomainNameRecord_PTR() *QDnsDomainNameRecor
 
 func (ptr *QDnsDomainNameRecord) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QDnsDomainNameRecord) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -2595,62 +1276,52 @@ func PointerFromQDnsDomainNameRecord(ptr QDnsDomainNameRecord_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *QDnsDomainNameRecord) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQDnsDomainNameRecordFromPointer(ptr unsafe.Pointer) (n *QDnsDomainNameRecord) {
 	n = new(QDnsDomainNameRecord)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QDnsDomainNameRecord")
 	return
 }
 func NewQDnsDomainNameRecord() *QDnsDomainNameRecord {
-	tmpValue := NewQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord())
-	qt.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsDomainNameRecord", ""}).(*QDnsDomainNameRecord)
 }
 
 func NewQDnsDomainNameRecord2(other QDnsDomainNameRecord_ITF) *QDnsDomainNameRecord {
-	tmpValue := NewQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord2(PointerFromQDnsDomainNameRecord(other)))
-	qt.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsDomainNameRecord2", "", other}).(*QDnsDomainNameRecord)
 }
 
 func (ptr *QDnsDomainNameRecord) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QDnsDomainNameRecord_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QDnsDomainNameRecord) Swap(other QDnsDomainNameRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsDomainNameRecord_Swap(ptr.Pointer(), PointerFromQDnsDomainNameRecord(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QDnsDomainNameRecord) TimeToLive() uint {
-	if ptr.Pointer() != nil {
-		return uint(uint32(C.QDnsDomainNameRecord_TimeToLive(ptr.Pointer())))
-	}
-	return 0
+
+	return uint(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimeToLive"}).(float64))
 }
 
 func (ptr *QDnsDomainNameRecord) Value() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QDnsDomainNameRecord_Value(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Value"}).(string)
 }
 
 func (ptr *QDnsDomainNameRecord) DestroyQDnsDomainNameRecord() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QDnsDomainNameRecord_DestroyQDnsDomainNameRecord(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQDnsDomainNameRecord"})
 }
 
 type QDnsHostAddressRecord struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QDnsHostAddressRecord_ITF interface {
@@ -2663,14 +1334,14 @@ func (ptr *QDnsHostAddressRecord) QDnsHostAddressRecord_PTR() *QDnsHostAddressRe
 
 func (ptr *QDnsHostAddressRecord) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QDnsHostAddressRecord) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -2681,60 +1352,48 @@ func PointerFromQDnsHostAddressRecord(ptr QDnsHostAddressRecord_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *QDnsHostAddressRecord) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQDnsHostAddressRecordFromPointer(ptr unsafe.Pointer) (n *QDnsHostAddressRecord) {
 	n = new(QDnsHostAddressRecord)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QDnsHostAddressRecord")
 	return
 }
 func NewQDnsHostAddressRecord() *QDnsHostAddressRecord {
-	tmpValue := NewQDnsHostAddressRecordFromPointer(C.QDnsHostAddressRecord_NewQDnsHostAddressRecord())
-	qt.SetFinalizer(tmpValue, (*QDnsHostAddressRecord).DestroyQDnsHostAddressRecord)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsHostAddressRecord", ""}).(*QDnsHostAddressRecord)
 }
 
 func NewQDnsHostAddressRecord2(other QDnsHostAddressRecord_ITF) *QDnsHostAddressRecord {
-	tmpValue := NewQDnsHostAddressRecordFromPointer(C.QDnsHostAddressRecord_NewQDnsHostAddressRecord2(PointerFromQDnsHostAddressRecord(other)))
-	qt.SetFinalizer(tmpValue, (*QDnsHostAddressRecord).DestroyQDnsHostAddressRecord)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsHostAddressRecord2", "", other}).(*QDnsHostAddressRecord)
 }
 
 func (ptr *QDnsHostAddressRecord) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QDnsHostAddressRecord_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QDnsHostAddressRecord) Swap(other QDnsHostAddressRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsHostAddressRecord_Swap(ptr.Pointer(), PointerFromQDnsHostAddressRecord(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QDnsHostAddressRecord) TimeToLive() uint {
-	if ptr.Pointer() != nil {
-		return uint(uint32(C.QDnsHostAddressRecord_TimeToLive(ptr.Pointer())))
-	}
-	return 0
+
+	return uint(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimeToLive"}).(float64))
 }
 
 func (ptr *QDnsHostAddressRecord) Value() *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QDnsHostAddressRecord_Value(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Value"}).(*QHostAddress)
 }
 
 func (ptr *QDnsHostAddressRecord) DestroyQDnsHostAddressRecord() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QDnsHostAddressRecord_DestroyQDnsHostAddressRecord(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQDnsHostAddressRecord"})
 }
 
 type QDnsLookup struct {
@@ -2770,9 +1429,18 @@ func PointerFromQDnsLookup(ptr QDnsLookup_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QDnsLookup) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QDnsLookup) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQDnsLookupFromPointer(ptr unsafe.Pointer) (n *QDnsLookup) {
 	n = new(QDnsLookup)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QDnsLookup")
 	return
 }
 
@@ -2808,877 +1476,432 @@ const (
 )
 
 func NewQDnsLookup(parent core.QObject_ITF) *QDnsLookup {
-	tmpValue := NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsLookup", "", parent}).(*QDnsLookup)
 }
 
 func NewQDnsLookup2(ty QDnsLookup__Type, name string, parent core.QObject_ITF) *QDnsLookup {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup2(C.longlong(ty), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsLookup2", "", ty, name, parent}).(*QDnsLookup)
 }
 
 func NewQDnsLookup3(ty QDnsLookup__Type, name string, nameserver QHostAddress_ITF, parent core.QObject_ITF) *QDnsLookup {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup3(C.longlong(ty), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQHostAddress(nameserver), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQDnsLookup_Abort
-func callbackQDnsLookup_Abort(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "abort"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQDnsLookupFromPointer(ptr).AbortDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsLookup3", "", ty, name, nameserver, parent}).(*QDnsLookup)
 }
 
 func (ptr *QDnsLookup) ConnectAbort(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "abort"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "abort", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "abort", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectAbort", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QDnsLookup) DisconnectAbort() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "abort")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectAbort"})
 }
 
 func (ptr *QDnsLookup) Abort() {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_Abort(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Abort"})
 }
 
 func (ptr *QDnsLookup) AbortDefault() {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_AbortDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AbortDefault"})
 }
 
 func (ptr *QDnsLookup) CanonicalNameRecords() []*QDnsDomainNameRecord {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QDnsDomainNameRecord {
-			out := make([]*QDnsDomainNameRecord, int(l.len))
-			tmpList := NewQDnsLookupFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__canonicalNameRecords_atList(i)
-			}
-			return out
-		}(C.QDnsLookup_CanonicalNameRecords(ptr.Pointer()))
-	}
-	return make([]*QDnsDomainNameRecord, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CanonicalNameRecords"}).([]*QDnsDomainNameRecord)
 }
 
 func (ptr *QDnsLookup) Error() QDnsLookup__Error {
-	if ptr.Pointer() != nil {
-		return QDnsLookup__Error(C.QDnsLookup_Error(ptr.Pointer()))
-	}
-	return 0
+
+	return QDnsLookup__Error(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error"}).(float64))
 }
 
 func (ptr *QDnsLookup) ErrorString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QDnsLookup_ErrorString(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQDnsLookup_Finished
-func callbackQDnsLookup_Finished(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ErrorString"}).(string)
 }
 
 func (ptr *QDnsLookup) ConnectFinished(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QDnsLookup_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFinished", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QDnsLookup) DisconnectFinished() {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_DisconnectFinished(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "finished")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFinished"})
 }
 
 func (ptr *QDnsLookup) Finished() {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_Finished(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Finished"})
 }
 
 func (ptr *QDnsLookup) HostAddressRecords() []*QDnsHostAddressRecord {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QDnsHostAddressRecord {
-			out := make([]*QDnsHostAddressRecord, int(l.len))
-			tmpList := NewQDnsLookupFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__hostAddressRecords_atList(i)
-			}
-			return out
-		}(C.QDnsLookup_HostAddressRecords(ptr.Pointer()))
-	}
-	return make([]*QDnsHostAddressRecord, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HostAddressRecords"}).([]*QDnsHostAddressRecord)
 }
 
 func (ptr *QDnsLookup) IsFinished() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QDnsLookup_IsFinished(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQDnsLookup_Lookup
-func callbackQDnsLookup_Lookup(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "lookup"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQDnsLookupFromPointer(ptr).LookupDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsFinished"}).(bool)
 }
 
 func (ptr *QDnsLookup) ConnectLookup(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "lookup"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "lookup", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "lookup", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectLookup", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QDnsLookup) DisconnectLookup() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "lookup")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectLookup"})
 }
 
 func (ptr *QDnsLookup) Lookup() {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_Lookup(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Lookup"})
 }
 
 func (ptr *QDnsLookup) LookupDefault() {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_LookupDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LookupDefault"})
 }
 
 func (ptr *QDnsLookup) MailExchangeRecords() []*QDnsMailExchangeRecord {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QDnsMailExchangeRecord {
-			out := make([]*QDnsMailExchangeRecord, int(l.len))
-			tmpList := NewQDnsLookupFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__mailExchangeRecords_atList(i)
-			}
-			return out
-		}(C.QDnsLookup_MailExchangeRecords(ptr.Pointer()))
-	}
-	return make([]*QDnsMailExchangeRecord, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MailExchangeRecords"}).([]*QDnsMailExchangeRecord)
 }
 
 func (ptr *QDnsLookup) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QDnsLookup_Name(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQDnsLookup_NameChanged
-func callbackQDnsLookup_NameChanged(ptr unsafe.Pointer, name C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "nameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(name))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QDnsLookup) ConnectNameChanged(f func(name string)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "nameChanged") {
-			C.QDnsLookup_ConnectNameChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nameChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "nameChanged"); signal != nil {
-			f := func(name string) {
-				(*(*func(string))(signal))(name)
-				f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "nameChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "nameChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNameChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QDnsLookup) DisconnectNameChanged() {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_DisconnectNameChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "nameChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNameChanged"})
 }
 
 func (ptr *QDnsLookup) NameChanged(name string) {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QDnsLookup_NameChanged(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NameChanged", name})
 }
 
 func (ptr *QDnsLookup) NameServerRecords() []*QDnsDomainNameRecord {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QDnsDomainNameRecord {
-			out := make([]*QDnsDomainNameRecord, int(l.len))
-			tmpList := NewQDnsLookupFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__nameServerRecords_atList(i)
-			}
-			return out
-		}(C.QDnsLookup_NameServerRecords(ptr.Pointer()))
-	}
-	return make([]*QDnsDomainNameRecord, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NameServerRecords"}).([]*QDnsDomainNameRecord)
 }
 
 func (ptr *QDnsLookup) Nameserver() *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QDnsLookup_Nameserver(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQDnsLookup_NameserverChanged
-func callbackQDnsLookup_NameserverChanged(ptr unsafe.Pointer, nameserver unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "nameserverChanged"); signal != nil {
-		(*(*func(*QHostAddress))(signal))(NewQHostAddressFromPointer(nameserver))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Nameserver"}).(*QHostAddress)
 }
 
 func (ptr *QDnsLookup) ConnectNameserverChanged(f func(nameserver *QHostAddress)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "nameserverChanged") {
-			C.QDnsLookup_ConnectNameserverChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "nameserverChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "nameserverChanged"); signal != nil {
-			f := func(nameserver *QHostAddress) {
-				(*(*func(*QHostAddress))(signal))(nameserver)
-				f(nameserver)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "nameserverChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "nameserverChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNameserverChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QDnsLookup) DisconnectNameserverChanged() {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_DisconnectNameserverChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "nameserverChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNameserverChanged"})
 }
 
 func (ptr *QDnsLookup) NameserverChanged(nameserver QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_NameserverChanged(ptr.Pointer(), PointerFromQHostAddress(nameserver))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NameserverChanged", nameserver})
 }
 
 func (ptr *QDnsLookup) PointerRecords() []*QDnsDomainNameRecord {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QDnsDomainNameRecord {
-			out := make([]*QDnsDomainNameRecord, int(l.len))
-			tmpList := NewQDnsLookupFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__pointerRecords_atList(i)
-			}
-			return out
-		}(C.QDnsLookup_PointerRecords(ptr.Pointer()))
-	}
-	return make([]*QDnsDomainNameRecord, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PointerRecords"}).([]*QDnsDomainNameRecord)
 }
 
 func (ptr *QDnsLookup) ServiceRecords() []*QDnsServiceRecord {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QDnsServiceRecord {
-			out := make([]*QDnsServiceRecord, int(l.len))
-			tmpList := NewQDnsLookupFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__serviceRecords_atList(i)
-			}
-			return out
-		}(C.QDnsLookup_ServiceRecords(ptr.Pointer()))
-	}
-	return make([]*QDnsServiceRecord, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ServiceRecords"}).([]*QDnsServiceRecord)
 }
 
 func (ptr *QDnsLookup) SetName(name string) {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QDnsLookup_SetName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetName", name})
 }
 
 func (ptr *QDnsLookup) SetNameserver(nameserver QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_SetNameserver(ptr.Pointer(), PointerFromQHostAddress(nameserver))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetNameserver", nameserver})
 }
 
 func (ptr *QDnsLookup) SetType(vqd QDnsLookup__Type) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_SetType(ptr.Pointer(), C.longlong(vqd))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetType", vqd})
 }
 
 func (ptr *QDnsLookup) TextRecords() []*QDnsTextRecord {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QDnsTextRecord {
-			out := make([]*QDnsTextRecord, int(l.len))
-			tmpList := NewQDnsLookupFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__textRecords_atList(i)
-			}
-			return out
-		}(C.QDnsLookup_TextRecords(ptr.Pointer()))
-	}
-	return make([]*QDnsTextRecord, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TextRecords"}).([]*QDnsTextRecord)
 }
 
 func (ptr *QDnsLookup) Type() QDnsLookup__Type {
-	if ptr.Pointer() != nil {
-		return QDnsLookup__Type(C.QDnsLookup_Type(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQDnsLookup_TypeChanged
-func callbackQDnsLookup_TypeChanged(ptr unsafe.Pointer, ty C.longlong) {
-	if signal := qt.GetSignal(ptr, "typeChanged"); signal != nil {
-		(*(*func(QDnsLookup__Type))(signal))(QDnsLookup__Type(ty))
-	}
-
+	return QDnsLookup__Type(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Type"}).(float64))
 }
 
 func (ptr *QDnsLookup) ConnectTypeChanged(f func(ty QDnsLookup__Type)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "typeChanged") {
-			C.QDnsLookup_ConnectTypeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "typeChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "typeChanged"); signal != nil {
-			f := func(ty QDnsLookup__Type) {
-				(*(*func(QDnsLookup__Type))(signal))(ty)
-				f(ty)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "typeChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "typeChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectTypeChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QDnsLookup) DisconnectTypeChanged() {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_DisconnectTypeChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "typeChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectTypeChanged"})
 }
 
 func (ptr *QDnsLookup) TypeChanged(ty QDnsLookup__Type) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_TypeChanged(ptr.Pointer(), C.longlong(ty))
-	}
-}
 
-//export callbackQDnsLookup_DestroyQDnsLookup
-func callbackQDnsLookup_DestroyQDnsLookup(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QDnsLookup"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQDnsLookupFromPointer(ptr).DestroyQDnsLookupDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TypeChanged", ty})
 }
 
 func (ptr *QDnsLookup) ConnectDestroyQDnsLookup(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QDnsLookup"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QDnsLookup", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QDnsLookup", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQDnsLookup", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QDnsLookup) DisconnectDestroyQDnsLookup() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QDnsLookup")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQDnsLookup"})
 }
 
 func (ptr *QDnsLookup) DestroyQDnsLookup() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QDnsLookup_DestroyQDnsLookup(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQDnsLookup"})
 }
 
 func (ptr *QDnsLookup) DestroyQDnsLookupDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QDnsLookup_DestroyQDnsLookupDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQDnsLookupDefault"})
 }
 
 func (ptr *QDnsLookup) __canonicalNameRecords_atList(i int) *QDnsDomainNameRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQDnsDomainNameRecordFromPointer(C.QDnsLookup___canonicalNameRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__canonicalNameRecords_atList", i}).(*QDnsDomainNameRecord)
 }
 
 func (ptr *QDnsLookup) __canonicalNameRecords_setList(i QDnsDomainNameRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___canonicalNameRecords_setList(ptr.Pointer(), PointerFromQDnsDomainNameRecord(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__canonicalNameRecords_setList", i})
 }
 
 func (ptr *QDnsLookup) __canonicalNameRecords_newList() unsafe.Pointer {
-	return C.QDnsLookup___canonicalNameRecords_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__canonicalNameRecords_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) __hostAddressRecords_atList(i int) *QDnsHostAddressRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQDnsHostAddressRecordFromPointer(C.QDnsLookup___hostAddressRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QDnsHostAddressRecord).DestroyQDnsHostAddressRecord)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__hostAddressRecords_atList", i}).(*QDnsHostAddressRecord)
 }
 
 func (ptr *QDnsLookup) __hostAddressRecords_setList(i QDnsHostAddressRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___hostAddressRecords_setList(ptr.Pointer(), PointerFromQDnsHostAddressRecord(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__hostAddressRecords_setList", i})
 }
 
 func (ptr *QDnsLookup) __hostAddressRecords_newList() unsafe.Pointer {
-	return C.QDnsLookup___hostAddressRecords_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__hostAddressRecords_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) __mailExchangeRecords_atList(i int) *QDnsMailExchangeRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQDnsMailExchangeRecordFromPointer(C.QDnsLookup___mailExchangeRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QDnsMailExchangeRecord).DestroyQDnsMailExchangeRecord)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__mailExchangeRecords_atList", i}).(*QDnsMailExchangeRecord)
 }
 
 func (ptr *QDnsLookup) __mailExchangeRecords_setList(i QDnsMailExchangeRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___mailExchangeRecords_setList(ptr.Pointer(), PointerFromQDnsMailExchangeRecord(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__mailExchangeRecords_setList", i})
 }
 
 func (ptr *QDnsLookup) __mailExchangeRecords_newList() unsafe.Pointer {
-	return C.QDnsLookup___mailExchangeRecords_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__mailExchangeRecords_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) __nameServerRecords_atList(i int) *QDnsDomainNameRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQDnsDomainNameRecordFromPointer(C.QDnsLookup___nameServerRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__nameServerRecords_atList", i}).(*QDnsDomainNameRecord)
 }
 
 func (ptr *QDnsLookup) __nameServerRecords_setList(i QDnsDomainNameRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___nameServerRecords_setList(ptr.Pointer(), PointerFromQDnsDomainNameRecord(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__nameServerRecords_setList", i})
 }
 
 func (ptr *QDnsLookup) __nameServerRecords_newList() unsafe.Pointer {
-	return C.QDnsLookup___nameServerRecords_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__nameServerRecords_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) __pointerRecords_atList(i int) *QDnsDomainNameRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQDnsDomainNameRecordFromPointer(C.QDnsLookup___pointerRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QDnsDomainNameRecord).DestroyQDnsDomainNameRecord)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__pointerRecords_atList", i}).(*QDnsDomainNameRecord)
 }
 
 func (ptr *QDnsLookup) __pointerRecords_setList(i QDnsDomainNameRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___pointerRecords_setList(ptr.Pointer(), PointerFromQDnsDomainNameRecord(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__pointerRecords_setList", i})
 }
 
 func (ptr *QDnsLookup) __pointerRecords_newList() unsafe.Pointer {
-	return C.QDnsLookup___pointerRecords_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__pointerRecords_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) __serviceRecords_atList(i int) *QDnsServiceRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQDnsServiceRecordFromPointer(C.QDnsLookup___serviceRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QDnsServiceRecord).DestroyQDnsServiceRecord)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__serviceRecords_atList", i}).(*QDnsServiceRecord)
 }
 
 func (ptr *QDnsLookup) __serviceRecords_setList(i QDnsServiceRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___serviceRecords_setList(ptr.Pointer(), PointerFromQDnsServiceRecord(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__serviceRecords_setList", i})
 }
 
 func (ptr *QDnsLookup) __serviceRecords_newList() unsafe.Pointer {
-	return C.QDnsLookup___serviceRecords_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__serviceRecords_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) __textRecords_atList(i int) *QDnsTextRecord {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQDnsTextRecordFromPointer(C.QDnsLookup___textRecords_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QDnsTextRecord).DestroyQDnsTextRecord)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__textRecords_atList", i}).(*QDnsTextRecord)
 }
 
 func (ptr *QDnsLookup) __textRecords_setList(i QDnsTextRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___textRecords_setList(ptr.Pointer(), PointerFromQDnsTextRecord(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__textRecords_setList", i})
 }
 
 func (ptr *QDnsLookup) __textRecords_newList() unsafe.Pointer {
-	return C.QDnsLookup___textRecords_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__textRecords_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDnsLookup___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QDnsLookup) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QDnsLookup) __children_newList() unsafe.Pointer {
-	return C.QDnsLookup___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QDnsLookup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QDnsLookup) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QDnsLookup) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QDnsLookup___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDnsLookup___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QDnsLookup) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QDnsLookup) __findChildren_newList() unsafe.Pointer {
-	return C.QDnsLookup___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QDnsLookup___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QDnsLookup) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QDnsLookup) __findChildren_newList3() unsafe.Pointer {
-	return C.QDnsLookup___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQDnsLookup_ChildEvent
-func callbackQDnsLookup_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQDnsLookupFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QDnsLookup) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQDnsLookup_ConnectNotify
-func callbackQDnsLookup_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQDnsLookupFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QDnsLookup) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQDnsLookup_CustomEvent
-func callbackQDnsLookup_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQDnsLookupFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QDnsLookup) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQDnsLookup_DeleteLater
-func callbackQDnsLookup_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQDnsLookupFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QDnsLookup) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QDnsLookup_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQDnsLookup_Destroyed
-func callbackQDnsLookup_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQDnsLookup_DisconnectNotify
-func callbackQDnsLookup_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQDnsLookupFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QDnsLookup) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQDnsLookup_Event
-func callbackQDnsLookup_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQDnsLookupFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QDnsLookup) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QDnsLookup_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQDnsLookup_EventFilter
-func callbackQDnsLookup_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQDnsLookupFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QDnsLookup) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QDnsLookup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQDnsLookup_MetaObject
-func callbackQDnsLookup_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQDnsLookupFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QDnsLookup) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QDnsLookup_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQDnsLookup_ObjectNameChanged
-func callbackQDnsLookup_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQDnsLookup_TimerEvent
-func callbackQDnsLookup_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQDnsLookupFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QDnsLookup) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsLookup_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QDnsMailExchangeRecord struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QDnsMailExchangeRecord_ITF interface {
@@ -3691,14 +1914,14 @@ func (ptr *QDnsMailExchangeRecord) QDnsMailExchangeRecord_PTR() *QDnsMailExchang
 
 func (ptr *QDnsMailExchangeRecord) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QDnsMailExchangeRecord) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -3709,69 +1932,57 @@ func PointerFromQDnsMailExchangeRecord(ptr QDnsMailExchangeRecord_ITF) unsafe.Po
 	return nil
 }
 
+func (n *QDnsMailExchangeRecord) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQDnsMailExchangeRecordFromPointer(ptr unsafe.Pointer) (n *QDnsMailExchangeRecord) {
 	n = new(QDnsMailExchangeRecord)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QDnsMailExchangeRecord")
 	return
 }
 func NewQDnsMailExchangeRecord() *QDnsMailExchangeRecord {
-	tmpValue := NewQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord())
-	qt.SetFinalizer(tmpValue, (*QDnsMailExchangeRecord).DestroyQDnsMailExchangeRecord)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsMailExchangeRecord", ""}).(*QDnsMailExchangeRecord)
 }
 
 func NewQDnsMailExchangeRecord2(other QDnsMailExchangeRecord_ITF) *QDnsMailExchangeRecord {
-	tmpValue := NewQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord2(PointerFromQDnsMailExchangeRecord(other)))
-	qt.SetFinalizer(tmpValue, (*QDnsMailExchangeRecord).DestroyQDnsMailExchangeRecord)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsMailExchangeRecord2", "", other}).(*QDnsMailExchangeRecord)
 }
 
 func (ptr *QDnsMailExchangeRecord) Exchange() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QDnsMailExchangeRecord_Exchange(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Exchange"}).(string)
 }
 
 func (ptr *QDnsMailExchangeRecord) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QDnsMailExchangeRecord_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QDnsMailExchangeRecord) Preference() uint16 {
-	if ptr.Pointer() != nil {
-		return uint16(C.QDnsMailExchangeRecord_Preference(ptr.Pointer()))
-	}
-	return 0
+
+	return uint16(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Preference"}).(float64))
 }
 
 func (ptr *QDnsMailExchangeRecord) Swap(other QDnsMailExchangeRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsMailExchangeRecord_Swap(ptr.Pointer(), PointerFromQDnsMailExchangeRecord(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QDnsMailExchangeRecord) TimeToLive() uint {
-	if ptr.Pointer() != nil {
-		return uint(uint32(C.QDnsMailExchangeRecord_TimeToLive(ptr.Pointer())))
-	}
-	return 0
+
+	return uint(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimeToLive"}).(float64))
 }
 
 func (ptr *QDnsMailExchangeRecord) DestroyQDnsMailExchangeRecord() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QDnsMailExchangeRecord_DestroyQDnsMailExchangeRecord(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQDnsMailExchangeRecord"})
 }
 
 type QDnsServiceRecord struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QDnsServiceRecord_ITF interface {
@@ -3784,14 +1995,14 @@ func (ptr *QDnsServiceRecord) QDnsServiceRecord_PTR() *QDnsServiceRecord {
 
 func (ptr *QDnsServiceRecord) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QDnsServiceRecord) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -3802,83 +2013,67 @@ func PointerFromQDnsServiceRecord(ptr QDnsServiceRecord_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QDnsServiceRecord) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQDnsServiceRecordFromPointer(ptr unsafe.Pointer) (n *QDnsServiceRecord) {
 	n = new(QDnsServiceRecord)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QDnsServiceRecord")
 	return
 }
 func NewQDnsServiceRecord() *QDnsServiceRecord {
-	tmpValue := NewQDnsServiceRecordFromPointer(C.QDnsServiceRecord_NewQDnsServiceRecord())
-	qt.SetFinalizer(tmpValue, (*QDnsServiceRecord).DestroyQDnsServiceRecord)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsServiceRecord", ""}).(*QDnsServiceRecord)
 }
 
 func NewQDnsServiceRecord2(other QDnsServiceRecord_ITF) *QDnsServiceRecord {
-	tmpValue := NewQDnsServiceRecordFromPointer(C.QDnsServiceRecord_NewQDnsServiceRecord2(PointerFromQDnsServiceRecord(other)))
-	qt.SetFinalizer(tmpValue, (*QDnsServiceRecord).DestroyQDnsServiceRecord)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsServiceRecord2", "", other}).(*QDnsServiceRecord)
 }
 
 func (ptr *QDnsServiceRecord) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QDnsServiceRecord_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QDnsServiceRecord) Port() uint16 {
-	if ptr.Pointer() != nil {
-		return uint16(C.QDnsServiceRecord_Port(ptr.Pointer()))
-	}
-	return 0
+
+	return uint16(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Port"}).(float64))
 }
 
 func (ptr *QDnsServiceRecord) Priority() uint16 {
-	if ptr.Pointer() != nil {
-		return uint16(C.QDnsServiceRecord_Priority(ptr.Pointer()))
-	}
-	return 0
+
+	return uint16(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Priority"}).(float64))
 }
 
 func (ptr *QDnsServiceRecord) Swap(other QDnsServiceRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsServiceRecord_Swap(ptr.Pointer(), PointerFromQDnsServiceRecord(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QDnsServiceRecord) Target() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QDnsServiceRecord_Target(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Target"}).(string)
 }
 
 func (ptr *QDnsServiceRecord) TimeToLive() uint {
-	if ptr.Pointer() != nil {
-		return uint(uint32(C.QDnsServiceRecord_TimeToLive(ptr.Pointer())))
-	}
-	return 0
+
+	return uint(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimeToLive"}).(float64))
 }
 
 func (ptr *QDnsServiceRecord) Weight() uint16 {
-	if ptr.Pointer() != nil {
-		return uint16(C.QDnsServiceRecord_Weight(ptr.Pointer()))
-	}
-	return 0
+
+	return uint16(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Weight"}).(float64))
 }
 
 func (ptr *QDnsServiceRecord) DestroyQDnsServiceRecord() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QDnsServiceRecord_DestroyQDnsServiceRecord(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQDnsServiceRecord"})
 }
 
 type QDnsTextRecord struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QDnsTextRecord_ITF interface {
@@ -3891,14 +2086,14 @@ func (ptr *QDnsTextRecord) QDnsTextRecord_PTR() *QDnsTextRecord {
 
 func (ptr *QDnsTextRecord) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QDnsTextRecord) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -3909,84 +2104,63 @@ func PointerFromQDnsTextRecord(ptr QDnsTextRecord_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QDnsTextRecord) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQDnsTextRecordFromPointer(ptr unsafe.Pointer) (n *QDnsTextRecord) {
 	n = new(QDnsTextRecord)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QDnsTextRecord")
 	return
 }
 func NewQDnsTextRecord() *QDnsTextRecord {
-	tmpValue := NewQDnsTextRecordFromPointer(C.QDnsTextRecord_NewQDnsTextRecord())
-	qt.SetFinalizer(tmpValue, (*QDnsTextRecord).DestroyQDnsTextRecord)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsTextRecord", ""}).(*QDnsTextRecord)
 }
 
 func NewQDnsTextRecord2(other QDnsTextRecord_ITF) *QDnsTextRecord {
-	tmpValue := NewQDnsTextRecordFromPointer(C.QDnsTextRecord_NewQDnsTextRecord2(PointerFromQDnsTextRecord(other)))
-	qt.SetFinalizer(tmpValue, (*QDnsTextRecord).DestroyQDnsTextRecord)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQDnsTextRecord2", "", other}).(*QDnsTextRecord)
 }
 
 func (ptr *QDnsTextRecord) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QDnsTextRecord_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QDnsTextRecord) Swap(other QDnsTextRecord_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsTextRecord_Swap(ptr.Pointer(), PointerFromQDnsTextRecord(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QDnsTextRecord) TimeToLive() uint {
-	if ptr.Pointer() != nil {
-		return uint(uint32(C.QDnsTextRecord_TimeToLive(ptr.Pointer())))
-	}
-	return 0
+
+	return uint(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimeToLive"}).(float64))
 }
 
 func (ptr *QDnsTextRecord) Values() []*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*core.QByteArray {
-			out := make([]*core.QByteArray, int(l.len))
-			tmpList := NewQDnsTextRecordFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__values_atList(i)
-			}
-			return out
-		}(C.QDnsTextRecord_Values(ptr.Pointer()))
-	}
-	return make([]*core.QByteArray, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Values"}).([]*core.QByteArray)
 }
 
 func (ptr *QDnsTextRecord) DestroyQDnsTextRecord() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QDnsTextRecord_DestroyQDnsTextRecord(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQDnsTextRecord"})
 }
 
 func (ptr *QDnsTextRecord) __values_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QDnsTextRecord___values_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__values_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QDnsTextRecord) __values_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDnsTextRecord___values_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__values_setList", i})
 }
 
 func (ptr *QDnsTextRecord) __values_newList() unsafe.Pointer {
-	return C.QDnsTextRecord___values_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__values_newList"}).(unsafe.Pointer)
 }
 
 type QDtls struct {
@@ -4022,9 +2196,18 @@ func PointerFromQDtls(ptr QDtls_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QDtls) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QDtls) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQDtlsFromPointer(ptr unsafe.Pointer) (n *QDtls) {
 	n = new(QDtls)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QDtls")
 	return
 }
 
@@ -4088,14 +2271,23 @@ func PointerFromQDtlsClientVerifier(ptr QDtlsClientVerifier_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *QDtlsClientVerifier) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QDtlsClientVerifier) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQDtlsClientVerifierFromPointer(ptr unsafe.Pointer) (n *QDtlsClientVerifier) {
 	n = new(QDtlsClientVerifier)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QDtlsClientVerifier")
 	return
 }
 
 type QHostAddress struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QHostAddress_ITF interface {
@@ -4108,14 +2300,14 @@ func (ptr *QHostAddress) QHostAddress_PTR() *QHostAddress {
 
 func (ptr *QHostAddress) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QHostAddress) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -4126,9 +2318,13 @@ func PointerFromQHostAddress(ptr QHostAddress_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHostAddress) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQHostAddressFromPointer(ptr unsafe.Pointer) (n *QHostAddress) {
 	n = new(QHostAddress)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QHostAddress")
 	return
 }
 
@@ -4160,253 +2356,162 @@ const (
 )
 
 func NewQHostAddress() *QHostAddress {
-	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress())
-	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHostAddress", ""}).(*QHostAddress)
 }
 
 func NewQHostAddress2(ip4Addr uint) *QHostAddress {
-	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress2(C.uint(uint32(ip4Addr))))
-	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHostAddress2", "", ip4Addr}).(*QHostAddress)
 }
 
 func NewQHostAddress3(ip6Addr string) *QHostAddress {
-	var ip6AddrC *C.char
-	if ip6Addr != "" {
-		ip6AddrC = C.CString(ip6Addr)
-		defer C.free(unsafe.Pointer(ip6AddrC))
-	}
-	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress3(ip6AddrC))
-	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHostAddress3", "", ip6Addr}).(*QHostAddress)
 }
 
 func NewQHostAddress4(ip6Addr string) *QHostAddress {
-	var ip6AddrC *C.char
-	if ip6Addr != "" {
-		ip6AddrC = C.CString(ip6Addr)
-		defer C.free(unsafe.Pointer(ip6AddrC))
-	}
-	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress4(ip6AddrC))
-	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHostAddress4", "", ip6Addr}).(*QHostAddress)
 }
 
 func NewQHostAddress7(address string) *QHostAddress {
-	var addressC *C.char
-	if address != "" {
-		addressC = C.CString(address)
-		defer C.free(unsafe.Pointer(addressC))
-	}
-	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress7(C.struct_QtNetwork_PackedString{data: addressC, len: C.longlong(len(address))}))
-	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHostAddress7", "", address}).(*QHostAddress)
 }
 
 func NewQHostAddress8(address QHostAddress_ITF) *QHostAddress {
-	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress8(PointerFromQHostAddress(address)))
-	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHostAddress8", "", address}).(*QHostAddress)
 }
 
 func NewQHostAddress9(address QHostAddress__SpecialAddress) *QHostAddress {
-	tmpValue := NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress9(C.longlong(address)))
-	qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHostAddress9", "", address}).(*QHostAddress)
 }
 
 func (ptr *QHostAddress) Clear() {
-	if ptr.Pointer() != nil {
-		C.QHostAddress_Clear(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Clear"})
 }
 
 func (ptr *QHostAddress) IsBroadcast() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHostAddress_IsBroadcast(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsBroadcast"}).(bool)
 }
 
 func (ptr *QHostAddress) IsEqual(other QHostAddress_ITF, mode QHostAddress__ConversionModeFlag) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHostAddress_IsEqual(ptr.Pointer(), PointerFromQHostAddress(other), C.longlong(mode))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsEqual", other, mode}).(bool)
 }
 
 func (ptr *QHostAddress) IsGlobal() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHostAddress_IsGlobal(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsGlobal"}).(bool)
 }
 
 func (ptr *QHostAddress) IsInSubnet(subnet QHostAddress_ITF, netmask int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHostAddress_IsInSubnet(ptr.Pointer(), PointerFromQHostAddress(subnet), C.int(int32(netmask)))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsInSubnet", subnet, netmask}).(bool)
 }
 
 func (ptr *QHostAddress) IsLinkLocal() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHostAddress_IsLinkLocal(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsLinkLocal"}).(bool)
 }
 
 func (ptr *QHostAddress) IsLoopback() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHostAddress_IsLoopback(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsLoopback"}).(bool)
 }
 
 func (ptr *QHostAddress) IsMulticast() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHostAddress_IsMulticast(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsMulticast"}).(bool)
 }
 
 func (ptr *QHostAddress) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHostAddress_IsNull(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsNull"}).(bool)
 }
 
 func (ptr *QHostAddress) IsSiteLocal() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHostAddress_IsSiteLocal(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsSiteLocal"}).(bool)
 }
 
 func (ptr *QHostAddress) IsUniqueLocalUnicast() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHostAddress_IsUniqueLocalUnicast(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsUniqueLocalUnicast"}).(bool)
 }
 
 func (ptr *QHostAddress) Protocol() QAbstractSocket__NetworkLayerProtocol {
-	if ptr.Pointer() != nil {
-		return QAbstractSocket__NetworkLayerProtocol(C.QHostAddress_Protocol(ptr.Pointer()))
-	}
-	return 0
+
+	return QAbstractSocket__NetworkLayerProtocol(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Protocol"}).(float64))
 }
 
 func (ptr *QHostAddress) ScopeId() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QHostAddress_ScopeId(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ScopeId"}).(string)
 }
 
 func (ptr *QHostAddress) SetAddress(ip4Addr uint) {
-	if ptr.Pointer() != nil {
-		C.QHostAddress_SetAddress(ptr.Pointer(), C.uint(uint32(ip4Addr)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAddress", ip4Addr})
 }
 
 func (ptr *QHostAddress) SetAddress2(ip6Addr string) {
-	if ptr.Pointer() != nil {
-		var ip6AddrC *C.char
-		if ip6Addr != "" {
-			ip6AddrC = C.CString(ip6Addr)
-			defer C.free(unsafe.Pointer(ip6AddrC))
-		}
-		C.QHostAddress_SetAddress2(ptr.Pointer(), ip6AddrC)
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAddress2", ip6Addr})
 }
 
 func (ptr *QHostAddress) SetAddress3(ip6Addr string) {
-	if ptr.Pointer() != nil {
-		var ip6AddrC *C.char
-		if ip6Addr != "" {
-			ip6AddrC = C.CString(ip6Addr)
-			defer C.free(unsafe.Pointer(ip6AddrC))
-		}
-		C.QHostAddress_SetAddress3(ptr.Pointer(), ip6AddrC)
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAddress3", ip6Addr})
 }
 
 func (ptr *QHostAddress) SetAddress6(address string) bool {
-	if ptr.Pointer() != nil {
-		var addressC *C.char
-		if address != "" {
-			addressC = C.CString(address)
-			defer C.free(unsafe.Pointer(addressC))
-		}
-		return int8(C.QHostAddress_SetAddress6(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: addressC, len: C.longlong(len(address))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAddress6", address}).(bool)
 }
 
 func (ptr *QHostAddress) SetAddress7(address QHostAddress__SpecialAddress) {
-	if ptr.Pointer() != nil {
-		C.QHostAddress_SetAddress7(ptr.Pointer(), C.longlong(address))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAddress7", address})
 }
 
 func (ptr *QHostAddress) SetScopeId(id string) {
-	if ptr.Pointer() != nil {
-		var idC *C.char
-		if id != "" {
-			idC = C.CString(id)
-			defer C.free(unsafe.Pointer(idC))
-		}
-		C.QHostAddress_SetScopeId(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: idC, len: C.longlong(len(id))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScopeId", id})
 }
 
 func (ptr *QHostAddress) Swap(other QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHostAddress_Swap(ptr.Pointer(), PointerFromQHostAddress(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QHostAddress) ToIPv4Address() uint {
-	if ptr.Pointer() != nil {
-		return uint(uint32(C.QHostAddress_ToIPv4Address(ptr.Pointer())))
-	}
-	return 0
+
+	return uint(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ToIPv4Address"}).(float64))
 }
 
 func (ptr *QHostAddress) ToIPv4Address2(ok *bool) uint {
-	if ptr.Pointer() != nil {
-		var okC C.char
-		if ok != nil {
-			okC = C.char(int8(qt.GoBoolToInt(*ok)))
-			defer func() { *ok = int8(okC) != 0 }()
-		}
-		return uint(uint32(C.QHostAddress_ToIPv4Address2(ptr.Pointer(), &okC)))
-	}
-	return 0
+
+	return uint(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ToIPv4Address2", ok}).(float64))
 }
 
 func (ptr *QHostAddress) ToString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QHostAddress_ToString(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ToString"}).(string)
 }
 
 func (ptr *QHostAddress) DestroyQHostAddress() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHostAddress_DestroyQHostAddress(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQHostAddress"})
 }
 
 type QHostInfo struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QHostInfo_ITF interface {
@@ -4419,14 +2524,14 @@ func (ptr *QHostInfo) QHostInfo_PTR() *QHostInfo {
 
 func (ptr *QHostInfo) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QHostInfo) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -4437,9 +2542,13 @@ func PointerFromQHostInfo(ptr QHostInfo_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHostInfo) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQHostInfoFromPointer(ptr unsafe.Pointer) (n *QHostInfo) {
 	n = new(QHostInfo)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QHostInfo")
 	return
 }
 
@@ -4454,235 +2563,157 @@ const (
 )
 
 func NewQHostInfo(id int) *QHostInfo {
-	tmpValue := NewQHostInfoFromPointer(C.QHostInfo_NewQHostInfo(C.int(int32(id))))
-	qt.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHostInfo", "", id}).(*QHostInfo)
 }
 
 func NewQHostInfo2(other QHostInfo_ITF) *QHostInfo {
-	tmpValue := NewQHostInfoFromPointer(C.QHostInfo_NewQHostInfo2(PointerFromQHostInfo(other)))
-	qt.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHostInfo2", "", other}).(*QHostInfo)
 }
 
 func QHostInfo_AbortHostLookup(id int) {
-	C.QHostInfo_QHostInfo_AbortHostLookup(C.int(int32(id)))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QHostInfo_AbortHostLookup", "", id})
 }
 
 func (ptr *QHostInfo) AbortHostLookup(id int) {
-	C.QHostInfo_QHostInfo_AbortHostLookup(C.int(int32(id)))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QHostInfo_AbortHostLookup", "", id})
 }
 
 func (ptr *QHostInfo) Addresses() []*QHostAddress {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QHostAddress {
-			out := make([]*QHostAddress, int(l.len))
-			tmpList := NewQHostInfoFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__addresses_atList(i)
-			}
-			return out
-		}(C.QHostInfo_Addresses(ptr.Pointer()))
-	}
-	return make([]*QHostAddress, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Addresses"}).([]*QHostAddress)
 }
 
 func (ptr *QHostInfo) Error() QHostInfo__HostInfoError {
-	if ptr.Pointer() != nil {
-		return QHostInfo__HostInfoError(C.QHostInfo_Error(ptr.Pointer()))
-	}
-	return 0
+
+	return QHostInfo__HostInfoError(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error"}).(float64))
 }
 
 func (ptr *QHostInfo) ErrorString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QHostInfo_ErrorString(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ErrorString"}).(string)
 }
 
 func QHostInfo_FromName(name string) *QHostInfo {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQHostInfoFromPointer(C.QHostInfo_QHostInfo_FromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	qt.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QHostInfo_FromName", "", name}).(*QHostInfo)
 }
 
 func (ptr *QHostInfo) FromName(name string) *QHostInfo {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQHostInfoFromPointer(C.QHostInfo_QHostInfo_FromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	qt.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QHostInfo_FromName", "", name}).(*QHostInfo)
 }
 
 func (ptr *QHostInfo) HostName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QHostInfo_HostName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HostName"}).(string)
 }
 
 func QHostInfo_LocalDomainName() string {
-	return cGoUnpackString(C.QHostInfo_QHostInfo_LocalDomainName())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QHostInfo_LocalDomainName", ""}).(string)
 }
 
 func (ptr *QHostInfo) LocalDomainName() string {
-	return cGoUnpackString(C.QHostInfo_QHostInfo_LocalDomainName())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QHostInfo_LocalDomainName", ""}).(string)
 }
 
 func QHostInfo_LocalHostName() string {
-	return cGoUnpackString(C.QHostInfo_QHostInfo_LocalHostName())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QHostInfo_LocalHostName", ""}).(string)
 }
 
 func (ptr *QHostInfo) LocalHostName() string {
-	return cGoUnpackString(C.QHostInfo_QHostInfo_LocalHostName())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QHostInfo_LocalHostName", ""}).(string)
 }
 
 func QHostInfo_LookupHost(name string, receiver core.QObject_ITF, member string) int {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	var memberC *C.char
-	if member != "" {
-		memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
-	}
-	return int(int32(C.QHostInfo_QHostInfo_LookupHost(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(receiver), memberC)))
+
+	return int(internal.CallLocalFunction([]interface{}{"", "", "network.QHostInfo_LookupHost", "", name, receiver, member}).(float64))
 }
 
 func (ptr *QHostInfo) LookupHost(name string, receiver core.QObject_ITF, member string) int {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	var memberC *C.char
-	if member != "" {
-		memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
-	}
-	return int(int32(C.QHostInfo_QHostInfo_LookupHost(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(receiver), memberC)))
+
+	return int(internal.CallLocalFunction([]interface{}{"", "", "network.QHostInfo_LookupHost", "", name, receiver, member}).(float64))
 }
 
 func (ptr *QHostInfo) LookupId() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHostInfo_LookupId(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LookupId"}).(float64))
 }
 
 func (ptr *QHostInfo) SetAddresses(addresses []*QHostAddress) {
-	if ptr.Pointer() != nil {
-		C.QHostInfo_SetAddresses(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQHostInfoFromPointer(NewQHostInfoFromPointer(nil).__setAddresses_addresses_newList())
-			for _, v := range addresses {
-				tmpList.__setAddresses_addresses_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAddresses", addresses})
 }
 
 func (ptr *QHostInfo) SetError(error QHostInfo__HostInfoError) {
-	if ptr.Pointer() != nil {
-		C.QHostInfo_SetError(ptr.Pointer(), C.longlong(error))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetError", error})
 }
 
 func (ptr *QHostInfo) SetErrorString(str string) {
-	if ptr.Pointer() != nil {
-		var strC *C.char
-		if str != "" {
-			strC = C.CString(str)
-			defer C.free(unsafe.Pointer(strC))
-		}
-		C.QHostInfo_SetErrorString(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: strC, len: C.longlong(len(str))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetErrorString", str})
 }
 
 func (ptr *QHostInfo) SetHostName(hostName string) {
-	if ptr.Pointer() != nil {
-		var hostNameC *C.char
-		if hostName != "" {
-			hostNameC = C.CString(hostName)
-			defer C.free(unsafe.Pointer(hostNameC))
-		}
-		C.QHostInfo_SetHostName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHostName", hostName})
 }
 
 func (ptr *QHostInfo) SetLookupId(id int) {
-	if ptr.Pointer() != nil {
-		C.QHostInfo_SetLookupId(ptr.Pointer(), C.int(int32(id)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLookupId", id})
 }
 
 func (ptr *QHostInfo) Swap(other QHostInfo_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHostInfo_Swap(ptr.Pointer(), PointerFromQHostInfo(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QHostInfo) DestroyQHostInfo() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHostInfo_DestroyQHostInfo(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQHostInfo"})
 }
 
 func (ptr *QHostInfo) __addresses_atList(i int) *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QHostInfo___addresses_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addresses_atList", i}).(*QHostAddress)
 }
 
 func (ptr *QHostInfo) __addresses_setList(i QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHostInfo___addresses_setList(ptr.Pointer(), PointerFromQHostAddress(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addresses_setList", i})
 }
 
 func (ptr *QHostInfo) __addresses_newList() unsafe.Pointer {
-	return C.QHostInfo___addresses_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addresses_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QHostInfo) __setAddresses_addresses_atList(i int) *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QHostInfo___setAddresses_addresses_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setAddresses_addresses_atList", i}).(*QHostAddress)
 }
 
 func (ptr *QHostInfo) __setAddresses_addresses_setList(i QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHostInfo___setAddresses_addresses_setList(ptr.Pointer(), PointerFromQHostAddress(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setAddresses_addresses_setList", i})
 }
 
 func (ptr *QHostInfo) __setAddresses_addresses_newList() unsafe.Pointer {
-	return C.QHostInfo___setAddresses_addresses_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setAddresses_addresses_newList"}).(unsafe.Pointer)
 }
 
 type QHstsPolicy struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QHstsPolicy_ITF interface {
@@ -4695,14 +2726,14 @@ func (ptr *QHstsPolicy) QHstsPolicy_PTR() *QHstsPolicy {
 
 func (ptr *QHstsPolicy) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QHstsPolicy) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -4713,9 +2744,13 @@ func PointerFromQHstsPolicy(ptr QHstsPolicy_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHstsPolicy) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQHstsPolicyFromPointer(ptr unsafe.Pointer) (n *QHstsPolicy) {
 	n = new(QHstsPolicy)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QHstsPolicy")
 	return
 }
 
@@ -4728,95 +2763,63 @@ const (
 )
 
 func NewQHstsPolicy() *QHstsPolicy {
-	tmpValue := NewQHstsPolicyFromPointer(C.QHstsPolicy_NewQHstsPolicy())
-	qt.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHstsPolicy", ""}).(*QHstsPolicy)
 }
 
 func NewQHstsPolicy2(expiry core.QDateTime_ITF, flags QHstsPolicy__PolicyFlag, host string, mode core.QUrl__ParsingMode) *QHstsPolicy {
-	var hostC *C.char
-	if host != "" {
-		hostC = C.CString(host)
-		defer C.free(unsafe.Pointer(hostC))
-	}
-	tmpValue := NewQHstsPolicyFromPointer(C.QHstsPolicy_NewQHstsPolicy2(core.PointerFromQDateTime(expiry), C.longlong(flags), C.struct_QtNetwork_PackedString{data: hostC, len: C.longlong(len(host))}, C.longlong(mode)))
-	qt.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHstsPolicy2", "", expiry, flags, host, mode}).(*QHstsPolicy)
 }
 
 func NewQHstsPolicy3(other QHstsPolicy_ITF) *QHstsPolicy {
-	tmpValue := NewQHstsPolicyFromPointer(C.QHstsPolicy_NewQHstsPolicy3(PointerFromQHstsPolicy(other)))
-	qt.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHstsPolicy3", "", other}).(*QHstsPolicy)
 }
 
 func (ptr *QHstsPolicy) Expiry() *core.QDateTime {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQDateTimeFromPointer(C.QHstsPolicy_Expiry(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Expiry"}).(*core.QDateTime)
 }
 
 func (ptr *QHstsPolicy) Host(options core.QUrl__ComponentFormattingOption) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QHstsPolicy_Host(ptr.Pointer(), C.longlong(options)))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Host", options}).(string)
 }
 
 func (ptr *QHstsPolicy) IncludesSubDomains() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHstsPolicy_IncludesSubDomains(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IncludesSubDomains"}).(bool)
 }
 
 func (ptr *QHstsPolicy) IsExpired() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHstsPolicy_IsExpired(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsExpired"}).(bool)
 }
 
 func (ptr *QHstsPolicy) SetExpiry(expiry core.QDateTime_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHstsPolicy_SetExpiry(ptr.Pointer(), core.PointerFromQDateTime(expiry))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetExpiry", expiry})
 }
 
 func (ptr *QHstsPolicy) SetHost(host string, mode core.QUrl__ParsingMode) {
-	if ptr.Pointer() != nil {
-		var hostC *C.char
-		if host != "" {
-			hostC = C.CString(host)
-			defer C.free(unsafe.Pointer(hostC))
-		}
-		C.QHstsPolicy_SetHost(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostC, len: C.longlong(len(host))}, C.longlong(mode))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHost", host, mode})
 }
 
 func (ptr *QHstsPolicy) SetIncludesSubDomains(include bool) {
-	if ptr.Pointer() != nil {
-		C.QHstsPolicy_SetIncludesSubDomains(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(include))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetIncludesSubDomains", include})
 }
 
 func (ptr *QHstsPolicy) Swap(other QHstsPolicy_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHstsPolicy_Swap(ptr.Pointer(), PointerFromQHstsPolicy(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QHstsPolicy) DestroyQHstsPolicy() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHstsPolicy_DestroyQHstsPolicy(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQHstsPolicy"})
 }
 
 type QHttpMultiPart struct {
@@ -4852,9 +2855,18 @@ func PointerFromQHttpMultiPart(ptr QHttpMultiPart_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHttpMultiPart) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QHttpMultiPart) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQHttpMultiPartFromPointer(ptr unsafe.Pointer) (n *QHttpMultiPart) {
 	n = new(QHttpMultiPart)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QHttpMultiPart")
 	return
 }
 
@@ -4870,337 +2882,162 @@ const (
 )
 
 func NewQHttpMultiPart(parent core.QObject_ITF) *QHttpMultiPart {
-	tmpValue := NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHttpMultiPart", "", parent}).(*QHttpMultiPart)
 }
 
 func NewQHttpMultiPart2(contentType QHttpMultiPart__ContentType, parent core.QObject_ITF) *QHttpMultiPart {
-	tmpValue := NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart2(C.longlong(contentType), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHttpMultiPart2", "", contentType, parent}).(*QHttpMultiPart)
 }
 
 func (ptr *QHttpMultiPart) Append(httpPart QHttpPart_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_Append(ptr.Pointer(), PointerFromQHttpPart(httpPart))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Append", httpPart})
 }
 
 func (ptr *QHttpMultiPart) Boundary() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QHttpMultiPart_Boundary(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Boundary"}).(*core.QByteArray)
 }
 
 func (ptr *QHttpMultiPart) SetBoundary(boundary core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_SetBoundary(ptr.Pointer(), core.PointerFromQByteArray(boundary))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetBoundary", boundary})
 }
 
 func (ptr *QHttpMultiPart) SetContentType(contentType QHttpMultiPart__ContentType) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_SetContentType(ptr.Pointer(), C.longlong(contentType))
-	}
-}
 
-//export callbackQHttpMultiPart_DestroyQHttpMultiPart
-func callbackQHttpMultiPart_DestroyQHttpMultiPart(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QHttpMultiPart"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQHttpMultiPartFromPointer(ptr).DestroyQHttpMultiPartDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetContentType", contentType})
 }
 
 func (ptr *QHttpMultiPart) ConnectDestroyQHttpMultiPart(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QHttpMultiPart"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QHttpMultiPart", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QHttpMultiPart", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQHttpMultiPart", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QHttpMultiPart) DisconnectDestroyQHttpMultiPart() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QHttpMultiPart")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQHttpMultiPart"})
 }
 
 func (ptr *QHttpMultiPart) DestroyQHttpMultiPart() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHttpMultiPart_DestroyQHttpMultiPart(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQHttpMultiPart"})
 }
 
 func (ptr *QHttpMultiPart) DestroyQHttpMultiPartDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHttpMultiPart_DestroyQHttpMultiPartDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQHttpMultiPartDefault"})
 }
 
 func (ptr *QHttpMultiPart) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHttpMultiPart___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QHttpMultiPart) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QHttpMultiPart) __children_newList() unsafe.Pointer {
-	return C.QHttpMultiPart___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QHttpMultiPart) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QHttpMultiPart___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QHttpMultiPart) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QHttpMultiPart) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QHttpMultiPart___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QHttpMultiPart) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHttpMultiPart___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QHttpMultiPart) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QHttpMultiPart) __findChildren_newList() unsafe.Pointer {
-	return C.QHttpMultiPart___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QHttpMultiPart) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QHttpMultiPart___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QHttpMultiPart) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QHttpMultiPart) __findChildren_newList3() unsafe.Pointer {
-	return C.QHttpMultiPart___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQHttpMultiPart_ChildEvent
-func callbackQHttpMultiPart_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQHttpMultiPartFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QHttpMultiPart) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQHttpMultiPart_ConnectNotify
-func callbackQHttpMultiPart_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQHttpMultiPartFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QHttpMultiPart) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQHttpMultiPart_CustomEvent
-func callbackQHttpMultiPart_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQHttpMultiPartFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QHttpMultiPart) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQHttpMultiPart_DeleteLater
-func callbackQHttpMultiPart_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQHttpMultiPartFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QHttpMultiPart) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHttpMultiPart_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQHttpMultiPart_Destroyed
-func callbackQHttpMultiPart_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQHttpMultiPart_DisconnectNotify
-func callbackQHttpMultiPart_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQHttpMultiPartFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QHttpMultiPart) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQHttpMultiPart_Event
-func callbackQHttpMultiPart_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQHttpMultiPartFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QHttpMultiPart) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHttpMultiPart_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQHttpMultiPart_EventFilter
-func callbackQHttpMultiPart_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQHttpMultiPartFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QHttpMultiPart) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QHttpMultiPart_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQHttpMultiPart_MetaObject
-func callbackQHttpMultiPart_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQHttpMultiPartFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QHttpMultiPart) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QHttpMultiPart_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQHttpMultiPart_ObjectNameChanged
-func callbackQHttpMultiPart_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQHttpMultiPart_TimerEvent
-func callbackQHttpMultiPart_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQHttpMultiPartFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QHttpMultiPart) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QHttpPart struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QHttpPart_ITF interface {
@@ -5213,14 +3050,14 @@ func (ptr *QHttpPart) QHttpPart_PTR() *QHttpPart {
 
 func (ptr *QHttpPart) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QHttpPart) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -5231,65 +3068,57 @@ func PointerFromQHttpPart(ptr QHttpPart_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QHttpPart) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQHttpPartFromPointer(ptr unsafe.Pointer) (n *QHttpPart) {
 	n = new(QHttpPart)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QHttpPart")
 	return
 }
 func NewQHttpPart() *QHttpPart {
-	tmpValue := NewQHttpPartFromPointer(C.QHttpPart_NewQHttpPart())
-	qt.SetFinalizer(tmpValue, (*QHttpPart).DestroyQHttpPart)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHttpPart", ""}).(*QHttpPart)
 }
 
 func NewQHttpPart2(other QHttpPart_ITF) *QHttpPart {
-	tmpValue := NewQHttpPartFromPointer(C.QHttpPart_NewQHttpPart2(PointerFromQHttpPart(other)))
-	qt.SetFinalizer(tmpValue, (*QHttpPart).DestroyQHttpPart)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQHttpPart2", "", other}).(*QHttpPart)
 }
 
 func (ptr *QHttpPart) SetBody(body core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpPart_SetBody(ptr.Pointer(), core.PointerFromQByteArray(body))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetBody", body})
 }
 
 func (ptr *QHttpPart) SetBodyDevice(device core.QIODevice_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpPart_SetBodyDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetBodyDevice", device})
 }
 
 func (ptr *QHttpPart) SetHeader(header QNetworkRequest__KnownHeaders, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpPart_SetHeader(ptr.Pointer(), C.longlong(header), core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHeader", header, value})
 }
 
 func (ptr *QHttpPart) SetRawHeader(headerName core.QByteArray_ITF, headerValue core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpPart_SetRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName), core.PointerFromQByteArray(headerValue))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetRawHeader", headerName, headerValue})
 }
 
 func (ptr *QHttpPart) Swap(other QHttpPart_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHttpPart_Swap(ptr.Pointer(), PointerFromQHttpPart(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QHttpPart) DestroyQHttpPart() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QHttpPart_DestroyQHttpPart(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQHttpPart"})
 }
 
 type QIPv6Address struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QIPv6Address_ITF interface {
@@ -5302,14 +3131,14 @@ func (ptr *QIPv6Address) QIPv6Address_PTR() *QIPv6Address {
 
 func (ptr *QIPv6Address) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QIPv6Address) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -5320,18 +3149,17 @@ func PointerFromQIPv6Address(ptr QIPv6Address_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QIPv6Address) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQIPv6AddressFromPointer(ptr unsafe.Pointer) (n *QIPv6Address) {
 	n = new(QIPv6Address)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QIPv6Address")
 	return
 }
-func (ptr *QIPv6Address) DestroyQIPv6Address() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *QIPv6Address) DestroyQIPv6Address() {
 }
 
 type QLocalServer struct {
@@ -5367,9 +3195,18 @@ func PointerFromQLocalServer(ptr QLocalServer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QLocalServer) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QLocalServer) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQLocalServerFromPointer(ptr unsafe.Pointer) (n *QLocalServer) {
 	n = new(QLocalServer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QLocalServer")
 	return
 }
 
@@ -5386,588 +3223,278 @@ const (
 )
 
 func NewQLocalServer(parent core.QObject_ITF) *QLocalServer {
-	tmpValue := NewQLocalServerFromPointer(C.QLocalServer_NewQLocalServer(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQLocalServer", "", parent}).(*QLocalServer)
 }
 
 func (ptr *QLocalServer) Close() {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_Close(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Close"})
 }
 
 func (ptr *QLocalServer) ErrorString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QLocalServer_ErrorString(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ErrorString"}).(string)
 }
 
 func (ptr *QLocalServer) FullServerName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QLocalServer_FullServerName(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQLocalServer_HasPendingConnections
-func callbackQLocalServer_HasPendingConnections(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "hasPendingConnections"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalServerFromPointer(ptr).HasPendingConnectionsDefault())))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "FullServerName"}).(string)
 }
 
 func (ptr *QLocalServer) ConnectHasPendingConnections(f func() bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "hasPendingConnections"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "hasPendingConnections", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasPendingConnections", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectHasPendingConnections", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalServer) DisconnectHasPendingConnections() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "hasPendingConnections")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectHasPendingConnections"})
 }
 
 func (ptr *QLocalServer) HasPendingConnections() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalServer_HasPendingConnections(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasPendingConnections"}).(bool)
 }
 
 func (ptr *QLocalServer) HasPendingConnectionsDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalServer_HasPendingConnectionsDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQLocalServer_IncomingConnection
-func callbackQLocalServer_IncomingConnection(ptr unsafe.Pointer, socketDescriptor C.uintptr_t) {
-	if signal := qt.GetSignal(ptr, "incomingConnection"); signal != nil {
-		(*(*func(uintptr))(signal))(uintptr(socketDescriptor))
-	} else {
-		NewQLocalServerFromPointer(ptr).IncomingConnectionDefault(uintptr(socketDescriptor))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasPendingConnectionsDefault"}).(bool)
 }
 
 func (ptr *QLocalServer) ConnectIncomingConnection(f func(socketDescriptor uintptr)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "incomingConnection"); signal != nil {
-			f := func(socketDescriptor uintptr) {
-				(*(*func(uintptr))(signal))(socketDescriptor)
-				f(socketDescriptor)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "incomingConnection", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "incomingConnection", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectIncomingConnection", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalServer) DisconnectIncomingConnection() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "incomingConnection")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectIncomingConnection"})
 }
 
 func (ptr *QLocalServer) IncomingConnection(socketDescriptor uintptr) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_IncomingConnection(ptr.Pointer(), C.uintptr_t(socketDescriptor))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IncomingConnection", socketDescriptor})
 }
 
 func (ptr *QLocalServer) IncomingConnectionDefault(socketDescriptor uintptr) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_IncomingConnectionDefault(ptr.Pointer(), C.uintptr_t(socketDescriptor))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IncomingConnectionDefault", socketDescriptor})
 }
 
 func (ptr *QLocalServer) IsListening() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalServer_IsListening(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsListening"}).(bool)
 }
 
 func (ptr *QLocalServer) Listen(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QLocalServer_Listen(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Listen", name}).(bool)
 }
 
 func (ptr *QLocalServer) MaxPendingConnections() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QLocalServer_MaxPendingConnections(ptr.Pointer())))
-	}
-	return 0
-}
 
-//export callbackQLocalServer_NewConnection
-func callbackQLocalServer_NewConnection(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "newConnection"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MaxPendingConnections"}).(float64))
 }
 
 func (ptr *QLocalServer) ConnectNewConnection(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "newConnection") {
-			C.QLocalServer_ConnectNewConnection(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConnection")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "newConnection", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "newConnection", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNewConnection", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalServer) DisconnectNewConnection() {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_DisconnectNewConnection(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "newConnection")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNewConnection"})
 }
 
 func (ptr *QLocalServer) NewConnection() {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_NewConnection(ptr.Pointer())
-	}
-}
 
-//export callbackQLocalServer_NextPendingConnection
-func callbackQLocalServer_NextPendingConnection(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "nextPendingConnection"); signal != nil {
-		return PointerFromQLocalSocket((*(*func() *QLocalSocket)(signal))())
-	}
-
-	return PointerFromQLocalSocket(NewQLocalServerFromPointer(ptr).NextPendingConnectionDefault())
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NewConnection"})
 }
 
 func (ptr *QLocalServer) ConnectNextPendingConnection(f func() *QLocalSocket) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "nextPendingConnection"); signal != nil {
-			f := func() *QLocalSocket {
-				(*(*func() *QLocalSocket)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "nextPendingConnection", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "nextPendingConnection", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNextPendingConnection", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalServer) DisconnectNextPendingConnection() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "nextPendingConnection")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNextPendingConnection"})
 }
 
 func (ptr *QLocalServer) NextPendingConnection() *QLocalSocket {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQLocalSocketFromPointer(C.QLocalServer_NextPendingConnection(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NextPendingConnection"}).(*QLocalSocket)
 }
 
 func (ptr *QLocalServer) NextPendingConnectionDefault() *QLocalSocket {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQLocalSocketFromPointer(C.QLocalServer_NextPendingConnectionDefault(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NextPendingConnectionDefault"}).(*QLocalSocket)
 }
 
 func QLocalServer_RemoveServer(name string) bool {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	return int8(C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QLocalServer_RemoveServer", "", name}).(bool)
 }
 
 func (ptr *QLocalServer) RemoveServer(name string) bool {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	return int8(C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QLocalServer_RemoveServer", "", name}).(bool)
 }
 
 func (ptr *QLocalServer) ServerError() QAbstractSocket__SocketError {
-	if ptr.Pointer() != nil {
-		return QAbstractSocket__SocketError(C.QLocalServer_ServerError(ptr.Pointer()))
-	}
-	return 0
+
+	return QAbstractSocket__SocketError(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ServerError"}).(float64))
 }
 
 func (ptr *QLocalServer) ServerName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QLocalServer_ServerName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ServerName"}).(string)
 }
 
 func (ptr *QLocalServer) SetMaxPendingConnections(numConnections int) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_SetMaxPendingConnections(ptr.Pointer(), C.int(int32(numConnections)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetMaxPendingConnections", numConnections})
 }
 
 func (ptr *QLocalServer) SetSocketOptions(options QLocalServer__SocketOption) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_SetSocketOptions(ptr.Pointer(), C.longlong(options))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSocketOptions", options})
 }
 
 func (ptr *QLocalServer) SocketOptions() QLocalServer__SocketOption {
-	if ptr.Pointer() != nil {
-		return QLocalServer__SocketOption(C.QLocalServer_SocketOptions(ptr.Pointer()))
-	}
-	return 0
+
+	return QLocalServer__SocketOption(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SocketOptions"}).(float64))
 }
 
 func (ptr *QLocalServer) WaitForNewConnection(msec int, timedOut *bool) bool {
-	if ptr.Pointer() != nil {
-		var timedOutC C.char
-		if timedOut != nil {
-			timedOutC = C.char(int8(qt.GoBoolToInt(*timedOut)))
-			defer func() { *timedOut = int8(timedOutC) != 0 }()
-		}
-		return int8(C.QLocalServer_WaitForNewConnection(ptr.Pointer(), C.int(int32(msec)), &timedOutC)) != 0
-	}
-	return false
-}
 
-//export callbackQLocalServer_DestroyQLocalServer
-func callbackQLocalServer_DestroyQLocalServer(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QLocalServer"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQLocalServerFromPointer(ptr).DestroyQLocalServerDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForNewConnection", msec, timedOut}).(bool)
 }
 
 func (ptr *QLocalServer) ConnectDestroyQLocalServer(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QLocalServer"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QLocalServer", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QLocalServer", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQLocalServer", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalServer) DisconnectDestroyQLocalServer() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QLocalServer")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQLocalServer"})
 }
 
 func (ptr *QLocalServer) DestroyQLocalServer() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QLocalServer_DestroyQLocalServer(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQLocalServer"})
 }
 
 func (ptr *QLocalServer) DestroyQLocalServerDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QLocalServer_DestroyQLocalServerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQLocalServerDefault"})
 }
 
 func (ptr *QLocalServer) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLocalServer___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QLocalServer) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QLocalServer) __children_newList() unsafe.Pointer {
-	return C.QLocalServer___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QLocalServer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QLocalServer___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QLocalServer) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QLocalServer) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QLocalServer___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QLocalServer) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLocalServer___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QLocalServer) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QLocalServer) __findChildren_newList() unsafe.Pointer {
-	return C.QLocalServer___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QLocalServer) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLocalServer___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QLocalServer) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QLocalServer) __findChildren_newList3() unsafe.Pointer {
-	return C.QLocalServer___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQLocalServer_ChildEvent
-func callbackQLocalServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQLocalServerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QLocalServer) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQLocalServer_ConnectNotify
-func callbackQLocalServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQLocalServerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QLocalServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQLocalServer_CustomEvent
-func callbackQLocalServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQLocalServerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QLocalServer) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQLocalServer_DeleteLater
-func callbackQLocalServer_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQLocalServerFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QLocalServer) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QLocalServer_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQLocalServer_Destroyed
-func callbackQLocalServer_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQLocalServer_DisconnectNotify
-func callbackQLocalServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQLocalServerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QLocalServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQLocalServer_Event
-func callbackQLocalServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalServerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QLocalServer) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQLocalServer_EventFilter
-func callbackQLocalServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalServerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QLocalServer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQLocalServer_MetaObject
-func callbackQLocalServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQLocalServerFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QLocalServer) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QLocalServer_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQLocalServer_ObjectNameChanged
-func callbackQLocalServer_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQLocalServer_TimerEvent
-func callbackQLocalServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQLocalServerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QLocalServer) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalServer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QLocalSocket struct {
@@ -6003,9 +3530,18 @@ func PointerFromQLocalSocket(ptr QLocalSocket_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QLocalSocket) InitFromInternal(ptr uintptr, name string) {
+	n.QIODevice_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QLocalSocket) ClassNameInternalF() string {
+	return n.QIODevice_PTR().ClassNameInternalF()
+}
+
 func NewQLocalSocketFromPointer(ptr unsafe.Pointer) (n *QLocalSocket) {
 	n = new(QLocalSocket)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QLocalSocket")
 	return
 }
 
@@ -6039,961 +3575,378 @@ const (
 )
 
 func NewQLocalSocket(parent core.QObject_ITF) *QLocalSocket {
-	tmpValue := NewQLocalSocketFromPointer(C.QLocalSocket_NewQLocalSocket(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQLocalSocket", "", parent}).(*QLocalSocket)
 }
 
 func (ptr *QLocalSocket) Abort() {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_Abort(ptr.Pointer())
-	}
-}
 
-//export callbackQLocalSocket_BytesAvailable
-func callbackQLocalSocket_BytesAvailable(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "bytesAvailable"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQLocalSocketFromPointer(ptr).BytesAvailableDefault())
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Abort"})
 }
 
 func (ptr *QLocalSocket) BytesAvailableDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QLocalSocket_BytesAvailableDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQLocalSocket_BytesToWrite
-func callbackQLocalSocket_BytesToWrite(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "bytesToWrite"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQLocalSocketFromPointer(ptr).BytesToWriteDefault())
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BytesAvailableDefault"}).(float64))
 }
 
 func (ptr *QLocalSocket) BytesToWriteDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QLocalSocket_BytesToWriteDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQLocalSocket_CanReadLine
-func callbackQLocalSocket_CanReadLine(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canReadLine"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).CanReadLineDefault())))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BytesToWriteDefault"}).(float64))
 }
 
 func (ptr *QLocalSocket) CanReadLineDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_CanReadLineDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQLocalSocket_Close
-func callbackQLocalSocket_Close(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "close"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQLocalSocketFromPointer(ptr).CloseDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CanReadLineDefault"}).(bool)
 }
 
 func (ptr *QLocalSocket) CloseDefault() {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_CloseDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CloseDefault"})
 }
 
 func (ptr *QLocalSocket) ConnectToServer(openMode core.QIODevice__OpenModeFlag) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_ConnectToServer(ptr.Pointer(), C.longlong(openMode))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToServer", openMode})
 }
 
 func (ptr *QLocalSocket) ConnectToServer2(name string, openMode core.QIODevice__OpenModeFlag) {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QLocalSocket_ConnectToServer2(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(openMode))
-	}
-}
 
-//export callbackQLocalSocket_Connected
-func callbackQLocalSocket_Connected(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connected"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToServer2", name, openMode})
 }
 
 func (ptr *QLocalSocket) ConnectConnected(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "connected") {
-			C.QLocalSocket_ConnectConnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "connected")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "connected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "connected", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectConnected", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalSocket) DisconnectConnected() {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_DisconnectConnected(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "connected")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectConnected"})
 }
 
 func (ptr *QLocalSocket) Connected() {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_Connected(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Connected"})
 }
 
 func (ptr *QLocalSocket) DisconnectFromServer() {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_DisconnectFromServer(ptr.Pointer())
-	}
-}
 
-//export callbackQLocalSocket_Disconnected
-func callbackQLocalSocket_Disconnected(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnected"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFromServer"})
 }
 
 func (ptr *QLocalSocket) ConnectDisconnected(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
-			C.QLocalSocket_ConnectDisconnected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "disconnected")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDisconnected", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalSocket) DisconnectDisconnected() {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_DisconnectDisconnected(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "disconnected")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDisconnected"})
 }
 
 func (ptr *QLocalSocket) Disconnected() {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_Disconnected(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Disconnected"})
 }
 
 func (ptr *QLocalSocket) Error() QLocalSocket__LocalSocketError {
-	if ptr.Pointer() != nil {
-		return QLocalSocket__LocalSocketError(C.QLocalSocket_Error(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQLocalSocket_Error2
-func callbackQLocalSocket_Error2(ptr unsafe.Pointer, socketError C.longlong) {
-	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		(*(*func(QLocalSocket__LocalSocketError))(signal))(QLocalSocket__LocalSocketError(socketError))
-	}
-
+	return QLocalSocket__LocalSocketError(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error"}).(float64))
 }
 
 func (ptr *QLocalSocket) ConnectError2(f func(socketError QLocalSocket__LocalSocketError)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QLocalSocket_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			f := func(socketError QLocalSocket__LocalSocketError) {
-				(*(*func(QLocalSocket__LocalSocketError))(signal))(socketError)
-				f(socketError)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectError2", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalSocket) DisconnectError2() {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "error2")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectError2"})
 }
 
 func (ptr *QLocalSocket) Error2(socketError QLocalSocket__LocalSocketError) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_Error2(ptr.Pointer(), C.longlong(socketError))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error2", socketError})
 }
 
 func (ptr *QLocalSocket) Flush() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_Flush(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Flush"}).(bool)
 }
 
 func (ptr *QLocalSocket) FullServerName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QLocalSocket_FullServerName(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQLocalSocket_IsSequential
-func callbackQLocalSocket_IsSequential(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "isSequential"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).IsSequentialDefault())))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "FullServerName"}).(string)
 }
 
 func (ptr *QLocalSocket) IsSequentialDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_IsSequentialDefault(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsSequentialDefault"}).(bool)
 }
 
 func (ptr *QLocalSocket) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_IsValid(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQLocalSocket_Open
-func callbackQLocalSocket_Open(ptr unsafe.Pointer, openMode C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "open"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(core.QIODevice__OpenModeFlag) bool)(signal))(core.QIODevice__OpenModeFlag(openMode)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).OpenDefault(core.QIODevice__OpenModeFlag(openMode)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsValid"}).(bool)
 }
 
 func (ptr *QLocalSocket) OpenDefault(openMode core.QIODevice__OpenModeFlag) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_OpenDefault(ptr.Pointer(), C.longlong(openMode))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "OpenDefault", openMode}).(bool)
 }
 
 func (ptr *QLocalSocket) ReadBufferSize() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QLocalSocket_ReadBufferSize(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQLocalSocket_ReadData
-func callbackQLocalSocket_ReadData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, c C.longlong) C.longlong {
-	if signal := qt.GetSignal(ptr, "readData"); signal != nil {
-		retS := cGoUnpackString(data)
-		ret := C.longlong((*(*func(*string, int64) int64)(signal))(&retS, int64(c)))
-		if ret > 0 {
-			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
-		}
-		return ret
-	}
-	retS := cGoUnpackString(data)
-	ret := C.longlong(NewQLocalSocketFromPointer(ptr).ReadDataDefault(&retS, int64(c)))
-	if ret > 0 {
-		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
-	}
-	return ret
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadBufferSize"}).(float64))
 }
 
 func (ptr *QLocalSocket) ConnectReadData(f func(data *string, c int64) int64) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "readData"); signal != nil {
-			f := func(data *string, c int64) int64 {
-				(*(*func(*string, int64) int64)(signal))(data, c)
-				return f(data, c)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "readData", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "readData", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectReadData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalSocket) DisconnectReadData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "readData")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectReadData"})
 }
 
 func (ptr *QLocalSocket) ReadData(data *string, c int64) int64 {
-	if ptr.Pointer() != nil {
-		dataC := C.CString(strings.Repeat("0", int(c)))
-		defer C.free(unsafe.Pointer(dataC))
-		ret := int64(C.QLocalSocket_ReadData(ptr.Pointer(), dataC, C.longlong(c)))
-		if ret > 0 {
-			*data = C.GoStringN(dataC, C.int(ret))
-		}
-		return ret
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadData", data, c}).(float64))
 }
 
 func (ptr *QLocalSocket) ReadDataDefault(data *string, c int64) int64 {
-	if ptr.Pointer() != nil {
-		dataC := C.CString(strings.Repeat("0", int(c)))
-		defer C.free(unsafe.Pointer(dataC))
-		ret := int64(C.QLocalSocket_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(c)))
-		if ret > 0 {
-			*data = C.GoStringN(dataC, C.int(ret))
-		}
-		return ret
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadDataDefault", data, c}).(float64))
 }
 
 func (ptr *QLocalSocket) ServerName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QLocalSocket_ServerName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ServerName"}).(string)
 }
 
 func (ptr *QLocalSocket) SetReadBufferSize(size int64) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_SetReadBufferSize(ptr.Pointer(), C.longlong(size))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetReadBufferSize", size})
 }
 
 func (ptr *QLocalSocket) SetServerName(name string) {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QLocalSocket_SetServerName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetServerName", name})
 }
 
 func (ptr *QLocalSocket) State() QLocalSocket__LocalSocketState {
-	if ptr.Pointer() != nil {
-		return QLocalSocket__LocalSocketState(C.QLocalSocket_State(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQLocalSocket_StateChanged
-func callbackQLocalSocket_StateChanged(ptr unsafe.Pointer, socketState C.longlong) {
-	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
-		(*(*func(QLocalSocket__LocalSocketState))(signal))(QLocalSocket__LocalSocketState(socketState))
-	}
-
+	return QLocalSocket__LocalSocketState(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "State"}).(float64))
 }
 
 func (ptr *QLocalSocket) ConnectStateChanged(f func(socketState QLocalSocket__LocalSocketState)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QLocalSocket_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
-			f := func(socketState QLocalSocket__LocalSocketState) {
-				(*(*func(QLocalSocket__LocalSocketState))(signal))(socketState)
-				f(socketState)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStateChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalSocket) DisconnectStateChanged() {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_DisconnectStateChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "stateChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStateChanged"})
 }
 
 func (ptr *QLocalSocket) StateChanged(socketState QLocalSocket__LocalSocketState) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_StateChanged(ptr.Pointer(), C.longlong(socketState))
-	}
-}
 
-//export callbackQLocalSocket_WaitForBytesWritten
-func callbackQLocalSocket_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
-	if signal := qt.GetSignal(ptr, "waitForBytesWritten"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(msecs))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(int32(msecs))))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StateChanged", socketState})
 }
 
 func (ptr *QLocalSocket) WaitForBytesWrittenDefault(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForBytesWrittenDefault", msecs}).(bool)
 }
 
 func (ptr *QLocalSocket) WaitForConnected(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_WaitForConnected(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForConnected", msecs}).(bool)
 }
 
 func (ptr *QLocalSocket) WaitForDisconnected(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_WaitForDisconnected(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
-}
 
-//export callbackQLocalSocket_WaitForReadyRead
-func callbackQLocalSocket_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
-	if signal := qt.GetSignal(ptr, "waitForReadyRead"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(msecs))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).WaitForReadyReadDefault(int(int32(msecs))))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForDisconnected", msecs}).(bool)
 }
 
 func (ptr *QLocalSocket) WaitForReadyReadDefault(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
-}
 
-//export callbackQLocalSocket_WriteData
-func callbackQLocalSocket_WriteData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, c C.longlong) C.longlong {
-	if signal := qt.GetSignal(ptr, "writeData"); signal != nil {
-		return C.longlong((*(*func([]byte, int64) int64)(signal))(cGoUnpackBytes(data), int64(c)))
-	}
-
-	return C.longlong(NewQLocalSocketFromPointer(ptr).WriteDataDefault(cGoUnpackBytes(data), int64(c)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForReadyReadDefault", msecs}).(bool)
 }
 
 func (ptr *QLocalSocket) ConnectWriteData(f func(data []byte, c int64) int64) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "writeData"); signal != nil {
-			f := func(data []byte, c int64) int64 {
-				(*(*func([]byte, int64) int64)(signal))(data, c)
-				return f(data, c)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "writeData", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "writeData", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectWriteData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalSocket) DisconnectWriteData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "writeData")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectWriteData"})
 }
 
 func (ptr *QLocalSocket) WriteData(data []byte, c int64) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QLocalSocket_WriteData(ptr.Pointer(), dataC, C.longlong(c)))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WriteData", data, c}).(float64))
 }
 
 func (ptr *QLocalSocket) WriteDataDefault(data []byte, c int64) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QLocalSocket_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(c)))
-	}
-	return 0
-}
 
-//export callbackQLocalSocket_DestroyQLocalSocket
-func callbackQLocalSocket_DestroyQLocalSocket(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QLocalSocket"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQLocalSocketFromPointer(ptr).DestroyQLocalSocketDefault()
-	}
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WriteDataDefault", data, c}).(float64))
 }
 
 func (ptr *QLocalSocket) ConnectDestroyQLocalSocket(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QLocalSocket"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QLocalSocket", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QLocalSocket", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQLocalSocket", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QLocalSocket) DisconnectDestroyQLocalSocket() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QLocalSocket")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQLocalSocket"})
 }
 
 func (ptr *QLocalSocket) DestroyQLocalSocket() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QLocalSocket_DestroyQLocalSocket(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQLocalSocket"})
 }
 
 func (ptr *QLocalSocket) DestroyQLocalSocketDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QLocalSocket_DestroyQLocalSocketDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQLocalSocketDefault"})
 }
 
 func (ptr *QLocalSocket) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLocalSocket___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QLocalSocket) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QLocalSocket) __children_newList() unsafe.Pointer {
-	return C.QLocalSocket___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QLocalSocket) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QLocalSocket___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QLocalSocket) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QLocalSocket) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QLocalSocket___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QLocalSocket) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLocalSocket___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QLocalSocket) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QLocalSocket) __findChildren_newList() unsafe.Pointer {
-	return C.QLocalSocket___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QLocalSocket) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QLocalSocket___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QLocalSocket) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QLocalSocket) __findChildren_newList3() unsafe.Pointer {
-	return C.QLocalSocket___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQLocalSocket_AboutToClose
-func callbackQLocalSocket_AboutToClose(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "aboutToClose"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQLocalSocket_AtEnd
-func callbackQLocalSocket_AtEnd(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "atEnd"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).AtEndDefault())))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QLocalSocket) AtEndDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_AtEndDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQLocalSocket_BytesWritten
-func callbackQLocalSocket_BytesWritten(ptr unsafe.Pointer, bytes C.longlong) {
-	if signal := qt.GetSignal(ptr, "bytesWritten"); signal != nil {
-		(*(*func(int64))(signal))(int64(bytes))
-	}
-
-}
-
-//export callbackQLocalSocket_ChannelBytesWritten
-func callbackQLocalSocket_ChannelBytesWritten(ptr unsafe.Pointer, channel C.int, bytes C.longlong) {
-	if signal := qt.GetSignal(ptr, "channelBytesWritten"); signal != nil {
-		(*(*func(int, int64))(signal))(int(int32(channel)), int64(bytes))
-	}
-
-}
-
-//export callbackQLocalSocket_ChannelReadyRead
-func callbackQLocalSocket_ChannelReadyRead(ptr unsafe.Pointer, channel C.int) {
-	if signal := qt.GetSignal(ptr, "channelReadyRead"); signal != nil {
-		(*(*func(int))(signal))(int(int32(channel)))
-	}
-
-}
-
-//export callbackQLocalSocket_Pos
-func callbackQLocalSocket_Pos(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "pos"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQLocalSocketFromPointer(ptr).PosDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AtEndDefault"}).(bool)
 }
 
 func (ptr *QLocalSocket) PosDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QLocalSocket_PosDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQLocalSocket_ReadChannelFinished
-func callbackQLocalSocket_ReadChannelFinished(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "readChannelFinished"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQLocalSocket_ReadLineData
-func callbackQLocalSocket_ReadLineData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxSize C.longlong) C.longlong {
-	if signal := qt.GetSignal(ptr, "readLineData"); signal != nil {
-		return C.longlong((*(*func([]byte, int64) int64)(signal))(cGoUnpackBytes(data), int64(maxSize)))
-	}
-
-	return C.longlong(NewQLocalSocketFromPointer(ptr).ReadLineDataDefault(cGoUnpackBytes(data), int64(maxSize)))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PosDefault"}).(float64))
 }
 
 func (ptr *QLocalSocket) ReadLineDataDefault(data []byte, maxSize int64) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QLocalSocket_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
-	}
-	return 0
-}
 
-//export callbackQLocalSocket_ReadyRead
-func callbackQLocalSocket_ReadyRead(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "readyRead"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQLocalSocket_Reset
-func callbackQLocalSocket_Reset(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "reset"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).ResetDefault())))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadLineDataDefault", data, maxSize}).(float64))
 }
 
 func (ptr *QLocalSocket) ResetDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_ResetDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQLocalSocket_Seek
-func callbackQLocalSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "seek"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int64) bool)(signal))(int64(pos)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).SeekDefault(int64(pos)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ResetDefault"}).(bool)
 }
 
 func (ptr *QLocalSocket) SeekDefault(pos int64) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_SeekDefault(ptr.Pointer(), C.longlong(pos))) != 0
-	}
-	return false
-}
 
-//export callbackQLocalSocket_Size
-func callbackQLocalSocket_Size(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "size"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQLocalSocketFromPointer(ptr).SizeDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SeekDefault", pos}).(bool)
 }
 
 func (ptr *QLocalSocket) SizeDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QLocalSocket_SizeDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQLocalSocket_ChildEvent
-func callbackQLocalSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQLocalSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SizeDefault"}).(float64))
 }
 
 func (ptr *QLocalSocket) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQLocalSocket_ConnectNotify
-func callbackQLocalSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQLocalSocketFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QLocalSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQLocalSocket_CustomEvent
-func callbackQLocalSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQLocalSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QLocalSocket) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQLocalSocket_DeleteLater
-func callbackQLocalSocket_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQLocalSocketFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QLocalSocket) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QLocalSocket_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQLocalSocket_Destroyed
-func callbackQLocalSocket_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQLocalSocket_DisconnectNotify
-func callbackQLocalSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQLocalSocketFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QLocalSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQLocalSocket_Event
-func callbackQLocalSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QLocalSocket) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQLocalSocket_EventFilter
-func callbackQLocalSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QLocalSocket) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QLocalSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQLocalSocket_MetaObject
-func callbackQLocalSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQLocalSocketFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QLocalSocket) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QLocalSocket_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQLocalSocket_ObjectNameChanged
-func callbackQLocalSocket_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQLocalSocket_TimerEvent
-func callbackQLocalSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQLocalSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QLocalSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLocalSocket_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QNetworkAccessManager struct {
@@ -7029,9 +3982,18 @@ func PointerFromQNetworkAccessManager(ptr QNetworkAccessManager_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *QNetworkAccessManager) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QNetworkAccessManager) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQNetworkAccessManagerFromPointer(ptr unsafe.Pointer) (n *QNetworkAccessManager) {
 	n = new(QNetworkAccessManager)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkAccessManager")
 	return
 }
 
@@ -7060,1109 +4022,522 @@ const (
 )
 
 func NewQNetworkAccessManager(parent core.QObject_ITF) *QNetworkAccessManager {
-	tmpValue := NewQNetworkAccessManagerFromPointer(C.QNetworkAccessManager_NewQNetworkAccessManager(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkAccessManager", "", parent}).(*QNetworkAccessManager)
 }
 
 func (ptr *QNetworkAccessManager) ActiveConfiguration() *QNetworkConfiguration {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkAccessManager_ActiveConfiguration(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ActiveConfiguration"}).(*QNetworkConfiguration)
 }
 
 func (ptr *QNetworkAccessManager) AddStrictTransportSecurityHosts(knownHosts []*QHstsPolicy) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_AddStrictTransportSecurityHosts(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkAccessManagerFromPointer(NewQNetworkAccessManagerFromPointer(nil).__addStrictTransportSecurityHosts_knownHosts_newList())
-			for _, v := range knownHosts {
-				tmpList.__addStrictTransportSecurityHosts_knownHosts_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
-}
 
-//export callbackQNetworkAccessManager_AuthenticationRequired
-func callbackQNetworkAccessManager_AuthenticationRequired(ptr unsafe.Pointer, reply unsafe.Pointer, authenticator unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "authenticationRequired"); signal != nil {
-		(*(*func(*QNetworkReply, *QAuthenticator))(signal))(NewQNetworkReplyFromPointer(reply), NewQAuthenticatorFromPointer(authenticator))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AddStrictTransportSecurityHosts", knownHosts})
 }
 
 func (ptr *QNetworkAccessManager) ConnectAuthenticationRequired(f func(reply *QNetworkReply, authenticator *QAuthenticator)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "authenticationRequired") {
-			C.QNetworkAccessManager_ConnectAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "authenticationRequired")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "authenticationRequired"); signal != nil {
-			f := func(reply *QNetworkReply, authenticator *QAuthenticator) {
-				(*(*func(*QNetworkReply, *QAuthenticator))(signal))(reply, authenticator)
-				f(reply, authenticator)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "authenticationRequired", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "authenticationRequired", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectAuthenticationRequired", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkAccessManager) DisconnectAuthenticationRequired() {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_DisconnectAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "authenticationRequired")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectAuthenticationRequired"})
 }
 
 func (ptr *QNetworkAccessManager) AuthenticationRequired(reply QNetworkReply_ITF, authenticator QAuthenticator_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_AuthenticationRequired(ptr.Pointer(), PointerFromQNetworkReply(reply), PointerFromQAuthenticator(authenticator))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AuthenticationRequired", reply, authenticator})
 }
 
 func (ptr *QNetworkAccessManager) Cache() *QAbstractNetworkCache {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQAbstractNetworkCacheFromPointer(C.QNetworkAccessManager_Cache(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Cache"}).(*QAbstractNetworkCache)
 }
 
 func (ptr *QNetworkAccessManager) ClearAccessCache() {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ClearAccessCache(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ClearAccessCache"})
 }
 
 func (ptr *QNetworkAccessManager) ClearConnectionCache() {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ClearConnectionCache(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ClearConnectionCache"})
 }
 
 func (ptr *QNetworkAccessManager) Configuration() *QNetworkConfiguration {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkAccessManager_Configuration(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Configuration"}).(*QNetworkConfiguration)
 }
 
 func (ptr *QNetworkAccessManager) ConnectToHost(hostName string, port uint16) {
-	if ptr.Pointer() != nil {
-		var hostNameC *C.char
-		if hostName != "" {
-			hostNameC = C.CString(hostName)
-			defer C.free(unsafe.Pointer(hostNameC))
-		}
-		C.QNetworkAccessManager_ConnectToHost(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToHost", hostName, port})
 }
 
 func (ptr *QNetworkAccessManager) ConnectToHostEncrypted(hostName string, port uint16, sslConfiguration QSslConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		var hostNameC *C.char
-		if hostName != "" {
-			hostNameC = C.CString(hostName)
-			defer C.free(unsafe.Pointer(hostNameC))
-		}
-		C.QNetworkAccessManager_ConnectToHostEncrypted(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), PointerFromQSslConfiguration(sslConfiguration))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToHostEncrypted", hostName, port, sslConfiguration})
 }
 
 func (ptr *QNetworkAccessManager) ConnectToHostEncrypted2(hostName string, port uint16, sslConfiguration QSslConfiguration_ITF, peerName string) {
-	if ptr.Pointer() != nil {
-		var hostNameC *C.char
-		if hostName != "" {
-			hostNameC = C.CString(hostName)
-			defer C.free(unsafe.Pointer(hostNameC))
-		}
-		var peerNameC *C.char
-		if peerName != "" {
-			peerNameC = C.CString(peerName)
-			defer C.free(unsafe.Pointer(peerNameC))
-		}
-		C.QNetworkAccessManager_ConnectToHostEncrypted2(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), PointerFromQSslConfiguration(sslConfiguration), C.struct_QtNetwork_PackedString{data: peerNameC, len: C.longlong(len(peerName))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToHostEncrypted2", hostName, port, sslConfiguration, peerName})
 }
 
 func (ptr *QNetworkAccessManager) CookieJar() *QNetworkCookieJar {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCookieJarFromPointer(C.QNetworkAccessManager_CookieJar(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkAccessManager_CreateRequest
-func callbackQNetworkAccessManager_CreateRequest(ptr unsafe.Pointer, op C.longlong, originalReq unsafe.Pointer, outgoingData unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "createRequest"); signal != nil {
-		return PointerFromQNetworkReply((*(*func(QNetworkAccessManager__Operation, *QNetworkRequest, *core.QIODevice) *QNetworkReply)(signal))(QNetworkAccessManager__Operation(op), NewQNetworkRequestFromPointer(originalReq), core.NewQIODeviceFromPointer(outgoingData)))
-	}
-
-	return PointerFromQNetworkReply(NewQNetworkAccessManagerFromPointer(ptr).CreateRequestDefault(QNetworkAccessManager__Operation(op), NewQNetworkRequestFromPointer(originalReq), core.NewQIODeviceFromPointer(outgoingData)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CookieJar"}).(*QNetworkCookieJar)
 }
 
 func (ptr *QNetworkAccessManager) ConnectCreateRequest(f func(op QNetworkAccessManager__Operation, originalReq *QNetworkRequest, outgoingData *core.QIODevice) *QNetworkReply) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "createRequest"); signal != nil {
-			f := func(op QNetworkAccessManager__Operation, originalReq *QNetworkRequest, outgoingData *core.QIODevice) *QNetworkReply {
-				(*(*func(QNetworkAccessManager__Operation, *QNetworkRequest, *core.QIODevice) *QNetworkReply)(signal))(op, originalReq, outgoingData)
-				return f(op, originalReq, outgoingData)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "createRequest", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "createRequest", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectCreateRequest", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkAccessManager) DisconnectCreateRequest() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "createRequest")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectCreateRequest"})
 }
 
 func (ptr *QNetworkAccessManager) CreateRequest(op QNetworkAccessManager__Operation, originalReq QNetworkRequest_ITF, outgoingData core.QIODevice_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequest(ptr.Pointer(), C.longlong(op), PointerFromQNetworkRequest(originalReq), core.PointerFromQIODevice(outgoingData)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CreateRequest", op, originalReq, outgoingData}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) CreateRequestDefault(op QNetworkAccessManager__Operation, originalReq QNetworkRequest_ITF, outgoingData core.QIODevice_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequestDefault(ptr.Pointer(), C.longlong(op), PointerFromQNetworkRequest(originalReq), core.PointerFromQIODevice(outgoingData)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CreateRequestDefault", op, originalReq, outgoingData}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) DeleteResource(request QNetworkRequest_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_DeleteResource(ptr.Pointer(), PointerFromQNetworkRequest(request)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteResource", request}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) EnableStrictTransportSecurityStore(enabled bool, storeDir string) {
-	if ptr.Pointer() != nil {
-		var storeDirC *C.char
-		if storeDir != "" {
-			storeDirC = C.CString(storeDir)
-			defer C.free(unsafe.Pointer(storeDirC))
-		}
-		C.QNetworkAccessManager_EnableStrictTransportSecurityStore(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtNetwork_PackedString{data: storeDirC, len: C.longlong(len(storeDir))})
-	}
-}
 
-//export callbackQNetworkAccessManager_Encrypted
-func callbackQNetworkAccessManager_Encrypted(ptr unsafe.Pointer, reply unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "encrypted"); signal != nil {
-		(*(*func(*QNetworkReply))(signal))(NewQNetworkReplyFromPointer(reply))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EnableStrictTransportSecurityStore", enabled, storeDir})
 }
 
 func (ptr *QNetworkAccessManager) ConnectEncrypted(f func(reply *QNetworkReply)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "encrypted") {
-			C.QNetworkAccessManager_ConnectEncrypted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encrypted")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "encrypted"); signal != nil {
-			f := func(reply *QNetworkReply) {
-				(*(*func(*QNetworkReply))(signal))(reply)
-				f(reply)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "encrypted", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "encrypted", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectEncrypted", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkAccessManager) DisconnectEncrypted() {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_DisconnectEncrypted(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "encrypted")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectEncrypted"})
 }
 
 func (ptr *QNetworkAccessManager) Encrypted(reply QNetworkReply_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_Encrypted(ptr.Pointer(), PointerFromQNetworkReply(reply))
-	}
-}
 
-//export callbackQNetworkAccessManager_Finished
-func callbackQNetworkAccessManager_Finished(ptr unsafe.Pointer, reply unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
-		(*(*func(*QNetworkReply))(signal))(NewQNetworkReplyFromPointer(reply))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Encrypted", reply})
 }
 
 func (ptr *QNetworkAccessManager) ConnectFinished(f func(reply *QNetworkReply)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QNetworkAccessManager_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
-			f := func(reply *QNetworkReply) {
-				(*(*func(*QNetworkReply))(signal))(reply)
-				f(reply)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFinished", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkAccessManager) DisconnectFinished() {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_DisconnectFinished(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "finished")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFinished"})
 }
 
 func (ptr *QNetworkAccessManager) Finished(reply QNetworkReply_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_Finished(ptr.Pointer(), PointerFromQNetworkReply(reply))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Finished", reply})
 }
 
 func (ptr *QNetworkAccessManager) Get(request QNetworkRequest_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Get(ptr.Pointer(), PointerFromQNetworkRequest(request)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Get", request}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) Head(request QNetworkRequest_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Head(ptr.Pointer(), PointerFromQNetworkRequest(request)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Head", request}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) IsStrictTransportSecurityEnabled() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkAccessManager_IsStrictTransportSecurityEnabled(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsStrictTransportSecurityEnabled"}).(bool)
 }
 
 func (ptr *QNetworkAccessManager) IsStrictTransportSecurityStoreEnabled() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkAccessManager_IsStrictTransportSecurityStoreEnabled(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsStrictTransportSecurityStoreEnabled"}).(bool)
 }
 
 func (ptr *QNetworkAccessManager) NetworkAccessible() QNetworkAccessManager__NetworkAccessibility {
-	if ptr.Pointer() != nil {
-		return QNetworkAccessManager__NetworkAccessibility(C.QNetworkAccessManager_NetworkAccessible(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkAccessManager_NetworkAccessibleChanged
-func callbackQNetworkAccessManager_NetworkAccessibleChanged(ptr unsafe.Pointer, accessible C.longlong) {
-	if signal := qt.GetSignal(ptr, "networkAccessibleChanged"); signal != nil {
-		(*(*func(QNetworkAccessManager__NetworkAccessibility))(signal))(QNetworkAccessManager__NetworkAccessibility(accessible))
-	}
-
+	return QNetworkAccessManager__NetworkAccessibility(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NetworkAccessible"}).(float64))
 }
 
 func (ptr *QNetworkAccessManager) ConnectNetworkAccessibleChanged(f func(accessible QNetworkAccessManager__NetworkAccessibility)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "networkAccessibleChanged") {
-			C.QNetworkAccessManager_ConnectNetworkAccessibleChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "networkAccessibleChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "networkAccessibleChanged"); signal != nil {
-			f := func(accessible QNetworkAccessManager__NetworkAccessibility) {
-				(*(*func(QNetworkAccessManager__NetworkAccessibility))(signal))(accessible)
-				f(accessible)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "networkAccessibleChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "networkAccessibleChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNetworkAccessibleChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkAccessManager) DisconnectNetworkAccessibleChanged() {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_DisconnectNetworkAccessibleChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "networkAccessibleChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNetworkAccessibleChanged"})
 }
 
 func (ptr *QNetworkAccessManager) NetworkAccessibleChanged(accessible QNetworkAccessManager__NetworkAccessibility) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_NetworkAccessibleChanged(ptr.Pointer(), C.longlong(accessible))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NetworkAccessibleChanged", accessible})
 }
 
 func (ptr *QNetworkAccessManager) Post(request QNetworkRequest_ITF, data core.QIODevice_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Post(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQIODevice(data)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Post", request, data}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) Post2(request QNetworkRequest_ITF, data core.QByteArray_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Post2(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQByteArray(data)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Post2", request, data}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) Post3(request QNetworkRequest_ITF, multiPart QHttpMultiPart_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Post3(ptr.Pointer(), PointerFromQNetworkRequest(request), PointerFromQHttpMultiPart(multiPart)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkAccessManager_PreSharedKeyAuthenticationRequired
-func callbackQNetworkAccessManager_PreSharedKeyAuthenticationRequired(ptr unsafe.Pointer, reply unsafe.Pointer, authenticator unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "preSharedKeyAuthenticationRequired"); signal != nil {
-		(*(*func(*QNetworkReply, *QSslPreSharedKeyAuthenticator))(signal))(NewQNetworkReplyFromPointer(reply), NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Post3", request, multiPart}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) ConnectPreSharedKeyAuthenticationRequired(f func(reply *QNetworkReply, authenticator *QSslPreSharedKeyAuthenticator)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
-			f := func(reply *QNetworkReply, authenticator *QSslPreSharedKeyAuthenticator) {
-				(*(*func(*QNetworkReply, *QSslPreSharedKeyAuthenticator))(signal))(reply, authenticator)
-				f(reply, authenticator)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectPreSharedKeyAuthenticationRequired", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkAccessManager) DisconnectPreSharedKeyAuthenticationRequired() {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_DisconnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectPreSharedKeyAuthenticationRequired"})
 }
 
 func (ptr *QNetworkAccessManager) PreSharedKeyAuthenticationRequired(reply QNetworkReply_ITF, authenticator QSslPreSharedKeyAuthenticator_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_PreSharedKeyAuthenticationRequired(ptr.Pointer(), PointerFromQNetworkReply(reply), PointerFromQSslPreSharedKeyAuthenticator(authenticator))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PreSharedKeyAuthenticationRequired", reply, authenticator})
 }
 
 func (ptr *QNetworkAccessManager) Proxy() *QNetworkProxy {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkProxyFromPointer(C.QNetworkAccessManager_Proxy(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkAccessManager_ProxyAuthenticationRequired
-func callbackQNetworkAccessManager_ProxyAuthenticationRequired(ptr unsafe.Pointer, proxy unsafe.Pointer, authenticator unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "proxyAuthenticationRequired"); signal != nil {
-		(*(*func(*QNetworkProxy, *QAuthenticator))(signal))(NewQNetworkProxyFromPointer(proxy), NewQAuthenticatorFromPointer(authenticator))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Proxy"}).(*QNetworkProxy)
 }
 
 func (ptr *QNetworkAccessManager) ConnectProxyAuthenticationRequired(f func(proxy *QNetworkProxy, authenticator *QAuthenticator)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "proxyAuthenticationRequired") {
-			C.QNetworkAccessManager_ConnectProxyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "proxyAuthenticationRequired")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "proxyAuthenticationRequired"); signal != nil {
-			f := func(proxy *QNetworkProxy, authenticator *QAuthenticator) {
-				(*(*func(*QNetworkProxy, *QAuthenticator))(signal))(proxy, authenticator)
-				f(proxy, authenticator)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "proxyAuthenticationRequired", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "proxyAuthenticationRequired", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectProxyAuthenticationRequired", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkAccessManager) DisconnectProxyAuthenticationRequired() {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_DisconnectProxyAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "proxyAuthenticationRequired")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectProxyAuthenticationRequired"})
 }
 
 func (ptr *QNetworkAccessManager) ProxyAuthenticationRequired(proxy QNetworkProxy_ITF, authenticator QAuthenticator_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ProxyAuthenticationRequired(ptr.Pointer(), PointerFromQNetworkProxy(proxy), PointerFromQAuthenticator(authenticator))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ProxyAuthenticationRequired", proxy, authenticator})
 }
 
 func (ptr *QNetworkAccessManager) ProxyFactory() *QNetworkProxyFactory {
-	if ptr.Pointer() != nil {
-		return NewQNetworkProxyFactoryFromPointer(C.QNetworkAccessManager_ProxyFactory(ptr.Pointer()))
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ProxyFactory"}).(*QNetworkProxyFactory)
 }
 
 func (ptr *QNetworkAccessManager) Put(request QNetworkRequest_ITF, data core.QIODevice_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQIODevice(data)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Put", request, data}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) Put2(request QNetworkRequest_ITF, data core.QByteArray_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put2(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQByteArray(data)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Put2", request, data}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) Put3(request QNetworkRequest_ITF, multiPart QHttpMultiPart_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put3(ptr.Pointer(), PointerFromQNetworkRequest(request), PointerFromQHttpMultiPart(multiPart)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Put3", request, multiPart}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) RedirectPolicy() QNetworkRequest__RedirectPolicy {
-	if ptr.Pointer() != nil {
-		return QNetworkRequest__RedirectPolicy(C.QNetworkAccessManager_RedirectPolicy(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkRequest__RedirectPolicy(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RedirectPolicy"}).(float64))
 }
 
 func (ptr *QNetworkAccessManager) SendCustomRequest(request QNetworkRequest_ITF, verb core.QByteArray_ITF, data core.QIODevice_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_SendCustomRequest(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQByteArray(verb), core.PointerFromQIODevice(data)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SendCustomRequest", request, verb, data}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) SendCustomRequest2(request QNetworkRequest_ITF, verb core.QByteArray_ITF, data core.QByteArray_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_SendCustomRequest2(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQByteArray(verb), core.PointerFromQByteArray(data)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SendCustomRequest2", request, verb, data}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) SendCustomRequest3(request QNetworkRequest_ITF, verb core.QByteArray_ITF, multiPart QHttpMultiPart_ITF) *QNetworkReply {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkReplyFromPointer(C.QNetworkAccessManager_SendCustomRequest3(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQByteArray(verb), PointerFromQHttpMultiPart(multiPart)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SendCustomRequest3", request, verb, multiPart}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkAccessManager) SetCache(cache QAbstractNetworkCache_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_SetCache(ptr.Pointer(), PointerFromQAbstractNetworkCache(cache))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCache", cache})
 }
 
 func (ptr *QNetworkAccessManager) SetConfiguration(config QNetworkConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_SetConfiguration(ptr.Pointer(), PointerFromQNetworkConfiguration(config))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetConfiguration", config})
 }
 
 func (ptr *QNetworkAccessManager) SetCookieJar(cookieJar QNetworkCookieJar_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_SetCookieJar(ptr.Pointer(), PointerFromQNetworkCookieJar(cookieJar))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCookieJar", cookieJar})
 }
 
 func (ptr *QNetworkAccessManager) SetNetworkAccessible(accessible QNetworkAccessManager__NetworkAccessibility) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_SetNetworkAccessible(ptr.Pointer(), C.longlong(accessible))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetNetworkAccessible", accessible})
 }
 
 func (ptr *QNetworkAccessManager) SetProxy(proxy QNetworkProxy_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_SetProxy(ptr.Pointer(), PointerFromQNetworkProxy(proxy))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetProxy", proxy})
 }
 
 func (ptr *QNetworkAccessManager) SetProxyFactory(factory QNetworkProxyFactory_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_SetProxyFactory(ptr.Pointer(), PointerFromQNetworkProxyFactory(factory))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetProxyFactory", factory})
 }
 
 func (ptr *QNetworkAccessManager) SetRedirectPolicy(policy QNetworkRequest__RedirectPolicy) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_SetRedirectPolicy(ptr.Pointer(), C.longlong(policy))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetRedirectPolicy", policy})
 }
 
 func (ptr *QNetworkAccessManager) SetStrictTransportSecurityEnabled(enabled bool) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_SetStrictTransportSecurityEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
-	}
-}
 
-//export callbackQNetworkAccessManager_SslErrors
-func callbackQNetworkAccessManager_SslErrors(ptr unsafe.Pointer, reply unsafe.Pointer, errors C.struct_QtNetwork_PackedList) {
-	if signal := qt.GetSignal(ptr, "sslErrors"); signal != nil {
-		(*(*func(*QNetworkReply, []*QSslError))(signal))(NewQNetworkReplyFromPointer(reply), func(l C.struct_QtNetwork_PackedList) []*QSslError {
-			out := make([]*QSslError, int(l.len))
-			tmpList := NewQNetworkAccessManagerFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__sslErrors_errors_atList(i)
-			}
-			return out
-		}(errors))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetStrictTransportSecurityEnabled", enabled})
 }
 
 func (ptr *QNetworkAccessManager) ConnectSslErrors(f func(reply *QNetworkReply, errors []*QSslError)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
-			C.QNetworkAccessManager_ConnectSslErrors(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
-			f := func(reply *QNetworkReply, errors []*QSslError) {
-				(*(*func(*QNetworkReply, []*QSslError))(signal))(reply, errors)
-				f(reply, errors)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSslErrors", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkAccessManager) DisconnectSslErrors() {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_DisconnectSslErrors(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "sslErrors")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSslErrors"})
 }
 
 func (ptr *QNetworkAccessManager) SslErrors(reply QNetworkReply_ITF, errors []*QSslError) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_SslErrors(ptr.Pointer(), PointerFromQNetworkReply(reply), func() unsafe.Pointer {
-			tmpList := NewQNetworkAccessManagerFromPointer(NewQNetworkAccessManagerFromPointer(nil).__sslErrors_errors_newList())
-			for _, v := range errors {
-				tmpList.__sslErrors_errors_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SslErrors", reply, errors})
 }
 
 func (ptr *QNetworkAccessManager) StrictTransportSecurityHosts() []*QHstsPolicy {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QHstsPolicy {
-			out := make([]*QHstsPolicy, int(l.len))
-			tmpList := NewQNetworkAccessManagerFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__strictTransportSecurityHosts_atList(i)
-			}
-			return out
-		}(C.QNetworkAccessManager_StrictTransportSecurityHosts(ptr.Pointer()))
-	}
-	return make([]*QHstsPolicy, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StrictTransportSecurityHosts"}).([]*QHstsPolicy)
 }
 
 func (ptr *QNetworkAccessManager) SupportedSchemes() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QNetworkAccessManager_SupportedSchemes(ptr.Pointer())))
-	}
-	return make([]string, 0)
-}
 
-//export callbackQNetworkAccessManager_SupportedSchemesImplementation
-func callbackQNetworkAccessManager_SupportedSchemesImplementation(ptr unsafe.Pointer) C.struct_QtNetwork_PackedString {
-	if signal := qt.GetSignal(ptr, "supportedSchemesImplementation"); signal != nil {
-		tempVal := (*(*func() []string)(signal))()
-		return C.struct_QtNetwork_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
-	}
-	tempVal := NewQNetworkAccessManagerFromPointer(ptr).SupportedSchemesImplementationDefault()
-	return C.struct_QtNetwork_PackedString{data: C.CString(strings.Join(tempVal, "¡¦!")), len: C.longlong(len(strings.Join(tempVal, "¡¦!")))}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SupportedSchemes"}).([]string)
 }
 
 func (ptr *QNetworkAccessManager) ConnectSupportedSchemesImplementation(f func() []string) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "supportedSchemesImplementation"); signal != nil {
-			f := func() []string {
-				(*(*func() []string)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "supportedSchemesImplementation", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "supportedSchemesImplementation", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSupportedSchemesImplementation", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkAccessManager) DisconnectSupportedSchemesImplementation() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "supportedSchemesImplementation")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSupportedSchemesImplementation"})
 }
 
 func (ptr *QNetworkAccessManager) SupportedSchemesImplementation() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QNetworkAccessManager_SupportedSchemesImplementation(ptr.Pointer())))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SupportedSchemesImplementation"}).([]string)
 }
 
 func (ptr *QNetworkAccessManager) SupportedSchemesImplementationDefault() []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QNetworkAccessManager_SupportedSchemesImplementationDefault(ptr.Pointer())))
-	}
-	return make([]string, 0)
-}
 
-//export callbackQNetworkAccessManager_DestroyQNetworkAccessManager
-func callbackQNetworkAccessManager_DestroyQNetworkAccessManager(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QNetworkAccessManager"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkAccessManagerFromPointer(ptr).DestroyQNetworkAccessManagerDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SupportedSchemesImplementationDefault"}).([]string)
 }
 
 func (ptr *QNetworkAccessManager) ConnectDestroyQNetworkAccessManager(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QNetworkAccessManager"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkAccessManager", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkAccessManager", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQNetworkAccessManager", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkAccessManager) DisconnectDestroyQNetworkAccessManager() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QNetworkAccessManager")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQNetworkAccessManager"})
 }
 
 func (ptr *QNetworkAccessManager) DestroyQNetworkAccessManager() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkAccessManager_DestroyQNetworkAccessManager(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkAccessManager"})
 }
 
 func (ptr *QNetworkAccessManager) DestroyQNetworkAccessManagerDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkAccessManager_DestroyQNetworkAccessManagerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkAccessManagerDefault"})
 }
 
 func (ptr *QNetworkAccessManager) __addStrictTransportSecurityHosts_knownHosts_atList(i int) *QHstsPolicy {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHstsPolicyFromPointer(C.QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addStrictTransportSecurityHosts_knownHosts_atList", i}).(*QHstsPolicy)
 }
 
 func (ptr *QNetworkAccessManager) __addStrictTransportSecurityHosts_knownHosts_setList(i QHstsPolicy_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_setList(ptr.Pointer(), PointerFromQHstsPolicy(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addStrictTransportSecurityHosts_knownHosts_setList", i})
 }
 
 func (ptr *QNetworkAccessManager) __addStrictTransportSecurityHosts_knownHosts_newList() unsafe.Pointer {
-	return C.QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addStrictTransportSecurityHosts_knownHosts_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkAccessManager) __sslErrors_errors_atList(i int) *QSslError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslErrorFromPointer(C.QNetworkAccessManager___sslErrors_errors_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_errors_atList", i}).(*QSslError)
 }
 
 func (ptr *QNetworkAccessManager) __sslErrors_errors_setList(i QSslError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager___sslErrors_errors_setList(ptr.Pointer(), PointerFromQSslError(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_errors_setList", i})
 }
 
 func (ptr *QNetworkAccessManager) __sslErrors_errors_newList() unsafe.Pointer {
-	return C.QNetworkAccessManager___sslErrors_errors_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_errors_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkAccessManager) __strictTransportSecurityHosts_atList(i int) *QHstsPolicy {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHstsPolicyFromPointer(C.QNetworkAccessManager___strictTransportSecurityHosts_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__strictTransportSecurityHosts_atList", i}).(*QHstsPolicy)
 }
 
 func (ptr *QNetworkAccessManager) __strictTransportSecurityHosts_setList(i QHstsPolicy_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager___strictTransportSecurityHosts_setList(ptr.Pointer(), PointerFromQHstsPolicy(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__strictTransportSecurityHosts_setList", i})
 }
 
 func (ptr *QNetworkAccessManager) __strictTransportSecurityHosts_newList() unsafe.Pointer {
-	return C.QNetworkAccessManager___strictTransportSecurityHosts_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__strictTransportSecurityHosts_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkAccessManager) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkAccessManager___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkAccessManager) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QNetworkAccessManager) __children_newList() unsafe.Pointer {
-	return C.QNetworkAccessManager___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkAccessManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkAccessManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkAccessManager) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QNetworkAccessManager) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QNetworkAccessManager___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkAccessManager) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkAccessManager___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkAccessManager) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QNetworkAccessManager) __findChildren_newList() unsafe.Pointer {
-	return C.QNetworkAccessManager___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkAccessManager) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkAccessManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkAccessManager) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QNetworkAccessManager) __findChildren_newList3() unsafe.Pointer {
-	return C.QNetworkAccessManager___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQNetworkAccessManager_ChildEvent
-func callbackQNetworkAccessManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQNetworkAccessManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkAccessManager) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQNetworkAccessManager_ConnectNotify
-func callbackQNetworkAccessManager_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQNetworkAccessManagerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QNetworkAccessManager) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQNetworkAccessManager_CustomEvent
-func callbackQNetworkAccessManager_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQNetworkAccessManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QNetworkAccessManager) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQNetworkAccessManager_DeleteLater
-func callbackQNetworkAccessManager_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkAccessManagerFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QNetworkAccessManager) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkAccessManager_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQNetworkAccessManager_Destroyed
-func callbackQNetworkAccessManager_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQNetworkAccessManager_DisconnectNotify
-func callbackQNetworkAccessManager_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQNetworkAccessManagerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QNetworkAccessManager) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQNetworkAccessManager_Event
-func callbackQNetworkAccessManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkAccessManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QNetworkAccessManager) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkAccessManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkAccessManager_EventFilter
-func callbackQNetworkAccessManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkAccessManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QNetworkAccessManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkAccessManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkAccessManager_MetaObject
-func callbackQNetworkAccessManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQNetworkAccessManagerFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QNetworkAccessManager) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QNetworkAccessManager_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQNetworkAccessManager_ObjectNameChanged
-func callbackQNetworkAccessManager_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQNetworkAccessManager_TimerEvent
-func callbackQNetworkAccessManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQNetworkAccessManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QNetworkAccessManager) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QNetworkAddressEntry struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkAddressEntry_ITF interface {
@@ -8175,14 +4550,14 @@ func (ptr *QNetworkAddressEntry) QNetworkAddressEntry_PTR() *QNetworkAddressEntr
 
 func (ptr *QNetworkAddressEntry) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkAddressEntry) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -8193,9 +4568,13 @@ func PointerFromQNetworkAddressEntry(ptr QNetworkAddressEntry_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *QNetworkAddressEntry) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkAddressEntryFromPointer(ptr unsafe.Pointer) (n *QNetworkAddressEntry) {
 	n = new(QNetworkAddressEntry)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkAddressEntry")
 	return
 }
 
@@ -8210,139 +4589,102 @@ const (
 )
 
 func NewQNetworkAddressEntry() *QNetworkAddressEntry {
-	tmpValue := NewQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry())
-	qt.SetFinalizer(tmpValue, (*QNetworkAddressEntry).DestroyQNetworkAddressEntry)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkAddressEntry", ""}).(*QNetworkAddressEntry)
 }
 
 func NewQNetworkAddressEntry2(other QNetworkAddressEntry_ITF) *QNetworkAddressEntry {
-	tmpValue := NewQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry2(PointerFromQNetworkAddressEntry(other)))
-	qt.SetFinalizer(tmpValue, (*QNetworkAddressEntry).DestroyQNetworkAddressEntry)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkAddressEntry2", "", other}).(*QNetworkAddressEntry)
 }
 
 func (ptr *QNetworkAddressEntry) Broadcast() *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QNetworkAddressEntry_Broadcast(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Broadcast"}).(*QHostAddress)
 }
 
 func (ptr *QNetworkAddressEntry) ClearAddressLifetime() {
-	if ptr.Pointer() != nil {
-		C.QNetworkAddressEntry_ClearAddressLifetime(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ClearAddressLifetime"})
 }
 
 func (ptr *QNetworkAddressEntry) DnsEligibility() QNetworkAddressEntry__DnsEligibilityStatus {
-	if ptr.Pointer() != nil {
-		return QNetworkAddressEntry__DnsEligibilityStatus(C.QNetworkAddressEntry_DnsEligibility(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkAddressEntry__DnsEligibilityStatus(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DnsEligibility"}).(float64))
 }
 
 func (ptr *QNetworkAddressEntry) Ip() *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QNetworkAddressEntry_Ip(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Ip"}).(*QHostAddress)
 }
 
 func (ptr *QNetworkAddressEntry) IsLifetimeKnown() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkAddressEntry_IsLifetimeKnown(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsLifetimeKnown"}).(bool)
 }
 
 func (ptr *QNetworkAddressEntry) IsPermanent() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkAddressEntry_IsPermanent(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsPermanent"}).(bool)
 }
 
 func (ptr *QNetworkAddressEntry) IsTemporary() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkAddressEntry_IsTemporary(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsTemporary"}).(bool)
 }
 
 func (ptr *QNetworkAddressEntry) Netmask() *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QNetworkAddressEntry_Netmask(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Netmask"}).(*QHostAddress)
 }
 
 func (ptr *QNetworkAddressEntry) PrefixLength() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QNetworkAddressEntry_PrefixLength(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PrefixLength"}).(float64))
 }
 
 func (ptr *QNetworkAddressEntry) SetAddressLifetime(preferred core.QDeadlineTimer_ITF, validity core.QDeadlineTimer_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAddressEntry_SetAddressLifetime(ptr.Pointer(), core.PointerFromQDeadlineTimer(preferred), core.PointerFromQDeadlineTimer(validity))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAddressLifetime", preferred, validity})
 }
 
 func (ptr *QNetworkAddressEntry) SetBroadcast(newBroadcast QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAddressEntry_SetBroadcast(ptr.Pointer(), PointerFromQHostAddress(newBroadcast))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetBroadcast", newBroadcast})
 }
 
 func (ptr *QNetworkAddressEntry) SetDnsEligibility(status QNetworkAddressEntry__DnsEligibilityStatus) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAddressEntry_SetDnsEligibility(ptr.Pointer(), C.longlong(status))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDnsEligibility", status})
 }
 
 func (ptr *QNetworkAddressEntry) SetIp(newIp QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAddressEntry_SetIp(ptr.Pointer(), PointerFromQHostAddress(newIp))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetIp", newIp})
 }
 
 func (ptr *QNetworkAddressEntry) SetNetmask(newNetmask QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAddressEntry_SetNetmask(ptr.Pointer(), PointerFromQHostAddress(newNetmask))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetNetmask", newNetmask})
 }
 
 func (ptr *QNetworkAddressEntry) SetPrefixLength(length int) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAddressEntry_SetPrefixLength(ptr.Pointer(), C.int(int32(length)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPrefixLength", length})
 }
 
 func (ptr *QNetworkAddressEntry) Swap(other QNetworkAddressEntry_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkAddressEntry_Swap(ptr.Pointer(), PointerFromQNetworkAddressEntry(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QNetworkAddressEntry) DestroyQNetworkAddressEntry() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkAddressEntry_DestroyQNetworkAddressEntry(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkAddressEntry"})
 }
 
 type QNetworkCacheMetaData struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkCacheMetaData_ITF interface {
@@ -8355,14 +4697,14 @@ func (ptr *QNetworkCacheMetaData) QNetworkCacheMetaData_PTR() *QNetworkCacheMeta
 
 func (ptr *QNetworkCacheMetaData) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkCacheMetaData) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -8373,170 +4715,122 @@ func PointerFromQNetworkCacheMetaData(ptr QNetworkCacheMetaData_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *QNetworkCacheMetaData) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkCacheMetaDataFromPointer(ptr unsafe.Pointer) (n *QNetworkCacheMetaData) {
 	n = new(QNetworkCacheMetaData)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkCacheMetaData")
 	return
 }
 func NewQNetworkCacheMetaData() *QNetworkCacheMetaData {
-	tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QNetworkCacheMetaData_NewQNetworkCacheMetaData())
-	qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkCacheMetaData", ""}).(*QNetworkCacheMetaData)
 }
 
 func NewQNetworkCacheMetaData2(other QNetworkCacheMetaData_ITF) *QNetworkCacheMetaData {
-	tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QNetworkCacheMetaData_NewQNetworkCacheMetaData2(PointerFromQNetworkCacheMetaData(other)))
-	qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkCacheMetaData2", "", other}).(*QNetworkCacheMetaData)
 }
 
 func (ptr *QNetworkCacheMetaData) ExpirationDate() *core.QDateTime {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQDateTimeFromPointer(C.QNetworkCacheMetaData_ExpirationDate(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ExpirationDate"}).(*core.QDateTime)
 }
 
 func (ptr *QNetworkCacheMetaData) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCacheMetaData_IsValid(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsValid"}).(bool)
 }
 
 func (ptr *QNetworkCacheMetaData) LastModified() *core.QDateTime {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQDateTimeFromPointer(C.QNetworkCacheMetaData_LastModified(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LastModified"}).(*core.QDateTime)
 }
 
 func (ptr *QNetworkCacheMetaData) RawHeaders() []*QNetworkCacheMetaData_RawHeader {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QNetworkCacheMetaData_RawHeader {
-			out := make([]*QNetworkCacheMetaData_RawHeader, int(l.len))
-			tmpList := NewQNetworkCacheMetaDataFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__rawHeaders_atList(i)
-			}
-			return out
-		}(C.QNetworkCacheMetaData_RawHeaders(ptr.Pointer()))
-	}
-	return make([]*QNetworkCacheMetaData_RawHeader, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RawHeaders"}).([]*QNetworkCacheMetaData_RawHeader)
 }
 
 func (ptr *QNetworkCacheMetaData) SaveToDisk() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCacheMetaData_SaveToDisk(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SaveToDisk"}).(bool)
 }
 
 func (ptr *QNetworkCacheMetaData) SetExpirationDate(dateTime core.QDateTime_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCacheMetaData_SetExpirationDate(ptr.Pointer(), core.PointerFromQDateTime(dateTime))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetExpirationDate", dateTime})
 }
 
 func (ptr *QNetworkCacheMetaData) SetLastModified(dateTime core.QDateTime_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCacheMetaData_SetLastModified(ptr.Pointer(), core.PointerFromQDateTime(dateTime))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLastModified", dateTime})
 }
 
 func (ptr *QNetworkCacheMetaData) SetRawHeaders(list []*QNetworkCacheMetaData_RawHeader) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCacheMetaData_SetRawHeaders(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkCacheMetaDataFromPointer(NewQNetworkCacheMetaDataFromPointer(nil).__setRawHeaders_list_newList())
-			for _, v := range list {
-				tmpList.__setRawHeaders_list_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetRawHeaders", list})
 }
 
 func (ptr *QNetworkCacheMetaData) SetSaveToDisk(allow bool) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCacheMetaData_SetSaveToDisk(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(allow))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSaveToDisk", allow})
 }
 
 func (ptr *QNetworkCacheMetaData) SetUrl(url core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCacheMetaData_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetUrl", url})
 }
 
 func (ptr *QNetworkCacheMetaData) Swap(other QNetworkCacheMetaData_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCacheMetaData_Swap(ptr.Pointer(), PointerFromQNetworkCacheMetaData(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QNetworkCacheMetaData) Url() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QNetworkCacheMetaData_Url(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Url"}).(*core.QUrl)
 }
 
 func (ptr *QNetworkCacheMetaData) DestroyQNetworkCacheMetaData() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkCacheMetaData_DestroyQNetworkCacheMetaData(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkCacheMetaData"})
 }
 
 func (ptr *QNetworkCacheMetaData) __rawHeaders_atList(i int) *QNetworkCacheMetaData_RawHeader {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.QNetworkCacheMetaData___rawHeaders_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaders_atList", i}).(*QNetworkCacheMetaData_RawHeader)
 }
 
 func (ptr *QNetworkCacheMetaData) __rawHeaders_setList(i QNetworkCacheMetaData_RawHeader_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCacheMetaData___rawHeaders_setList(ptr.Pointer(), PointerFromQNetworkCacheMetaData_RawHeader(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaders_setList", i})
 }
 
 func (ptr *QNetworkCacheMetaData) __rawHeaders_newList() unsafe.Pointer {
-	return C.QNetworkCacheMetaData___rawHeaders_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaders_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkCacheMetaData) __setRawHeaders_list_atList(i int) *QNetworkCacheMetaData_RawHeader {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.QNetworkCacheMetaData___setRawHeaders_list_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setRawHeaders_list_atList", i}).(*QNetworkCacheMetaData_RawHeader)
 }
 
 func (ptr *QNetworkCacheMetaData) __setRawHeaders_list_setList(i QNetworkCacheMetaData_RawHeader_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCacheMetaData___setRawHeaders_list_setList(ptr.Pointer(), PointerFromQNetworkCacheMetaData_RawHeader(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setRawHeaders_list_setList", i})
 }
 
 func (ptr *QNetworkCacheMetaData) __setRawHeaders_list_newList() unsafe.Pointer {
-	return C.QNetworkCacheMetaData___setRawHeaders_list_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setRawHeaders_list_newList"}).(unsafe.Pointer)
 }
 
 type QNetworkConfiguration struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkConfiguration_ITF interface {
@@ -8549,14 +4843,14 @@ func (ptr *QNetworkConfiguration) QNetworkConfiguration_PTR() *QNetworkConfigura
 
 func (ptr *QNetworkConfiguration) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkConfiguration) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -8567,9 +4861,13 @@ func PointerFromQNetworkConfiguration(ptr QNetworkConfiguration_ITF) unsafe.Poin
 	return nil
 }
 
+func (n *QNetworkConfiguration) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkConfigurationFromPointer(ptr unsafe.Pointer) (n *QNetworkConfiguration) {
 	n = new(QNetworkConfiguration)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkConfiguration")
 	return
 }
 
@@ -8627,148 +4925,103 @@ const (
 )
 
 func NewQNetworkConfiguration() *QNetworkConfiguration {
-	tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration())
-	qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkConfiguration", ""}).(*QNetworkConfiguration)
 }
 
 func NewQNetworkConfiguration2(other QNetworkConfiguration_ITF) *QNetworkConfiguration {
-	tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration2(PointerFromQNetworkConfiguration(other)))
-	qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkConfiguration2", "", other}).(*QNetworkConfiguration)
 }
 
 func (ptr *QNetworkConfiguration) BearerType() QNetworkConfiguration__BearerType {
-	if ptr.Pointer() != nil {
-		return QNetworkConfiguration__BearerType(C.QNetworkConfiguration_BearerType(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkConfiguration__BearerType(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BearerType"}).(float64))
 }
 
 func (ptr *QNetworkConfiguration) BearerTypeFamily() QNetworkConfiguration__BearerType {
-	if ptr.Pointer() != nil {
-		return QNetworkConfiguration__BearerType(C.QNetworkConfiguration_BearerTypeFamily(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkConfiguration__BearerType(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BearerTypeFamily"}).(float64))
 }
 
 func (ptr *QNetworkConfiguration) BearerTypeName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkConfiguration_BearerTypeName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BearerTypeName"}).(string)
 }
 
 func (ptr *QNetworkConfiguration) Children() []*QNetworkConfiguration {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QNetworkConfiguration {
-			out := make([]*QNetworkConfiguration, int(l.len))
-			tmpList := NewQNetworkConfigurationFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__children_atList(i)
-			}
-			return out
-		}(C.QNetworkConfiguration_Children(ptr.Pointer()))
-	}
-	return make([]*QNetworkConfiguration, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Children"}).([]*QNetworkConfiguration)
 }
 
 func (ptr *QNetworkConfiguration) ConnectTimeout() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QNetworkConfiguration_ConnectTimeout(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectTimeout"}).(float64))
 }
 
 func (ptr *QNetworkConfiguration) Identifier() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkConfiguration_Identifier(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Identifier"}).(string)
 }
 
 func (ptr *QNetworkConfiguration) IsRoamingAvailable() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkConfiguration_IsRoamingAvailable(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsRoamingAvailable"}).(bool)
 }
 
 func (ptr *QNetworkConfiguration) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkConfiguration_IsValid(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsValid"}).(bool)
 }
 
 func (ptr *QNetworkConfiguration) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkConfiguration_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QNetworkConfiguration) Purpose() QNetworkConfiguration__Purpose {
-	if ptr.Pointer() != nil {
-		return QNetworkConfiguration__Purpose(C.QNetworkConfiguration_Purpose(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkConfiguration__Purpose(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Purpose"}).(float64))
 }
 
 func (ptr *QNetworkConfiguration) SetConnectTimeout(timeout int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkConfiguration_SetConnectTimeout(ptr.Pointer(), C.int(int32(timeout)))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetConnectTimeout", timeout}).(bool)
 }
 
 func (ptr *QNetworkConfiguration) State() QNetworkConfiguration__StateFlag {
-	if ptr.Pointer() != nil {
-		return QNetworkConfiguration__StateFlag(C.QNetworkConfiguration_State(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkConfiguration__StateFlag(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "State"}).(float64))
 }
 
 func (ptr *QNetworkConfiguration) Swap(other QNetworkConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfiguration_Swap(ptr.Pointer(), PointerFromQNetworkConfiguration(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QNetworkConfiguration) Type() QNetworkConfiguration__Type {
-	if ptr.Pointer() != nil {
-		return QNetworkConfiguration__Type(C.QNetworkConfiguration_Type(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkConfiguration__Type(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Type"}).(float64))
 }
 
 func (ptr *QNetworkConfiguration) DestroyQNetworkConfiguration() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkConfiguration_DestroyQNetworkConfiguration(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkConfiguration"})
 }
 
 func (ptr *QNetworkConfiguration) __children_atList(i int) *QNetworkConfiguration {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration___children_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*QNetworkConfiguration)
 }
 
 func (ptr *QNetworkConfiguration) __children_setList(i QNetworkConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfiguration___children_setList(ptr.Pointer(), PointerFromQNetworkConfiguration(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QNetworkConfiguration) __children_newList() unsafe.Pointer {
-	return C.QNetworkConfiguration___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 type QNetworkConfigurationManager struct {
@@ -8804,9 +5057,18 @@ func PointerFromQNetworkConfigurationManager(ptr QNetworkConfigurationManager_IT
 	return nil
 }
 
+func (n *QNetworkConfigurationManager) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QNetworkConfigurationManager) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQNetworkConfigurationManagerFromPointer(ptr unsafe.Pointer) (n *QNetworkConfigurationManager) {
 	n = new(QNetworkConfigurationManager)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkConfigurationManager")
 	return
 }
 
@@ -8825,615 +5087,272 @@ const (
 )
 
 func NewQNetworkConfigurationManager(parent core.QObject_ITF) *QNetworkConfigurationManager {
-	tmpValue := NewQNetworkConfigurationManagerFromPointer(C.QNetworkConfigurationManager_NewQNetworkConfigurationManager(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkConfigurationManager", "", parent}).(*QNetworkConfigurationManager)
 }
 
 func (ptr *QNetworkConfigurationManager) AllConfigurations(filter QNetworkConfiguration__StateFlag) []*QNetworkConfiguration {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QNetworkConfiguration {
-			out := make([]*QNetworkConfiguration, int(l.len))
-			tmpList := NewQNetworkConfigurationManagerFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__allConfigurations_atList(i)
-			}
-			return out
-		}(C.QNetworkConfigurationManager_AllConfigurations(ptr.Pointer(), C.longlong(filter)))
-	}
-	return make([]*QNetworkConfiguration, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AllConfigurations", filter}).([]*QNetworkConfiguration)
 }
 
 func (ptr *QNetworkConfigurationManager) Capabilities() QNetworkConfigurationManager__Capability {
-	if ptr.Pointer() != nil {
-		return QNetworkConfigurationManager__Capability(C.QNetworkConfigurationManager_Capabilities(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkConfigurationManager_ConfigurationAdded
-func callbackQNetworkConfigurationManager_ConfigurationAdded(ptr unsafe.Pointer, config unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "configurationAdded"); signal != nil {
-		(*(*func(*QNetworkConfiguration))(signal))(NewQNetworkConfigurationFromPointer(config))
-	}
-
+	return QNetworkConfigurationManager__Capability(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Capabilities"}).(float64))
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectConfigurationAdded(f func(config *QNetworkConfiguration)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "configurationAdded") {
-			C.QNetworkConfigurationManager_ConnectConfigurationAdded(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "configurationAdded")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "configurationAdded"); signal != nil {
-			f := func(config *QNetworkConfiguration) {
-				(*(*func(*QNetworkConfiguration))(signal))(config)
-				f(config)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "configurationAdded", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "configurationAdded", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectConfigurationAdded", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectConfigurationAdded() {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_DisconnectConfigurationAdded(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "configurationAdded")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectConfigurationAdded"})
 }
 
 func (ptr *QNetworkConfigurationManager) ConfigurationAdded(config QNetworkConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConfigurationAdded(ptr.Pointer(), PointerFromQNetworkConfiguration(config))
-	}
-}
 
-//export callbackQNetworkConfigurationManager_ConfigurationChanged
-func callbackQNetworkConfigurationManager_ConfigurationChanged(ptr unsafe.Pointer, config unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "configurationChanged"); signal != nil {
-		(*(*func(*QNetworkConfiguration))(signal))(NewQNetworkConfigurationFromPointer(config))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConfigurationAdded", config})
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectConfigurationChanged(f func(config *QNetworkConfiguration)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "configurationChanged") {
-			C.QNetworkConfigurationManager_ConnectConfigurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "configurationChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "configurationChanged"); signal != nil {
-			f := func(config *QNetworkConfiguration) {
-				(*(*func(*QNetworkConfiguration))(signal))(config)
-				f(config)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "configurationChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "configurationChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectConfigurationChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectConfigurationChanged() {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_DisconnectConfigurationChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "configurationChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectConfigurationChanged"})
 }
 
 func (ptr *QNetworkConfigurationManager) ConfigurationChanged(config QNetworkConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConfigurationChanged(ptr.Pointer(), PointerFromQNetworkConfiguration(config))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConfigurationChanged", config})
 }
 
 func (ptr *QNetworkConfigurationManager) ConfigurationFromIdentifier(identifier string) *QNetworkConfiguration {
-	if ptr.Pointer() != nil {
-		var identifierC *C.char
-		if identifier != "" {
-			identifierC = C.CString(identifier)
-			defer C.free(unsafe.Pointer(identifierC))
-		}
-		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfigurationManager_ConfigurationFromIdentifier(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: identifierC, len: C.longlong(len(identifier))}))
-		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkConfigurationManager_ConfigurationRemoved
-func callbackQNetworkConfigurationManager_ConfigurationRemoved(ptr unsafe.Pointer, config unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "configurationRemoved"); signal != nil {
-		(*(*func(*QNetworkConfiguration))(signal))(NewQNetworkConfigurationFromPointer(config))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConfigurationFromIdentifier", identifier}).(*QNetworkConfiguration)
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectConfigurationRemoved(f func(config *QNetworkConfiguration)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "configurationRemoved") {
-			C.QNetworkConfigurationManager_ConnectConfigurationRemoved(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "configurationRemoved")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "configurationRemoved"); signal != nil {
-			f := func(config *QNetworkConfiguration) {
-				(*(*func(*QNetworkConfiguration))(signal))(config)
-				f(config)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "configurationRemoved", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "configurationRemoved", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectConfigurationRemoved", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectConfigurationRemoved() {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_DisconnectConfigurationRemoved(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "configurationRemoved")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectConfigurationRemoved"})
 }
 
 func (ptr *QNetworkConfigurationManager) ConfigurationRemoved(config QNetworkConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConfigurationRemoved(ptr.Pointer(), PointerFromQNetworkConfiguration(config))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConfigurationRemoved", config})
 }
 
 func (ptr *QNetworkConfigurationManager) DefaultConfiguration() *QNetworkConfiguration {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfigurationManager_DefaultConfiguration(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DefaultConfiguration"}).(*QNetworkConfiguration)
 }
 
 func (ptr *QNetworkConfigurationManager) IsOnline() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkConfigurationManager_IsOnline(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkConfigurationManager_OnlineStateChanged
-func callbackQNetworkConfigurationManager_OnlineStateChanged(ptr unsafe.Pointer, isOnline C.char) {
-	if signal := qt.GetSignal(ptr, "onlineStateChanged"); signal != nil {
-		(*(*func(bool))(signal))(int8(isOnline) != 0)
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsOnline"}).(bool)
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectOnlineStateChanged(f func(isOnline bool)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "onlineStateChanged") {
-			C.QNetworkConfigurationManager_ConnectOnlineStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "onlineStateChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "onlineStateChanged"); signal != nil {
-			f := func(isOnline bool) {
-				(*(*func(bool))(signal))(isOnline)
-				f(isOnline)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "onlineStateChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "onlineStateChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectOnlineStateChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectOnlineStateChanged() {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_DisconnectOnlineStateChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "onlineStateChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectOnlineStateChanged"})
 }
 
 func (ptr *QNetworkConfigurationManager) OnlineStateChanged(isOnline bool) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_OnlineStateChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isOnline))))
-	}
-}
 
-//export callbackQNetworkConfigurationManager_UpdateCompleted
-func callbackQNetworkConfigurationManager_UpdateCompleted(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "updateCompleted"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "OnlineStateChanged", isOnline})
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectUpdateCompleted(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "updateCompleted") {
-			C.QNetworkConfigurationManager_ConnectUpdateCompleted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "updateCompleted")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "updateCompleted"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "updateCompleted", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "updateCompleted", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectUpdateCompleted", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectUpdateCompleted() {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_DisconnectUpdateCompleted(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "updateCompleted")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectUpdateCompleted"})
 }
 
 func (ptr *QNetworkConfigurationManager) UpdateCompleted() {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_UpdateCompleted(ptr.Pointer())
-	}
-}
 
-//export callbackQNetworkConfigurationManager_UpdateConfigurations
-func callbackQNetworkConfigurationManager_UpdateConfigurations(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "updateConfigurations"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkConfigurationManagerFromPointer(ptr).UpdateConfigurationsDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UpdateCompleted"})
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectUpdateConfigurations(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "updateConfigurations"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "updateConfigurations", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "updateConfigurations", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectUpdateConfigurations", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectUpdateConfigurations() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "updateConfigurations")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectUpdateConfigurations"})
 }
 
 func (ptr *QNetworkConfigurationManager) UpdateConfigurations() {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_UpdateConfigurations(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UpdateConfigurations"})
 }
 
 func (ptr *QNetworkConfigurationManager) UpdateConfigurationsDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_UpdateConfigurationsDefault(ptr.Pointer())
-	}
-}
 
-//export callbackQNetworkConfigurationManager_DestroyQNetworkConfigurationManager
-func callbackQNetworkConfigurationManager_DestroyQNetworkConfigurationManager(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QNetworkConfigurationManager"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkConfigurationManagerFromPointer(ptr).DestroyQNetworkConfigurationManagerDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UpdateConfigurationsDefault"})
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectDestroyQNetworkConfigurationManager(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QNetworkConfigurationManager"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkConfigurationManager", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkConfigurationManager", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQNetworkConfigurationManager", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectDestroyQNetworkConfigurationManager() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QNetworkConfigurationManager")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQNetworkConfigurationManager"})
 }
 
 func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManager() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkConfigurationManager"})
 }
 
 func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManagerDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManagerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkConfigurationManagerDefault"})
 }
 
 func (ptr *QNetworkConfigurationManager) __allConfigurations_atList(i int) *QNetworkConfiguration {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkConfigurationManager___allConfigurations_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allConfigurations_atList", i}).(*QNetworkConfiguration)
 }
 
 func (ptr *QNetworkConfigurationManager) __allConfigurations_setList(i QNetworkConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager___allConfigurations_setList(ptr.Pointer(), PointerFromQNetworkConfiguration(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allConfigurations_setList", i})
 }
 
 func (ptr *QNetworkConfigurationManager) __allConfigurations_newList() unsafe.Pointer {
-	return C.QNetworkConfigurationManager___allConfigurations_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allConfigurations_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkConfigurationManager) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkConfigurationManager___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkConfigurationManager) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QNetworkConfigurationManager) __children_newList() unsafe.Pointer {
-	return C.QNetworkConfigurationManager___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkConfigurationManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkConfigurationManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkConfigurationManager) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QNetworkConfigurationManager) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QNetworkConfigurationManager___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkConfigurationManager) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkConfigurationManager___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkConfigurationManager) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QNetworkConfigurationManager) __findChildren_newList() unsafe.Pointer {
-	return C.QNetworkConfigurationManager___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkConfigurationManager) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkConfigurationManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkConfigurationManager) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QNetworkConfigurationManager) __findChildren_newList3() unsafe.Pointer {
-	return C.QNetworkConfigurationManager___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQNetworkConfigurationManager_ChildEvent
-func callbackQNetworkConfigurationManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQNetworkConfigurationManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkConfigurationManager) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQNetworkConfigurationManager_ConnectNotify
-func callbackQNetworkConfigurationManager_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQNetworkConfigurationManagerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQNetworkConfigurationManager_CustomEvent
-func callbackQNetworkConfigurationManager_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQNetworkConfigurationManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QNetworkConfigurationManager) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQNetworkConfigurationManager_DeleteLater
-func callbackQNetworkConfigurationManager_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkConfigurationManagerFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QNetworkConfigurationManager) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkConfigurationManager_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQNetworkConfigurationManager_Destroyed
-func callbackQNetworkConfigurationManager_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQNetworkConfigurationManager_DisconnectNotify
-func callbackQNetworkConfigurationManager_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQNetworkConfigurationManagerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQNetworkConfigurationManager_Event
-func callbackQNetworkConfigurationManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkConfigurationManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QNetworkConfigurationManager) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkConfigurationManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkConfigurationManager_EventFilter
-func callbackQNetworkConfigurationManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkConfigurationManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QNetworkConfigurationManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkConfigurationManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkConfigurationManager_MetaObject
-func callbackQNetworkConfigurationManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQNetworkConfigurationManagerFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QNetworkConfigurationManager) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QNetworkConfigurationManager_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQNetworkConfigurationManager_ObjectNameChanged
-func callbackQNetworkConfigurationManager_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQNetworkConfigurationManager_TimerEvent
-func callbackQNetworkConfigurationManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQNetworkConfigurationManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QNetworkConfigurationManager) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QNetworkCookie struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkCookie_ITF interface {
@@ -9446,14 +5365,14 @@ func (ptr *QNetworkCookie) QNetworkCookie_PTR() *QNetworkCookie {
 
 func (ptr *QNetworkCookie) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkCookie) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -9464,9 +5383,13 @@ func PointerFromQNetworkCookie(ptr QNetworkCookie_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QNetworkCookie) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkCookieFromPointer(ptr unsafe.Pointer) (n *QNetworkCookie) {
 	n = new(QNetworkCookie)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkCookie")
 	return
 }
 
@@ -9480,208 +5403,138 @@ const (
 )
 
 func NewQNetworkCookie(name core.QByteArray_ITF, value core.QByteArray_ITF) *QNetworkCookie {
-	tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie(core.PointerFromQByteArray(name), core.PointerFromQByteArray(value)))
-	qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkCookie", "", name, value}).(*QNetworkCookie)
 }
 
 func NewQNetworkCookie2(other QNetworkCookie_ITF) *QNetworkCookie {
-	tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie2(PointerFromQNetworkCookie(other)))
-	qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkCookie2", "", other}).(*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookie) Domain() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkCookie_Domain(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Domain"}).(string)
 }
 
 func (ptr *QNetworkCookie) ExpirationDate() *core.QDateTime {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQDateTimeFromPointer(C.QNetworkCookie_ExpirationDate(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ExpirationDate"}).(*core.QDateTime)
 }
 
 func (ptr *QNetworkCookie) HasSameIdentifier(other QNetworkCookie_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookie_HasSameIdentifier(ptr.Pointer(), PointerFromQNetworkCookie(other))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasSameIdentifier", other}).(bool)
 }
 
 func (ptr *QNetworkCookie) IsHttpOnly() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookie_IsHttpOnly(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsHttpOnly"}).(bool)
 }
 
 func (ptr *QNetworkCookie) IsSecure() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookie_IsSecure(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsSecure"}).(bool)
 }
 
 func (ptr *QNetworkCookie) IsSessionCookie() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookie_IsSessionCookie(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsSessionCookie"}).(bool)
 }
 
 func (ptr *QNetworkCookie) Name() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkCookie_Name(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkCookie) Normalize(url core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookie_Normalize(ptr.Pointer(), core.PointerFromQUrl(url))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Normalize", url})
 }
 
 func QNetworkCookie_ParseCookies(cookieString core.QByteArray_ITF) []*QNetworkCookie {
-	return func(l C.struct_QtNetwork_PackedList) []*QNetworkCookie {
-		out := make([]*QNetworkCookie, int(l.len))
-		tmpList := NewQNetworkCookieFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__parseCookies_atList(i)
-		}
-		return out
-	}(C.QNetworkCookie_QNetworkCookie_ParseCookies(core.PointerFromQByteArray(cookieString)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkCookie_ParseCookies", "", cookieString}).([]*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookie) ParseCookies(cookieString core.QByteArray_ITF) []*QNetworkCookie {
-	return func(l C.struct_QtNetwork_PackedList) []*QNetworkCookie {
-		out := make([]*QNetworkCookie, int(l.len))
-		tmpList := NewQNetworkCookieFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__parseCookies_atList(i)
-		}
-		return out
-	}(C.QNetworkCookie_QNetworkCookie_ParseCookies(core.PointerFromQByteArray(cookieString)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkCookie_ParseCookies", "", cookieString}).([]*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookie) Path() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkCookie_Path(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Path"}).(string)
 }
 
 func (ptr *QNetworkCookie) SetDomain(domain string) {
-	if ptr.Pointer() != nil {
-		var domainC *C.char
-		if domain != "" {
-			domainC = C.CString(domain)
-			defer C.free(unsafe.Pointer(domainC))
-		}
-		C.QNetworkCookie_SetDomain(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: domainC, len: C.longlong(len(domain))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDomain", domain})
 }
 
 func (ptr *QNetworkCookie) SetExpirationDate(date core.QDateTime_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetExpirationDate(ptr.Pointer(), core.PointerFromQDateTime(date))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetExpirationDate", date})
 }
 
 func (ptr *QNetworkCookie) SetHttpOnly(enable bool) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetHttpOnly(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHttpOnly", enable})
 }
 
 func (ptr *QNetworkCookie) SetName(cookieName core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetName(ptr.Pointer(), core.PointerFromQByteArray(cookieName))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetName", cookieName})
 }
 
 func (ptr *QNetworkCookie) SetPath(path string) {
-	if ptr.Pointer() != nil {
-		var pathC *C.char
-		if path != "" {
-			pathC = C.CString(path)
-			defer C.free(unsafe.Pointer(pathC))
-		}
-		C.QNetworkCookie_SetPath(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPath", path})
 }
 
 func (ptr *QNetworkCookie) SetSecure(enable bool) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetSecure(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSecure", enable})
 }
 
 func (ptr *QNetworkCookie) SetValue(value core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetValue(ptr.Pointer(), core.PointerFromQByteArray(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetValue", value})
 }
 
 func (ptr *QNetworkCookie) Swap(other QNetworkCookie_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookie_Swap(ptr.Pointer(), PointerFromQNetworkCookie(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QNetworkCookie) ToRawForm(form QNetworkCookie__RawForm) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkCookie_ToRawForm(ptr.Pointer(), C.longlong(form)))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ToRawForm", form}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkCookie) Value() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkCookie_Value(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Value"}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkCookie) DestroyQNetworkCookie() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkCookie_DestroyQNetworkCookie(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkCookie"})
 }
 
 func (ptr *QNetworkCookie) __parseCookies_atList(i int) *QNetworkCookie {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookie___parseCookies_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__parseCookies_atList", i}).(*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookie) __parseCookies_setList(i QNetworkCookie_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookie___parseCookies_setList(ptr.Pointer(), PointerFromQNetworkCookie(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__parseCookies_setList", i})
 }
 
 func (ptr *QNetworkCookie) __parseCookies_newList() unsafe.Pointer {
-	return C.QNetworkCookie___parseCookies_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__parseCookies_newList"}).(unsafe.Pointer)
 }
 
 type QNetworkCookieJar struct {
@@ -9717,732 +5570,342 @@ func PointerFromQNetworkCookieJar(ptr QNetworkCookieJar_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QNetworkCookieJar) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QNetworkCookieJar) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQNetworkCookieJarFromPointer(ptr unsafe.Pointer) (n *QNetworkCookieJar) {
 	n = new(QNetworkCookieJar)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkCookieJar")
 	return
 }
 func NewQNetworkCookieJar(parent core.QObject_ITF) *QNetworkCookieJar {
-	tmpValue := NewQNetworkCookieJarFromPointer(C.QNetworkCookieJar_NewQNetworkCookieJar(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkCookieJar", "", parent}).(*QNetworkCookieJar)
 }
 
 func (ptr *QNetworkCookieJar) AllCookies() []*QNetworkCookie {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QNetworkCookie {
-			out := make([]*QNetworkCookie, int(l.len))
-			tmpList := NewQNetworkCookieJarFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__allCookies_atList(i)
-			}
-			return out
-		}(C.QNetworkCookieJar_AllCookies(ptr.Pointer()))
-	}
-	return make([]*QNetworkCookie, 0)
-}
 
-//export callbackQNetworkCookieJar_CookiesForUrl
-func callbackQNetworkCookieJar_CookiesForUrl(ptr unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "cookiesForUrl"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQNetworkCookieJarFromPointer(NewQNetworkCookieJarFromPointer(nil).__cookiesForUrl_newList())
-			for _, v := range (*(*func(*core.QUrl) []*QNetworkCookie)(signal))(core.NewQUrlFromPointer(url)) {
-				tmpList.__cookiesForUrl_setList(v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQNetworkCookieJarFromPointer(NewQNetworkCookieJarFromPointer(nil).__cookiesForUrl_newList())
-		for _, v := range NewQNetworkCookieJarFromPointer(ptr).CookiesForUrlDefault(core.NewQUrlFromPointer(url)) {
-			tmpList.__cookiesForUrl_setList(v)
-		}
-		return tmpList.Pointer()
-	}()
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AllCookies"}).([]*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookieJar) ConnectCookiesForUrl(f func(url *core.QUrl) []*QNetworkCookie) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "cookiesForUrl"); signal != nil {
-			f := func(url *core.QUrl) []*QNetworkCookie {
-				(*(*func(*core.QUrl) []*QNetworkCookie)(signal))(url)
-				return f(url)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "cookiesForUrl", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "cookiesForUrl", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectCookiesForUrl", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkCookieJar) DisconnectCookiesForUrl() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "cookiesForUrl")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectCookiesForUrl"})
 }
 
 func (ptr *QNetworkCookieJar) CookiesForUrl(url core.QUrl_ITF) []*QNetworkCookie {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QNetworkCookie {
-			out := make([]*QNetworkCookie, int(l.len))
-			tmpList := NewQNetworkCookieJarFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__cookiesForUrl_atList(i)
-			}
-			return out
-		}(C.QNetworkCookieJar_CookiesForUrl(ptr.Pointer(), core.PointerFromQUrl(url)))
-	}
-	return make([]*QNetworkCookie, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CookiesForUrl", url}).([]*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookieJar) CookiesForUrlDefault(url core.QUrl_ITF) []*QNetworkCookie {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QNetworkCookie {
-			out := make([]*QNetworkCookie, int(l.len))
-			tmpList := NewQNetworkCookieJarFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__cookiesForUrl_atList(i)
-			}
-			return out
-		}(C.QNetworkCookieJar_CookiesForUrlDefault(ptr.Pointer(), core.PointerFromQUrl(url)))
-	}
-	return make([]*QNetworkCookie, 0)
-}
 
-//export callbackQNetworkCookieJar_DeleteCookie
-func callbackQNetworkCookieJar_DeleteCookie(ptr unsafe.Pointer, cookie unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "deleteCookie"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QNetworkCookie) bool)(signal))(NewQNetworkCookieFromPointer(cookie)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkCookieJarFromPointer(ptr).DeleteCookieDefault(NewQNetworkCookieFromPointer(cookie)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CookiesForUrlDefault", url}).([]*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookieJar) ConnectDeleteCookie(f func(cookie *QNetworkCookie) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "deleteCookie"); signal != nil {
-			f := func(cookie *QNetworkCookie) bool {
-				(*(*func(*QNetworkCookie) bool)(signal))(cookie)
-				return f(cookie)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "deleteCookie", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "deleteCookie", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDeleteCookie", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkCookieJar) DisconnectDeleteCookie() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "deleteCookie")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDeleteCookie"})
 }
 
 func (ptr *QNetworkCookieJar) DeleteCookie(cookie QNetworkCookie_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_DeleteCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteCookie", cookie}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) DeleteCookieDefault(cookie QNetworkCookie_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_DeleteCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkCookieJar_InsertCookie
-func callbackQNetworkCookieJar_InsertCookie(ptr unsafe.Pointer, cookie unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "insertCookie"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QNetworkCookie) bool)(signal))(NewQNetworkCookieFromPointer(cookie)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkCookieJarFromPointer(ptr).InsertCookieDefault(NewQNetworkCookieFromPointer(cookie)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteCookieDefault", cookie}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) ConnectInsertCookie(f func(cookie *QNetworkCookie) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "insertCookie"); signal != nil {
-			f := func(cookie *QNetworkCookie) bool {
-				(*(*func(*QNetworkCookie) bool)(signal))(cookie)
-				return f(cookie)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "insertCookie", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "insertCookie", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectInsertCookie", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkCookieJar) DisconnectInsertCookie() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "insertCookie")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectInsertCookie"})
 }
 
 func (ptr *QNetworkCookieJar) InsertCookie(cookie QNetworkCookie_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_InsertCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InsertCookie", cookie}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) InsertCookieDefault(cookie QNetworkCookie_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_InsertCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InsertCookieDefault", cookie}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) SetAllCookies(cookieList []*QNetworkCookie) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar_SetAllCookies(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkCookieJarFromPointer(NewQNetworkCookieJarFromPointer(nil).__setAllCookies_cookieList_newList())
-			for _, v := range cookieList {
-				tmpList.__setAllCookies_cookieList_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
-}
 
-//export callbackQNetworkCookieJar_SetCookiesFromUrl
-func callbackQNetworkCookieJar_SetCookiesFromUrl(ptr unsafe.Pointer, cookieList C.struct_QtNetwork_PackedList, url unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "setCookiesFromUrl"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func([]*QNetworkCookie, *core.QUrl) bool)(signal))(func(l C.struct_QtNetwork_PackedList) []*QNetworkCookie {
-			out := make([]*QNetworkCookie, int(l.len))
-			tmpList := NewQNetworkCookieJarFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__setCookiesFromUrl_cookieList_atList(i)
-			}
-			return out
-		}(cookieList), core.NewQUrlFromPointer(url)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkCookieJarFromPointer(ptr).SetCookiesFromUrlDefault(func(l C.struct_QtNetwork_PackedList) []*QNetworkCookie {
-		out := make([]*QNetworkCookie, int(l.len))
-		tmpList := NewQNetworkCookieJarFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__setCookiesFromUrl_cookieList_atList(i)
-		}
-		return out
-	}(cookieList), core.NewQUrlFromPointer(url)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAllCookies", cookieList})
 }
 
 func (ptr *QNetworkCookieJar) ConnectSetCookiesFromUrl(f func(cookieList []*QNetworkCookie, url *core.QUrl) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setCookiesFromUrl"); signal != nil {
-			f := func(cookieList []*QNetworkCookie, url *core.QUrl) bool {
-				(*(*func([]*QNetworkCookie, *core.QUrl) bool)(signal))(cookieList, url)
-				return f(cookieList, url)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setCookiesFromUrl", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setCookiesFromUrl", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetCookiesFromUrl", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkCookieJar) DisconnectSetCookiesFromUrl() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setCookiesFromUrl")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetCookiesFromUrl"})
 }
 
 func (ptr *QNetworkCookieJar) SetCookiesFromUrl(cookieList []*QNetworkCookie, url core.QUrl_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_SetCookiesFromUrl(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkCookieJarFromPointer(NewQNetworkCookieJarFromPointer(nil).__setCookiesFromUrl_cookieList_newList())
-			for _, v := range cookieList {
-				tmpList.__setCookiesFromUrl_cookieList_setList(v)
-			}
-			return tmpList.Pointer()
-		}(), core.PointerFromQUrl(url))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCookiesFromUrl", cookieList, url}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) SetCookiesFromUrlDefault(cookieList []*QNetworkCookie, url core.QUrl_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_SetCookiesFromUrlDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkCookieJarFromPointer(NewQNetworkCookieJarFromPointer(nil).__setCookiesFromUrl_cookieList_newList())
-			for _, v := range cookieList {
-				tmpList.__setCookiesFromUrl_cookieList_setList(v)
-			}
-			return tmpList.Pointer()
-		}(), core.PointerFromQUrl(url))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkCookieJar_UpdateCookie
-func callbackQNetworkCookieJar_UpdateCookie(ptr unsafe.Pointer, cookie unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "updateCookie"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QNetworkCookie) bool)(signal))(NewQNetworkCookieFromPointer(cookie)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkCookieJarFromPointer(ptr).UpdateCookieDefault(NewQNetworkCookieFromPointer(cookie)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCookiesFromUrlDefault", cookieList, url}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) ConnectUpdateCookie(f func(cookie *QNetworkCookie) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "updateCookie"); signal != nil {
-			f := func(cookie *QNetworkCookie) bool {
-				(*(*func(*QNetworkCookie) bool)(signal))(cookie)
-				return f(cookie)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "updateCookie", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "updateCookie", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectUpdateCookie", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkCookieJar) DisconnectUpdateCookie() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "updateCookie")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectUpdateCookie"})
 }
 
 func (ptr *QNetworkCookieJar) UpdateCookie(cookie QNetworkCookie_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_UpdateCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UpdateCookie", cookie}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) UpdateCookieDefault(cookie QNetworkCookie_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_UpdateCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkCookieJar_ValidateCookie
-func callbackQNetworkCookieJar_ValidateCookie(ptr unsafe.Pointer, cookie unsafe.Pointer, url unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "validateCookie"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*QNetworkCookie, *core.QUrl) bool)(signal))(NewQNetworkCookieFromPointer(cookie), core.NewQUrlFromPointer(url)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkCookieJarFromPointer(ptr).ValidateCookieDefault(NewQNetworkCookieFromPointer(cookie), core.NewQUrlFromPointer(url)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UpdateCookieDefault", cookie}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) ConnectValidateCookie(f func(cookie *QNetworkCookie, url *core.QUrl) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "validateCookie"); signal != nil {
-			f := func(cookie *QNetworkCookie, url *core.QUrl) bool {
-				(*(*func(*QNetworkCookie, *core.QUrl) bool)(signal))(cookie, url)
-				return f(cookie, url)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "validateCookie", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "validateCookie", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectValidateCookie", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkCookieJar) DisconnectValidateCookie() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "validateCookie")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectValidateCookie"})
 }
 
 func (ptr *QNetworkCookieJar) ValidateCookie(cookie QNetworkCookie_ITF, url core.QUrl_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_ValidateCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie), core.PointerFromQUrl(url))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ValidateCookie", cookie, url}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) ValidateCookieDefault(cookie QNetworkCookie_ITF, url core.QUrl_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_ValidateCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie), core.PointerFromQUrl(url))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkCookieJar_DestroyQNetworkCookieJar
-func callbackQNetworkCookieJar_DestroyQNetworkCookieJar(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QNetworkCookieJar"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkCookieJarFromPointer(ptr).DestroyQNetworkCookieJarDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ValidateCookieDefault", cookie, url}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) ConnectDestroyQNetworkCookieJar(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QNetworkCookieJar"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkCookieJar", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkCookieJar", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQNetworkCookieJar", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkCookieJar) DisconnectDestroyQNetworkCookieJar() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QNetworkCookieJar")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQNetworkCookieJar"})
 }
 
 func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJar() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkCookieJar_DestroyQNetworkCookieJar(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkCookieJar"})
 }
 
 func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJarDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkCookieJar_DestroyQNetworkCookieJarDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkCookieJarDefault"})
 }
 
 func (ptr *QNetworkCookieJar) __allCookies_atList(i int) *QNetworkCookie {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookieJar___allCookies_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allCookies_atList", i}).(*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookieJar) __allCookies_setList(i QNetworkCookie_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar___allCookies_setList(ptr.Pointer(), PointerFromQNetworkCookie(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allCookies_setList", i})
 }
 
 func (ptr *QNetworkCookieJar) __allCookies_newList() unsafe.Pointer {
-	return C.QNetworkCookieJar___allCookies_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allCookies_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkCookieJar) __cookiesForUrl_atList(i int) *QNetworkCookie {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookieJar___cookiesForUrl_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__cookiesForUrl_atList", i}).(*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookieJar) __cookiesForUrl_setList(i QNetworkCookie_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar___cookiesForUrl_setList(ptr.Pointer(), PointerFromQNetworkCookie(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__cookiesForUrl_setList", i})
 }
 
 func (ptr *QNetworkCookieJar) __cookiesForUrl_newList() unsafe.Pointer {
-	return C.QNetworkCookieJar___cookiesForUrl_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__cookiesForUrl_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkCookieJar) __setAllCookies_cookieList_atList(i int) *QNetworkCookie {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookieJar___setAllCookies_cookieList_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setAllCookies_cookieList_atList", i}).(*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookieJar) __setAllCookies_cookieList_setList(i QNetworkCookie_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar___setAllCookies_cookieList_setList(ptr.Pointer(), PointerFromQNetworkCookie(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setAllCookies_cookieList_setList", i})
 }
 
 func (ptr *QNetworkCookieJar) __setAllCookies_cookieList_newList() unsafe.Pointer {
-	return C.QNetworkCookieJar___setAllCookies_cookieList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setAllCookies_cookieList_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkCookieJar) __setCookiesFromUrl_cookieList_atList(i int) *QNetworkCookie {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCookieFromPointer(C.QNetworkCookieJar___setCookiesFromUrl_cookieList_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkCookie).DestroyQNetworkCookie)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCookiesFromUrl_cookieList_atList", i}).(*QNetworkCookie)
 }
 
 func (ptr *QNetworkCookieJar) __setCookiesFromUrl_cookieList_setList(i QNetworkCookie_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar___setCookiesFromUrl_cookieList_setList(ptr.Pointer(), PointerFromQNetworkCookie(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCookiesFromUrl_cookieList_setList", i})
 }
 
 func (ptr *QNetworkCookieJar) __setCookiesFromUrl_cookieList_newList() unsafe.Pointer {
-	return C.QNetworkCookieJar___setCookiesFromUrl_cookieList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCookiesFromUrl_cookieList_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkCookieJar) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkCookieJar___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkCookieJar) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QNetworkCookieJar) __children_newList() unsafe.Pointer {
-	return C.QNetworkCookieJar___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkCookieJar) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkCookieJar___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkCookieJar) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QNetworkCookieJar) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QNetworkCookieJar___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkCookieJar) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkCookieJar___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkCookieJar) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QNetworkCookieJar) __findChildren_newList() unsafe.Pointer {
-	return C.QNetworkCookieJar___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkCookieJar) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkCookieJar___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkCookieJar) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QNetworkCookieJar) __findChildren_newList3() unsafe.Pointer {
-	return C.QNetworkCookieJar___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQNetworkCookieJar_ChildEvent
-func callbackQNetworkCookieJar_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQNetworkCookieJarFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkCookieJar) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQNetworkCookieJar_ConnectNotify
-func callbackQNetworkCookieJar_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQNetworkCookieJarFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QNetworkCookieJar) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQNetworkCookieJar_CustomEvent
-func callbackQNetworkCookieJar_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQNetworkCookieJarFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QNetworkCookieJar) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQNetworkCookieJar_DeleteLater
-func callbackQNetworkCookieJar_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkCookieJarFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QNetworkCookieJar) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkCookieJar_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQNetworkCookieJar_Destroyed
-func callbackQNetworkCookieJar_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQNetworkCookieJar_DisconnectNotify
-func callbackQNetworkCookieJar_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQNetworkCookieJarFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QNetworkCookieJar) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQNetworkCookieJar_Event
-func callbackQNetworkCookieJar_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkCookieJarFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QNetworkCookieJar) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkCookieJar_EventFilter
-func callbackQNetworkCookieJar_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkCookieJarFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkCookieJar_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkCookieJar_MetaObject
-func callbackQNetworkCookieJar_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQNetworkCookieJarFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QNetworkCookieJar) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QNetworkCookieJar_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQNetworkCookieJar_ObjectNameChanged
-func callbackQNetworkCookieJar_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQNetworkCookieJar_TimerEvent
-func callbackQNetworkCookieJar_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQNetworkCookieJarFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QNetworkCookieJar) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkCookieJar_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QNetworkDatagram struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkDatagram_ITF interface {
@@ -10455,14 +5918,14 @@ func (ptr *QNetworkDatagram) QNetworkDatagram_PTR() *QNetworkDatagram {
 
 func (ptr *QNetworkDatagram) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkDatagram) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -10473,164 +5936,122 @@ func PointerFromQNetworkDatagram(ptr QNetworkDatagram_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QNetworkDatagram) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkDatagramFromPointer(ptr unsafe.Pointer) (n *QNetworkDatagram) {
 	n = new(QNetworkDatagram)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkDatagram")
 	return
 }
-func (ptr *QNetworkDatagram) DestroyQNetworkDatagram() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *QNetworkDatagram) DestroyQNetworkDatagram() {
 }
+
 func NewQNetworkDatagram() *QNetworkDatagram {
-	tmpValue := NewQNetworkDatagramFromPointer(C.QNetworkDatagram_NewQNetworkDatagram())
-	qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkDatagram", ""}).(*QNetworkDatagram)
 }
 
 func NewQNetworkDatagram2(data core.QByteArray_ITF, destinationAddress QHostAddress_ITF, port uint16) *QNetworkDatagram {
-	tmpValue := NewQNetworkDatagramFromPointer(C.QNetworkDatagram_NewQNetworkDatagram2(core.PointerFromQByteArray(data), PointerFromQHostAddress(destinationAddress), C.ushort(port)))
-	qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkDatagram2", "", data, destinationAddress, port}).(*QNetworkDatagram)
 }
 
 func NewQNetworkDatagram3(other QNetworkDatagram_ITF) *QNetworkDatagram {
-	tmpValue := NewQNetworkDatagramFromPointer(C.QNetworkDatagram_NewQNetworkDatagram3(PointerFromQNetworkDatagram(other)))
-	qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkDatagram3", "", other}).(*QNetworkDatagram)
 }
 
 func (ptr *QNetworkDatagram) Clear() {
-	if ptr.Pointer() != nil {
-		C.QNetworkDatagram_Clear(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Clear"})
 }
 
 func (ptr *QNetworkDatagram) Data() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkDatagram_Data(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Data"}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkDatagram) DestinationAddress() *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QNetworkDatagram_DestinationAddress(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestinationAddress"}).(*QHostAddress)
 }
 
 func (ptr *QNetworkDatagram) DestinationPort() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QNetworkDatagram_DestinationPort(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestinationPort"}).(float64))
 }
 
 func (ptr *QNetworkDatagram) HopLimit() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QNetworkDatagram_HopLimit(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HopLimit"}).(float64))
 }
 
 func (ptr *QNetworkDatagram) InterfaceIndex() uint {
-	if ptr.Pointer() != nil {
-		return uint(uint32(C.QNetworkDatagram_InterfaceIndex(ptr.Pointer())))
-	}
-	return 0
+
+	return uint(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InterfaceIndex"}).(float64))
 }
 
 func (ptr *QNetworkDatagram) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkDatagram_IsNull(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsNull"}).(bool)
 }
 
 func (ptr *QNetworkDatagram) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkDatagram_IsValid(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsValid"}).(bool)
 }
 
 func (ptr *QNetworkDatagram) MakeReply(payload core.QByteArray_ITF) *QNetworkDatagram {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkDatagramFromPointer(C.QNetworkDatagram_MakeReply(ptr.Pointer(), core.PointerFromQByteArray(payload)))
-		qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MakeReply", payload}).(*QNetworkDatagram)
 }
 
 func (ptr *QNetworkDatagram) MakeReply2(payload core.QByteArray_ITF) *QNetworkDatagram {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkDatagramFromPointer(C.QNetworkDatagram_MakeReply2(ptr.Pointer(), core.PointerFromQByteArray(payload)))
-		qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MakeReply2", payload}).(*QNetworkDatagram)
 }
 
 func (ptr *QNetworkDatagram) SenderAddress() *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QNetworkDatagram_SenderAddress(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SenderAddress"}).(*QHostAddress)
 }
 
 func (ptr *QNetworkDatagram) SenderPort() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QNetworkDatagram_SenderPort(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SenderPort"}).(float64))
 }
 
 func (ptr *QNetworkDatagram) SetData(data core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDatagram_SetData(ptr.Pointer(), core.PointerFromQByteArray(data))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetData", data})
 }
 
 func (ptr *QNetworkDatagram) SetDestination(address QHostAddress_ITF, port uint16) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDatagram_SetDestination(ptr.Pointer(), PointerFromQHostAddress(address), C.ushort(port))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDestination", address, port})
 }
 
 func (ptr *QNetworkDatagram) SetHopLimit(count int) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDatagram_SetHopLimit(ptr.Pointer(), C.int(int32(count)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHopLimit", count})
 }
 
 func (ptr *QNetworkDatagram) SetInterfaceIndex(index uint) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDatagram_SetInterfaceIndex(ptr.Pointer(), C.uint(uint32(index)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetInterfaceIndex", index})
 }
 
 func (ptr *QNetworkDatagram) SetSender(address QHostAddress_ITF, port uint16) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDatagram_SetSender(ptr.Pointer(), PointerFromQHostAddress(address), C.ushort(port))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSender", address, port})
 }
 
 func (ptr *QNetworkDatagram) Swap(other QNetworkDatagram_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDatagram_Swap(ptr.Pointer(), PointerFromQNetworkDatagram(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 type QNetworkDiskCache struct {
@@ -10666,534 +6087,252 @@ func PointerFromQNetworkDiskCache(ptr QNetworkDiskCache_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QNetworkDiskCache) InitFromInternal(ptr uintptr, name string) {
+	n.QAbstractNetworkCache_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QNetworkDiskCache) ClassNameInternalF() string {
+	return n.QAbstractNetworkCache_PTR().ClassNameInternalF()
+}
+
 func NewQNetworkDiskCacheFromPointer(ptr unsafe.Pointer) (n *QNetworkDiskCache) {
 	n = new(QNetworkDiskCache)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkDiskCache")
 	return
 }
 func NewQNetworkDiskCache(parent core.QObject_ITF) *QNetworkDiskCache {
-	tmpValue := NewQNetworkDiskCacheFromPointer(C.QNetworkDiskCache_NewQNetworkDiskCache(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkDiskCache", "", parent}).(*QNetworkDiskCache)
 }
 
 func (ptr *QNetworkDiskCache) CacheDirectory() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkDiskCache_CacheDirectory(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQNetworkDiskCache_CacheSize
-func callbackQNetworkDiskCache_CacheSize(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "cacheSize"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQNetworkDiskCacheFromPointer(ptr).CacheSizeDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CacheDirectory"}).(string)
 }
 
 func (ptr *QNetworkDiskCache) ConnectCacheSize(f func() int64) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "cacheSize"); signal != nil {
-			f := func() int64 {
-				(*(*func() int64)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "cacheSize", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "cacheSize", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectCacheSize", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkDiskCache) DisconnectCacheSize() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "cacheSize")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectCacheSize"})
 }
 
 func (ptr *QNetworkDiskCache) CacheSize() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QNetworkDiskCache_CacheSize(ptr.Pointer()))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CacheSize"}).(float64))
 }
 
 func (ptr *QNetworkDiskCache) CacheSizeDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QNetworkDiskCache_CacheSizeDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkDiskCache_Clear
-func callbackQNetworkDiskCache_Clear(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "clear"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkDiskCacheFromPointer(ptr).ClearDefault()
-	}
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CacheSizeDefault"}).(float64))
 }
 
 func (ptr *QNetworkDiskCache) ConnectClear(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "clear"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "clear", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "clear", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectClear", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkDiskCache) DisconnectClear() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "clear")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectClear"})
 }
 
 func (ptr *QNetworkDiskCache) Clear() {
-	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_Clear(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Clear"})
 }
 
 func (ptr *QNetworkDiskCache) ClearDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_ClearDefault(ptr.Pointer())
-	}
-}
 
-//export callbackQNetworkDiskCache_Data
-func callbackQNetworkDiskCache_Data(ptr unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "data"); signal != nil {
-		return core.PointerFromQIODevice((*(*func(*core.QUrl) *core.QIODevice)(signal))(core.NewQUrlFromPointer(url)))
-	}
-
-	return core.PointerFromQIODevice(NewQNetworkDiskCacheFromPointer(ptr).DataDefault(core.NewQUrlFromPointer(url)))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ClearDefault"})
 }
 
 func (ptr *QNetworkDiskCache) ConnectData(f func(url *core.QUrl) *core.QIODevice) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "data"); signal != nil {
-			f := func(url *core.QUrl) *core.QIODevice {
-				(*(*func(*core.QUrl) *core.QIODevice)(signal))(url)
-				return f(url)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "data", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "data", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkDiskCache) DisconnectData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "data")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectData"})
 }
 
 func (ptr *QNetworkDiskCache) Data(url core.QUrl_ITF) *core.QIODevice {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Data(ptr.Pointer(), core.PointerFromQUrl(url)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Data", url}).(*core.QIODevice)
 }
 
 func (ptr *QNetworkDiskCache) DataDefault(url core.QUrl_ITF) *core.QIODevice {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQIODeviceFromPointer(C.QNetworkDiskCache_DataDefault(ptr.Pointer(), core.PointerFromQUrl(url)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkDiskCache_Expire
-func callbackQNetworkDiskCache_Expire(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "expire"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQNetworkDiskCacheFromPointer(ptr).ExpireDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DataDefault", url}).(*core.QIODevice)
 }
 
 func (ptr *QNetworkDiskCache) ConnectExpire(f func() int64) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "expire"); signal != nil {
-			f := func() int64 {
-				(*(*func() int64)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "expire", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "expire", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectExpire", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkDiskCache) DisconnectExpire() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "expire")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectExpire"})
 }
 
 func (ptr *QNetworkDiskCache) Expire() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QNetworkDiskCache_Expire(ptr.Pointer()))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Expire"}).(float64))
 }
 
 func (ptr *QNetworkDiskCache) ExpireDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QNetworkDiskCache_ExpireDefault(ptr.Pointer()))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ExpireDefault"}).(float64))
 }
 
 func (ptr *QNetworkDiskCache) FileMetaData(fileName string) *QNetworkCacheMetaData {
-	if ptr.Pointer() != nil {
-		var fileNameC *C.char
-		if fileName != "" {
-			fileNameC = C.CString(fileName)
-			defer C.free(unsafe.Pointer(fileNameC))
-		}
-		tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QNetworkDiskCache_FileMetaData(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
-		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkDiskCache_Insert
-func callbackQNetworkDiskCache_Insert(ptr unsafe.Pointer, device unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "insert"); signal != nil {
-		(*(*func(*core.QIODevice))(signal))(core.NewQIODeviceFromPointer(device))
-	} else {
-		NewQNetworkDiskCacheFromPointer(ptr).InsertDefault(core.NewQIODeviceFromPointer(device))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "FileMetaData", fileName}).(*QNetworkCacheMetaData)
 }
 
 func (ptr *QNetworkDiskCache) ConnectInsert(f func(device *core.QIODevice)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "insert"); signal != nil {
-			f := func(device *core.QIODevice) {
-				(*(*func(*core.QIODevice))(signal))(device)
-				f(device)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "insert", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "insert", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectInsert", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkDiskCache) DisconnectInsert() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "insert")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectInsert"})
 }
 
 func (ptr *QNetworkDiskCache) Insert(device core.QIODevice_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_Insert(ptr.Pointer(), core.PointerFromQIODevice(device))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Insert", device})
 }
 
 func (ptr *QNetworkDiskCache) InsertDefault(device core.QIODevice_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_InsertDefault(ptr.Pointer(), core.PointerFromQIODevice(device))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InsertDefault", device})
 }
 
 func (ptr *QNetworkDiskCache) MaximumCacheSize() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QNetworkDiskCache_MaximumCacheSize(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkDiskCache_MetaData
-func callbackQNetworkDiskCache_MetaData(ptr unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaData"); signal != nil {
-		return PointerFromQNetworkCacheMetaData((*(*func(*core.QUrl) *QNetworkCacheMetaData)(signal))(core.NewQUrlFromPointer(url)))
-	}
-
-	return PointerFromQNetworkCacheMetaData(NewQNetworkDiskCacheFromPointer(ptr).MetaDataDefault(core.NewQUrlFromPointer(url)))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MaximumCacheSize"}).(float64))
 }
 
 func (ptr *QNetworkDiskCache) ConnectMetaData(f func(url *core.QUrl) *QNetworkCacheMetaData) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "metaData"); signal != nil {
-			f := func(url *core.QUrl) *QNetworkCacheMetaData {
-				(*(*func(*core.QUrl) *QNetworkCacheMetaData)(signal))(url)
-				return f(url)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "metaData", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "metaData", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectMetaData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkDiskCache) DisconnectMetaData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "metaData")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectMetaData"})
 }
 
 func (ptr *QNetworkDiskCache) MetaData(url core.QUrl_ITF) *QNetworkCacheMetaData {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QNetworkDiskCache_MetaData(ptr.Pointer(), core.PointerFromQUrl(url)))
-		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaData", url}).(*QNetworkCacheMetaData)
 }
 
 func (ptr *QNetworkDiskCache) MetaDataDefault(url core.QUrl_ITF) *QNetworkCacheMetaData {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkCacheMetaDataFromPointer(C.QNetworkDiskCache_MetaDataDefault(ptr.Pointer(), core.PointerFromQUrl(url)))
-		qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkDiskCache_Prepare
-func callbackQNetworkDiskCache_Prepare(ptr unsafe.Pointer, metaData unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "prepare"); signal != nil {
-		return core.PointerFromQIODevice((*(*func(*QNetworkCacheMetaData) *core.QIODevice)(signal))(NewQNetworkCacheMetaDataFromPointer(metaData)))
-	}
-
-	return core.PointerFromQIODevice(NewQNetworkDiskCacheFromPointer(ptr).PrepareDefault(NewQNetworkCacheMetaDataFromPointer(metaData)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaDataDefault", url}).(*QNetworkCacheMetaData)
 }
 
 func (ptr *QNetworkDiskCache) ConnectPrepare(f func(metaData *QNetworkCacheMetaData) *core.QIODevice) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "prepare"); signal != nil {
-			f := func(metaData *QNetworkCacheMetaData) *core.QIODevice {
-				(*(*func(*QNetworkCacheMetaData) *core.QIODevice)(signal))(metaData)
-				return f(metaData)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "prepare", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "prepare", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectPrepare", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkDiskCache) DisconnectPrepare() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "prepare")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectPrepare"})
 }
 
 func (ptr *QNetworkDiskCache) Prepare(metaData QNetworkCacheMetaData_ITF) *core.QIODevice {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Prepare(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Prepare", metaData}).(*core.QIODevice)
 }
 
 func (ptr *QNetworkDiskCache) PrepareDefault(metaData QNetworkCacheMetaData_ITF) *core.QIODevice {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQIODeviceFromPointer(C.QNetworkDiskCache_PrepareDefault(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkDiskCache_Remove
-func callbackQNetworkDiskCache_Remove(ptr unsafe.Pointer, url unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "remove"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QUrl) bool)(signal))(core.NewQUrlFromPointer(url)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkDiskCacheFromPointer(ptr).RemoveDefault(core.NewQUrlFromPointer(url)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PrepareDefault", metaData}).(*core.QIODevice)
 }
 
 func (ptr *QNetworkDiskCache) ConnectRemove(f func(url *core.QUrl) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "remove"); signal != nil {
-			f := func(url *core.QUrl) bool {
-				(*(*func(*core.QUrl) bool)(signal))(url)
-				return f(url)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "remove", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "remove", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectRemove", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkDiskCache) DisconnectRemove() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "remove")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectRemove"})
 }
 
 func (ptr *QNetworkDiskCache) Remove(url core.QUrl_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkDiskCache_Remove(ptr.Pointer(), core.PointerFromQUrl(url))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Remove", url}).(bool)
 }
 
 func (ptr *QNetworkDiskCache) RemoveDefault(url core.QUrl_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkDiskCache_RemoveDefault(ptr.Pointer(), core.PointerFromQUrl(url))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RemoveDefault", url}).(bool)
 }
 
 func (ptr *QNetworkDiskCache) SetCacheDirectory(cacheDir string) {
-	if ptr.Pointer() != nil {
-		var cacheDirC *C.char
-		if cacheDir != "" {
-			cacheDirC = C.CString(cacheDir)
-			defer C.free(unsafe.Pointer(cacheDirC))
-		}
-		C.QNetworkDiskCache_SetCacheDirectory(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: cacheDirC, len: C.longlong(len(cacheDir))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCacheDirectory", cacheDir})
 }
 
 func (ptr *QNetworkDiskCache) SetMaximumCacheSize(size int64) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_SetMaximumCacheSize(ptr.Pointer(), C.longlong(size))
-	}
-}
 
-//export callbackQNetworkDiskCache_UpdateMetaData
-func callbackQNetworkDiskCache_UpdateMetaData(ptr unsafe.Pointer, metaData unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "updateMetaData"); signal != nil {
-		(*(*func(*QNetworkCacheMetaData))(signal))(NewQNetworkCacheMetaDataFromPointer(metaData))
-	} else {
-		NewQNetworkDiskCacheFromPointer(ptr).UpdateMetaDataDefault(NewQNetworkCacheMetaDataFromPointer(metaData))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetMaximumCacheSize", size})
 }
 
 func (ptr *QNetworkDiskCache) ConnectUpdateMetaData(f func(metaData *QNetworkCacheMetaData)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "updateMetaData"); signal != nil {
-			f := func(metaData *QNetworkCacheMetaData) {
-				(*(*func(*QNetworkCacheMetaData))(signal))(metaData)
-				f(metaData)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "updateMetaData", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "updateMetaData", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectUpdateMetaData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkDiskCache) DisconnectUpdateMetaData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "updateMetaData")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectUpdateMetaData"})
 }
 
 func (ptr *QNetworkDiskCache) UpdateMetaData(metaData QNetworkCacheMetaData_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_UpdateMetaData(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UpdateMetaData", metaData})
 }
 
 func (ptr *QNetworkDiskCache) UpdateMetaDataDefault(metaData QNetworkCacheMetaData_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_UpdateMetaDataDefault(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData))
-	}
-}
 
-//export callbackQNetworkDiskCache_DestroyQNetworkDiskCache
-func callbackQNetworkDiskCache_DestroyQNetworkDiskCache(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QNetworkDiskCache"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkDiskCacheFromPointer(ptr).DestroyQNetworkDiskCacheDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UpdateMetaDataDefault", metaData})
 }
 
 func (ptr *QNetworkDiskCache) ConnectDestroyQNetworkDiskCache(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QNetworkDiskCache"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkDiskCache", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkDiskCache", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQNetworkDiskCache", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkDiskCache) DisconnectDestroyQNetworkDiskCache() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QNetworkDiskCache")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQNetworkDiskCache"})
 }
 
 func (ptr *QNetworkDiskCache) DestroyQNetworkDiskCache() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkDiskCache_DestroyQNetworkDiskCache(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkDiskCache"})
 }
 
 func (ptr *QNetworkDiskCache) DestroyQNetworkDiskCacheDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkDiskCache_DestroyQNetworkDiskCacheDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkDiskCacheDefault"})
 }
 
 type QNetworkInterface struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkInterface_ITF interface {
@@ -11206,14 +6345,14 @@ func (ptr *QNetworkInterface) QNetworkInterface_PTR() *QNetworkInterface {
 
 func (ptr *QNetworkInterface) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkInterface) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -11224,9 +6363,13 @@ func PointerFromQNetworkInterface(ptr QNetworkInterface_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QNetworkInterface) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkInterfaceFromPointer(ptr unsafe.Pointer) (n *QNetworkInterface) {
 	n = new(QNetworkInterface)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkInterface")
 	return
 }
 
@@ -11266,266 +6409,177 @@ const (
 )
 
 func NewQNetworkInterface() *QNetworkInterface {
-	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_NewQNetworkInterface())
-	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkInterface", ""}).(*QNetworkInterface)
 }
 
 func NewQNetworkInterface2(other QNetworkInterface_ITF) *QNetworkInterface {
-	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_NewQNetworkInterface2(PointerFromQNetworkInterface(other)))
-	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkInterface2", "", other}).(*QNetworkInterface)
 }
 
 func (ptr *QNetworkInterface) AddressEntries() []*QNetworkAddressEntry {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QNetworkAddressEntry {
-			out := make([]*QNetworkAddressEntry, int(l.len))
-			tmpList := NewQNetworkInterfaceFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__addressEntries_atList(i)
-			}
-			return out
-		}(C.QNetworkInterface_AddressEntries(ptr.Pointer()))
-	}
-	return make([]*QNetworkAddressEntry, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AddressEntries"}).([]*QNetworkAddressEntry)
 }
 
 func QNetworkInterface_AllAddresses() []*QHostAddress {
-	return func(l C.struct_QtNetwork_PackedList) []*QHostAddress {
-		out := make([]*QHostAddress, int(l.len))
-		tmpList := NewQNetworkInterfaceFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__allAddresses_atList(i)
-		}
-		return out
-	}(C.QNetworkInterface_QNetworkInterface_AllAddresses())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_AllAddresses", ""}).([]*QHostAddress)
 }
 
 func (ptr *QNetworkInterface) AllAddresses() []*QHostAddress {
-	return func(l C.struct_QtNetwork_PackedList) []*QHostAddress {
-		out := make([]*QHostAddress, int(l.len))
-		tmpList := NewQNetworkInterfaceFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__allAddresses_atList(i)
-		}
-		return out
-	}(C.QNetworkInterface_QNetworkInterface_AllAddresses())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_AllAddresses", ""}).([]*QHostAddress)
 }
 
 func QNetworkInterface_AllInterfaces() []*QNetworkInterface {
-	return func(l C.struct_QtNetwork_PackedList) []*QNetworkInterface {
-		out := make([]*QNetworkInterface, int(l.len))
-		tmpList := NewQNetworkInterfaceFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__allInterfaces_atList(i)
-		}
-		return out
-	}(C.QNetworkInterface_QNetworkInterface_AllInterfaces())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_AllInterfaces", ""}).([]*QNetworkInterface)
 }
 
 func (ptr *QNetworkInterface) AllInterfaces() []*QNetworkInterface {
-	return func(l C.struct_QtNetwork_PackedList) []*QNetworkInterface {
-		out := make([]*QNetworkInterface, int(l.len))
-		tmpList := NewQNetworkInterfaceFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__allInterfaces_atList(i)
-		}
-		return out
-	}(C.QNetworkInterface_QNetworkInterface_AllInterfaces())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_AllInterfaces", ""}).([]*QNetworkInterface)
 }
 
 func (ptr *QNetworkInterface) Flags() QNetworkInterface__InterfaceFlag {
-	if ptr.Pointer() != nil {
-		return QNetworkInterface__InterfaceFlag(C.QNetworkInterface_Flags(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkInterface__InterfaceFlag(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Flags"}).(float64))
 }
 
 func (ptr *QNetworkInterface) HardwareAddress() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkInterface_HardwareAddress(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HardwareAddress"}).(string)
 }
 
 func (ptr *QNetworkInterface) HumanReadableName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkInterface_HumanReadableName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HumanReadableName"}).(string)
 }
 
 func (ptr *QNetworkInterface) Index() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QNetworkInterface_Index(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Index"}).(float64))
 }
 
 func QNetworkInterface_InterfaceFromIndex(index int) *QNetworkInterface {
-	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromIndex(C.int(int32(index))))
-	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_InterfaceFromIndex", "", index}).(*QNetworkInterface)
 }
 
 func (ptr *QNetworkInterface) InterfaceFromIndex(index int) *QNetworkInterface {
-	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromIndex(C.int(int32(index))))
-	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_InterfaceFromIndex", "", index}).(*QNetworkInterface)
 }
 
 func QNetworkInterface_InterfaceFromName(name string) *QNetworkInterface {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_InterfaceFromName", "", name}).(*QNetworkInterface)
 }
 
 func (ptr *QNetworkInterface) InterfaceFromName(name string) *QNetworkInterface {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_InterfaceFromName", "", name}).(*QNetworkInterface)
 }
 
 func QNetworkInterface_InterfaceIndexFromName(name string) int {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	return int(int32(C.QNetworkInterface_QNetworkInterface_InterfaceIndexFromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})))
+
+	return int(internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_InterfaceIndexFromName", "", name}).(float64))
 }
 
 func (ptr *QNetworkInterface) InterfaceIndexFromName(name string) int {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	return int(int32(C.QNetworkInterface_QNetworkInterface_InterfaceIndexFromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})))
+
+	return int(internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_InterfaceIndexFromName", "", name}).(float64))
 }
 
 func QNetworkInterface_InterfaceNameFromIndex(index int) string {
-	return cGoUnpackString(C.QNetworkInterface_QNetworkInterface_InterfaceNameFromIndex(C.int(int32(index))))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_InterfaceNameFromIndex", "", index}).(string)
 }
 
 func (ptr *QNetworkInterface) InterfaceNameFromIndex(index int) string {
-	return cGoUnpackString(C.QNetworkInterface_QNetworkInterface_InterfaceNameFromIndex(C.int(int32(index))))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkInterface_InterfaceNameFromIndex", "", index}).(string)
 }
 
 func (ptr *QNetworkInterface) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkInterface_IsValid(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsValid"}).(bool)
 }
 
 func (ptr *QNetworkInterface) MaximumTransmissionUnit() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QNetworkInterface_MaximumTransmissionUnit(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MaximumTransmissionUnit"}).(float64))
 }
 
 func (ptr *QNetworkInterface) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkInterface_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QNetworkInterface) Swap(other QNetworkInterface_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkInterface_Swap(ptr.Pointer(), PointerFromQNetworkInterface(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QNetworkInterface) Type() QNetworkInterface__InterfaceType {
-	if ptr.Pointer() != nil {
-		return QNetworkInterface__InterfaceType(C.QNetworkInterface_Type(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkInterface__InterfaceType(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Type"}).(float64))
 }
 
 func (ptr *QNetworkInterface) DestroyQNetworkInterface() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkInterface_DestroyQNetworkInterface(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkInterface"})
 }
 
 func (ptr *QNetworkInterface) __addressEntries_atList(i int) *QNetworkAddressEntry {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkAddressEntryFromPointer(C.QNetworkInterface___addressEntries_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkAddressEntry).DestroyQNetworkAddressEntry)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addressEntries_atList", i}).(*QNetworkAddressEntry)
 }
 
 func (ptr *QNetworkInterface) __addressEntries_setList(i QNetworkAddressEntry_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkInterface___addressEntries_setList(ptr.Pointer(), PointerFromQNetworkAddressEntry(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addressEntries_setList", i})
 }
 
 func (ptr *QNetworkInterface) __addressEntries_newList() unsafe.Pointer {
-	return C.QNetworkInterface___addressEntries_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addressEntries_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkInterface) __allAddresses_atList(i int) *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QNetworkInterface___allAddresses_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allAddresses_atList", i}).(*QHostAddress)
 }
 
 func (ptr *QNetworkInterface) __allAddresses_setList(i QHostAddress_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkInterface___allAddresses_setList(ptr.Pointer(), PointerFromQHostAddress(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allAddresses_setList", i})
 }
 
 func (ptr *QNetworkInterface) __allAddresses_newList() unsafe.Pointer {
-	return C.QNetworkInterface___allAddresses_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allAddresses_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkInterface) __allInterfaces_atList(i int) *QNetworkInterface {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkInterface___allInterfaces_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allInterfaces_atList", i}).(*QNetworkInterface)
 }
 
 func (ptr *QNetworkInterface) __allInterfaces_setList(i QNetworkInterface_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkInterface___allInterfaces_setList(ptr.Pointer(), PointerFromQNetworkInterface(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allInterfaces_setList", i})
 }
 
 func (ptr *QNetworkInterface) __allInterfaces_newList() unsafe.Pointer {
-	return C.QNetworkInterface___allInterfaces_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allInterfaces_newList"}).(unsafe.Pointer)
 }
 
 type QNetworkProxy struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkProxy_ITF interface {
@@ -11538,14 +6592,14 @@ func (ptr *QNetworkProxy) QNetworkProxy_PTR() *QNetworkProxy {
 
 func (ptr *QNetworkProxy) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkProxy) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -11556,9 +6610,13 @@ func PointerFromQNetworkProxy(ptr QNetworkProxy_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QNetworkProxy) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkProxyFromPointer(ptr unsafe.Pointer) (n *QNetworkProxy) {
 	n = new(QNetworkProxy)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkProxy")
 	return
 }
 
@@ -11590,253 +6648,167 @@ const (
 )
 
 func NewQNetworkProxy() *QNetworkProxy {
-	tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy())
-	qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkProxy", ""}).(*QNetworkProxy)
 }
 
 func NewQNetworkProxy2(ty QNetworkProxy__ProxyType, hostName string, port uint16, user string, password string) *QNetworkProxy {
-	var hostNameC *C.char
-	if hostName != "" {
-		hostNameC = C.CString(hostName)
-		defer C.free(unsafe.Pointer(hostNameC))
-	}
-	var userC *C.char
-	if user != "" {
-		userC = C.CString(user)
-		defer C.free(unsafe.Pointer(userC))
-	}
-	var passwordC *C.char
-	if password != "" {
-		passwordC = C.CString(password)
-		defer C.free(unsafe.Pointer(passwordC))
-	}
-	tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy2(C.longlong(ty), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.struct_QtNetwork_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtNetwork_PackedString{data: passwordC, len: C.longlong(len(password))}))
-	qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkProxy2", "", ty, hostName, port, user, password}).(*QNetworkProxy)
 }
 
 func NewQNetworkProxy3(other QNetworkProxy_ITF) *QNetworkProxy {
-	tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy3(PointerFromQNetworkProxy(other)))
-	qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkProxy3", "", other}).(*QNetworkProxy)
 }
 
 func QNetworkProxy_ApplicationProxy() *QNetworkProxy {
-	tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxy_QNetworkProxy_ApplicationProxy())
-	qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxy_ApplicationProxy", ""}).(*QNetworkProxy)
 }
 
 func (ptr *QNetworkProxy) ApplicationProxy() *QNetworkProxy {
-	tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxy_QNetworkProxy_ApplicationProxy())
-	qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxy_ApplicationProxy", ""}).(*QNetworkProxy)
 }
 
 func (ptr *QNetworkProxy) Capabilities() QNetworkProxy__Capability {
-	if ptr.Pointer() != nil {
-		return QNetworkProxy__Capability(C.QNetworkProxy_Capabilities(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkProxy__Capability(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Capabilities"}).(float64))
 }
 
 func (ptr *QNetworkProxy) HasRawHeader(headerName core.QByteArray_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkProxy_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasRawHeader", headerName}).(bool)
 }
 
 func (ptr *QNetworkProxy) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QNetworkProxy_Header(ptr.Pointer(), C.longlong(header)))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Header", header}).(*core.QVariant)
 }
 
 func (ptr *QNetworkProxy) HostName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkProxy_HostName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HostName"}).(string)
 }
 
 func (ptr *QNetworkProxy) IsCachingProxy() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkProxy_IsCachingProxy(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsCachingProxy"}).(bool)
 }
 
 func (ptr *QNetworkProxy) IsTransparentProxy() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkProxy_IsTransparentProxy(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsTransparentProxy"}).(bool)
 }
 
 func (ptr *QNetworkProxy) Password() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkProxy_Password(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Password"}).(string)
 }
 
 func (ptr *QNetworkProxy) Port() uint16 {
-	if ptr.Pointer() != nil {
-		return uint16(C.QNetworkProxy_Port(ptr.Pointer()))
-	}
-	return 0
+
+	return uint16(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Port"}).(float64))
 }
 
 func (ptr *QNetworkProxy) QNetworkCacheMetaData_RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkProxy_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "QNetworkCacheMetaData_RawHeader", headerName}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkProxy) RawHeaderList() []*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*core.QByteArray {
-			out := make([]*core.QByteArray, int(l.len))
-			tmpList := NewQNetworkProxyFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__rawHeaderList_atList(i)
-			}
-			return out
-		}(C.QNetworkProxy_RawHeaderList(ptr.Pointer()))
-	}
-	return make([]*core.QByteArray, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RawHeaderList"}).([]*core.QByteArray)
 }
 
 func QNetworkProxy_SetApplicationProxy(networkProxy QNetworkProxy_ITF) {
-	C.QNetworkProxy_QNetworkProxy_SetApplicationProxy(PointerFromQNetworkProxy(networkProxy))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxy_SetApplicationProxy", "", networkProxy})
 }
 
 func (ptr *QNetworkProxy) SetApplicationProxy(networkProxy QNetworkProxy_ITF) {
-	C.QNetworkProxy_QNetworkProxy_SetApplicationProxy(PointerFromQNetworkProxy(networkProxy))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxy_SetApplicationProxy", "", networkProxy})
 }
 
 func (ptr *QNetworkProxy) SetCapabilities(capabilities QNetworkProxy__Capability) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxy_SetCapabilities(ptr.Pointer(), C.longlong(capabilities))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCapabilities", capabilities})
 }
 
 func (ptr *QNetworkProxy) SetHeader(header QNetworkRequest__KnownHeaders, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxy_SetHeader(ptr.Pointer(), C.longlong(header), core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHeader", header, value})
 }
 
 func (ptr *QNetworkProxy) SetHostName(hostName string) {
-	if ptr.Pointer() != nil {
-		var hostNameC *C.char
-		if hostName != "" {
-			hostNameC = C.CString(hostName)
-			defer C.free(unsafe.Pointer(hostNameC))
-		}
-		C.QNetworkProxy_SetHostName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHostName", hostName})
 }
 
 func (ptr *QNetworkProxy) SetPassword(password string) {
-	if ptr.Pointer() != nil {
-		var passwordC *C.char
-		if password != "" {
-			passwordC = C.CString(password)
-			defer C.free(unsafe.Pointer(passwordC))
-		}
-		C.QNetworkProxy_SetPassword(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: passwordC, len: C.longlong(len(password))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPassword", password})
 }
 
 func (ptr *QNetworkProxy) SetPort(port uint16) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxy_SetPort(ptr.Pointer(), C.ushort(port))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPort", port})
 }
 
 func (ptr *QNetworkProxy) SetRawHeader(headerName core.QByteArray_ITF, headerValue core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxy_SetRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName), core.PointerFromQByteArray(headerValue))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetRawHeader", headerName, headerValue})
 }
 
 func (ptr *QNetworkProxy) SetType(ty QNetworkProxy__ProxyType) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxy_SetType(ptr.Pointer(), C.longlong(ty))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetType", ty})
 }
 
 func (ptr *QNetworkProxy) SetUser(user string) {
-	if ptr.Pointer() != nil {
-		var userC *C.char
-		if user != "" {
-			userC = C.CString(user)
-			defer C.free(unsafe.Pointer(userC))
-		}
-		C.QNetworkProxy_SetUser(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: userC, len: C.longlong(len(user))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetUser", user})
 }
 
 func (ptr *QNetworkProxy) Swap(other QNetworkProxy_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxy_Swap(ptr.Pointer(), PointerFromQNetworkProxy(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QNetworkProxy) Type() QNetworkProxy__ProxyType {
-	if ptr.Pointer() != nil {
-		return QNetworkProxy__ProxyType(C.QNetworkProxy_Type(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkProxy__ProxyType(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Type"}).(float64))
 }
 
 func (ptr *QNetworkProxy) User() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkProxy_User(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "User"}).(string)
 }
 
 func (ptr *QNetworkProxy) DestroyQNetworkProxy() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkProxy_DestroyQNetworkProxy(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkProxy"})
 }
 
 func (ptr *QNetworkProxy) __rawHeaderList_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkProxy___rawHeaderList_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaderList_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkProxy) __rawHeaderList_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxy___rawHeaderList_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaderList_setList", i})
 }
 
 func (ptr *QNetworkProxy) __rawHeaderList_newList() unsafe.Pointer {
-	return C.QNetworkProxy___rawHeaderList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaderList_newList"}).(unsafe.Pointer)
 }
 
 type QNetworkProxyFactory struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkProxyFactory_ITF interface {
@@ -11849,14 +6821,14 @@ func (ptr *QNetworkProxyFactory) QNetworkProxyFactory_PTR() *QNetworkProxyFactor
 
 func (ptr *QNetworkProxyFactory) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkProxyFactory) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -11867,248 +6839,152 @@ func PointerFromQNetworkProxyFactory(ptr QNetworkProxyFactory_ITF) unsafe.Pointe
 	return nil
 }
 
+func (n *QNetworkProxyFactory) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkProxyFactoryFromPointer(ptr unsafe.Pointer) (n *QNetworkProxyFactory) {
 	n = new(QNetworkProxyFactory)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkProxyFactory")
 	return
 }
 func NewQNetworkProxyFactory() *QNetworkProxyFactory {
-	return NewQNetworkProxyFactoryFromPointer(C.QNetworkProxyFactory_NewQNetworkProxyFactory())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkProxyFactory", ""}).(*QNetworkProxyFactory)
 }
 
 func QNetworkProxyFactory_ProxyForQuery(query QNetworkProxyQuery_ITF) []*QNetworkProxy {
-	return func(l C.struct_QtNetwork_PackedList) []*QNetworkProxy {
-		out := make([]*QNetworkProxy, int(l.len))
-		tmpList := NewQNetworkProxyFactoryFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__proxyForQuery_atList(i)
-		}
-		return out
-	}(C.QNetworkProxyFactory_QNetworkProxyFactory_ProxyForQuery(PointerFromQNetworkProxyQuery(query)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxyFactory_ProxyForQuery", "", query}).([]*QNetworkProxy)
 }
 
 func (ptr *QNetworkProxyFactory) ProxyForQuery(query QNetworkProxyQuery_ITF) []*QNetworkProxy {
-	return func(l C.struct_QtNetwork_PackedList) []*QNetworkProxy {
-		out := make([]*QNetworkProxy, int(l.len))
-		tmpList := NewQNetworkProxyFactoryFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__proxyForQuery_atList(i)
-		}
-		return out
-	}(C.QNetworkProxyFactory_QNetworkProxyFactory_ProxyForQuery(PointerFromQNetworkProxyQuery(query)))
-}
 
-//export callbackQNetworkProxyFactory_QueryProxy
-func callbackQNetworkProxyFactory_QueryProxy(ptr unsafe.Pointer, query unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "queryProxy"); signal != nil {
-		return func() unsafe.Pointer {
-			tmpList := NewQNetworkProxyFactoryFromPointer(NewQNetworkProxyFactoryFromPointer(nil).__queryProxy_newList())
-			for _, v := range (*(*func(*QNetworkProxyQuery) []*QNetworkProxy)(signal))(NewQNetworkProxyQueryFromPointer(query)) {
-				tmpList.__queryProxy_setList(v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		tmpList := NewQNetworkProxyFactoryFromPointer(NewQNetworkProxyFactoryFromPointer(nil).__queryProxy_newList())
-		for _, v := range make([]*QNetworkProxy, 0) {
-			tmpList.__queryProxy_setList(v)
-		}
-		return tmpList.Pointer()
-	}()
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxyFactory_ProxyForQuery", "", query}).([]*QNetworkProxy)
 }
 
 func (ptr *QNetworkProxyFactory) ConnectQueryProxy(f func(query *QNetworkProxyQuery) []*QNetworkProxy) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "queryProxy"); signal != nil {
-			f := func(query *QNetworkProxyQuery) []*QNetworkProxy {
-				(*(*func(*QNetworkProxyQuery) []*QNetworkProxy)(signal))(query)
-				return f(query)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "queryProxy", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "queryProxy", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectQueryProxy", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkProxyFactory) DisconnectQueryProxy() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "queryProxy")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectQueryProxy"})
 }
 
 func (ptr *QNetworkProxyFactory) QueryProxy(query QNetworkProxyQuery_ITF) []*QNetworkProxy {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QNetworkProxy {
-			out := make([]*QNetworkProxy, int(l.len))
-			tmpList := NewQNetworkProxyFactoryFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__queryProxy_atList(i)
-			}
-			return out
-		}(C.QNetworkProxyFactory_QueryProxy(ptr.Pointer(), PointerFromQNetworkProxyQuery(query)))
-	}
-	return make([]*QNetworkProxy, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "QueryProxy", query}).([]*QNetworkProxy)
 }
 
 func QNetworkProxyFactory_SetApplicationProxyFactory(factory QNetworkProxyFactory_ITF) {
-	C.QNetworkProxyFactory_QNetworkProxyFactory_SetApplicationProxyFactory(PointerFromQNetworkProxyFactory(factory))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxyFactory_SetApplicationProxyFactory", "", factory})
 }
 
 func (ptr *QNetworkProxyFactory) SetApplicationProxyFactory(factory QNetworkProxyFactory_ITF) {
-	C.QNetworkProxyFactory_QNetworkProxyFactory_SetApplicationProxyFactory(PointerFromQNetworkProxyFactory(factory))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxyFactory_SetApplicationProxyFactory", "", factory})
 }
 
 func QNetworkProxyFactory_SetUseSystemConfiguration(enable bool) {
-	C.QNetworkProxyFactory_QNetworkProxyFactory_SetUseSystemConfiguration(C.char(int8(qt.GoBoolToInt(enable))))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxyFactory_SetUseSystemConfiguration", "", enable})
 }
 
 func (ptr *QNetworkProxyFactory) SetUseSystemConfiguration(enable bool) {
-	C.QNetworkProxyFactory_QNetworkProxyFactory_SetUseSystemConfiguration(C.char(int8(qt.GoBoolToInt(enable))))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxyFactory_SetUseSystemConfiguration", "", enable})
 }
 
 func QNetworkProxyFactory_SystemProxyForQuery(query QNetworkProxyQuery_ITF) []*QNetworkProxy {
-	return func(l C.struct_QtNetwork_PackedList) []*QNetworkProxy {
-		out := make([]*QNetworkProxy, int(l.len))
-		tmpList := NewQNetworkProxyFactoryFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__systemProxyForQuery_atList(i)
-		}
-		return out
-	}(C.QNetworkProxyFactory_QNetworkProxyFactory_SystemProxyForQuery(PointerFromQNetworkProxyQuery(query)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxyFactory_SystemProxyForQuery", "", query}).([]*QNetworkProxy)
 }
 
 func (ptr *QNetworkProxyFactory) SystemProxyForQuery(query QNetworkProxyQuery_ITF) []*QNetworkProxy {
-	return func(l C.struct_QtNetwork_PackedList) []*QNetworkProxy {
-		out := make([]*QNetworkProxy, int(l.len))
-		tmpList := NewQNetworkProxyFactoryFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__systemProxyForQuery_atList(i)
-		}
-		return out
-	}(C.QNetworkProxyFactory_QNetworkProxyFactory_SystemProxyForQuery(PointerFromQNetworkProxyQuery(query)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxyFactory_SystemProxyForQuery", "", query}).([]*QNetworkProxy)
 }
 
 func QNetworkProxyFactory_UsesSystemConfiguration() bool {
-	return int8(C.QNetworkProxyFactory_QNetworkProxyFactory_UsesSystemConfiguration()) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxyFactory_UsesSystemConfiguration", ""}).(bool)
 }
 
 func (ptr *QNetworkProxyFactory) UsesSystemConfiguration() bool {
-	return int8(C.QNetworkProxyFactory_QNetworkProxyFactory_UsesSystemConfiguration()) != 0
-}
 
-//export callbackQNetworkProxyFactory_DestroyQNetworkProxyFactory
-func callbackQNetworkProxyFactory_DestroyQNetworkProxyFactory(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QNetworkProxyFactory"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkProxyFactoryFromPointer(ptr).DestroyQNetworkProxyFactoryDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QNetworkProxyFactory_UsesSystemConfiguration", ""}).(bool)
 }
 
 func (ptr *QNetworkProxyFactory) ConnectDestroyQNetworkProxyFactory(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QNetworkProxyFactory"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkProxyFactory", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkProxyFactory", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQNetworkProxyFactory", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkProxyFactory) DisconnectDestroyQNetworkProxyFactory() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QNetworkProxyFactory")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQNetworkProxyFactory"})
 }
 
 func (ptr *QNetworkProxyFactory) DestroyQNetworkProxyFactory() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkProxyFactory_DestroyQNetworkProxyFactory(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkProxyFactory"})
 }
 
 func (ptr *QNetworkProxyFactory) DestroyQNetworkProxyFactoryDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkProxyFactory_DestroyQNetworkProxyFactoryDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkProxyFactoryDefault"})
 }
 
 func (ptr *QNetworkProxyFactory) __proxyForQuery_atList(i int) *QNetworkProxy {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxyFactory___proxyForQuery_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__proxyForQuery_atList", i}).(*QNetworkProxy)
 }
 
 func (ptr *QNetworkProxyFactory) __proxyForQuery_setList(i QNetworkProxy_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxyFactory___proxyForQuery_setList(ptr.Pointer(), PointerFromQNetworkProxy(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__proxyForQuery_setList", i})
 }
 
 func (ptr *QNetworkProxyFactory) __proxyForQuery_newList() unsafe.Pointer {
-	return C.QNetworkProxyFactory___proxyForQuery_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__proxyForQuery_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkProxyFactory) __queryProxy_atList(i int) *QNetworkProxy {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxyFactory___queryProxy_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__queryProxy_atList", i}).(*QNetworkProxy)
 }
 
 func (ptr *QNetworkProxyFactory) __queryProxy_setList(i QNetworkProxy_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxyFactory___queryProxy_setList(ptr.Pointer(), PointerFromQNetworkProxy(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__queryProxy_setList", i})
 }
 
 func (ptr *QNetworkProxyFactory) __queryProxy_newList() unsafe.Pointer {
-	return C.QNetworkProxyFactory___queryProxy_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__queryProxy_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkProxyFactory) __systemProxyForQuery_atList(i int) *QNetworkProxy {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkProxyFromPointer(C.QNetworkProxyFactory___systemProxyForQuery_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__systemProxyForQuery_atList", i}).(*QNetworkProxy)
 }
 
 func (ptr *QNetworkProxyFactory) __systemProxyForQuery_setList(i QNetworkProxy_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxyFactory___systemProxyForQuery_setList(ptr.Pointer(), PointerFromQNetworkProxy(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__systemProxyForQuery_setList", i})
 }
 
 func (ptr *QNetworkProxyFactory) __systemProxyForQuery_newList() unsafe.Pointer {
-	return C.QNetworkProxyFactory___systemProxyForQuery_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__systemProxyForQuery_newList"}).(unsafe.Pointer)
 }
 
 type QNetworkProxyQuery struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkProxyQuery_ITF interface {
@@ -12121,14 +6997,14 @@ func (ptr *QNetworkProxyQuery) QNetworkProxyQuery_PTR() *QNetworkProxyQuery {
 
 func (ptr *QNetworkProxyQuery) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkProxyQuery) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -12139,9 +7015,13 @@ func PointerFromQNetworkProxyQuery(ptr QNetworkProxyQuery_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QNetworkProxyQuery) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkProxyQueryFromPointer(ptr unsafe.Pointer) (n *QNetworkProxyQuery) {
 	n = new(QNetworkProxyQuery)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkProxyQuery")
 	return
 }
 
@@ -12159,154 +7039,98 @@ const (
 )
 
 func NewQNetworkProxyQuery() *QNetworkProxyQuery {
-	tmpValue := NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery())
-	qt.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkProxyQuery", ""}).(*QNetworkProxyQuery)
 }
 
 func NewQNetworkProxyQuery2(requestUrl core.QUrl_ITF, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
-	tmpValue := NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery2(core.PointerFromQUrl(requestUrl), C.longlong(queryType)))
-	qt.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkProxyQuery2", "", requestUrl, queryType}).(*QNetworkProxyQuery)
 }
 
 func NewQNetworkProxyQuery3(hostname string, port int, protocolTag string, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
-	var hostnameC *C.char
-	if hostname != "" {
-		hostnameC = C.CString(hostname)
-		defer C.free(unsafe.Pointer(hostnameC))
-	}
-	var protocolTagC *C.char
-	if protocolTag != "" {
-		protocolTagC = C.CString(protocolTag)
-		defer C.free(unsafe.Pointer(protocolTagC))
-	}
-	tmpValue := NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery3(C.struct_QtNetwork_PackedString{data: hostnameC, len: C.longlong(len(hostname))}, C.int(int32(port)), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))}, C.longlong(queryType)))
-	qt.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkProxyQuery3", "", hostname, port, protocolTag, queryType}).(*QNetworkProxyQuery)
 }
 
 func NewQNetworkProxyQuery4(bindPort uint16, protocolTag string, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
-	var protocolTagC *C.char
-	if protocolTag != "" {
-		protocolTagC = C.CString(protocolTag)
-		defer C.free(unsafe.Pointer(protocolTagC))
-	}
-	tmpValue := NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery4(C.ushort(bindPort), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))}, C.longlong(queryType)))
-	qt.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkProxyQuery4", "", bindPort, protocolTag, queryType}).(*QNetworkProxyQuery)
 }
 
 func NewQNetworkProxyQuery8(other QNetworkProxyQuery_ITF) *QNetworkProxyQuery {
-	tmpValue := NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery8(PointerFromQNetworkProxyQuery(other)))
-	qt.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkProxyQuery8", "", other}).(*QNetworkProxyQuery)
 }
 
 func (ptr *QNetworkProxyQuery) LocalPort() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QNetworkProxyQuery_LocalPort(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LocalPort"}).(float64))
 }
 
 func (ptr *QNetworkProxyQuery) PeerHostName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkProxyQuery_PeerHostName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerHostName"}).(string)
 }
 
 func (ptr *QNetworkProxyQuery) PeerPort() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QNetworkProxyQuery_PeerPort(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerPort"}).(float64))
 }
 
 func (ptr *QNetworkProxyQuery) ProtocolTag() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkProxyQuery_ProtocolTag(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ProtocolTag"}).(string)
 }
 
 func (ptr *QNetworkProxyQuery) QueryType() QNetworkProxyQuery__QueryType {
-	if ptr.Pointer() != nil {
-		return QNetworkProxyQuery__QueryType(C.QNetworkProxyQuery_QueryType(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkProxyQuery__QueryType(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "QueryType"}).(float64))
 }
 
 func (ptr *QNetworkProxyQuery) SetLocalPort(port int) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxyQuery_SetLocalPort(ptr.Pointer(), C.int(int32(port)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLocalPort", port})
 }
 
 func (ptr *QNetworkProxyQuery) SetPeerHostName(hostname string) {
-	if ptr.Pointer() != nil {
-		var hostnameC *C.char
-		if hostname != "" {
-			hostnameC = C.CString(hostname)
-			defer C.free(unsafe.Pointer(hostnameC))
-		}
-		C.QNetworkProxyQuery_SetPeerHostName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostnameC, len: C.longlong(len(hostname))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerHostName", hostname})
 }
 
 func (ptr *QNetworkProxyQuery) SetPeerPort(port int) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxyQuery_SetPeerPort(ptr.Pointer(), C.int(int32(port)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerPort", port})
 }
 
 func (ptr *QNetworkProxyQuery) SetProtocolTag(protocolTag string) {
-	if ptr.Pointer() != nil {
-		var protocolTagC *C.char
-		if protocolTag != "" {
-			protocolTagC = C.CString(protocolTag)
-			defer C.free(unsafe.Pointer(protocolTagC))
-		}
-		C.QNetworkProxyQuery_SetProtocolTag(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetProtocolTag", protocolTag})
 }
 
 func (ptr *QNetworkProxyQuery) SetQueryType(ty QNetworkProxyQuery__QueryType) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxyQuery_SetQueryType(ptr.Pointer(), C.longlong(ty))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetQueryType", ty})
 }
 
 func (ptr *QNetworkProxyQuery) SetUrl(url core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxyQuery_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetUrl", url})
 }
 
 func (ptr *QNetworkProxyQuery) Swap(other QNetworkProxyQuery_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxyQuery_Swap(ptr.Pointer(), PointerFromQNetworkProxyQuery(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QNetworkProxyQuery) Url() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QNetworkProxyQuery_Url(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Url"}).(*core.QUrl)
 }
 
 func (ptr *QNetworkProxyQuery) DestroyQNetworkProxyQuery() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkProxyQuery_DestroyQNetworkProxyQuery(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkProxyQuery"})
 }
 
 type QNetworkReply struct {
@@ -12342,9 +7166,18 @@ func PointerFromQNetworkReply(ptr QNetworkReply_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QNetworkReply) InitFromInternal(ptr uintptr, name string) {
+	n.QIODevice_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QNetworkReply) ClassNameInternalF() string {
+	return n.QIODevice_PTR().ClassNameInternalF()
+}
+
 func NewQNetworkReplyFromPointer(ptr unsafe.Pointer) (n *QNetworkReply) {
 	n = new(QNetworkReply)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkReply")
 	return
 }
 
@@ -12390,1610 +7223,672 @@ const (
 )
 
 func NewQNetworkReply(parent core.QObject_ITF) *QNetworkReply {
-	tmpValue := NewQNetworkReplyFromPointer(C.QNetworkReply_NewQNetworkReply(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQNetworkReply_Abort
-func callbackQNetworkReply_Abort(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "abort"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkReply", "", parent}).(*QNetworkReply)
 }
 
 func (ptr *QNetworkReply) ConnectAbort(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "abort"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "abort", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "abort", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectAbort", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectAbort() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "abort")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectAbort"})
 }
 
 func (ptr *QNetworkReply) Abort() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_Abort(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Abort"})
 }
 
 func (ptr *QNetworkReply) Attribute(code QNetworkRequest__Attribute) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QNetworkReply_Attribute(ptr.Pointer(), C.longlong(code)))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkReply_Close
-func callbackQNetworkReply_Close(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "close"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkReplyFromPointer(ptr).CloseDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Attribute", code}).(*core.QVariant)
 }
 
 func (ptr *QNetworkReply) CloseDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_CloseDefault(ptr.Pointer())
-	}
-}
 
-//export callbackQNetworkReply_DownloadProgress
-func callbackQNetworkReply_DownloadProgress(ptr unsafe.Pointer, bytesReceived C.longlong, bytesTotal C.longlong) {
-	if signal := qt.GetSignal(ptr, "downloadProgress"); signal != nil {
-		(*(*func(int64, int64))(signal))(int64(bytesReceived), int64(bytesTotal))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CloseDefault"})
 }
 
 func (ptr *QNetworkReply) ConnectDownloadProgress(f func(bytesReceived int64, bytesTotal int64)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "downloadProgress") {
-			C.QNetworkReply_ConnectDownloadProgress(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "downloadProgress")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "downloadProgress"); signal != nil {
-			f := func(bytesReceived int64, bytesTotal int64) {
-				(*(*func(int64, int64))(signal))(bytesReceived, bytesTotal)
-				f(bytesReceived, bytesTotal)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "downloadProgress", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "downloadProgress", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDownloadProgress", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectDownloadProgress() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectDownloadProgress(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "downloadProgress")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDownloadProgress"})
 }
 
 func (ptr *QNetworkReply) DownloadProgress(bytesReceived int64, bytesTotal int64) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DownloadProgress(ptr.Pointer(), C.longlong(bytesReceived), C.longlong(bytesTotal))
-	}
-}
 
-//export callbackQNetworkReply_Encrypted
-func callbackQNetworkReply_Encrypted(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "encrypted"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DownloadProgress", bytesReceived, bytesTotal})
 }
 
 func (ptr *QNetworkReply) ConnectEncrypted(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "encrypted") {
-			C.QNetworkReply_ConnectEncrypted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encrypted")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "encrypted"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "encrypted", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "encrypted", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectEncrypted", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectEncrypted() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectEncrypted(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "encrypted")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectEncrypted"})
 }
 
 func (ptr *QNetworkReply) Encrypted() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_Encrypted(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Encrypted"})
 }
 
 func (ptr *QNetworkReply) Error() QNetworkReply__NetworkError {
-	if ptr.Pointer() != nil {
-		return QNetworkReply__NetworkError(C.QNetworkReply_Error(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkReply_Error2
-func callbackQNetworkReply_Error2(ptr unsafe.Pointer, code C.longlong) {
-	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		(*(*func(QNetworkReply__NetworkError))(signal))(QNetworkReply__NetworkError(code))
-	}
-
+	return QNetworkReply__NetworkError(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error"}).(float64))
 }
 
 func (ptr *QNetworkReply) ConnectError2(f func(code QNetworkReply__NetworkError)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QNetworkReply_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			f := func(code QNetworkReply__NetworkError) {
-				(*(*func(QNetworkReply__NetworkError))(signal))(code)
-				f(code)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectError2", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectError2() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "error2")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectError2"})
 }
 
 func (ptr *QNetworkReply) Error2(code QNetworkReply__NetworkError) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_Error2(ptr.Pointer(), C.longlong(code))
-	}
-}
 
-//export callbackQNetworkReply_Finished
-func callbackQNetworkReply_Finished(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error2", code})
 }
 
 func (ptr *QNetworkReply) ConnectFinished(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QNetworkReply_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFinished", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectFinished() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectFinished(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "finished")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFinished"})
 }
 
 func (ptr *QNetworkReply) Finished() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_Finished(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Finished"})
 }
 
 func (ptr *QNetworkReply) HasRawHeader(headerName core.QByteArray_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasRawHeader", headerName}).(bool)
 }
 
 func (ptr *QNetworkReply) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QNetworkReply_Header(ptr.Pointer(), C.longlong(header)))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkReply_IgnoreSslErrors
-func callbackQNetworkReply_IgnoreSslErrors(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "ignoreSslErrors"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkReplyFromPointer(ptr).IgnoreSslErrorsDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Header", header}).(*core.QVariant)
 }
 
 func (ptr *QNetworkReply) ConnectIgnoreSslErrors(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "ignoreSslErrors"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "ignoreSslErrors", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "ignoreSslErrors", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectIgnoreSslErrors", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectIgnoreSslErrors() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "ignoreSslErrors")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectIgnoreSslErrors"})
 }
 
 func (ptr *QNetworkReply) IgnoreSslErrors() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_IgnoreSslErrors(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IgnoreSslErrors"})
 }
 
 func (ptr *QNetworkReply) IgnoreSslErrorsDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_IgnoreSslErrorsDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IgnoreSslErrorsDefault"})
 }
 
 func (ptr *QNetworkReply) IgnoreSslErrors2(errors []*QSslError) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_IgnoreSslErrors2(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__ignoreSslErrors_errors_newList2())
-			for _, v := range errors {
-				tmpList.__ignoreSslErrors_errors_setList2(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
-}
 
-//export callbackQNetworkReply_IgnoreSslErrorsImplementation
-func callbackQNetworkReply_IgnoreSslErrorsImplementation(ptr unsafe.Pointer, errors C.struct_QtNetwork_PackedList) {
-	if signal := qt.GetSignal(ptr, "ignoreSslErrorsImplementation"); signal != nil {
-		(*(*func([]*QSslError))(signal))(func(l C.struct_QtNetwork_PackedList) []*QSslError {
-			out := make([]*QSslError, int(l.len))
-			tmpList := NewQNetworkReplyFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__ignoreSslErrorsImplementation_errors_atList(i)
-			}
-			return out
-		}(errors))
-	} else {
-		NewQNetworkReplyFromPointer(ptr).IgnoreSslErrorsImplementationDefault(func(l C.struct_QtNetwork_PackedList) []*QSslError {
-			out := make([]*QSslError, int(l.len))
-			tmpList := NewQNetworkReplyFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__ignoreSslErrorsImplementation_errors_atList(i)
-			}
-			return out
-		}(errors))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IgnoreSslErrors2", errors})
 }
 
 func (ptr *QNetworkReply) ConnectIgnoreSslErrorsImplementation(f func(errors []*QSslError)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "ignoreSslErrorsImplementation"); signal != nil {
-			f := func(errors []*QSslError) {
-				(*(*func([]*QSslError))(signal))(errors)
-				f(errors)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "ignoreSslErrorsImplementation", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "ignoreSslErrorsImplementation", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectIgnoreSslErrorsImplementation", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectIgnoreSslErrorsImplementation() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "ignoreSslErrorsImplementation")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectIgnoreSslErrorsImplementation"})
 }
 
 func (ptr *QNetworkReply) IgnoreSslErrorsImplementation(errors []*QSslError) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_IgnoreSslErrorsImplementation(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__ignoreSslErrorsImplementation_errors_newList())
-			for _, v := range errors {
-				tmpList.__ignoreSslErrorsImplementation_errors_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IgnoreSslErrorsImplementation", errors})
 }
 
 func (ptr *QNetworkReply) IgnoreSslErrorsImplementationDefault(errors []*QSslError) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_IgnoreSslErrorsImplementationDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__ignoreSslErrorsImplementation_errors_newList())
-			for _, v := range errors {
-				tmpList.__ignoreSslErrorsImplementation_errors_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IgnoreSslErrorsImplementationDefault", errors})
 }
 
 func (ptr *QNetworkReply) IsFinished() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_IsFinished(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsFinished"}).(bool)
 }
 
 func (ptr *QNetworkReply) IsRunning() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_IsRunning(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsRunning"}).(bool)
 }
 
 func (ptr *QNetworkReply) Manager() *QNetworkAccessManager {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkAccessManagerFromPointer(C.QNetworkReply_Manager(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkReply_MetaDataChanged
-func callbackQNetworkReply_MetaDataChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "metaDataChanged"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Manager"}).(*QNetworkAccessManager)
 }
 
 func (ptr *QNetworkReply) ConnectMetaDataChanged(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "metaDataChanged") {
-			C.QNetworkReply_ConnectMetaDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "metaDataChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "metaDataChanged"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "metaDataChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "metaDataChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectMetaDataChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectMetaDataChanged() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectMetaDataChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "metaDataChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectMetaDataChanged"})
 }
 
 func (ptr *QNetworkReply) MetaDataChanged() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_MetaDataChanged(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaDataChanged"})
 }
 
 func (ptr *QNetworkReply) Operation() QNetworkAccessManager__Operation {
-	if ptr.Pointer() != nil {
-		return QNetworkAccessManager__Operation(C.QNetworkReply_Operation(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkReply_PreSharedKeyAuthenticationRequired
-func callbackQNetworkReply_PreSharedKeyAuthenticationRequired(ptr unsafe.Pointer, authenticator unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "preSharedKeyAuthenticationRequired"); signal != nil {
-		(*(*func(*QSslPreSharedKeyAuthenticator))(signal))(NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
-	}
-
+	return QNetworkAccessManager__Operation(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Operation"}).(float64))
 }
 
 func (ptr *QNetworkReply) ConnectPreSharedKeyAuthenticationRequired(f func(authenticator *QSslPreSharedKeyAuthenticator)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
-			f := func(authenticator *QSslPreSharedKeyAuthenticator) {
-				(*(*func(*QSslPreSharedKeyAuthenticator))(signal))(authenticator)
-				f(authenticator)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectPreSharedKeyAuthenticationRequired", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectPreSharedKeyAuthenticationRequired() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectPreSharedKeyAuthenticationRequired"})
 }
 
 func (ptr *QNetworkReply) PreSharedKeyAuthenticationRequired(authenticator QSslPreSharedKeyAuthenticator_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_PreSharedKeyAuthenticationRequired(ptr.Pointer(), PointerFromQSslPreSharedKeyAuthenticator(authenticator))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PreSharedKeyAuthenticationRequired", authenticator})
 }
 
 func (ptr *QNetworkReply) QNetworkCacheMetaData_RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkReply_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "QNetworkCacheMetaData_RawHeader", headerName}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkReply) RawHeaderList() []*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*core.QByteArray {
-			out := make([]*core.QByteArray, int(l.len))
-			tmpList := NewQNetworkReplyFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__rawHeaderList_atList(i)
-			}
-			return out
-		}(C.QNetworkReply_RawHeaderList(ptr.Pointer()))
-	}
-	return make([]*core.QByteArray, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RawHeaderList"}).([]*core.QByteArray)
 }
 
 func (ptr *QNetworkReply) ReadBufferSize() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QNetworkReply_ReadBufferSize(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkReply_RedirectAllowed
-func callbackQNetworkReply_RedirectAllowed(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "redirectAllowed"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadBufferSize"}).(float64))
 }
 
 func (ptr *QNetworkReply) ConnectRedirectAllowed(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "redirectAllowed") {
-			C.QNetworkReply_ConnectRedirectAllowed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "redirectAllowed")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "redirectAllowed"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "redirectAllowed", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "redirectAllowed", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectRedirectAllowed", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectRedirectAllowed() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectRedirectAllowed(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "redirectAllowed")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectRedirectAllowed"})
 }
 
 func (ptr *QNetworkReply) RedirectAllowed() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_RedirectAllowed(ptr.Pointer())
-	}
-}
 
-//export callbackQNetworkReply_Redirected
-func callbackQNetworkReply_Redirected(ptr unsafe.Pointer, url unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "redirected"); signal != nil {
-		(*(*func(*core.QUrl))(signal))(core.NewQUrlFromPointer(url))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RedirectAllowed"})
 }
 
 func (ptr *QNetworkReply) ConnectRedirected(f func(url *core.QUrl)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "redirected") {
-			C.QNetworkReply_ConnectRedirected(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "redirected")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "redirected"); signal != nil {
-			f := func(url *core.QUrl) {
-				(*(*func(*core.QUrl))(signal))(url)
-				f(url)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "redirected", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "redirected", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectRedirected", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectRedirected() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectRedirected(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "redirected")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectRedirected"})
 }
 
 func (ptr *QNetworkReply) Redirected(url core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_Redirected(ptr.Pointer(), core.PointerFromQUrl(url))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Redirected", url})
 }
 
 func (ptr *QNetworkReply) Request() *QNetworkRequest {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkRequestFromPointer(C.QNetworkReply_Request(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QNetworkRequest).DestroyQNetworkRequest)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Request"}).(*QNetworkRequest)
 }
 
 func (ptr *QNetworkReply) SetAttribute(code QNetworkRequest__Attribute, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetAttribute(ptr.Pointer(), C.longlong(code), core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAttribute", code, value})
 }
 
 func (ptr *QNetworkReply) SetError(errorCode QNetworkReply__NetworkError, errorString string) {
-	if ptr.Pointer() != nil {
-		var errorStringC *C.char
-		if errorString != "" {
-			errorStringC = C.CString(errorString)
-			defer C.free(unsafe.Pointer(errorStringC))
-		}
-		C.QNetworkReply_SetError(ptr.Pointer(), C.longlong(errorCode), C.struct_QtNetwork_PackedString{data: errorStringC, len: C.longlong(len(errorString))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetError", errorCode, errorString})
 }
 
 func (ptr *QNetworkReply) SetFinished(finished bool) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetFinished(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(finished))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetFinished", finished})
 }
 
 func (ptr *QNetworkReply) SetHeader(header QNetworkRequest__KnownHeaders, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetHeader(ptr.Pointer(), C.longlong(header), core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHeader", header, value})
 }
 
 func (ptr *QNetworkReply) SetOperation(operation QNetworkAccessManager__Operation) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetOperation(ptr.Pointer(), C.longlong(operation))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetOperation", operation})
 }
 
 func (ptr *QNetworkReply) SetRawHeader(headerName core.QByteArray_ITF, value core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName), core.PointerFromQByteArray(value))
-	}
-}
 
-//export callbackQNetworkReply_SetReadBufferSize
-func callbackQNetworkReply_SetReadBufferSize(ptr unsafe.Pointer, size C.longlong) {
-	if signal := qt.GetSignal(ptr, "setReadBufferSize"); signal != nil {
-		(*(*func(int64))(signal))(int64(size))
-	} else {
-		NewQNetworkReplyFromPointer(ptr).SetReadBufferSizeDefault(int64(size))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetRawHeader", headerName, value})
 }
 
 func (ptr *QNetworkReply) ConnectSetReadBufferSize(f func(size int64)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setReadBufferSize"); signal != nil {
-			f := func(size int64) {
-				(*(*func(int64))(signal))(size)
-				f(size)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setReadBufferSize", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setReadBufferSize", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetReadBufferSize", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectSetReadBufferSize() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setReadBufferSize")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetReadBufferSize"})
 }
 
 func (ptr *QNetworkReply) SetReadBufferSize(size int64) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetReadBufferSize(ptr.Pointer(), C.longlong(size))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetReadBufferSize", size})
 }
 
 func (ptr *QNetworkReply) SetReadBufferSizeDefault(size int64) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetReadBufferSizeDefault(ptr.Pointer(), C.longlong(size))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetReadBufferSizeDefault", size})
 }
 
 func (ptr *QNetworkReply) SetRequest(request QNetworkRequest_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetRequest(ptr.Pointer(), PointerFromQNetworkRequest(request))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetRequest", request})
 }
 
 func (ptr *QNetworkReply) SetSslConfiguration(config QSslConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetSslConfiguration(ptr.Pointer(), PointerFromQSslConfiguration(config))
-	}
-}
 
-//export callbackQNetworkReply_SetSslConfigurationImplementation
-func callbackQNetworkReply_SetSslConfigurationImplementation(ptr unsafe.Pointer, configuration unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "setSslConfigurationImplementation"); signal != nil {
-		(*(*func(*QSslConfiguration))(signal))(NewQSslConfigurationFromPointer(configuration))
-	} else {
-		NewQNetworkReplyFromPointer(ptr).SetSslConfigurationImplementationDefault(NewQSslConfigurationFromPointer(configuration))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSslConfiguration", config})
 }
 
 func (ptr *QNetworkReply) ConnectSetSslConfigurationImplementation(f func(configuration *QSslConfiguration)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setSslConfigurationImplementation"); signal != nil {
-			f := func(configuration *QSslConfiguration) {
-				(*(*func(*QSslConfiguration))(signal))(configuration)
-				f(configuration)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setSslConfigurationImplementation", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setSslConfigurationImplementation", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetSslConfigurationImplementation", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectSetSslConfigurationImplementation() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setSslConfigurationImplementation")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetSslConfigurationImplementation"})
 }
 
 func (ptr *QNetworkReply) SetSslConfigurationImplementation(configuration QSslConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetSslConfigurationImplementation(ptr.Pointer(), PointerFromQSslConfiguration(configuration))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSslConfigurationImplementation", configuration})
 }
 
 func (ptr *QNetworkReply) SetSslConfigurationImplementationDefault(configuration QSslConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetSslConfigurationImplementationDefault(ptr.Pointer(), PointerFromQSslConfiguration(configuration))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSslConfigurationImplementationDefault", configuration})
 }
 
 func (ptr *QNetworkReply) SetUrl(url core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetUrl", url})
 }
 
 func (ptr *QNetworkReply) SslConfiguration() *QSslConfiguration {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslConfigurationFromPointer(C.QNetworkReply_SslConfiguration(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkReply_SslConfigurationImplementation
-func callbackQNetworkReply_SslConfigurationImplementation(ptr unsafe.Pointer, configuration unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "sslConfigurationImplementation"); signal != nil {
-		(*(*func(*QSslConfiguration))(signal))(NewQSslConfigurationFromPointer(configuration))
-	} else {
-		NewQNetworkReplyFromPointer(ptr).SslConfigurationImplementationDefault(NewQSslConfigurationFromPointer(configuration))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SslConfiguration"}).(*QSslConfiguration)
 }
 
 func (ptr *QNetworkReply) ConnectSslConfigurationImplementation(f func(configuration *QSslConfiguration)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "sslConfigurationImplementation"); signal != nil {
-			f := func(configuration *QSslConfiguration) {
-				(*(*func(*QSslConfiguration))(signal))(configuration)
-				f(configuration)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "sslConfigurationImplementation", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "sslConfigurationImplementation", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSslConfigurationImplementation", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectSslConfigurationImplementation() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "sslConfigurationImplementation")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSslConfigurationImplementation"})
 }
 
 func (ptr *QNetworkReply) SslConfigurationImplementation(configuration QSslConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SslConfigurationImplementation(ptr.Pointer(), PointerFromQSslConfiguration(configuration))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SslConfigurationImplementation", configuration})
 }
 
 func (ptr *QNetworkReply) SslConfigurationImplementationDefault(configuration QSslConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SslConfigurationImplementationDefault(ptr.Pointer(), PointerFromQSslConfiguration(configuration))
-	}
-}
 
-//export callbackQNetworkReply_SslErrors
-func callbackQNetworkReply_SslErrors(ptr unsafe.Pointer, errors C.struct_QtNetwork_PackedList) {
-	if signal := qt.GetSignal(ptr, "sslErrors"); signal != nil {
-		(*(*func([]*QSslError))(signal))(func(l C.struct_QtNetwork_PackedList) []*QSslError {
-			out := make([]*QSslError, int(l.len))
-			tmpList := NewQNetworkReplyFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__sslErrors_errors_atList(i)
-			}
-			return out
-		}(errors))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SslConfigurationImplementationDefault", configuration})
 }
 
 func (ptr *QNetworkReply) ConnectSslErrors(f func(errors []*QSslError)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
-			C.QNetworkReply_ConnectSslErrors(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
-			f := func(errors []*QSslError) {
-				(*(*func([]*QSslError))(signal))(errors)
-				f(errors)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSslErrors", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectSslErrors() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectSslErrors(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "sslErrors")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSslErrors"})
 }
 
 func (ptr *QNetworkReply) SslErrors(errors []*QSslError) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_SslErrors(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__sslErrors_errors_newList())
-			for _, v := range errors {
-				tmpList.__sslErrors_errors_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
-}
 
-//export callbackQNetworkReply_UploadProgress
-func callbackQNetworkReply_UploadProgress(ptr unsafe.Pointer, bytesSent C.longlong, bytesTotal C.longlong) {
-	if signal := qt.GetSignal(ptr, "uploadProgress"); signal != nil {
-		(*(*func(int64, int64))(signal))(int64(bytesSent), int64(bytesTotal))
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SslErrors", errors})
 }
 
 func (ptr *QNetworkReply) ConnectUploadProgress(f func(bytesSent int64, bytesTotal int64)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "uploadProgress") {
-			C.QNetworkReply_ConnectUploadProgress(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "uploadProgress")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "uploadProgress"); signal != nil {
-			f := func(bytesSent int64, bytesTotal int64) {
-				(*(*func(int64, int64))(signal))(bytesSent, bytesTotal)
-				f(bytesSent, bytesTotal)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "uploadProgress", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "uploadProgress", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectUploadProgress", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectUploadProgress() {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectUploadProgress(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "uploadProgress")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectUploadProgress"})
 }
 
 func (ptr *QNetworkReply) UploadProgress(bytesSent int64, bytesTotal int64) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_UploadProgress(ptr.Pointer(), C.longlong(bytesSent), C.longlong(bytesTotal))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UploadProgress", bytesSent, bytesTotal})
 }
 
 func (ptr *QNetworkReply) Url() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QNetworkReply_Url(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQNetworkReply_DestroyQNetworkReply
-func callbackQNetworkReply_DestroyQNetworkReply(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QNetworkReply"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkReplyFromPointer(ptr).DestroyQNetworkReplyDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Url"}).(*core.QUrl)
 }
 
 func (ptr *QNetworkReply) ConnectDestroyQNetworkReply(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QNetworkReply"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkReply", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkReply", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQNetworkReply", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkReply) DisconnectDestroyQNetworkReply() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QNetworkReply")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQNetworkReply"})
 }
 
 func (ptr *QNetworkReply) DestroyQNetworkReply() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkReply_DestroyQNetworkReply(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkReply"})
 }
 
 func (ptr *QNetworkReply) DestroyQNetworkReplyDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkReply_DestroyQNetworkReplyDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkReplyDefault"})
 }
 
 func (ptr *QNetworkReply) __ignoreSslErrors_errors_atList2(i int) *QSslError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslErrorFromPointer(C.QNetworkReply___ignoreSslErrors_errors_atList2(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ignoreSslErrors_errors_atList2", i}).(*QSslError)
 }
 
 func (ptr *QNetworkReply) __ignoreSslErrors_errors_setList2(i QSslError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply___ignoreSslErrors_errors_setList2(ptr.Pointer(), PointerFromQSslError(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ignoreSslErrors_errors_setList2", i})
 }
 
 func (ptr *QNetworkReply) __ignoreSslErrors_errors_newList2() unsafe.Pointer {
-	return C.QNetworkReply___ignoreSslErrors_errors_newList2(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ignoreSslErrors_errors_newList2"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkReply) __ignoreSslErrorsImplementation_errors_atList(i int) *QSslError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslErrorFromPointer(C.QNetworkReply___ignoreSslErrorsImplementation_errors_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ignoreSslErrorsImplementation_errors_atList", i}).(*QSslError)
 }
 
 func (ptr *QNetworkReply) __ignoreSslErrorsImplementation_errors_setList(i QSslError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply___ignoreSslErrorsImplementation_errors_setList(ptr.Pointer(), PointerFromQSslError(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ignoreSslErrorsImplementation_errors_setList", i})
 }
 
 func (ptr *QNetworkReply) __ignoreSslErrorsImplementation_errors_newList() unsafe.Pointer {
-	return C.QNetworkReply___ignoreSslErrorsImplementation_errors_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ignoreSslErrorsImplementation_errors_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkReply) __rawHeaderList_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkReply___rawHeaderList_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaderList_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkReply) __rawHeaderList_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply___rawHeaderList_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaderList_setList", i})
 }
 
 func (ptr *QNetworkReply) __rawHeaderList_newList() unsafe.Pointer {
-	return C.QNetworkReply___rawHeaderList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaderList_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkReply) __sslErrors_errors_atList(i int) *QSslError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslErrorFromPointer(C.QNetworkReply___sslErrors_errors_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_errors_atList", i}).(*QSslError)
 }
 
 func (ptr *QNetworkReply) __sslErrors_errors_setList(i QSslError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply___sslErrors_errors_setList(ptr.Pointer(), PointerFromQSslError(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_errors_setList", i})
 }
 
 func (ptr *QNetworkReply) __sslErrors_errors_newList() unsafe.Pointer {
-	return C.QNetworkReply___sslErrors_errors_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_errors_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkReply) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkReply___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkReply) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QNetworkReply) __children_newList() unsafe.Pointer {
-	return C.QNetworkReply___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkReply) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkReply___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkReply) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QNetworkReply) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QNetworkReply___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkReply) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkReply___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkReply) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QNetworkReply) __findChildren_newList() unsafe.Pointer {
-	return C.QNetworkReply___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkReply) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkReply___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkReply) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QNetworkReply) __findChildren_newList3() unsafe.Pointer {
-	return C.QNetworkReply___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQNetworkReply_AboutToClose
-func callbackQNetworkReply_AboutToClose(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "aboutToClose"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQNetworkReply_AtEnd
-func callbackQNetworkReply_AtEnd(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "atEnd"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkReplyFromPointer(ptr).AtEndDefault())))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkReply) AtEndDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_AtEndDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkReply_BytesAvailable
-func callbackQNetworkReply_BytesAvailable(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "bytesAvailable"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQNetworkReplyFromPointer(ptr).BytesAvailableDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AtEndDefault"}).(bool)
 }
 
 func (ptr *QNetworkReply) BytesAvailableDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QNetworkReply_BytesAvailableDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkReply_BytesToWrite
-func callbackQNetworkReply_BytesToWrite(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "bytesToWrite"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQNetworkReplyFromPointer(ptr).BytesToWriteDefault())
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BytesAvailableDefault"}).(float64))
 }
 
 func (ptr *QNetworkReply) BytesToWriteDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QNetworkReply_BytesToWriteDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkReply_BytesWritten
-func callbackQNetworkReply_BytesWritten(ptr unsafe.Pointer, bytes C.longlong) {
-	if signal := qt.GetSignal(ptr, "bytesWritten"); signal != nil {
-		(*(*func(int64))(signal))(int64(bytes))
-	}
-
-}
-
-//export callbackQNetworkReply_CanReadLine
-func callbackQNetworkReply_CanReadLine(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "canReadLine"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkReplyFromPointer(ptr).CanReadLineDefault())))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BytesToWriteDefault"}).(float64))
 }
 
 func (ptr *QNetworkReply) CanReadLineDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_CanReadLineDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkReply_ChannelBytesWritten
-func callbackQNetworkReply_ChannelBytesWritten(ptr unsafe.Pointer, channel C.int, bytes C.longlong) {
-	if signal := qt.GetSignal(ptr, "channelBytesWritten"); signal != nil {
-		(*(*func(int, int64))(signal))(int(int32(channel)), int64(bytes))
-	}
-
-}
-
-//export callbackQNetworkReply_ChannelReadyRead
-func callbackQNetworkReply_ChannelReadyRead(ptr unsafe.Pointer, channel C.int) {
-	if signal := qt.GetSignal(ptr, "channelReadyRead"); signal != nil {
-		(*(*func(int))(signal))(int(int32(channel)))
-	}
-
-}
-
-//export callbackQNetworkReply_IsSequential
-func callbackQNetworkReply_IsSequential(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "isSequential"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkReplyFromPointer(ptr).IsSequentialDefault())))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CanReadLineDefault"}).(bool)
 }
 
 func (ptr *QNetworkReply) IsSequentialDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_IsSequentialDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkReply_Open
-func callbackQNetworkReply_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "open"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(core.QIODevice__OpenModeFlag) bool)(signal))(core.QIODevice__OpenModeFlag(mode)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkReplyFromPointer(ptr).OpenDefault(core.QIODevice__OpenModeFlag(mode)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsSequentialDefault"}).(bool)
 }
 
 func (ptr *QNetworkReply) OpenDefault(mode core.QIODevice__OpenModeFlag) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_OpenDefault(ptr.Pointer(), C.longlong(mode))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkReply_Pos
-func callbackQNetworkReply_Pos(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "pos"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQNetworkReplyFromPointer(ptr).PosDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "OpenDefault", mode}).(bool)
 }
 
 func (ptr *QNetworkReply) PosDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QNetworkReply_PosDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkReply_ReadChannelFinished
-func callbackQNetworkReply_ReadChannelFinished(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "readChannelFinished"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQNetworkReply_ReadData
-func callbackQNetworkReply_ReadData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxSize C.longlong) C.longlong {
-	if signal := qt.GetSignal(ptr, "readData"); signal != nil {
-		retS := cGoUnpackString(data)
-		ret := C.longlong((*(*func(*string, int64) int64)(signal))(&retS, int64(maxSize)))
-		if ret > 0 {
-			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
-		}
-		return ret
-	}
-	retS := cGoUnpackString(data)
-	ret := C.longlong(NewQNetworkReplyFromPointer(ptr).ReadDataDefault(&retS, int64(maxSize)))
-	if ret > 0 {
-		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
-	}
-	return ret
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PosDefault"}).(float64))
 }
 
 func (ptr *QNetworkReply) ReadData(data *string, maxSize int64) int64 {
-	if ptr.Pointer() != nil {
-		dataC := C.CString(strings.Repeat("0", int(maxSize)))
-		defer C.free(unsafe.Pointer(dataC))
-		ret := int64(C.QNetworkReply_ReadData(ptr.Pointer(), dataC, C.longlong(maxSize)))
-		if ret > 0 {
-			*data = C.GoStringN(dataC, C.int(ret))
-		}
-		return ret
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadData", data, maxSize}).(float64))
 }
 
 func (ptr *QNetworkReply) ReadDataDefault(data *string, maxSize int64) int64 {
-	if ptr.Pointer() != nil {
-		dataC := C.CString(strings.Repeat("0", int(maxSize)))
-		defer C.free(unsafe.Pointer(dataC))
-		ret := int64(C.QNetworkReply_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
-		if ret > 0 {
-			*data = C.GoStringN(dataC, C.int(ret))
-		}
-		return ret
-	}
-	return 0
-}
 
-//export callbackQNetworkReply_ReadLineData
-func callbackQNetworkReply_ReadLineData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxSize C.longlong) C.longlong {
-	if signal := qt.GetSignal(ptr, "readLineData"); signal != nil {
-		return C.longlong((*(*func([]byte, int64) int64)(signal))(cGoUnpackBytes(data), int64(maxSize)))
-	}
-
-	return C.longlong(NewQNetworkReplyFromPointer(ptr).ReadLineDataDefault(cGoUnpackBytes(data), int64(maxSize)))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadDataDefault", data, maxSize}).(float64))
 }
 
 func (ptr *QNetworkReply) ReadLineDataDefault(data []byte, maxSize int64) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QNetworkReply_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
-	}
-	return 0
-}
 
-//export callbackQNetworkReply_ReadyRead
-func callbackQNetworkReply_ReadyRead(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "readyRead"); signal != nil {
-		(*(*func())(signal))()
-	}
-
-}
-
-//export callbackQNetworkReply_Reset
-func callbackQNetworkReply_Reset(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "reset"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkReplyFromPointer(ptr).ResetDefault())))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadLineDataDefault", data, maxSize}).(float64))
 }
 
 func (ptr *QNetworkReply) ResetDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_ResetDefault(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkReply_Seek
-func callbackQNetworkReply_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
-	if signal := qt.GetSignal(ptr, "seek"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int64) bool)(signal))(int64(pos)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkReplyFromPointer(ptr).SeekDefault(int64(pos)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ResetDefault"}).(bool)
 }
 
 func (ptr *QNetworkReply) SeekDefault(pos int64) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_SeekDefault(ptr.Pointer(), C.longlong(pos))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkReply_Size
-func callbackQNetworkReply_Size(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "size"); signal != nil {
-		return C.longlong((*(*func() int64)(signal))())
-	}
-
-	return C.longlong(NewQNetworkReplyFromPointer(ptr).SizeDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SeekDefault", pos}).(bool)
 }
 
 func (ptr *QNetworkReply) SizeDefault() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QNetworkReply_SizeDefault(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkReply_WaitForBytesWritten
-func callbackQNetworkReply_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
-	if signal := qt.GetSignal(ptr, "waitForBytesWritten"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(msecs))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkReplyFromPointer(ptr).WaitForBytesWrittenDefault(int(int32(msecs))))))
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SizeDefault"}).(float64))
 }
 
 func (ptr *QNetworkReply) WaitForBytesWrittenDefault(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkReply_WaitForReadyRead
-func callbackQNetworkReply_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
-	if signal := qt.GetSignal(ptr, "waitForReadyRead"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(msecs))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkReplyFromPointer(ptr).WaitForReadyReadDefault(int(int32(msecs))))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForBytesWrittenDefault", msecs}).(bool)
 }
 
 func (ptr *QNetworkReply) WaitForReadyReadDefault(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkReply_WriteData
-func callbackQNetworkReply_WriteData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxSize C.longlong) C.longlong {
-	if signal := qt.GetSignal(ptr, "writeData"); signal != nil {
-		return C.longlong((*(*func([]byte, int64) int64)(signal))(cGoUnpackBytes(data), int64(maxSize)))
-	}
-
-	return C.longlong(NewQNetworkReplyFromPointer(ptr).WriteDataDefault(cGoUnpackBytes(data), int64(maxSize)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForReadyReadDefault", msecs}).(bool)
 }
 
 func (ptr *QNetworkReply) WriteData(data []byte, maxSize int64) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QNetworkReply_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WriteData", data, maxSize}).(float64))
 }
 
 func (ptr *QNetworkReply) WriteDataDefault(data []byte, maxSize int64) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QNetworkReply_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
-	}
-	return 0
-}
 
-//export callbackQNetworkReply_ChildEvent
-func callbackQNetworkReply_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQNetworkReplyFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WriteDataDefault", data, maxSize}).(float64))
 }
 
 func (ptr *QNetworkReply) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQNetworkReply_ConnectNotify
-func callbackQNetworkReply_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQNetworkReplyFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QNetworkReply) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQNetworkReply_CustomEvent
-func callbackQNetworkReply_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQNetworkReplyFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QNetworkReply) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQNetworkReply_DeleteLater
-func callbackQNetworkReply_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkReplyFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QNetworkReply) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkReply_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQNetworkReply_Destroyed
-func callbackQNetworkReply_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQNetworkReply_DisconnectNotify
-func callbackQNetworkReply_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQNetworkReplyFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QNetworkReply) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQNetworkReply_Event
-func callbackQNetworkReply_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkReplyFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QNetworkReply) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkReply_EventFilter
-func callbackQNetworkReply_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkReplyFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QNetworkReply) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkReply_MetaObject
-func callbackQNetworkReply_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQNetworkReplyFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QNetworkReply) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QNetworkReply_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQNetworkReply_ObjectNameChanged
-func callbackQNetworkReply_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQNetworkReply_TimerEvent
-func callbackQNetworkReply_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQNetworkReplyFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QNetworkReply) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkReply_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QNetworkRequest struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkRequest_ITF interface {
@@ -14006,14 +7901,14 @@ func (ptr *QNetworkRequest) QNetworkRequest_PTR() *QNetworkRequest {
 
 func (ptr *QNetworkRequest) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkRequest) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -14024,9 +7919,13 @@ func PointerFromQNetworkRequest(ptr QNetworkRequest_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QNetworkRequest) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkRequestFromPointer(ptr unsafe.Pointer) (n *QNetworkRequest) {
 	n = new(QNetworkRequest)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkRequest")
 	return
 }
 
@@ -14129,207 +8028,138 @@ const (
 )
 
 func NewQNetworkRequest(url core.QUrl_ITF) *QNetworkRequest {
-	tmpValue := NewQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest(core.PointerFromQUrl(url)))
-	qt.SetFinalizer(tmpValue, (*QNetworkRequest).DestroyQNetworkRequest)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkRequest", "", url}).(*QNetworkRequest)
 }
 
 func NewQNetworkRequest2(other QNetworkRequest_ITF) *QNetworkRequest {
-	tmpValue := NewQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest2(PointerFromQNetworkRequest(other)))
-	qt.SetFinalizer(tmpValue, (*QNetworkRequest).DestroyQNetworkRequest)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkRequest2", "", other}).(*QNetworkRequest)
 }
 
 func (ptr *QNetworkRequest) Attribute(code QNetworkRequest__Attribute, defaultValue core.QVariant_ITF) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QNetworkRequest_Attribute(ptr.Pointer(), C.longlong(code), core.PointerFromQVariant(defaultValue)))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Attribute", code, defaultValue}).(*core.QVariant)
 }
 
 func (ptr *QNetworkRequest) HasRawHeader(headerName core.QByteArray_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkRequest_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasRawHeader", headerName}).(bool)
 }
 
 func (ptr *QNetworkRequest) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QNetworkRequest_Header(ptr.Pointer(), C.longlong(header)))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Header", header}).(*core.QVariant)
 }
 
 func (ptr *QNetworkRequest) MaximumRedirectsAllowed() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QNetworkRequest_MaximumRedirectsAllowed(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MaximumRedirectsAllowed"}).(float64))
 }
 
 func (ptr *QNetworkRequest) OriginatingObject() *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkRequest_OriginatingObject(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "OriginatingObject"}).(*core.QObject)
 }
 
 func (ptr *QNetworkRequest) PeerVerifyName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkRequest_PeerVerifyName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerVerifyName"}).(string)
 }
 
 func (ptr *QNetworkRequest) Priority() QNetworkRequest__Priority {
-	if ptr.Pointer() != nil {
-		return QNetworkRequest__Priority(C.QNetworkRequest_Priority(ptr.Pointer()))
-	}
-	return 0
+
+	return QNetworkRequest__Priority(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Priority"}).(float64))
 }
 
 func (ptr *QNetworkRequest) QNetworkCacheMetaData_RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkRequest_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "QNetworkCacheMetaData_RawHeader", headerName}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkRequest) RawHeaderList() []*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*core.QByteArray {
-			out := make([]*core.QByteArray, int(l.len))
-			tmpList := NewQNetworkRequestFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__rawHeaderList_atList(i)
-			}
-			return out
-		}(C.QNetworkRequest_RawHeaderList(ptr.Pointer()))
-	}
-	return make([]*core.QByteArray, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RawHeaderList"}).([]*core.QByteArray)
 }
 
 func (ptr *QNetworkRequest) SetAttribute(code QNetworkRequest__Attribute, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetAttribute(ptr.Pointer(), C.longlong(code), core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAttribute", code, value})
 }
 
 func (ptr *QNetworkRequest) SetHeader(header QNetworkRequest__KnownHeaders, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetHeader(ptr.Pointer(), C.longlong(header), core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetHeader", header, value})
 }
 
 func (ptr *QNetworkRequest) SetMaximumRedirectsAllowed(maxRedirectsAllowed int) {
-	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetMaximumRedirectsAllowed(ptr.Pointer(), C.int(int32(maxRedirectsAllowed)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetMaximumRedirectsAllowed", maxRedirectsAllowed})
 }
 
 func (ptr *QNetworkRequest) SetOriginatingObject(object core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetOriginatingObject(ptr.Pointer(), core.PointerFromQObject(object))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetOriginatingObject", object})
 }
 
 func (ptr *QNetworkRequest) SetPeerVerifyName(peerName string) {
-	if ptr.Pointer() != nil {
-		var peerNameC *C.char
-		if peerName != "" {
-			peerNameC = C.CString(peerName)
-			defer C.free(unsafe.Pointer(peerNameC))
-		}
-		C.QNetworkRequest_SetPeerVerifyName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: peerNameC, len: C.longlong(len(peerName))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerVerifyName", peerName})
 }
 
 func (ptr *QNetworkRequest) SetPriority(priority QNetworkRequest__Priority) {
-	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetPriority(ptr.Pointer(), C.longlong(priority))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPriority", priority})
 }
 
 func (ptr *QNetworkRequest) SetRawHeader(headerName core.QByteArray_ITF, headerValue core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName), core.PointerFromQByteArray(headerValue))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetRawHeader", headerName, headerValue})
 }
 
 func (ptr *QNetworkRequest) SetSslConfiguration(config QSslConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetSslConfiguration(ptr.Pointer(), PointerFromQSslConfiguration(config))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSslConfiguration", config})
 }
 
 func (ptr *QNetworkRequest) SetUrl(url core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetUrl", url})
 }
 
 func (ptr *QNetworkRequest) SslConfiguration() *QSslConfiguration {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslConfigurationFromPointer(C.QNetworkRequest_SslConfiguration(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SslConfiguration"}).(*QSslConfiguration)
 }
 
 func (ptr *QNetworkRequest) Swap(other QNetworkRequest_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkRequest_Swap(ptr.Pointer(), PointerFromQNetworkRequest(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QNetworkRequest) Url() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QNetworkRequest_Url(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Url"}).(*core.QUrl)
 }
 
 func (ptr *QNetworkRequest) DestroyQNetworkRequest() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkRequest_DestroyQNetworkRequest(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkRequest"})
 }
 
 func (ptr *QNetworkRequest) __rawHeaderList_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkRequest___rawHeaderList_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaderList_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkRequest) __rawHeaderList_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkRequest___rawHeaderList_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaderList_setList", i})
 }
 
 func (ptr *QNetworkRequest) __rawHeaderList_newList() unsafe.Pointer {
-	return C.QNetworkRequest___rawHeaderList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__rawHeaderList_newList"}).(unsafe.Pointer)
 }
 
 type QNetworkSession struct {
@@ -14365,9 +8195,18 @@ func PointerFromQNetworkSession(ptr QNetworkSession_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QNetworkSession) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QNetworkSession) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQNetworkSessionFromPointer(ptr unsafe.Pointer) (n *QNetworkSession) {
 	n = new(QNetworkSession)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkSession")
 	return
 }
 
@@ -14407,989 +8246,447 @@ const (
 )
 
 func NewQNetworkSession(connectionConfig QNetworkConfiguration_ITF, parent core.QObject_ITF) *QNetworkSession {
-	tmpValue := NewQNetworkSessionFromPointer(C.QNetworkSession_NewQNetworkSession(PointerFromQNetworkConfiguration(connectionConfig), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQNetworkSession_Accept
-func callbackQNetworkSession_Accept(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "accept"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkSessionFromPointer(ptr).AcceptDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkSession", "", connectionConfig, parent}).(*QNetworkSession)
 }
 
 func (ptr *QNetworkSession) ConnectAccept(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "accept"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "accept", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "accept", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectAccept", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectAccept() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "accept")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectAccept"})
 }
 
 func (ptr *QNetworkSession) Accept() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_Accept(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Accept"})
 }
 
 func (ptr *QNetworkSession) AcceptDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_AcceptDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AcceptDefault"})
 }
 
 func (ptr *QNetworkSession) ActiveTime() uint64 {
-	if ptr.Pointer() != nil {
-		return uint64(C.QNetworkSession_ActiveTime(ptr.Pointer()))
-	}
-	return 0
+
+	return uint64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ActiveTime"}).(float64))
 }
 
 func (ptr *QNetworkSession) BytesReceived() uint64 {
-	if ptr.Pointer() != nil {
-		return uint64(C.QNetworkSession_BytesReceived(ptr.Pointer()))
-	}
-	return 0
+
+	return uint64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BytesReceived"}).(float64))
 }
 
 func (ptr *QNetworkSession) BytesWritten() uint64 {
-	if ptr.Pointer() != nil {
-		return uint64(C.QNetworkSession_BytesWritten(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkSession_Close
-func callbackQNetworkSession_Close(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "close"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkSessionFromPointer(ptr).CloseDefault()
-	}
+	return uint64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BytesWritten"}).(float64))
 }
 
 func (ptr *QNetworkSession) ConnectClose(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "close"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "close", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "close", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectClose", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectClose() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "close")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectClose"})
 }
 
 func (ptr *QNetworkSession) Close() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_Close(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Close"})
 }
 
 func (ptr *QNetworkSession) CloseDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_CloseDefault(ptr.Pointer())
-	}
-}
 
-//export callbackQNetworkSession_Closed
-func callbackQNetworkSession_Closed(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "closed"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CloseDefault"})
 }
 
 func (ptr *QNetworkSession) ConnectClosed(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "closed") {
-			C.QNetworkSession_ConnectClosed(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "closed")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "closed"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "closed", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "closed", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectClosed", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectClosed() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_DisconnectClosed(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "closed")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectClosed"})
 }
 
 func (ptr *QNetworkSession) Closed() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_Closed(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Closed"})
 }
 
 func (ptr *QNetworkSession) Configuration() *QNetworkConfiguration {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkConfigurationFromPointer(C.QNetworkSession_Configuration(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Configuration"}).(*QNetworkConfiguration)
 }
 
 func (ptr *QNetworkSession) Error() QNetworkSession__SessionError {
-	if ptr.Pointer() != nil {
-		return QNetworkSession__SessionError(C.QNetworkSession_Error(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkSession_Error2
-func callbackQNetworkSession_Error2(ptr unsafe.Pointer, error C.longlong) {
-	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		(*(*func(QNetworkSession__SessionError))(signal))(QNetworkSession__SessionError(error))
-	}
-
+	return QNetworkSession__SessionError(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error"}).(float64))
 }
 
 func (ptr *QNetworkSession) ConnectError2(f func(error QNetworkSession__SessionError)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "error2") {
-			C.QNetworkSession_ConnectError2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "error")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			f := func(error QNetworkSession__SessionError) {
-				(*(*func(QNetworkSession__SessionError))(signal))(error)
-				f(error)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectError2", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectError2() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "error2")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectError2"})
 }
 
 func (ptr *QNetworkSession) Error2(error QNetworkSession__SessionError) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_Error2(ptr.Pointer(), C.longlong(error))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error2", error})
 }
 
 func (ptr *QNetworkSession) ErrorString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QNetworkSession_ErrorString(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQNetworkSession_Ignore
-func callbackQNetworkSession_Ignore(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "ignore"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkSessionFromPointer(ptr).IgnoreDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ErrorString"}).(string)
 }
 
 func (ptr *QNetworkSession) ConnectIgnore(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "ignore"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "ignore", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "ignore", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectIgnore", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectIgnore() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "ignore")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectIgnore"})
 }
 
 func (ptr *QNetworkSession) Ignore() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_Ignore(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Ignore"})
 }
 
 func (ptr *QNetworkSession) IgnoreDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_IgnoreDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IgnoreDefault"})
 }
 
 func (ptr *QNetworkSession) Interface() *QNetworkInterface {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkInterfaceFromPointer(C.QNetworkSession_Interface(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Interface"}).(*QNetworkInterface)
 }
 
 func (ptr *QNetworkSession) IsOpen() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkSession_IsOpen(ptr.Pointer())) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkSession_Migrate
-func callbackQNetworkSession_Migrate(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "migrate"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkSessionFromPointer(ptr).MigrateDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsOpen"}).(bool)
 }
 
 func (ptr *QNetworkSession) ConnectMigrate(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "migrate"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "migrate", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "migrate", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectMigrate", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectMigrate() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "migrate")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectMigrate"})
 }
 
 func (ptr *QNetworkSession) Migrate() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_Migrate(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Migrate"})
 }
 
 func (ptr *QNetworkSession) MigrateDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_MigrateDefault(ptr.Pointer())
-	}
-}
 
-//export callbackQNetworkSession_NewConfigurationActivated
-func callbackQNetworkSession_NewConfigurationActivated(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "newConfigurationActivated"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MigrateDefault"})
 }
 
 func (ptr *QNetworkSession) ConnectNewConfigurationActivated(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "newConfigurationActivated") {
-			C.QNetworkSession_ConnectNewConfigurationActivated(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConfigurationActivated")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "newConfigurationActivated"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "newConfigurationActivated", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "newConfigurationActivated", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNewConfigurationActivated", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectNewConfigurationActivated() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_DisconnectNewConfigurationActivated(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "newConfigurationActivated")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNewConfigurationActivated"})
 }
 
 func (ptr *QNetworkSession) NewConfigurationActivated() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_NewConfigurationActivated(ptr.Pointer())
-	}
-}
 
-//export callbackQNetworkSession_Open
-func callbackQNetworkSession_Open(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "open"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkSessionFromPointer(ptr).OpenDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NewConfigurationActivated"})
 }
 
 func (ptr *QNetworkSession) ConnectOpen(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "open"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "open", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "open", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectOpen", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectOpen() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "open")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectOpen"})
 }
 
 func (ptr *QNetworkSession) Open() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_Open(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Open"})
 }
 
 func (ptr *QNetworkSession) OpenDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_OpenDefault(ptr.Pointer())
-	}
-}
 
-//export callbackQNetworkSession_Opened
-func callbackQNetworkSession_Opened(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "opened"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "OpenDefault"})
 }
 
 func (ptr *QNetworkSession) ConnectOpened(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "opened") {
-			C.QNetworkSession_ConnectOpened(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "opened")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "opened"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "opened", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "opened", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectOpened", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectOpened() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_DisconnectOpened(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "opened")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectOpened"})
 }
 
 func (ptr *QNetworkSession) Opened() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_Opened(ptr.Pointer())
-	}
-}
 
-//export callbackQNetworkSession_PreferredConfigurationChanged
-func callbackQNetworkSession_PreferredConfigurationChanged(ptr unsafe.Pointer, config unsafe.Pointer, isSeamless C.char) {
-	if signal := qt.GetSignal(ptr, "preferredConfigurationChanged"); signal != nil {
-		(*(*func(*QNetworkConfiguration, bool))(signal))(NewQNetworkConfigurationFromPointer(config), int8(isSeamless) != 0)
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Opened"})
 }
 
 func (ptr *QNetworkSession) ConnectPreferredConfigurationChanged(f func(config *QNetworkConfiguration, isSeamless bool)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "preferredConfigurationChanged") {
-			C.QNetworkSession_ConnectPreferredConfigurationChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preferredConfigurationChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "preferredConfigurationChanged"); signal != nil {
-			f := func(config *QNetworkConfiguration, isSeamless bool) {
-				(*(*func(*QNetworkConfiguration, bool))(signal))(config, isSeamless)
-				f(config, isSeamless)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "preferredConfigurationChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "preferredConfigurationChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectPreferredConfigurationChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectPreferredConfigurationChanged() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_DisconnectPreferredConfigurationChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "preferredConfigurationChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectPreferredConfigurationChanged"})
 }
 
 func (ptr *QNetworkSession) PreferredConfigurationChanged(config QNetworkConfiguration_ITF, isSeamless bool) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_PreferredConfigurationChanged(ptr.Pointer(), PointerFromQNetworkConfiguration(config), C.char(int8(qt.GoBoolToInt(isSeamless))))
-	}
-}
 
-//export callbackQNetworkSession_Reject
-func callbackQNetworkSession_Reject(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "reject"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkSessionFromPointer(ptr).RejectDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PreferredConfigurationChanged", config, isSeamless})
 }
 
 func (ptr *QNetworkSession) ConnectReject(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "reject"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "reject", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "reject", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectReject", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectReject() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "reject")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectReject"})
 }
 
 func (ptr *QNetworkSession) Reject() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_Reject(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Reject"})
 }
 
 func (ptr *QNetworkSession) RejectDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_RejectDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RejectDefault"})
 }
 
 func (ptr *QNetworkSession) SessionProperty(key string) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QNetworkSession_SessionProperty(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: keyC, len: C.longlong(len(key))}))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SessionProperty", key}).(*core.QVariant)
 }
 
 func (ptr *QNetworkSession) SetSessionProperty(key string, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		C.QNetworkSession_SetSessionProperty(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSessionProperty", key, value})
 }
 
 func (ptr *QNetworkSession) State() QNetworkSession__State {
-	if ptr.Pointer() != nil {
-		return QNetworkSession__State(C.QNetworkSession_State(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkSession_StateChanged
-func callbackQNetworkSession_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
-		(*(*func(QNetworkSession__State))(signal))(QNetworkSession__State(state))
-	}
-
+	return QNetworkSession__State(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "State"}).(float64))
 }
 
 func (ptr *QNetworkSession) ConnectStateChanged(f func(state QNetworkSession__State)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QNetworkSession_ConnectStateChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
-			f := func(state QNetworkSession__State) {
-				(*(*func(QNetworkSession__State))(signal))(state)
-				f(state)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStateChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectStateChanged() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_DisconnectStateChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "stateChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStateChanged"})
 }
 
 func (ptr *QNetworkSession) StateChanged(state QNetworkSession__State) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_StateChanged(ptr.Pointer(), C.longlong(state))
-	}
-}
 
-//export callbackQNetworkSession_Stop
-func callbackQNetworkSession_Stop(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "stop"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkSessionFromPointer(ptr).StopDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StateChanged", state})
 }
 
 func (ptr *QNetworkSession) ConnectStop(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "stop"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStop", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectStop() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "stop")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStop"})
 }
 
 func (ptr *QNetworkSession) Stop() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_Stop(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Stop"})
 }
 
 func (ptr *QNetworkSession) StopDefault() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_StopDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StopDefault"})
 }
 
 func (ptr *QNetworkSession) UsagePolicies() QNetworkSession__UsagePolicy {
-	if ptr.Pointer() != nil {
-		return QNetworkSession__UsagePolicy(C.QNetworkSession_UsagePolicies(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQNetworkSession_UsagePoliciesChanged
-func callbackQNetworkSession_UsagePoliciesChanged(ptr unsafe.Pointer, usagePolicies C.longlong) {
-	if signal := qt.GetSignal(ptr, "usagePoliciesChanged"); signal != nil {
-		(*(*func(QNetworkSession__UsagePolicy))(signal))(QNetworkSession__UsagePolicy(usagePolicies))
-	}
-
+	return QNetworkSession__UsagePolicy(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UsagePolicies"}).(float64))
 }
 
 func (ptr *QNetworkSession) ConnectUsagePoliciesChanged(f func(usagePolicies QNetworkSession__UsagePolicy)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "usagePoliciesChanged") {
-			C.QNetworkSession_ConnectUsagePoliciesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "usagePoliciesChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "usagePoliciesChanged"); signal != nil {
-			f := func(usagePolicies QNetworkSession__UsagePolicy) {
-				(*(*func(QNetworkSession__UsagePolicy))(signal))(usagePolicies)
-				f(usagePolicies)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "usagePoliciesChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "usagePoliciesChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectUsagePoliciesChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectUsagePoliciesChanged() {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_DisconnectUsagePoliciesChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "usagePoliciesChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectUsagePoliciesChanged"})
 }
 
 func (ptr *QNetworkSession) UsagePoliciesChanged(usagePolicies QNetworkSession__UsagePolicy) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_UsagePoliciesChanged(ptr.Pointer(), C.longlong(usagePolicies))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UsagePoliciesChanged", usagePolicies})
 }
 
 func (ptr *QNetworkSession) WaitForOpened(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkSession_WaitForOpened(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkSession_DestroyQNetworkSession
-func callbackQNetworkSession_DestroyQNetworkSession(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QNetworkSession"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkSessionFromPointer(ptr).DestroyQNetworkSessionDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForOpened", msecs}).(bool)
 }
 
 func (ptr *QNetworkSession) ConnectDestroyQNetworkSession(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QNetworkSession"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkSession", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QNetworkSession", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQNetworkSession", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QNetworkSession) DisconnectDestroyQNetworkSession() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QNetworkSession")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQNetworkSession"})
 }
 
 func (ptr *QNetworkSession) DestroyQNetworkSession() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkSession_DestroyQNetworkSession(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkSession"})
 }
 
 func (ptr *QNetworkSession) DestroyQNetworkSessionDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkSession_DestroyQNetworkSessionDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQNetworkSessionDefault"})
 }
 
 func (ptr *QNetworkSession) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkSession___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkSession) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QNetworkSession) __children_newList() unsafe.Pointer {
-	return C.QNetworkSession___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkSession) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QNetworkSession___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkSession) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QNetworkSession) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QNetworkSession___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkSession) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkSession___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkSession) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QNetworkSession) __findChildren_newList() unsafe.Pointer {
-	return C.QNetworkSession___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkSession) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNetworkSession___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QNetworkSession) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QNetworkSession) __findChildren_newList3() unsafe.Pointer {
-	return C.QNetworkSession___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQNetworkSession_ChildEvent
-func callbackQNetworkSession_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQNetworkSessionFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QNetworkSession) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQNetworkSession_ConnectNotify
-func callbackQNetworkSession_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQNetworkSessionFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QNetworkSession) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQNetworkSession_CustomEvent
-func callbackQNetworkSession_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQNetworkSessionFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QNetworkSession) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQNetworkSession_DeleteLater
-func callbackQNetworkSession_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQNetworkSessionFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QNetworkSession) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QNetworkSession_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQNetworkSession_Destroyed
-func callbackQNetworkSession_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQNetworkSession_DisconnectNotify
-func callbackQNetworkSession_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQNetworkSessionFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QNetworkSession) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQNetworkSession_Event
-func callbackQNetworkSession_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkSessionFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QNetworkSession) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkSession_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkSession_EventFilter
-func callbackQNetworkSession_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQNetworkSessionFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QNetworkSession) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QNetworkSession_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQNetworkSession_MetaObject
-func callbackQNetworkSession_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQNetworkSessionFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QNetworkSession) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QNetworkSession_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQNetworkSession_ObjectNameChanged
-func callbackQNetworkSession_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQNetworkSession_TimerEvent
-func callbackQNetworkSession_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQNetworkSessionFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QNetworkSession) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkSession_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QOcspResponse struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QOcspResponse_ITF interface {
@@ -15402,14 +8699,14 @@ func (ptr *QOcspResponse) QOcspResponse_PTR() *QOcspResponse {
 
 func (ptr *QOcspResponse) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QOcspResponse) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -15420,9 +8717,13 @@ func PointerFromQOcspResponse(ptr QOcspResponse_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QOcspResponse) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQOcspResponseFromPointer(ptr unsafe.Pointer) (n *QOcspResponse) {
 	n = new(QOcspResponse)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QOcspResponse")
 	return
 }
 
@@ -15453,50 +8754,37 @@ const (
 )
 
 func NewQOcspResponse() *QOcspResponse {
-	tmpValue := NewQOcspResponseFromPointer(C.QOcspResponse_NewQOcspResponse())
-	qt.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQOcspResponse", ""}).(*QOcspResponse)
 }
 
 func NewQOcspResponse2(other QOcspResponse_ITF) *QOcspResponse {
-	tmpValue := NewQOcspResponseFromPointer(C.QOcspResponse_NewQOcspResponse2(PointerFromQOcspResponse(other)))
-	qt.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQOcspResponse2", "", other}).(*QOcspResponse)
 }
 
 func NewQOcspResponse3(other QOcspResponse_ITF) *QOcspResponse {
-	tmpValue := NewQOcspResponseFromPointer(C.QOcspResponse_NewQOcspResponse3(PointerFromQOcspResponse(other)))
-	qt.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQOcspResponse3", "", other}).(*QOcspResponse)
 }
 
 func (ptr *QOcspResponse) Subject() *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QOcspResponse_Subject(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Subject"}).(*QSslCertificate)
 }
 
 func (ptr *QOcspResponse) Swap(other QOcspResponse_ITF) {
-	if ptr.Pointer() != nil {
-		C.QOcspResponse_Swap(ptr.Pointer(), PointerFromQOcspResponse(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QOcspResponse) DestroyQOcspResponse() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QOcspResponse_DestroyQOcspResponse(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQOcspResponse"})
 }
 
 type QPasswordDigestor struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QPasswordDigestor_ITF interface {
@@ -15509,14 +8797,14 @@ func (ptr *QPasswordDigestor) QPasswordDigestor_PTR() *QPasswordDigestor {
 
 func (ptr *QPasswordDigestor) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QPasswordDigestor) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -15527,18 +8815,17 @@ func PointerFromQPasswordDigestor(ptr QPasswordDigestor_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QPasswordDigestor) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQPasswordDigestorFromPointer(ptr unsafe.Pointer) (n *QPasswordDigestor) {
 	n = new(QPasswordDigestor)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QPasswordDigestor")
 	return
 }
-func (ptr *QPasswordDigestor) DestroyQPasswordDigestor() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *QPasswordDigestor) DestroyQPasswordDigestor() {
 }
 
 type QSctpServer struct {
@@ -15574,9 +8861,18 @@ func PointerFromQSctpServer(ptr QSctpServer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSctpServer) InitFromInternal(ptr uintptr, name string) {
+	n.QTcpServer_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QSctpServer) ClassNameInternalF() string {
+	return n.QTcpServer_PTR().ClassNameInternalF()
+}
+
 func NewQSctpServerFromPointer(ptr unsafe.Pointer) (n *QSctpServer) {
 	n = new(QSctpServer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSctpServer")
 	return
 }
 
@@ -15613,14 +8909,23 @@ func PointerFromQSctpSocket(ptr QSctpSocket_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSctpSocket) InitFromInternal(ptr uintptr, name string) {
+	n.QTcpSocket_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QSctpSocket) ClassNameInternalF() string {
+	return n.QTcpSocket_PTR().ClassNameInternalF()
+}
+
 func NewQSctpSocketFromPointer(ptr unsafe.Pointer) (n *QSctpSocket) {
 	n = new(QSctpSocket)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSctpSocket")
 	return
 }
 
 type QSsl struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSsl_ITF interface {
@@ -15633,14 +8938,14 @@ func (ptr *QSsl) QSsl_PTR() *QSsl {
 
 func (ptr *QSsl) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSsl) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -15651,18 +8956,17 @@ func PointerFromQSsl(ptr QSsl_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSsl) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSslFromPointer(ptr unsafe.Pointer) (n *QSsl) {
 	n = new(QSsl)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSsl")
 	return
 }
-func (ptr *QSsl) DestroyQSsl() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *QSsl) DestroyQSsl() {
 }
 
 //go:generate stringer -type=QSsl__KeyType
@@ -15747,7 +9051,7 @@ const (
 )
 
 type QSslCertificate struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSslCertificate_ITF interface {
@@ -15760,14 +9064,14 @@ func (ptr *QSslCertificate) QSslCertificate_PTR() *QSslCertificate {
 
 func (ptr *QSslCertificate) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSslCertificate) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -15778,9 +9082,13 @@ func PointerFromQSslCertificate(ptr QSslCertificate_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSslCertificate) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSslCertificateFromPointer(ptr unsafe.Pointer) (n *QSslCertificate) {
 	n = new(QSslCertificate)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSslCertificate")
 	return
 }
 
@@ -15801,609 +9109,367 @@ const (
 )
 
 func NewQSslCertificate(device core.QIODevice_ITF, format QSsl__EncodingFormat) *QSslCertificate {
-	tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate(core.PointerFromQIODevice(device), C.longlong(format)))
-	qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslCertificate", "", device, format}).(*QSslCertificate)
 }
 
 func NewQSslCertificate2(data core.QByteArray_ITF, format QSsl__EncodingFormat) *QSslCertificate {
-	tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate2(core.PointerFromQByteArray(data), C.longlong(format)))
-	qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslCertificate2", "", data, format}).(*QSslCertificate)
 }
 
 func NewQSslCertificate3(other QSslCertificate_ITF) *QSslCertificate {
-	tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate3(PointerFromQSslCertificate(other)))
-	qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslCertificate3", "", other}).(*QSslCertificate)
 }
 
 func (ptr *QSslCertificate) Clear() {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate_Clear(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Clear"})
 }
 
 func (ptr *QSslCertificate) Digest(algorithm core.QCryptographicHash__Algorithm) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate_Digest(ptr.Pointer(), C.longlong(algorithm)))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Digest", algorithm}).(*core.QByteArray)
 }
 
 func (ptr *QSslCertificate) EffectiveDate() *core.QDateTime {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQDateTimeFromPointer(C.QSslCertificate_EffectiveDate(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EffectiveDate"}).(*core.QDateTime)
 }
 
 func (ptr *QSslCertificate) ExpiryDate() *core.QDateTime {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQDateTimeFromPointer(C.QSslCertificate_ExpiryDate(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ExpiryDate"}).(*core.QDateTime)
 }
 
 func (ptr *QSslCertificate) Extensions() []*QSslCertificateExtension {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QSslCertificateExtension {
-			out := make([]*QSslCertificateExtension, int(l.len))
-			tmpList := NewQSslCertificateFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__extensions_atList(i)
-			}
-			return out
-		}(C.QSslCertificate_Extensions(ptr.Pointer()))
-	}
-	return make([]*QSslCertificateExtension, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Extensions"}).([]*QSslCertificateExtension)
 }
 
 func QSslCertificate_FromData(data core.QByteArray_ITF, format QSsl__EncodingFormat) []*QSslCertificate {
-	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-		out := make([]*QSslCertificate, int(l.len))
-		tmpList := NewQSslCertificateFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__fromData_atList(i)
-		}
-		return out
-	}(C.QSslCertificate_QSslCertificate_FromData(core.PointerFromQByteArray(data), C.longlong(format)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslCertificate_FromData", "", data, format}).([]*QSslCertificate)
 }
 
 func (ptr *QSslCertificate) FromData(data core.QByteArray_ITF, format QSsl__EncodingFormat) []*QSslCertificate {
-	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-		out := make([]*QSslCertificate, int(l.len))
-		tmpList := NewQSslCertificateFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__fromData_atList(i)
-		}
-		return out
-	}(C.QSslCertificate_QSslCertificate_FromData(core.PointerFromQByteArray(data), C.longlong(format)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslCertificate_FromData", "", data, format}).([]*QSslCertificate)
 }
 
 func QSslCertificate_FromDevice(device core.QIODevice_ITF, format QSsl__EncodingFormat) []*QSslCertificate {
-	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-		out := make([]*QSslCertificate, int(l.len))
-		tmpList := NewQSslCertificateFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__fromDevice_atList(i)
-		}
-		return out
-	}(C.QSslCertificate_QSslCertificate_FromDevice(core.PointerFromQIODevice(device), C.longlong(format)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslCertificate_FromDevice", "", device, format}).([]*QSslCertificate)
 }
 
 func (ptr *QSslCertificate) FromDevice(device core.QIODevice_ITF, format QSsl__EncodingFormat) []*QSslCertificate {
-	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-		out := make([]*QSslCertificate, int(l.len))
-		tmpList := NewQSslCertificateFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__fromDevice_atList(i)
-		}
-		return out
-	}(C.QSslCertificate_QSslCertificate_FromDevice(core.PointerFromQIODevice(device), C.longlong(format)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslCertificate_FromDevice", "", device, format}).([]*QSslCertificate)
 }
 
 func QSslCertificate_FromPath(path string, format QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) []*QSslCertificate {
-	var pathC *C.char
-	if path != "" {
-		pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
-	}
-	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-		out := make([]*QSslCertificate, int(l.len))
-		tmpList := NewQSslCertificateFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__fromPath_atList(i)
-		}
-		return out
-	}(C.QSslCertificate_QSslCertificate_FromPath(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(format), C.longlong(syntax)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslCertificate_FromPath", "", path, format, syntax}).([]*QSslCertificate)
 }
 
 func (ptr *QSslCertificate) FromPath(path string, format QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) []*QSslCertificate {
-	var pathC *C.char
-	if path != "" {
-		pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
-	}
-	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-		out := make([]*QSslCertificate, int(l.len))
-		tmpList := NewQSslCertificateFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__fromPath_atList(i)
-		}
-		return out
-	}(C.QSslCertificate_QSslCertificate_FromPath(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(format), C.longlong(syntax)))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslCertificate_FromPath", "", path, format, syntax}).([]*QSslCertificate)
 }
 
 func QSslCertificate_ImportPkcs12(device core.QIODevice_ITF, key QSslKey_ITF, certificate QSslCertificate_ITF, caCertificates []*QSslCertificate, passPhrase core.QByteArray_ITF) bool {
-	return int8(C.QSslCertificate_QSslCertificate_ImportPkcs12(core.PointerFromQIODevice(device), PointerFromQSslKey(key), PointerFromQSslCertificate(certificate), func() unsafe.Pointer {
-		tmpList := NewQSslCertificateFromPointer(NewQSslCertificateFromPointer(nil).__importPkcs12_caCertificates_newList())
-		for _, v := range caCertificates {
-			tmpList.__importPkcs12_caCertificates_setList(v)
-		}
-		return tmpList.Pointer()
-	}(), core.PointerFromQByteArray(passPhrase))) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslCertificate_ImportPkcs12", "", device, key, certificate, caCertificates, passPhrase}).(bool)
 }
 
 func (ptr *QSslCertificate) ImportPkcs12(device core.QIODevice_ITF, key QSslKey_ITF, certificate QSslCertificate_ITF, caCertificates []*QSslCertificate, passPhrase core.QByteArray_ITF) bool {
-	return int8(C.QSslCertificate_QSslCertificate_ImportPkcs12(core.PointerFromQIODevice(device), PointerFromQSslKey(key), PointerFromQSslCertificate(certificate), func() unsafe.Pointer {
-		tmpList := NewQSslCertificateFromPointer(NewQSslCertificateFromPointer(nil).__importPkcs12_caCertificates_newList())
-		for _, v := range caCertificates {
-			tmpList.__importPkcs12_caCertificates_setList(v)
-		}
-		return tmpList.Pointer()
-	}(), core.PointerFromQByteArray(passPhrase))) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslCertificate_ImportPkcs12", "", device, key, certificate, caCertificates, passPhrase}).(bool)
 }
 
 func (ptr *QSslCertificate) IsBlacklisted() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslCertificate_IsBlacklisted(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsBlacklisted"}).(bool)
 }
 
 func (ptr *QSslCertificate) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslCertificate_IsNull(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsNull"}).(bool)
 }
 
 func (ptr *QSslCertificate) IsSelfSigned() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslCertificate_IsSelfSigned(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsSelfSigned"}).(bool)
 }
 
 func (ptr *QSslCertificate) IssuerDisplayName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCertificate_IssuerDisplayName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IssuerDisplayName"}).(string)
 }
 
 func (ptr *QSslCertificate) IssuerInfo(subject QSslCertificate__SubjectInfo) []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSslCertificate_IssuerInfo(ptr.Pointer(), C.longlong(subject))))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IssuerInfo", subject}).([]string)
 }
 
 func (ptr *QSslCertificate) IssuerInfo2(attribute core.QByteArray_ITF) []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSslCertificate_IssuerInfo2(ptr.Pointer(), core.PointerFromQByteArray(attribute))))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IssuerInfo2", attribute}).([]string)
 }
 
 func (ptr *QSslCertificate) IssuerInfoAttributes() []*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*core.QByteArray {
-			out := make([]*core.QByteArray, int(l.len))
-			tmpList := NewQSslCertificateFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__issuerInfoAttributes_atList(i)
-			}
-			return out
-		}(C.QSslCertificate_IssuerInfoAttributes(ptr.Pointer()))
-	}
-	return make([]*core.QByteArray, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IssuerInfoAttributes"}).([]*core.QByteArray)
 }
 
 func (ptr *QSslCertificate) PublicKey() *QSslKey {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslKeyFromPointer(C.QSslCertificate_PublicKey(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PublicKey"}).(*QSslKey)
 }
 
 func (ptr *QSslCertificate) SerialNumber() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate_SerialNumber(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SerialNumber"}).(*core.QByteArray)
 }
 
 func (ptr *QSslCertificate) SubjectAlternativeNames() map[QSsl__AlternativeNameEntryType]string {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) map[QSsl__AlternativeNameEntryType]string {
-			out := make(map[QSsl__AlternativeNameEntryType]string, int(l.len))
-			tmpList := NewQSslCertificateFromPointer(l.data)
-			for i, v := range tmpList.__subjectAlternativeNames_keyList() {
-				out[v] = tmpList.__subjectAlternativeNames_atList(v, i)
-			}
-			return out
-		}(C.QSslCertificate_SubjectAlternativeNames(ptr.Pointer()))
-	}
-	return make(map[QSsl__AlternativeNameEntryType]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SubjectAlternativeNames"}).(map[QSsl__AlternativeNameEntryType]string)
 }
 
 func (ptr *QSslCertificate) SubjectDisplayName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCertificate_SubjectDisplayName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SubjectDisplayName"}).(string)
 }
 
 func (ptr *QSslCertificate) SubjectInfo(subject QSslCertificate__SubjectInfo) []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSslCertificate_SubjectInfo(ptr.Pointer(), C.longlong(subject))))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SubjectInfo", subject}).([]string)
 }
 
 func (ptr *QSslCertificate) SubjectInfo2(attribute core.QByteArray_ITF) []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QSslCertificate_SubjectInfo2(ptr.Pointer(), core.PointerFromQByteArray(attribute))))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SubjectInfo2", attribute}).([]string)
 }
 
 func (ptr *QSslCertificate) SubjectInfoAttributes() []*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*core.QByteArray {
-			out := make([]*core.QByteArray, int(l.len))
-			tmpList := NewQSslCertificateFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__subjectInfoAttributes_atList(i)
-			}
-			return out
-		}(C.QSslCertificate_SubjectInfoAttributes(ptr.Pointer()))
-	}
-	return make([]*core.QByteArray, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SubjectInfoAttributes"}).([]*core.QByteArray)
 }
 
 func (ptr *QSslCertificate) Swap(other QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate_Swap(ptr.Pointer(), PointerFromQSslCertificate(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QSslCertificate) ToDer() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate_ToDer(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ToDer"}).(*core.QByteArray)
 }
 
 func (ptr *QSslCertificate) ToPem() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate_ToPem(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ToPem"}).(*core.QByteArray)
 }
 
 func (ptr *QSslCertificate) ToText() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCertificate_ToText(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ToText"}).(string)
 }
 
 func QSslCertificate_Verify(certificateChain []*QSslCertificate, hostName string) []*QSslError {
-	var hostNameC *C.char
-	if hostName != "" {
-		hostNameC = C.CString(hostName)
-		defer C.free(unsafe.Pointer(hostNameC))
-	}
-	return func(l C.struct_QtNetwork_PackedList) []*QSslError {
-		out := make([]*QSslError, int(l.len))
-		tmpList := NewQSslCertificateFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__verify_atList(i)
-		}
-		return out
-	}(C.QSslCertificate_QSslCertificate_Verify(func() unsafe.Pointer {
-		tmpList := NewQSslCertificateFromPointer(NewQSslCertificateFromPointer(nil).__verify_certificateChain_newList())
-		for _, v := range certificateChain {
-			tmpList.__verify_certificateChain_setList(v)
-		}
-		return tmpList.Pointer()
-	}(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslCertificate_Verify", "", certificateChain, hostName}).([]*QSslError)
 }
 
 func (ptr *QSslCertificate) Verify(certificateChain []*QSslCertificate, hostName string) []*QSslError {
-	var hostNameC *C.char
-	if hostName != "" {
-		hostNameC = C.CString(hostName)
-		defer C.free(unsafe.Pointer(hostNameC))
-	}
-	return func(l C.struct_QtNetwork_PackedList) []*QSslError {
-		out := make([]*QSslError, int(l.len))
-		tmpList := NewQSslCertificateFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__verify_atList(i)
-		}
-		return out
-	}(C.QSslCertificate_QSslCertificate_Verify(func() unsafe.Pointer {
-		tmpList := NewQSslCertificateFromPointer(NewQSslCertificateFromPointer(nil).__verify_certificateChain_newList())
-		for _, v := range certificateChain {
-			tmpList.__verify_certificateChain_setList(v)
-		}
-		return tmpList.Pointer()
-	}(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslCertificate_Verify", "", certificateChain, hostName}).([]*QSslError)
 }
 
 func (ptr *QSslCertificate) Version() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate_Version(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Version"}).(*core.QByteArray)
 }
 
 func (ptr *QSslCertificate) DestroyQSslCertificate() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSslCertificate_DestroyQSslCertificate(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSslCertificate"})
 }
 
 func (ptr *QSslCertificate) __extensions_atList(i int) *QSslCertificateExtension {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateExtensionFromPointer(C.QSslCertificate___extensions_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificateExtension).DestroyQSslCertificateExtension)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__extensions_atList", i}).(*QSslCertificateExtension)
 }
 
 func (ptr *QSslCertificate) __extensions_setList(i QSslCertificateExtension_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate___extensions_setList(ptr.Pointer(), PointerFromQSslCertificateExtension(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__extensions_setList", i})
 }
 
 func (ptr *QSslCertificate) __extensions_newList() unsafe.Pointer {
-	return C.QSslCertificate___extensions_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__extensions_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslCertificate) __fromData_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate___fromData_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__fromData_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslCertificate) __fromData_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate___fromData_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__fromData_setList", i})
 }
 
 func (ptr *QSslCertificate) __fromData_newList() unsafe.Pointer {
-	return C.QSslCertificate___fromData_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__fromData_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslCertificate) __fromDevice_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate___fromDevice_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__fromDevice_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslCertificate) __fromDevice_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate___fromDevice_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__fromDevice_setList", i})
 }
 
 func (ptr *QSslCertificate) __fromDevice_newList() unsafe.Pointer {
-	return C.QSslCertificate___fromDevice_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__fromDevice_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslCertificate) __fromPath_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate___fromPath_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__fromPath_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslCertificate) __fromPath_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate___fromPath_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__fromPath_setList", i})
 }
 
 func (ptr *QSslCertificate) __fromPath_newList() unsafe.Pointer {
-	return C.QSslCertificate___fromPath_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__fromPath_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslCertificate) __importPkcs12_caCertificates_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate___importPkcs12_caCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__importPkcs12_caCertificates_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslCertificate) __importPkcs12_caCertificates_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate___importPkcs12_caCertificates_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__importPkcs12_caCertificates_setList", i})
 }
 
 func (ptr *QSslCertificate) __importPkcs12_caCertificates_newList() unsafe.Pointer {
-	return C.QSslCertificate___importPkcs12_caCertificates_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__importPkcs12_caCertificates_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslCertificate) __issuerInfoAttributes_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate___issuerInfoAttributes_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__issuerInfoAttributes_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSslCertificate) __issuerInfoAttributes_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate___issuerInfoAttributes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__issuerInfoAttributes_setList", i})
 }
 
 func (ptr *QSslCertificate) __issuerInfoAttributes_newList() unsafe.Pointer {
-	return C.QSslCertificate___issuerInfoAttributes_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__issuerInfoAttributes_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslCertificate) __subjectAlternativeNames_atList(v QSsl__AlternativeNameEntryType, i int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCertificate___subjectAlternativeNames_atList(ptr.Pointer(), C.longlong(v), C.int(int32(i))))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__subjectAlternativeNames_atList", v, i}).(string)
 }
 
 func (ptr *QSslCertificate) __subjectAlternativeNames_setList(key QSsl__AlternativeNameEntryType, i string) {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
-		}
-		C.QSslCertificate___subjectAlternativeNames_setList(ptr.Pointer(), C.longlong(key), C.struct_QtNetwork_PackedString{data: iC, len: C.longlong(len(i))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__subjectAlternativeNames_setList", key, i})
 }
 
 func (ptr *QSslCertificate) __subjectAlternativeNames_newList() unsafe.Pointer {
-	return C.QSslCertificate___subjectAlternativeNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__subjectAlternativeNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslCertificate) __subjectAlternativeNames_keyList() []QSsl__AlternativeNameEntryType {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []QSsl__AlternativeNameEntryType {
-			out := make([]QSsl__AlternativeNameEntryType, int(l.len))
-			tmpList := NewQSslCertificateFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____subjectAlternativeNames_keyList_atList(i)
-			}
-			return out
-		}(C.QSslCertificate___subjectAlternativeNames_keyList(ptr.Pointer()))
-	}
-	return make([]QSsl__AlternativeNameEntryType, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__subjectAlternativeNames_keyList"}).([]QSsl__AlternativeNameEntryType)
 }
 
 func (ptr *QSslCertificate) __subjectInfoAttributes_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslCertificate___subjectInfoAttributes_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__subjectInfoAttributes_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSslCertificate) __subjectInfoAttributes_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate___subjectInfoAttributes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__subjectInfoAttributes_setList", i})
 }
 
 func (ptr *QSslCertificate) __subjectInfoAttributes_newList() unsafe.Pointer {
-	return C.QSslCertificate___subjectInfoAttributes_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__subjectInfoAttributes_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslCertificate) __verify_atList(i int) *QSslError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslErrorFromPointer(C.QSslCertificate___verify_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__verify_atList", i}).(*QSslError)
 }
 
 func (ptr *QSslCertificate) __verify_setList(i QSslError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate___verify_setList(ptr.Pointer(), PointerFromQSslError(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__verify_setList", i})
 }
 
 func (ptr *QSslCertificate) __verify_newList() unsafe.Pointer {
-	return C.QSslCertificate___verify_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__verify_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslCertificate) __verify_certificateChain_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslCertificate___verify_certificateChain_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__verify_certificateChain_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslCertificate) __verify_certificateChain_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate___verify_certificateChain_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__verify_certificateChain_setList", i})
 }
 
 func (ptr *QSslCertificate) __verify_certificateChain_newList() unsafe.Pointer {
-	return C.QSslCertificate___verify_certificateChain_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__verify_certificateChain_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslCertificate) ____subjectAlternativeNames_keyList_atList(i int) QSsl__AlternativeNameEntryType {
-	if ptr.Pointer() != nil {
-		return QSsl__AlternativeNameEntryType(C.QSslCertificate_____subjectAlternativeNames_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return 0
+
+	return QSsl__AlternativeNameEntryType(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____subjectAlternativeNames_keyList_atList", i}).(float64))
 }
 
 func (ptr *QSslCertificate) ____subjectAlternativeNames_keyList_setList(i QSsl__AlternativeNameEntryType) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificate_____subjectAlternativeNames_keyList_setList(ptr.Pointer(), C.longlong(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____subjectAlternativeNames_keyList_setList", i})
 }
 
 func (ptr *QSslCertificate) ____subjectAlternativeNames_keyList_newList() unsafe.Pointer {
-	return C.QSslCertificate_____subjectAlternativeNames_keyList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____subjectAlternativeNames_keyList_newList"}).(unsafe.Pointer)
 }
 
 type QSslCertificateExtension struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSslCertificateExtension_ITF interface {
@@ -16416,14 +9482,14 @@ func (ptr *QSslCertificateExtension) QSslCertificateExtension_PTR() *QSslCertifi
 
 func (ptr *QSslCertificateExtension) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSslCertificateExtension) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -16434,78 +9500,62 @@ func PointerFromQSslCertificateExtension(ptr QSslCertificateExtension_ITF) unsaf
 	return nil
 }
 
+func (n *QSslCertificateExtension) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSslCertificateExtensionFromPointer(ptr unsafe.Pointer) (n *QSslCertificateExtension) {
 	n = new(QSslCertificateExtension)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSslCertificateExtension")
 	return
 }
 func NewQSslCertificateExtension() *QSslCertificateExtension {
-	tmpValue := NewQSslCertificateExtensionFromPointer(C.QSslCertificateExtension_NewQSslCertificateExtension())
-	qt.SetFinalizer(tmpValue, (*QSslCertificateExtension).DestroyQSslCertificateExtension)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslCertificateExtension", ""}).(*QSslCertificateExtension)
 }
 
 func NewQSslCertificateExtension2(other QSslCertificateExtension_ITF) *QSslCertificateExtension {
-	tmpValue := NewQSslCertificateExtensionFromPointer(C.QSslCertificateExtension_NewQSslCertificateExtension2(PointerFromQSslCertificateExtension(other)))
-	qt.SetFinalizer(tmpValue, (*QSslCertificateExtension).DestroyQSslCertificateExtension)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslCertificateExtension2", "", other}).(*QSslCertificateExtension)
 }
 
 func (ptr *QSslCertificateExtension) IsCritical() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslCertificateExtension_IsCritical(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsCritical"}).(bool)
 }
 
 func (ptr *QSslCertificateExtension) IsSupported() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslCertificateExtension_IsSupported(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsSupported"}).(bool)
 }
 
 func (ptr *QSslCertificateExtension) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCertificateExtension_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QSslCertificateExtension) Oid() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCertificateExtension_Oid(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Oid"}).(string)
 }
 
 func (ptr *QSslCertificateExtension) Swap(other QSslCertificateExtension_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCertificateExtension_Swap(ptr.Pointer(), PointerFromQSslCertificateExtension(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QSslCertificateExtension) Value() *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSslCertificateExtension_Value(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Value"}).(*core.QVariant)
 }
 
 func (ptr *QSslCertificateExtension) DestroyQSslCertificateExtension() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSslCertificateExtension_DestroyQSslCertificateExtension(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSslCertificateExtension"})
 }
 
 type QSslCipher struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSslCipher_ITF interface {
@@ -16518,14 +9568,14 @@ func (ptr *QSslCipher) QSslCipher_PTR() *QSslCipher {
 
 func (ptr *QSslCipher) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSslCipher) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -16536,126 +9586,92 @@ func PointerFromQSslCipher(ptr QSslCipher_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSslCipher) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSslCipherFromPointer(ptr unsafe.Pointer) (n *QSslCipher) {
 	n = new(QSslCipher)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSslCipher")
 	return
 }
 func NewQSslCipher() *QSslCipher {
-	tmpValue := NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher())
-	qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslCipher", ""}).(*QSslCipher)
 }
 
 func NewQSslCipher2(name string) *QSslCipher {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher2(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslCipher2", "", name}).(*QSslCipher)
 }
 
 func NewQSslCipher3(name string, protoc QSsl__SslProtocol) *QSslCipher {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher3(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(protoc)))
-	qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslCipher3", "", name, protoc}).(*QSslCipher)
 }
 
 func NewQSslCipher4(other QSslCipher_ITF) *QSslCipher {
-	tmpValue := NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher4(PointerFromQSslCipher(other)))
-	qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslCipher4", "", other}).(*QSslCipher)
 }
 
 func (ptr *QSslCipher) AuthenticationMethod() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCipher_AuthenticationMethod(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AuthenticationMethod"}).(string)
 }
 
 func (ptr *QSslCipher) EncryptionMethod() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCipher_EncryptionMethod(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EncryptionMethod"}).(string)
 }
 
 func (ptr *QSslCipher) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslCipher_IsNull(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsNull"}).(bool)
 }
 
 func (ptr *QSslCipher) KeyExchangeMethod() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCipher_KeyExchangeMethod(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "KeyExchangeMethod"}).(string)
 }
 
 func (ptr *QSslCipher) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCipher_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QSslCipher) Protocol() QSsl__SslProtocol {
-	if ptr.Pointer() != nil {
-		return QSsl__SslProtocol(C.QSslCipher_Protocol(ptr.Pointer()))
-	}
-	return 0
+
+	return QSsl__SslProtocol(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Protocol"}).(float64))
 }
 
 func (ptr *QSslCipher) ProtocolString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslCipher_ProtocolString(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ProtocolString"}).(string)
 }
 
 func (ptr *QSslCipher) SupportedBits() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSslCipher_SupportedBits(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SupportedBits"}).(float64))
 }
 
 func (ptr *QSslCipher) Swap(other QSslCipher_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslCipher_Swap(ptr.Pointer(), PointerFromQSslCipher(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QSslCipher) UsedBits() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSslCipher_UsedBits(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "UsedBits"}).(float64))
 }
 
 func (ptr *QSslCipher) DestroyQSslCipher() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSslCipher_DestroyQSslCipher(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSslCipher"})
 }
 
 type QSslConfiguration struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSslConfiguration_ITF interface {
@@ -16668,14 +9684,14 @@ func (ptr *QSslConfiguration) QSslConfiguration_PTR() *QSslConfiguration {
 
 func (ptr *QSslConfiguration) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSslConfiguration) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -16686,9 +9702,13 @@ func PointerFromQSslConfiguration(ptr QSslConfiguration_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSslConfiguration) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSslConfigurationFromPointer(ptr unsafe.Pointer) (n *QSslConfiguration) {
 	n = new(QSslConfiguration)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSslConfiguration")
 	return
 }
 
@@ -16703,835 +9723,552 @@ const (
 )
 
 func NewQSslConfiguration() *QSslConfiguration {
-	tmpValue := NewQSslConfigurationFromPointer(C.QSslConfiguration_NewQSslConfiguration())
-	qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslConfiguration", ""}).(*QSslConfiguration)
 }
 
 func NewQSslConfiguration2(other QSslConfiguration_ITF) *QSslConfiguration {
-	tmpValue := NewQSslConfigurationFromPointer(C.QSslConfiguration_NewQSslConfiguration2(PointerFromQSslConfiguration(other)))
-	qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslConfiguration2", "", other}).(*QSslConfiguration)
 }
 
 func (ptr *QSslConfiguration) AllowedNextProtocols() []*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*core.QByteArray {
-			out := make([]*core.QByteArray, int(l.len))
-			tmpList := NewQSslConfigurationFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__allowedNextProtocols_atList(i)
-			}
-			return out
-		}(C.QSslConfiguration_AllowedNextProtocols(ptr.Pointer()))
-	}
-	return make([]*core.QByteArray, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AllowedNextProtocols"}).([]*core.QByteArray)
 }
 
 func (ptr *QSslConfiguration) BackendConfiguration() map[*core.QByteArray]*core.QVariant {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) map[*core.QByteArray]*core.QVariant {
-			out := make(map[*core.QByteArray]*core.QVariant, int(l.len))
-			tmpList := NewQSslConfigurationFromPointer(l.data)
-			for i, v := range tmpList.__backendConfiguration_keyList() {
-				out[v] = tmpList.__backendConfiguration_atList(v, i)
-			}
-			return out
-		}(C.QSslConfiguration_BackendConfiguration(ptr.Pointer()))
-	}
-	return make(map[*core.QByteArray]*core.QVariant, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "BackendConfiguration"}).(map[*core.QByteArray]*core.QVariant)
 }
 
 func (ptr *QSslConfiguration) CaCertificates() []*QSslCertificate {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-			out := make([]*QSslCertificate, int(l.len))
-			tmpList := NewQSslConfigurationFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__caCertificates_atList(i)
-			}
-			return out
-		}(C.QSslConfiguration_CaCertificates(ptr.Pointer()))
-	}
-	return make([]*QSslCertificate, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CaCertificates"}).([]*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) Ciphers() []*QSslCipher {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QSslCipher {
-			out := make([]*QSslCipher, int(l.len))
-			tmpList := NewQSslConfigurationFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__ciphers_atList(i)
-			}
-			return out
-		}(C.QSslConfiguration_Ciphers(ptr.Pointer()))
-	}
-	return make([]*QSslCipher, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Ciphers"}).([]*QSslCipher)
 }
 
 func QSslConfiguration_DefaultConfiguration() *QSslConfiguration {
-	tmpValue := NewQSslConfigurationFromPointer(C.QSslConfiguration_QSslConfiguration_DefaultConfiguration())
-	qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslConfiguration_DefaultConfiguration", ""}).(*QSslConfiguration)
 }
 
 func (ptr *QSslConfiguration) DefaultConfiguration() *QSslConfiguration {
-	tmpValue := NewQSslConfigurationFromPointer(C.QSslConfiguration_QSslConfiguration_DefaultConfiguration())
-	qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslConfiguration_DefaultConfiguration", ""}).(*QSslConfiguration)
 }
 
 func (ptr *QSslConfiguration) DiffieHellmanParameters() *QSslDiffieHellmanParameters {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslConfiguration_DiffieHellmanParameters(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DiffieHellmanParameters"}).(*QSslDiffieHellmanParameters)
 }
 
 func (ptr *QSslConfiguration) EphemeralServerKey() *QSslKey {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslKeyFromPointer(C.QSslConfiguration_EphemeralServerKey(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EphemeralServerKey"}).(*QSslKey)
 }
 
 func (ptr *QSslConfiguration) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslConfiguration_IsNull(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsNull"}).(bool)
 }
 
 func (ptr *QSslConfiguration) LocalCertificate() *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration_LocalCertificate(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LocalCertificate"}).(*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) LocalCertificateChain() []*QSslCertificate {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-			out := make([]*QSslCertificate, int(l.len))
-			tmpList := NewQSslConfigurationFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__localCertificateChain_atList(i)
-			}
-			return out
-		}(C.QSslConfiguration_LocalCertificateChain(ptr.Pointer()))
-	}
-	return make([]*QSslCertificate, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LocalCertificateChain"}).([]*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) NextNegotiatedProtocol() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_NextNegotiatedProtocol(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NextNegotiatedProtocol"}).(*core.QByteArray)
 }
 
 func (ptr *QSslConfiguration) NextProtocolNegotiationStatus() QSslConfiguration__NextProtocolNegotiationStatus {
-	if ptr.Pointer() != nil {
-		return QSslConfiguration__NextProtocolNegotiationStatus(C.QSslConfiguration_NextProtocolNegotiationStatus(ptr.Pointer()))
-	}
-	return 0
+
+	return QSslConfiguration__NextProtocolNegotiationStatus(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NextProtocolNegotiationStatus"}).(float64))
 }
 
 func (ptr *QSslConfiguration) OcspStaplingEnabled() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslConfiguration_OcspStaplingEnabled(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "OcspStaplingEnabled"}).(bool)
 }
 
 func (ptr *QSslConfiguration) PeerCertificate() *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration_PeerCertificate(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerCertificate"}).(*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) PeerCertificateChain() []*QSslCertificate {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-			out := make([]*QSslCertificate, int(l.len))
-			tmpList := NewQSslConfigurationFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__peerCertificateChain_atList(i)
-			}
-			return out
-		}(C.QSslConfiguration_PeerCertificateChain(ptr.Pointer()))
-	}
-	return make([]*QSslCertificate, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerCertificateChain"}).([]*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) PeerVerifyDepth() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSslConfiguration_PeerVerifyDepth(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerVerifyDepth"}).(float64))
 }
 
 func (ptr *QSslConfiguration) PeerVerifyMode() QSslSocket__PeerVerifyMode {
-	if ptr.Pointer() != nil {
-		return QSslSocket__PeerVerifyMode(C.QSslConfiguration_PeerVerifyMode(ptr.Pointer()))
-	}
-	return 0
+
+	return QSslSocket__PeerVerifyMode(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerVerifyMode"}).(float64))
 }
 
 func (ptr *QSslConfiguration) PreSharedKeyIdentityHint() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_PreSharedKeyIdentityHint(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PreSharedKeyIdentityHint"}).(*core.QByteArray)
 }
 
 func (ptr *QSslConfiguration) PrivateKey() *QSslKey {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslKeyFromPointer(C.QSslConfiguration_PrivateKey(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PrivateKey"}).(*QSslKey)
 }
 
 func (ptr *QSslConfiguration) Protocol() QSsl__SslProtocol {
-	if ptr.Pointer() != nil {
-		return QSsl__SslProtocol(C.QSslConfiguration_Protocol(ptr.Pointer()))
-	}
-	return 0
+
+	return QSsl__SslProtocol(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Protocol"}).(float64))
 }
 
 func (ptr *QSslConfiguration) SessionCipher() *QSslCipher {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCipherFromPointer(C.QSslConfiguration_SessionCipher(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SessionCipher"}).(*QSslCipher)
 }
 
 func (ptr *QSslConfiguration) SessionProtocol() QSsl__SslProtocol {
-	if ptr.Pointer() != nil {
-		return QSsl__SslProtocol(C.QSslConfiguration_SessionProtocol(ptr.Pointer()))
-	}
-	return 0
+
+	return QSsl__SslProtocol(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SessionProtocol"}).(float64))
 }
 
 func (ptr *QSslConfiguration) SessionTicket() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_SessionTicket(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SessionTicket"}).(*core.QByteArray)
 }
 
 func (ptr *QSslConfiguration) SessionTicketLifeTimeHint() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSslConfiguration_SessionTicketLifeTimeHint(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SessionTicketLifeTimeHint"}).(float64))
 }
 
 func (ptr *QSslConfiguration) SetAllowedNextProtocols(protocols []*core.QByteArray) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetAllowedNextProtocols(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslConfigurationFromPointer(NewQSslConfigurationFromPointer(nil).__setAllowedNextProtocols_protocols_newList())
-			for _, v := range protocols {
-				tmpList.__setAllowedNextProtocols_protocols_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetAllowedNextProtocols", protocols})
 }
 
 func (ptr *QSslConfiguration) SetBackendConfiguration(backendConfiguration map[*core.QByteArray]*core.QVariant) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetBackendConfiguration(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslConfigurationFromPointer(NewQSslConfigurationFromPointer(nil).__setBackendConfiguration_backendConfiguration_newList())
-			for k, v := range backendConfiguration {
-				tmpList.__setBackendConfiguration_backendConfiguration_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetBackendConfiguration", backendConfiguration})
 }
 
 func (ptr *QSslConfiguration) SetBackendConfigurationOption(name core.QByteArray_ITF, value core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetBackendConfigurationOption(ptr.Pointer(), core.PointerFromQByteArray(name), core.PointerFromQVariant(value))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetBackendConfigurationOption", name, value})
 }
 
 func (ptr *QSslConfiguration) SetCaCertificates(certificates []*QSslCertificate) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetCaCertificates(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslConfigurationFromPointer(NewQSslConfigurationFromPointer(nil).__setCaCertificates_certificates_newList())
-			for _, v := range certificates {
-				tmpList.__setCaCertificates_certificates_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCaCertificates", certificates})
 }
 
 func (ptr *QSslConfiguration) SetCiphers(ciphers []*QSslCipher) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetCiphers(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslConfigurationFromPointer(NewQSslConfigurationFromPointer(nil).__setCiphers_ciphers_newList())
-			for _, v := range ciphers {
-				tmpList.__setCiphers_ciphers_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetCiphers", ciphers})
 }
 
 func QSslConfiguration_SetDefaultConfiguration(configuration QSslConfiguration_ITF) {
-	C.QSslConfiguration_QSslConfiguration_SetDefaultConfiguration(PointerFromQSslConfiguration(configuration))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QSslConfiguration_SetDefaultConfiguration", "", configuration})
 }
 
 func (ptr *QSslConfiguration) SetDefaultConfiguration(configuration QSslConfiguration_ITF) {
-	C.QSslConfiguration_QSslConfiguration_SetDefaultConfiguration(PointerFromQSslConfiguration(configuration))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QSslConfiguration_SetDefaultConfiguration", "", configuration})
 }
 
 func (ptr *QSslConfiguration) SetDiffieHellmanParameters(dhparams QSslDiffieHellmanParameters_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetDiffieHellmanParameters(ptr.Pointer(), PointerFromQSslDiffieHellmanParameters(dhparams))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDiffieHellmanParameters", dhparams})
 }
 
 func (ptr *QSslConfiguration) SetEllipticCurves(curves []*QSslEllipticCurve) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetEllipticCurves(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslConfigurationFromPointer(NewQSslConfigurationFromPointer(nil).__setEllipticCurves_curves_newList())
-			for _, v := range curves {
-				tmpList.__setEllipticCurves_curves_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetEllipticCurves", curves})
 }
 
 func (ptr *QSslConfiguration) SetLocalCertificate(certificate QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetLocalCertificate(ptr.Pointer(), PointerFromQSslCertificate(certificate))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLocalCertificate", certificate})
 }
 
 func (ptr *QSslConfiguration) SetLocalCertificateChain(localChain []*QSslCertificate) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetLocalCertificateChain(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslConfigurationFromPointer(NewQSslConfigurationFromPointer(nil).__setLocalCertificateChain_localChain_newList())
-			for _, v := range localChain {
-				tmpList.__setLocalCertificateChain_localChain_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLocalCertificateChain", localChain})
 }
 
 func (ptr *QSslConfiguration) SetOcspStaplingEnabled(enabled bool) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetOcspStaplingEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetOcspStaplingEnabled", enabled})
 }
 
 func (ptr *QSslConfiguration) SetPeerVerifyDepth(depth int) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetPeerVerifyDepth(ptr.Pointer(), C.int(int32(depth)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerVerifyDepth", depth})
 }
 
 func (ptr *QSslConfiguration) SetPeerVerifyMode(mode QSslSocket__PeerVerifyMode) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetPeerVerifyMode(ptr.Pointer(), C.longlong(mode))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerVerifyMode", mode})
 }
 
 func (ptr *QSslConfiguration) SetPreSharedKeyIdentityHint(hint core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetPreSharedKeyIdentityHint(ptr.Pointer(), core.PointerFromQByteArray(hint))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPreSharedKeyIdentityHint", hint})
 }
 
 func (ptr *QSslConfiguration) SetPrivateKey(key QSslKey_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetPrivateKey(ptr.Pointer(), PointerFromQSslKey(key))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPrivateKey", key})
 }
 
 func (ptr *QSslConfiguration) SetProtocol(protoc QSsl__SslProtocol) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetProtocol(ptr.Pointer(), C.longlong(protoc))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetProtocol", protoc})
 }
 
 func (ptr *QSslConfiguration) SetSessionTicket(sessionTicket core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetSessionTicket(ptr.Pointer(), core.PointerFromQByteArray(sessionTicket))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSessionTicket", sessionTicket})
 }
 
 func (ptr *QSslConfiguration) SetSslOption(option QSsl__SslOption, on bool) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_SetSslOption(ptr.Pointer(), C.longlong(option), C.char(int8(qt.GoBoolToInt(on))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSslOption", option, on})
 }
 
 func QSslConfiguration_SupportedCiphers() []*QSslCipher {
-	return func(l C.struct_QtNetwork_PackedList) []*QSslCipher {
-		out := make([]*QSslCipher, int(l.len))
-		tmpList := NewQSslConfigurationFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__supportedCiphers_atList(i)
-		}
-		return out
-	}(C.QSslConfiguration_QSslConfiguration_SupportedCiphers())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslConfiguration_SupportedCiphers", ""}).([]*QSslCipher)
 }
 
 func (ptr *QSslConfiguration) SupportedCiphers() []*QSslCipher {
-	return func(l C.struct_QtNetwork_PackedList) []*QSslCipher {
-		out := make([]*QSslCipher, int(l.len))
-		tmpList := NewQSslConfigurationFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__supportedCiphers_atList(i)
-		}
-		return out
-	}(C.QSslConfiguration_QSslConfiguration_SupportedCiphers())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslConfiguration_SupportedCiphers", ""}).([]*QSslCipher)
 }
 
 func (ptr *QSslConfiguration) Swap(other QSslConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_Swap(ptr.Pointer(), PointerFromQSslConfiguration(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func QSslConfiguration_SystemCaCertificates() []*QSslCertificate {
-	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-		out := make([]*QSslCertificate, int(l.len))
-		tmpList := NewQSslConfigurationFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__systemCaCertificates_atList(i)
-		}
-		return out
-	}(C.QSslConfiguration_QSslConfiguration_SystemCaCertificates())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslConfiguration_SystemCaCertificates", ""}).([]*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) SystemCaCertificates() []*QSslCertificate {
-	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-		out := make([]*QSslCertificate, int(l.len))
-		tmpList := NewQSslConfigurationFromPointer(l.data)
-		for i := 0; i < len(out); i++ {
-			out[i] = tmpList.__systemCaCertificates_atList(i)
-		}
-		return out
-	}(C.QSslConfiguration_QSslConfiguration_SystemCaCertificates())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslConfiguration_SystemCaCertificates", ""}).([]*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) TestSslOption(option QSsl__SslOption) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslConfiguration_TestSslOption(ptr.Pointer(), C.longlong(option))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TestSslOption", option}).(bool)
 }
 
 func (ptr *QSslConfiguration) DestroyQSslConfiguration() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSslConfiguration_DestroyQSslConfiguration(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSslConfiguration"})
 }
 
 func (ptr *QSslConfiguration) __allowedNextProtocols_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration___allowedNextProtocols_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allowedNextProtocols_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSslConfiguration) __allowedNextProtocols_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___allowedNextProtocols_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allowedNextProtocols_setList", i})
 }
 
 func (ptr *QSslConfiguration) __allowedNextProtocols_newList() unsafe.Pointer {
-	return C.QSslConfiguration___allowedNextProtocols_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__allowedNextProtocols_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __backendConfiguration_atList(v core.QByteArray_ITF, i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSslConfiguration___backendConfiguration_atList(ptr.Pointer(), core.PointerFromQByteArray(v), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__backendConfiguration_atList", v, i}).(*core.QVariant)
 }
 
 func (ptr *QSslConfiguration) __backendConfiguration_setList(key core.QByteArray_ITF, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___backendConfiguration_setList(ptr.Pointer(), core.PointerFromQByteArray(key), core.PointerFromQVariant(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__backendConfiguration_setList", key, i})
 }
 
 func (ptr *QSslConfiguration) __backendConfiguration_newList() unsafe.Pointer {
-	return C.QSslConfiguration___backendConfiguration_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__backendConfiguration_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __backendConfiguration_keyList() []*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*core.QByteArray {
-			out := make([]*core.QByteArray, int(l.len))
-			tmpList := NewQSslConfigurationFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____backendConfiguration_keyList_atList(i)
-			}
-			return out
-		}(C.QSslConfiguration___backendConfiguration_keyList(ptr.Pointer()))
-	}
-	return make([]*core.QByteArray, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__backendConfiguration_keyList"}).([]*core.QByteArray)
 }
 
 func (ptr *QSslConfiguration) __caCertificates_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___caCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__caCertificates_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) __caCertificates_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___caCertificates_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__caCertificates_setList", i})
 }
 
 func (ptr *QSslConfiguration) __caCertificates_newList() unsafe.Pointer {
-	return C.QSslConfiguration___caCertificates_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__caCertificates_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __ciphers_atList(i int) *QSslCipher {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCipherFromPointer(C.QSslConfiguration___ciphers_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ciphers_atList", i}).(*QSslCipher)
 }
 
 func (ptr *QSslConfiguration) __ciphers_setList(i QSslCipher_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___ciphers_setList(ptr.Pointer(), PointerFromQSslCipher(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ciphers_setList", i})
 }
 
 func (ptr *QSslConfiguration) __ciphers_newList() unsafe.Pointer {
-	return C.QSslConfiguration___ciphers_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ciphers_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __ellipticCurves_atList(i int) *QSslEllipticCurve {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslEllipticCurveFromPointer(C.QSslConfiguration___ellipticCurves_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ellipticCurves_atList", i}).(*QSslEllipticCurve)
 }
 
 func (ptr *QSslConfiguration) __ellipticCurves_setList(i QSslEllipticCurve_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___ellipticCurves_setList(ptr.Pointer(), PointerFromQSslEllipticCurve(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ellipticCurves_setList", i})
 }
 
 func (ptr *QSslConfiguration) __ellipticCurves_newList() unsafe.Pointer {
-	return C.QSslConfiguration___ellipticCurves_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ellipticCurves_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __localCertificateChain_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___localCertificateChain_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__localCertificateChain_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) __localCertificateChain_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___localCertificateChain_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__localCertificateChain_setList", i})
 }
 
 func (ptr *QSslConfiguration) __localCertificateChain_newList() unsafe.Pointer {
-	return C.QSslConfiguration___localCertificateChain_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__localCertificateChain_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __peerCertificateChain_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___peerCertificateChain_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__peerCertificateChain_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) __peerCertificateChain_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___peerCertificateChain_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__peerCertificateChain_setList", i})
 }
 
 func (ptr *QSslConfiguration) __peerCertificateChain_newList() unsafe.Pointer {
-	return C.QSslConfiguration___peerCertificateChain_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__peerCertificateChain_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __setAllowedNextProtocols_protocols_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration___setAllowedNextProtocols_protocols_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setAllowedNextProtocols_protocols_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSslConfiguration) __setAllowedNextProtocols_protocols_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___setAllowedNextProtocols_protocols_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setAllowedNextProtocols_protocols_setList", i})
 }
 
 func (ptr *QSslConfiguration) __setAllowedNextProtocols_protocols_newList() unsafe.Pointer {
-	return C.QSslConfiguration___setAllowedNextProtocols_protocols_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setAllowedNextProtocols_protocols_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __setBackendConfiguration_backendConfiguration_atList(v core.QByteArray_ITF, i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QSslConfiguration___setBackendConfiguration_backendConfiguration_atList(ptr.Pointer(), core.PointerFromQByteArray(v), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setBackendConfiguration_backendConfiguration_atList", v, i}).(*core.QVariant)
 }
 
 func (ptr *QSslConfiguration) __setBackendConfiguration_backendConfiguration_setList(key core.QByteArray_ITF, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___setBackendConfiguration_backendConfiguration_setList(ptr.Pointer(), core.PointerFromQByteArray(key), core.PointerFromQVariant(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setBackendConfiguration_backendConfiguration_setList", key, i})
 }
 
 func (ptr *QSslConfiguration) __setBackendConfiguration_backendConfiguration_newList() unsafe.Pointer {
-	return C.QSslConfiguration___setBackendConfiguration_backendConfiguration_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setBackendConfiguration_backendConfiguration_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __setBackendConfiguration_backendConfiguration_keyList() []*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*core.QByteArray {
-			out := make([]*core.QByteArray, int(l.len))
-			tmpList := NewQSslConfigurationFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setBackendConfiguration_backendConfiguration_keyList_atList(i)
-			}
-			return out
-		}(C.QSslConfiguration___setBackendConfiguration_backendConfiguration_keyList(ptr.Pointer()))
-	}
-	return make([]*core.QByteArray, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setBackendConfiguration_backendConfiguration_keyList"}).([]*core.QByteArray)
 }
 
 func (ptr *QSslConfiguration) __setCaCertificates_certificates_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___setCaCertificates_certificates_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCaCertificates_certificates_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) __setCaCertificates_certificates_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___setCaCertificates_certificates_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCaCertificates_certificates_setList", i})
 }
 
 func (ptr *QSslConfiguration) __setCaCertificates_certificates_newList() unsafe.Pointer {
-	return C.QSslConfiguration___setCaCertificates_certificates_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCaCertificates_certificates_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __setCiphers_ciphers_atList(i int) *QSslCipher {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCipherFromPointer(C.QSslConfiguration___setCiphers_ciphers_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCiphers_ciphers_atList", i}).(*QSslCipher)
 }
 
 func (ptr *QSslConfiguration) __setCiphers_ciphers_setList(i QSslCipher_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___setCiphers_ciphers_setList(ptr.Pointer(), PointerFromQSslCipher(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCiphers_ciphers_setList", i})
 }
 
 func (ptr *QSslConfiguration) __setCiphers_ciphers_newList() unsafe.Pointer {
-	return C.QSslConfiguration___setCiphers_ciphers_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCiphers_ciphers_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __setEllipticCurves_curves_atList(i int) *QSslEllipticCurve {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslEllipticCurveFromPointer(C.QSslConfiguration___setEllipticCurves_curves_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setEllipticCurves_curves_atList", i}).(*QSslEllipticCurve)
 }
 
 func (ptr *QSslConfiguration) __setEllipticCurves_curves_setList(i QSslEllipticCurve_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___setEllipticCurves_curves_setList(ptr.Pointer(), PointerFromQSslEllipticCurve(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setEllipticCurves_curves_setList", i})
 }
 
 func (ptr *QSslConfiguration) __setEllipticCurves_curves_newList() unsafe.Pointer {
-	return C.QSslConfiguration___setEllipticCurves_curves_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setEllipticCurves_curves_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __setLocalCertificateChain_localChain_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___setLocalCertificateChain_localChain_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setLocalCertificateChain_localChain_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) __setLocalCertificateChain_localChain_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___setLocalCertificateChain_localChain_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setLocalCertificateChain_localChain_setList", i})
 }
 
 func (ptr *QSslConfiguration) __setLocalCertificateChain_localChain_newList() unsafe.Pointer {
-	return C.QSslConfiguration___setLocalCertificateChain_localChain_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setLocalCertificateChain_localChain_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __supportedCiphers_atList(i int) *QSslCipher {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCipherFromPointer(C.QSslConfiguration___supportedCiphers_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__supportedCiphers_atList", i}).(*QSslCipher)
 }
 
 func (ptr *QSslConfiguration) __supportedCiphers_setList(i QSslCipher_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___supportedCiphers_setList(ptr.Pointer(), PointerFromQSslCipher(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__supportedCiphers_setList", i})
 }
 
 func (ptr *QSslConfiguration) __supportedCiphers_newList() unsafe.Pointer {
-	return C.QSslConfiguration___supportedCiphers_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__supportedCiphers_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __supportedEllipticCurves_atList(i int) *QSslEllipticCurve {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslEllipticCurveFromPointer(C.QSslConfiguration___supportedEllipticCurves_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__supportedEllipticCurves_atList", i}).(*QSslEllipticCurve)
 }
 
 func (ptr *QSslConfiguration) __supportedEllipticCurves_setList(i QSslEllipticCurve_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___supportedEllipticCurves_setList(ptr.Pointer(), PointerFromQSslEllipticCurve(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__supportedEllipticCurves_setList", i})
 }
 
 func (ptr *QSslConfiguration) __supportedEllipticCurves_newList() unsafe.Pointer {
-	return C.QSslConfiguration___supportedEllipticCurves_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__supportedEllipticCurves_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) __systemCaCertificates_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslConfiguration___systemCaCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__systemCaCertificates_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslConfiguration) __systemCaCertificates_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration___systemCaCertificates_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__systemCaCertificates_setList", i})
 }
 
 func (ptr *QSslConfiguration) __systemCaCertificates_newList() unsafe.Pointer {
-	return C.QSslConfiguration___systemCaCertificates_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__systemCaCertificates_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) ____backendConfiguration_keyList_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_____backendConfiguration_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____backendConfiguration_keyList_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSslConfiguration) ____backendConfiguration_keyList_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_____backendConfiguration_keyList_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____backendConfiguration_keyList_setList", i})
 }
 
 func (ptr *QSslConfiguration) ____backendConfiguration_keyList_newList() unsafe.Pointer {
-	return C.QSslConfiguration_____backendConfiguration_keyList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____backendConfiguration_keyList_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslConfiguration) ____setBackendConfiguration_backendConfiguration_keyList_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____setBackendConfiguration_backendConfiguration_keyList_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QSslConfiguration) ____setBackendConfiguration_backendConfiguration_keyList_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____setBackendConfiguration_backendConfiguration_keyList_setList", i})
 }
 
 func (ptr *QSslConfiguration) ____setBackendConfiguration_backendConfiguration_keyList_newList() unsafe.Pointer {
-	return C.QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____setBackendConfiguration_backendConfiguration_keyList_newList"}).(unsafe.Pointer)
 }
 
 type QSslDiffieHellmanParameters struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSslDiffieHellmanParameters_ITF interface {
@@ -17544,14 +10281,14 @@ func (ptr *QSslDiffieHellmanParameters) QSslDiffieHellmanParameters_PTR() *QSslD
 
 func (ptr *QSslDiffieHellmanParameters) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSslDiffieHellmanParameters) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -17562,9 +10299,13 @@ func PointerFromQSslDiffieHellmanParameters(ptr QSslDiffieHellmanParameters_ITF)
 	return nil
 }
 
+func (n *QSslDiffieHellmanParameters) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSslDiffieHellmanParametersFromPointer(ptr unsafe.Pointer) (n *QSslDiffieHellmanParameters) {
 	n = new(QSslDiffieHellmanParameters)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSslDiffieHellmanParameters")
 	return
 }
 
@@ -17579,105 +10320,82 @@ const (
 )
 
 func NewQSslDiffieHellmanParameters() *QSslDiffieHellmanParameters {
-	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_NewQSslDiffieHellmanParameters())
-	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslDiffieHellmanParameters", ""}).(*QSslDiffieHellmanParameters)
 }
 
 func NewQSslDiffieHellmanParameters2(other QSslDiffieHellmanParameters_ITF) *QSslDiffieHellmanParameters {
-	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_NewQSslDiffieHellmanParameters2(PointerFromQSslDiffieHellmanParameters(other)))
-	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslDiffieHellmanParameters2", "", other}).(*QSslDiffieHellmanParameters)
 }
 
 func NewQSslDiffieHellmanParameters3(other QSslDiffieHellmanParameters_ITF) *QSslDiffieHellmanParameters {
-	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_NewQSslDiffieHellmanParameters3(PointerFromQSslDiffieHellmanParameters(other)))
-	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslDiffieHellmanParameters3", "", other}).(*QSslDiffieHellmanParameters)
 }
 
 func QSslDiffieHellmanParameters_DefaultParameters() *QSslDiffieHellmanParameters {
-	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_DefaultParameters())
-	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslDiffieHellmanParameters_DefaultParameters", ""}).(*QSslDiffieHellmanParameters)
 }
 
 func (ptr *QSslDiffieHellmanParameters) DefaultParameters() *QSslDiffieHellmanParameters {
-	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_DefaultParameters())
-	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslDiffieHellmanParameters_DefaultParameters", ""}).(*QSslDiffieHellmanParameters)
 }
 
 func (ptr *QSslDiffieHellmanParameters) Error() QSslDiffieHellmanParameters__Error {
-	if ptr.Pointer() != nil {
-		return QSslDiffieHellmanParameters__Error(C.QSslDiffieHellmanParameters_Error(ptr.Pointer()))
-	}
-	return 0
+
+	return QSslDiffieHellmanParameters__Error(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error"}).(float64))
 }
 
 func (ptr *QSslDiffieHellmanParameters) ErrorString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslDiffieHellmanParameters_ErrorString(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ErrorString"}).(string)
 }
 
 func QSslDiffieHellmanParameters_FromEncoded(encoded core.QByteArray_ITF, encoding QSsl__EncodingFormat) *QSslDiffieHellmanParameters {
-	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_FromEncoded(core.PointerFromQByteArray(encoded), C.longlong(encoding)))
-	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslDiffieHellmanParameters_FromEncoded", "", encoded, encoding}).(*QSslDiffieHellmanParameters)
 }
 
 func (ptr *QSslDiffieHellmanParameters) FromEncoded(encoded core.QByteArray_ITF, encoding QSsl__EncodingFormat) *QSslDiffieHellmanParameters {
-	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_FromEncoded(core.PointerFromQByteArray(encoded), C.longlong(encoding)))
-	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslDiffieHellmanParameters_FromEncoded", "", encoded, encoding}).(*QSslDiffieHellmanParameters)
 }
 
 func QSslDiffieHellmanParameters_FromEncoded2(device core.QIODevice_ITF, encoding QSsl__EncodingFormat) *QSslDiffieHellmanParameters {
-	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_FromEncoded2(core.PointerFromQIODevice(device), C.longlong(encoding)))
-	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslDiffieHellmanParameters_FromEncoded2", "", device, encoding}).(*QSslDiffieHellmanParameters)
 }
 
 func (ptr *QSslDiffieHellmanParameters) FromEncoded2(device core.QIODevice_ITF, encoding QSsl__EncodingFormat) *QSslDiffieHellmanParameters {
-	tmpValue := NewQSslDiffieHellmanParametersFromPointer(C.QSslDiffieHellmanParameters_QSslDiffieHellmanParameters_FromEncoded2(core.PointerFromQIODevice(device), C.longlong(encoding)))
-	qt.SetFinalizer(tmpValue, (*QSslDiffieHellmanParameters).DestroyQSslDiffieHellmanParameters)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslDiffieHellmanParameters_FromEncoded2", "", device, encoding}).(*QSslDiffieHellmanParameters)
 }
 
 func (ptr *QSslDiffieHellmanParameters) IsEmpty() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslDiffieHellmanParameters_IsEmpty(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsEmpty"}).(bool)
 }
 
 func (ptr *QSslDiffieHellmanParameters) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslDiffieHellmanParameters_IsValid(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsValid"}).(bool)
 }
 
 func (ptr *QSslDiffieHellmanParameters) Swap(other QSslDiffieHellmanParameters_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslDiffieHellmanParameters_Swap(ptr.Pointer(), PointerFromQSslDiffieHellmanParameters(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QSslDiffieHellmanParameters) DestroyQSslDiffieHellmanParameters() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSslDiffieHellmanParameters_DestroyQSslDiffieHellmanParameters(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSslDiffieHellmanParameters"})
 }
 
 type QSslEllipticCurve struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSslEllipticCurve_ITF interface {
@@ -17690,14 +10408,14 @@ func (ptr *QSslEllipticCurve) QSslEllipticCurve_PTR() *QSslEllipticCurve {
 
 func (ptr *QSslEllipticCurve) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSslEllipticCurve) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -17708,99 +10426,66 @@ func PointerFromQSslEllipticCurve(ptr QSslEllipticCurve_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSslEllipticCurve) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSslEllipticCurveFromPointer(ptr unsafe.Pointer) (n *QSslEllipticCurve) {
 	n = new(QSslEllipticCurve)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSslEllipticCurve")
 	return
 }
-func (ptr *QSslEllipticCurve) DestroyQSslEllipticCurve() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *QSslEllipticCurve) DestroyQSslEllipticCurve() {
 }
+
 func NewQSslEllipticCurve() *QSslEllipticCurve {
-	tmpValue := NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_NewQSslEllipticCurve())
-	qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslEllipticCurve", ""}).(*QSslEllipticCurve)
 }
 
 func QSslEllipticCurve_FromLongName(name string) *QSslEllipticCurve {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromLongName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslEllipticCurve_FromLongName", "", name}).(*QSslEllipticCurve)
 }
 
 func (ptr *QSslEllipticCurve) FromLongName(name string) *QSslEllipticCurve {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromLongName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslEllipticCurve_FromLongName", "", name}).(*QSslEllipticCurve)
 }
 
 func QSslEllipticCurve_FromShortName(name string) *QSslEllipticCurve {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromShortName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslEllipticCurve_FromShortName", "", name}).(*QSslEllipticCurve)
 }
 
 func (ptr *QSslEllipticCurve) FromShortName(name string) *QSslEllipticCurve {
-	var nameC *C.char
-	if name != "" {
-		nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-	}
-	tmpValue := NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromShortName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
-	qt.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslEllipticCurve_FromShortName", "", name}).(*QSslEllipticCurve)
 }
 
 func (ptr *QSslEllipticCurve) IsTlsNamedCurve() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslEllipticCurve_IsTlsNamedCurve(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsTlsNamedCurve"}).(bool)
 }
 
 func (ptr *QSslEllipticCurve) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslEllipticCurve_IsValid(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsValid"}).(bool)
 }
 
 func (ptr *QSslEllipticCurve) LongName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslEllipticCurve_LongName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LongName"}).(string)
 }
 
 func (ptr *QSslEllipticCurve) ShortName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslEllipticCurve_ShortName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ShortName"}).(string)
 }
 
 type QSslError struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSslError_ITF interface {
@@ -17813,14 +10498,14 @@ func (ptr *QSslError) QSslError_PTR() *QSslError {
 
 func (ptr *QSslError) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSslError) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -17831,9 +10516,13 @@ func PointerFromQSslError(ptr QSslError_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSslError) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSslErrorFromPointer(ptr unsafe.Pointer) (n *QSslError) {
 	n = new(QSslError)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSslError")
 	return
 }
 
@@ -17883,70 +10572,52 @@ const (
 )
 
 func NewQSslError() *QSslError {
-	tmpValue := NewQSslErrorFromPointer(C.QSslError_NewQSslError())
-	qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslError", ""}).(*QSslError)
 }
 
 func NewQSslError2(error QSslError__SslError) *QSslError {
-	tmpValue := NewQSslErrorFromPointer(C.QSslError_NewQSslError2(C.longlong(error)))
-	qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslError2", "", error}).(*QSslError)
 }
 
 func NewQSslError3(error QSslError__SslError, certificate QSslCertificate_ITF) *QSslError {
-	tmpValue := NewQSslErrorFromPointer(C.QSslError_NewQSslError3(C.longlong(error), PointerFromQSslCertificate(certificate)))
-	qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslError3", "", error, certificate}).(*QSslError)
 }
 
 func NewQSslError4(other QSslError_ITF) *QSslError {
-	tmpValue := NewQSslErrorFromPointer(C.QSslError_NewQSslError4(PointerFromQSslError(other)))
-	qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslError4", "", other}).(*QSslError)
 }
 
 func (ptr *QSslError) Certificate() *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslError_Certificate(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Certificate"}).(*QSslCertificate)
 }
 
 func (ptr *QSslError) Error() QSslError__SslError {
-	if ptr.Pointer() != nil {
-		return QSslError__SslError(C.QSslError_Error(ptr.Pointer()))
-	}
-	return 0
+
+	return QSslError__SslError(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Error"}).(float64))
 }
 
 func (ptr *QSslError) ErrorString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslError_ErrorString(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ErrorString"}).(string)
 }
 
 func (ptr *QSslError) Swap(other QSslError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslError_Swap(ptr.Pointer(), PointerFromQSslError(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QSslError) DestroyQSslError() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSslError_DestroyQSslError(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSslError"})
 }
 
 type QSslKey struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSslKey_ITF interface {
@@ -17959,14 +10630,14 @@ func (ptr *QSslKey) QSslKey_PTR() *QSslKey {
 
 func (ptr *QSslKey) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSslKey) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -17977,105 +10648,82 @@ func PointerFromQSslKey(ptr QSslKey_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSslKey) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSslKeyFromPointer(ptr unsafe.Pointer) (n *QSslKey) {
 	n = new(QSslKey)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSslKey")
 	return
 }
 func NewQSslKey() *QSslKey {
-	tmpValue := NewQSslKeyFromPointer(C.QSslKey_NewQSslKey())
-	qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslKey", ""}).(*QSslKey)
 }
 
 func NewQSslKey2(encoded core.QByteArray_ITF, algorithm QSsl__KeyAlgorithm, encoding QSsl__EncodingFormat, ty QSsl__KeyType, passPhrase core.QByteArray_ITF) *QSslKey {
-	tmpValue := NewQSslKeyFromPointer(C.QSslKey_NewQSslKey2(core.PointerFromQByteArray(encoded), C.longlong(algorithm), C.longlong(encoding), C.longlong(ty), core.PointerFromQByteArray(passPhrase)))
-	qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslKey2", "", encoded, algorithm, encoding, ty, passPhrase}).(*QSslKey)
 }
 
 func NewQSslKey3(device core.QIODevice_ITF, algorithm QSsl__KeyAlgorithm, encoding QSsl__EncodingFormat, ty QSsl__KeyType, passPhrase core.QByteArray_ITF) *QSslKey {
-	tmpValue := NewQSslKeyFromPointer(C.QSslKey_NewQSslKey3(core.PointerFromQIODevice(device), C.longlong(algorithm), C.longlong(encoding), C.longlong(ty), core.PointerFromQByteArray(passPhrase)))
-	qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslKey3", "", device, algorithm, encoding, ty, passPhrase}).(*QSslKey)
 }
 
 func NewQSslKey5(other QSslKey_ITF) *QSslKey {
-	tmpValue := NewQSslKeyFromPointer(C.QSslKey_NewQSslKey5(PointerFromQSslKey(other)))
-	qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslKey5", "", other}).(*QSslKey)
 }
 
 func (ptr *QSslKey) Algorithm() QSsl__KeyAlgorithm {
-	if ptr.Pointer() != nil {
-		return QSsl__KeyAlgorithm(C.QSslKey_Algorithm(ptr.Pointer()))
-	}
-	return 0
+
+	return QSsl__KeyAlgorithm(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Algorithm"}).(float64))
 }
 
 func (ptr *QSslKey) Clear() {
-	if ptr.Pointer() != nil {
-		C.QSslKey_Clear(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Clear"})
 }
 
 func (ptr *QSslKey) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslKey_IsNull(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsNull"}).(bool)
 }
 
 func (ptr *QSslKey) Length() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSslKey_Length(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Length"}).(float64))
 }
 
 func (ptr *QSslKey) Swap(other QSslKey_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslKey_Swap(ptr.Pointer(), PointerFromQSslKey(other))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", other})
 }
 
 func (ptr *QSslKey) ToDer(passPhrase core.QByteArray_ITF) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslKey_ToDer(ptr.Pointer(), core.PointerFromQByteArray(passPhrase)))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ToDer", passPhrase}).(*core.QByteArray)
 }
 
 func (ptr *QSslKey) ToPem(passPhrase core.QByteArray_ITF) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslKey_ToPem(ptr.Pointer(), core.PointerFromQByteArray(passPhrase)))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ToPem", passPhrase}).(*core.QByteArray)
 }
 
 func (ptr *QSslKey) Type() QSsl__KeyType {
-	if ptr.Pointer() != nil {
-		return QSsl__KeyType(C.QSslKey_Type(ptr.Pointer()))
-	}
-	return 0
+
+	return QSsl__KeyType(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Type"}).(float64))
 }
 
 func (ptr *QSslKey) DestroyQSslKey() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSslKey_DestroyQSslKey(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSslKey"})
 }
 
 type QSslPreSharedKeyAuthenticator struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QSslPreSharedKeyAuthenticator_ITF interface {
@@ -18088,14 +10736,14 @@ func (ptr *QSslPreSharedKeyAuthenticator) QSslPreSharedKeyAuthenticator_PTR() *Q
 
 func (ptr *QSslPreSharedKeyAuthenticator) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -18106,90 +10754,68 @@ func PointerFromQSslPreSharedKeyAuthenticator(ptr QSslPreSharedKeyAuthenticator_
 	return nil
 }
 
+func (n *QSslPreSharedKeyAuthenticator) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQSslPreSharedKeyAuthenticatorFromPointer(ptr unsafe.Pointer) (n *QSslPreSharedKeyAuthenticator) {
 	n = new(QSslPreSharedKeyAuthenticator)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSslPreSharedKeyAuthenticator")
 	return
 }
 func NewQSslPreSharedKeyAuthenticator() *QSslPreSharedKeyAuthenticator {
-	tmpValue := NewQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator())
-	qt.SetFinalizer(tmpValue, (*QSslPreSharedKeyAuthenticator).DestroyQSslPreSharedKeyAuthenticator)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslPreSharedKeyAuthenticator", ""}).(*QSslPreSharedKeyAuthenticator)
 }
 
 func NewQSslPreSharedKeyAuthenticator2(authenticator QSslPreSharedKeyAuthenticator_ITF) *QSslPreSharedKeyAuthenticator {
-	tmpValue := NewQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(PointerFromQSslPreSharedKeyAuthenticator(authenticator)))
-	qt.SetFinalizer(tmpValue, (*QSslPreSharedKeyAuthenticator).DestroyQSslPreSharedKeyAuthenticator)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslPreSharedKeyAuthenticator2", "", authenticator}).(*QSslPreSharedKeyAuthenticator)
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) Identity() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_Identity(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Identity"}).(*core.QByteArray)
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) IdentityHint() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_IdentityHint(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IdentityHint"}).(*core.QByteArray)
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) MaximumIdentityLength() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSslPreSharedKeyAuthenticator_MaximumIdentityLength(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MaximumIdentityLength"}).(float64))
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) MaximumPreSharedKeyLength() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MaximumPreSharedKeyLength"}).(float64))
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) PreSharedKey() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_PreSharedKey(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PreSharedKey"}).(*core.QByteArray)
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) SetIdentity(identity core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslPreSharedKeyAuthenticator_SetIdentity(ptr.Pointer(), core.PointerFromQByteArray(identity))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetIdentity", identity})
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) SetPreSharedKey(preSharedKey core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslPreSharedKeyAuthenticator_SetPreSharedKey(ptr.Pointer(), core.PointerFromQByteArray(preSharedKey))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPreSharedKey", preSharedKey})
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) Swap(authenticator QSslPreSharedKeyAuthenticator_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslPreSharedKeyAuthenticator_Swap(ptr.Pointer(), PointerFromQSslPreSharedKeyAuthenticator(authenticator))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Swap", authenticator})
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) DestroyQSslPreSharedKeyAuthenticator() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSslPreSharedKeyAuthenticator_DestroyQSslPreSharedKeyAuthenticator(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSslPreSharedKeyAuthenticator"})
 }
 
 type QSslSocket struct {
@@ -18225,9 +10851,18 @@ func PointerFromQSslSocket(ptr QSslSocket_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QSslSocket) InitFromInternal(ptr uintptr, name string) {
+	n.QTcpSocket_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QSslSocket) ClassNameInternalF() string {
+	return n.QTcpSocket_PTR().ClassNameInternalF()
+}
+
 func NewQSslSocketFromPointer(ptr unsafe.Pointer) (n *QSslSocket) {
 	n = new(QSslSocket)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QSslSocket")
 	return
 }
 
@@ -18253,1210 +10888,718 @@ const (
 )
 
 func NewQSslSocket(parent core.QObject_ITF) *QSslSocket {
-	tmpValue := NewQSslSocketFromPointer(C.QSslSocket_NewQSslSocket(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQSslSocket", "", parent}).(*QSslSocket)
 }
 
 func (ptr *QSslSocket) AddCaCertificate(certificate QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_AddCaCertificate(ptr.Pointer(), PointerFromQSslCertificate(certificate))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AddCaCertificate", certificate})
 }
 
 func (ptr *QSslSocket) AddCaCertificates(path string, format QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) bool {
-	if ptr.Pointer() != nil {
-		var pathC *C.char
-		if path != "" {
-			pathC = C.CString(path)
-			defer C.free(unsafe.Pointer(pathC))
-		}
-		return int8(C.QSslSocket_AddCaCertificates(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(format), C.longlong(syntax))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AddCaCertificates", path, format, syntax}).(bool)
 }
 
 func (ptr *QSslSocket) AddCaCertificates2(certificates []*QSslCertificate) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_AddCaCertificates2(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslSocketFromPointer(NewQSslSocketFromPointer(nil).__addCaCertificates_certificates_newList2())
-			for _, v := range certificates {
-				tmpList.__addCaCertificates_certificates_setList2(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AddCaCertificates2", certificates})
 }
 
 func QSslSocket_AddDefaultCaCertificate(certificate QSslCertificate_ITF) {
-	C.QSslSocket_QSslSocket_AddDefaultCaCertificate(PointerFromQSslCertificate(certificate))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_AddDefaultCaCertificate", "", certificate})
 }
 
 func (ptr *QSslSocket) AddDefaultCaCertificate(certificate QSslCertificate_ITF) {
-	C.QSslSocket_QSslSocket_AddDefaultCaCertificate(PointerFromQSslCertificate(certificate))
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_AddDefaultCaCertificate", "", certificate})
 }
 
 func QSslSocket_AddDefaultCaCertificates(path string, encoding QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) bool {
-	var pathC *C.char
-	if path != "" {
-		pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
-	}
-	return int8(C.QSslSocket_QSslSocket_AddDefaultCaCertificates(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(encoding), C.longlong(syntax))) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_AddDefaultCaCertificates", "", path, encoding, syntax}).(bool)
 }
 
 func (ptr *QSslSocket) AddDefaultCaCertificates(path string, encoding QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) bool {
-	var pathC *C.char
-	if path != "" {
-		pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
-	}
-	return int8(C.QSslSocket_QSslSocket_AddDefaultCaCertificates(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(encoding), C.longlong(syntax))) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_AddDefaultCaCertificates", "", path, encoding, syntax}).(bool)
 }
 
 func QSslSocket_AddDefaultCaCertificates2(certificates []*QSslCertificate) {
-	C.QSslSocket_QSslSocket_AddDefaultCaCertificates2(func() unsafe.Pointer {
-		tmpList := NewQSslSocketFromPointer(NewQSslSocketFromPointer(nil).__addDefaultCaCertificates_certificates_newList2())
-		for _, v := range certificates {
-			tmpList.__addDefaultCaCertificates_certificates_setList2(v)
-		}
-		return tmpList.Pointer()
-	}())
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_AddDefaultCaCertificates2", "", certificates})
 }
 
 func (ptr *QSslSocket) AddDefaultCaCertificates2(certificates []*QSslCertificate) {
-	C.QSslSocket_QSslSocket_AddDefaultCaCertificates2(func() unsafe.Pointer {
-		tmpList := NewQSslSocketFromPointer(NewQSslSocketFromPointer(nil).__addDefaultCaCertificates_certificates_newList2())
-		for _, v := range certificates {
-			tmpList.__addDefaultCaCertificates_certificates_setList2(v)
-		}
-		return tmpList.Pointer()
-	}())
+
+	internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_AddDefaultCaCertificates2", "", certificates})
 }
 
 func (ptr *QSslSocket) ConnectToHostEncrypted(hostName string, port uint16, mode core.QIODevice__OpenModeFlag, protoc QAbstractSocket__NetworkLayerProtocol) {
-	if ptr.Pointer() != nil {
-		var hostNameC *C.char
-		if hostName != "" {
-			hostNameC = C.CString(hostName)
-			defer C.free(unsafe.Pointer(hostNameC))
-		}
-		C.QSslSocket_ConnectToHostEncrypted(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.longlong(mode), C.longlong(protoc))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToHostEncrypted", hostName, port, mode, protoc})
 }
 
 func (ptr *QSslSocket) ConnectToHostEncrypted2(hostName string, port uint16, sslPeerName string, mode core.QIODevice__OpenModeFlag, protoc QAbstractSocket__NetworkLayerProtocol) {
-	if ptr.Pointer() != nil {
-		var hostNameC *C.char
-		if hostName != "" {
-			hostNameC = C.CString(hostName)
-			defer C.free(unsafe.Pointer(hostNameC))
-		}
-		var sslPeerNameC *C.char
-		if sslPeerName != "" {
-			sslPeerNameC = C.CString(sslPeerName)
-			defer C.free(unsafe.Pointer(sslPeerNameC))
-		}
-		C.QSslSocket_ConnectToHostEncrypted2(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.struct_QtNetwork_PackedString{data: sslPeerNameC, len: C.longlong(len(sslPeerName))}, C.longlong(mode), C.longlong(protoc))
-	}
-}
 
-//export callbackQSslSocket_Encrypted
-func callbackQSslSocket_Encrypted(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "encrypted"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectToHostEncrypted2", hostName, port, sslPeerName, mode, protoc})
 }
 
 func (ptr *QSslSocket) ConnectEncrypted(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "encrypted") {
-			C.QSslSocket_ConnectEncrypted(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encrypted")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "encrypted"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "encrypted", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "encrypted", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectEncrypted", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSslSocket) DisconnectEncrypted() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_DisconnectEncrypted(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "encrypted")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectEncrypted"})
 }
 
 func (ptr *QSslSocket) Encrypted() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_Encrypted(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Encrypted"})
 }
 
 func (ptr *QSslSocket) EncryptedBytesAvailable() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QSslSocket_EncryptedBytesAvailable(ptr.Pointer()))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EncryptedBytesAvailable"}).(float64))
 }
 
 func (ptr *QSslSocket) EncryptedBytesToWrite() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QSslSocket_EncryptedBytesToWrite(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQSslSocket_EncryptedBytesWritten
-func callbackQSslSocket_EncryptedBytesWritten(ptr unsafe.Pointer, written C.longlong) {
-	if signal := qt.GetSignal(ptr, "encryptedBytesWritten"); signal != nil {
-		(*(*func(int64))(signal))(int64(written))
-	}
-
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EncryptedBytesToWrite"}).(float64))
 }
 
 func (ptr *QSslSocket) ConnectEncryptedBytesWritten(f func(written int64)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "encryptedBytesWritten") {
-			C.QSslSocket_ConnectEncryptedBytesWritten(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "encryptedBytesWritten")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "encryptedBytesWritten"); signal != nil {
-			f := func(written int64) {
-				(*(*func(int64))(signal))(written)
-				f(written)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "encryptedBytesWritten", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "encryptedBytesWritten", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectEncryptedBytesWritten", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSslSocket) DisconnectEncryptedBytesWritten() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_DisconnectEncryptedBytesWritten(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "encryptedBytesWritten")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectEncryptedBytesWritten"})
 }
 
 func (ptr *QSslSocket) EncryptedBytesWritten(written int64) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_EncryptedBytesWritten(ptr.Pointer(), C.longlong(written))
-	}
-}
 
-//export callbackQSslSocket_IgnoreSslErrors
-func callbackQSslSocket_IgnoreSslErrors(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "ignoreSslErrors"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSslSocketFromPointer(ptr).IgnoreSslErrorsDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EncryptedBytesWritten", written})
 }
 
 func (ptr *QSslSocket) ConnectIgnoreSslErrors(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "ignoreSslErrors"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "ignoreSslErrors", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "ignoreSslErrors", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectIgnoreSslErrors", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSslSocket) DisconnectIgnoreSslErrors() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "ignoreSslErrors")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectIgnoreSslErrors"})
 }
 
 func (ptr *QSslSocket) IgnoreSslErrors() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_IgnoreSslErrors(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IgnoreSslErrors"})
 }
 
 func (ptr *QSslSocket) IgnoreSslErrorsDefault() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_IgnoreSslErrorsDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IgnoreSslErrorsDefault"})
 }
 
 func (ptr *QSslSocket) IgnoreSslErrors2(errors []*QSslError) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_IgnoreSslErrors2(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslSocketFromPointer(NewQSslSocketFromPointer(nil).__ignoreSslErrors_errors_newList2())
-			for _, v := range errors {
-				tmpList.__ignoreSslErrors_errors_setList2(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IgnoreSslErrors2", errors})
 }
 
 func (ptr *QSslSocket) IsEncrypted() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslSocket_IsEncrypted(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsEncrypted"}).(bool)
 }
 
 func (ptr *QSslSocket) LocalCertificate() *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket_LocalCertificate(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LocalCertificate"}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) LocalCertificateChain() []*QSslCertificate {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-			out := make([]*QSslCertificate, int(l.len))
-			tmpList := NewQSslSocketFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__localCertificateChain_atList(i)
-			}
-			return out
-		}(C.QSslSocket_LocalCertificateChain(ptr.Pointer()))
-	}
-	return make([]*QSslCertificate, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LocalCertificateChain"}).([]*QSslCertificate)
 }
 
 func (ptr *QSslSocket) Mode() QSslSocket__SslMode {
-	if ptr.Pointer() != nil {
-		return QSslSocket__SslMode(C.QSslSocket_Mode(ptr.Pointer()))
-	}
-	return 0
-}
 
-//export callbackQSslSocket_ModeChanged
-func callbackQSslSocket_ModeChanged(ptr unsafe.Pointer, mode C.longlong) {
-	if signal := qt.GetSignal(ptr, "modeChanged"); signal != nil {
-		(*(*func(QSslSocket__SslMode))(signal))(QSslSocket__SslMode(mode))
-	}
-
+	return QSslSocket__SslMode(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Mode"}).(float64))
 }
 
 func (ptr *QSslSocket) ConnectModeChanged(f func(mode QSslSocket__SslMode)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "modeChanged") {
-			C.QSslSocket_ConnectModeChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "modeChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "modeChanged"); signal != nil {
-			f := func(mode QSslSocket__SslMode) {
-				(*(*func(QSslSocket__SslMode))(signal))(mode)
-				f(mode)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "modeChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "modeChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectModeChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSslSocket) DisconnectModeChanged() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_DisconnectModeChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "modeChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectModeChanged"})
 }
 
 func (ptr *QSslSocket) ModeChanged(mode QSslSocket__SslMode) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_ModeChanged(ptr.Pointer(), C.longlong(mode))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ModeChanged", mode})
 }
 
 func (ptr *QSslSocket) OcspResponses() []*QOcspResponse {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QOcspResponse {
-			out := make([]*QOcspResponse, int(l.len))
-			tmpList := NewQSslSocketFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__ocspResponses_atList(i)
-			}
-			return out
-		}(C.QSslSocket_OcspResponses(ptr.Pointer()))
-	}
-	return make([]*QOcspResponse, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "OcspResponses"}).([]*QOcspResponse)
 }
 
 func (ptr *QSslSocket) PeerCertificate() *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket_PeerCertificate(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerCertificate"}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) PeerCertificateChain() []*QSslCertificate {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
-			out := make([]*QSslCertificate, int(l.len))
-			tmpList := NewQSslSocketFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__peerCertificateChain_atList(i)
-			}
-			return out
-		}(C.QSslSocket_PeerCertificateChain(ptr.Pointer()))
-	}
-	return make([]*QSslCertificate, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerCertificateChain"}).([]*QSslCertificate)
 }
 
 func (ptr *QSslSocket) PeerVerifyDepth() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSslSocket_PeerVerifyDepth(ptr.Pointer())))
-	}
-	return 0
-}
 
-//export callbackQSslSocket_PeerVerifyError
-func callbackQSslSocket_PeerVerifyError(ptr unsafe.Pointer, error unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "peerVerifyError"); signal != nil {
-		(*(*func(*QSslError))(signal))(NewQSslErrorFromPointer(error))
-	}
-
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerVerifyDepth"}).(float64))
 }
 
 func (ptr *QSslSocket) ConnectPeerVerifyError(f func(error *QSslError)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "peerVerifyError") {
-			C.QSslSocket_ConnectPeerVerifyError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "peerVerifyError")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "peerVerifyError"); signal != nil {
-			f := func(error *QSslError) {
-				(*(*func(*QSslError))(signal))(error)
-				f(error)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "peerVerifyError", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "peerVerifyError", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectPeerVerifyError", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSslSocket) DisconnectPeerVerifyError() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_DisconnectPeerVerifyError(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "peerVerifyError")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectPeerVerifyError"})
 }
 
 func (ptr *QSslSocket) PeerVerifyError(error QSslError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_PeerVerifyError(ptr.Pointer(), PointerFromQSslError(error))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerVerifyError", error})
 }
 
 func (ptr *QSslSocket) PeerVerifyMode() QSslSocket__PeerVerifyMode {
-	if ptr.Pointer() != nil {
-		return QSslSocket__PeerVerifyMode(C.QSslSocket_PeerVerifyMode(ptr.Pointer()))
-	}
-	return 0
+
+	return QSslSocket__PeerVerifyMode(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerVerifyMode"}).(float64))
 }
 
 func (ptr *QSslSocket) PeerVerifyName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSslSocket_PeerVerifyName(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQSslSocket_PreSharedKeyAuthenticationRequired
-func callbackQSslSocket_PreSharedKeyAuthenticationRequired(ptr unsafe.Pointer, authenticator unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "preSharedKeyAuthenticationRequired"); signal != nil {
-		(*(*func(*QSslPreSharedKeyAuthenticator))(signal))(NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PeerVerifyName"}).(string)
 }
 
 func (ptr *QSslSocket) ConnectPreSharedKeyAuthenticationRequired(f func(authenticator *QSslPreSharedKeyAuthenticator)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired") {
-			C.QSslSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "preSharedKeyAuthenticationRequired")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired"); signal != nil {
-			f := func(authenticator *QSslPreSharedKeyAuthenticator) {
-				(*(*func(*QSslPreSharedKeyAuthenticator))(signal))(authenticator)
-				f(authenticator)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectPreSharedKeyAuthenticationRequired", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSslSocket) DisconnectPreSharedKeyAuthenticationRequired() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_DisconnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "preSharedKeyAuthenticationRequired")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectPreSharedKeyAuthenticationRequired"})
 }
 
 func (ptr *QSslSocket) PreSharedKeyAuthenticationRequired(authenticator QSslPreSharedKeyAuthenticator_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_PreSharedKeyAuthenticationRequired(ptr.Pointer(), PointerFromQSslPreSharedKeyAuthenticator(authenticator))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PreSharedKeyAuthenticationRequired", authenticator})
 }
 
 func (ptr *QSslSocket) PrivateKey() *QSslKey {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslKeyFromPointer(C.QSslSocket_PrivateKey(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PrivateKey"}).(*QSslKey)
 }
 
 func (ptr *QSslSocket) Protocol() QSsl__SslProtocol {
-	if ptr.Pointer() != nil {
-		return QSsl__SslProtocol(C.QSslSocket_Protocol(ptr.Pointer()))
-	}
-	return 0
+
+	return QSsl__SslProtocol(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Protocol"}).(float64))
 }
 
 func (ptr *QSslSocket) SessionCipher() *QSslCipher {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCipherFromPointer(C.QSslSocket_SessionCipher(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SessionCipher"}).(*QSslCipher)
 }
 
 func (ptr *QSslSocket) SessionProtocol() QSsl__SslProtocol {
-	if ptr.Pointer() != nil {
-		return QSsl__SslProtocol(C.QSslSocket_SessionProtocol(ptr.Pointer()))
-	}
-	return 0
+
+	return QSsl__SslProtocol(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SessionProtocol"}).(float64))
 }
 
 func (ptr *QSslSocket) SetLocalCertificate(certificate QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_SetLocalCertificate(ptr.Pointer(), PointerFromQSslCertificate(certificate))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLocalCertificate", certificate})
 }
 
 func (ptr *QSslSocket) SetLocalCertificate2(path string, format QSsl__EncodingFormat) {
-	if ptr.Pointer() != nil {
-		var pathC *C.char
-		if path != "" {
-			pathC = C.CString(path)
-			defer C.free(unsafe.Pointer(pathC))
-		}
-		C.QSslSocket_SetLocalCertificate2(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(format))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLocalCertificate2", path, format})
 }
 
 func (ptr *QSslSocket) SetLocalCertificateChain(localChain []*QSslCertificate) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_SetLocalCertificateChain(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslSocketFromPointer(NewQSslSocketFromPointer(nil).__setLocalCertificateChain_localChain_newList())
-			for _, v := range localChain {
-				tmpList.__setLocalCertificateChain_localChain_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetLocalCertificateChain", localChain})
 }
 
 func (ptr *QSslSocket) SetPeerVerifyDepth(depth int) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_SetPeerVerifyDepth(ptr.Pointer(), C.int(int32(depth)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerVerifyDepth", depth})
 }
 
 func (ptr *QSslSocket) SetPeerVerifyMode(mode QSslSocket__PeerVerifyMode) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_SetPeerVerifyMode(ptr.Pointer(), C.longlong(mode))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerVerifyMode", mode})
 }
 
 func (ptr *QSslSocket) SetPeerVerifyName(hostName string) {
-	if ptr.Pointer() != nil {
-		var hostNameC *C.char
-		if hostName != "" {
-			hostNameC = C.CString(hostName)
-			defer C.free(unsafe.Pointer(hostNameC))
-		}
-		C.QSslSocket_SetPeerVerifyName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPeerVerifyName", hostName})
 }
 
 func (ptr *QSslSocket) SetPrivateKey(key QSslKey_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_SetPrivateKey(ptr.Pointer(), PointerFromQSslKey(key))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPrivateKey", key})
 }
 
 func (ptr *QSslSocket) SetPrivateKey2(fileName string, algorithm QSsl__KeyAlgorithm, format QSsl__EncodingFormat, passPhrase core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		var fileNameC *C.char
-		if fileName != "" {
-			fileNameC = C.CString(fileName)
-			defer C.free(unsafe.Pointer(fileNameC))
-		}
-		C.QSslSocket_SetPrivateKey2(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(algorithm), C.longlong(format), core.PointerFromQByteArray(passPhrase))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetPrivateKey2", fileName, algorithm, format, passPhrase})
 }
 
 func (ptr *QSslSocket) SetProtocol(protoc QSsl__SslProtocol) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_SetProtocol(ptr.Pointer(), C.longlong(protoc))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetProtocol", protoc})
 }
 
 func (ptr *QSslSocket) SetSslConfiguration(configuration QSslConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_SetSslConfiguration(ptr.Pointer(), PointerFromQSslConfiguration(configuration))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSslConfiguration", configuration})
 }
 
 func (ptr *QSslSocket) SslConfiguration() *QSslConfiguration {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslConfigurationFromPointer(C.QSslSocket_SslConfiguration(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QSslConfiguration).DestroyQSslConfiguration)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SslConfiguration"}).(*QSslConfiguration)
 }
 
 func (ptr *QSslSocket) SslErrors() []*QSslError {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtNetwork_PackedList) []*QSslError {
-			out := make([]*QSslError, int(l.len))
-			tmpList := NewQSslSocketFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__sslErrors_atList(i)
-			}
-			return out
-		}(C.QSslSocket_SslErrors(ptr.Pointer()))
-	}
-	return make([]*QSslError, 0)
-}
 
-//export callbackQSslSocket_SslErrors2
-func callbackQSslSocket_SslErrors2(ptr unsafe.Pointer, errors C.struct_QtNetwork_PackedList) {
-	if signal := qt.GetSignal(ptr, "sslErrors2"); signal != nil {
-		(*(*func([]*QSslError))(signal))(func(l C.struct_QtNetwork_PackedList) []*QSslError {
-			out := make([]*QSslError, int(l.len))
-			tmpList := NewQSslSocketFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__sslErrors_errors_atList2(i)
-			}
-			return out
-		}(errors))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SslErrors"}).([]*QSslError)
 }
 
 func (ptr *QSslSocket) ConnectSslErrors2(f func(errors []*QSslError)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors2") {
-			C.QSslSocket_ConnectSslErrors2(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "sslErrors")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors2"); signal != nil {
-			f := func(errors []*QSslError) {
-				(*(*func([]*QSslError))(signal))(errors)
-				f(errors)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors2", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors2", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSslErrors2", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSslSocket) DisconnectSslErrors2() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_DisconnectSslErrors2(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "sslErrors2")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSslErrors2"})
 }
 
 func (ptr *QSslSocket) SslErrors2(errors []*QSslError) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_SslErrors2(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslSocketFromPointer(NewQSslSocketFromPointer(nil).__sslErrors_errors_newList2())
-			for _, v := range errors {
-				tmpList.__sslErrors_errors_setList2(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SslErrors2", errors})
 }
 
 func QSslSocket_SslLibraryBuildVersionNumber() int {
-	return int(int32(C.QSslSocket_QSslSocket_SslLibraryBuildVersionNumber()))
+
+	return int(internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_SslLibraryBuildVersionNumber", ""}).(float64))
 }
 
 func (ptr *QSslSocket) SslLibraryBuildVersionNumber() int {
-	return int(int32(C.QSslSocket_QSslSocket_SslLibraryBuildVersionNumber()))
+
+	return int(internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_SslLibraryBuildVersionNumber", ""}).(float64))
 }
 
 func QSslSocket_SslLibraryBuildVersionString() string {
-	return cGoUnpackString(C.QSslSocket_QSslSocket_SslLibraryBuildVersionString())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_SslLibraryBuildVersionString", ""}).(string)
 }
 
 func (ptr *QSslSocket) SslLibraryBuildVersionString() string {
-	return cGoUnpackString(C.QSslSocket_QSslSocket_SslLibraryBuildVersionString())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_SslLibraryBuildVersionString", ""}).(string)
 }
 
 func QSslSocket_SslLibraryVersionNumber() int {
-	return int(int32(C.QSslSocket_QSslSocket_SslLibraryVersionNumber()))
+
+	return int(internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_SslLibraryVersionNumber", ""}).(float64))
 }
 
 func (ptr *QSslSocket) SslLibraryVersionNumber() int {
-	return int(int32(C.QSslSocket_QSslSocket_SslLibraryVersionNumber()))
+
+	return int(internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_SslLibraryVersionNumber", ""}).(float64))
 }
 
 func QSslSocket_SslLibraryVersionString() string {
-	return cGoUnpackString(C.QSslSocket_QSslSocket_SslLibraryVersionString())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_SslLibraryVersionString", ""}).(string)
 }
 
 func (ptr *QSslSocket) SslLibraryVersionString() string {
-	return cGoUnpackString(C.QSslSocket_QSslSocket_SslLibraryVersionString())
-}
 
-//export callbackQSslSocket_StartClientEncryption
-func callbackQSslSocket_StartClientEncryption(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "startClientEncryption"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSslSocketFromPointer(ptr).StartClientEncryptionDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_SslLibraryVersionString", ""}).(string)
 }
 
 func (ptr *QSslSocket) ConnectStartClientEncryption(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "startClientEncryption"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "startClientEncryption", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "startClientEncryption", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStartClientEncryption", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSslSocket) DisconnectStartClientEncryption() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "startClientEncryption")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStartClientEncryption"})
 }
 
 func (ptr *QSslSocket) StartClientEncryption() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_StartClientEncryption(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StartClientEncryption"})
 }
 
 func (ptr *QSslSocket) StartClientEncryptionDefault() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_StartClientEncryptionDefault(ptr.Pointer())
-	}
-}
 
-//export callbackQSslSocket_StartServerEncryption
-func callbackQSslSocket_StartServerEncryption(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "startServerEncryption"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSslSocketFromPointer(ptr).StartServerEncryptionDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StartClientEncryptionDefault"})
 }
 
 func (ptr *QSslSocket) ConnectStartServerEncryption(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "startServerEncryption"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "startServerEncryption", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "startServerEncryption", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStartServerEncryption", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSslSocket) DisconnectStartServerEncryption() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "startServerEncryption")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStartServerEncryption"})
 }
 
 func (ptr *QSslSocket) StartServerEncryption() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_StartServerEncryption(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StartServerEncryption"})
 }
 
 func (ptr *QSslSocket) StartServerEncryptionDefault() {
-	if ptr.Pointer() != nil {
-		C.QSslSocket_StartServerEncryptionDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StartServerEncryptionDefault"})
 }
 
 func QSslSocket_SupportsSsl() bool {
-	return int8(C.QSslSocket_QSslSocket_SupportsSsl()) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_SupportsSsl", ""}).(bool)
 }
 
 func (ptr *QSslSocket) SupportsSsl() bool {
-	return int8(C.QSslSocket_QSslSocket_SupportsSsl()) != 0
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.QSslSocket_SupportsSsl", ""}).(bool)
 }
 
 func (ptr *QSslSocket) WaitForEncrypted(msecs int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QSslSocket_WaitForEncrypted(ptr.Pointer(), C.int(int32(msecs)))) != 0
-	}
-	return false
-}
 
-//export callbackQSslSocket_DestroyQSslSocket
-func callbackQSslSocket_DestroyQSslSocket(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QSslSocket"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQSslSocketFromPointer(ptr).DestroyQSslSocketDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForEncrypted", msecs}).(bool)
 }
 
 func (ptr *QSslSocket) ConnectDestroyQSslSocket(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QSslSocket"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QSslSocket", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QSslSocket", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQSslSocket", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QSslSocket) DisconnectDestroyQSslSocket() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QSslSocket")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQSslSocket"})
 }
 
 func (ptr *QSslSocket) DestroyQSslSocket() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSslSocket_DestroyQSslSocket(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSslSocket"})
 }
 
 func (ptr *QSslSocket) DestroyQSslSocketDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QSslSocket_DestroyQSslSocketDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQSslSocketDefault"})
 }
 
 func (ptr *QSslSocket) __addCaCertificates_certificates_atList2(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___addCaCertificates_certificates_atList2(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addCaCertificates_certificates_atList2", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) __addCaCertificates_certificates_setList2(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___addCaCertificates_certificates_setList2(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addCaCertificates_certificates_setList2", i})
 }
 
 func (ptr *QSslSocket) __addCaCertificates_certificates_newList2() unsafe.Pointer {
-	return C.QSslSocket___addCaCertificates_certificates_newList2(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addCaCertificates_certificates_newList2"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __addDefaultCaCertificates_certificates_atList2(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___addDefaultCaCertificates_certificates_atList2(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addDefaultCaCertificates_certificates_atList2", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) __addDefaultCaCertificates_certificates_setList2(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___addDefaultCaCertificates_certificates_setList2(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addDefaultCaCertificates_certificates_setList2", i})
 }
 
 func (ptr *QSslSocket) __addDefaultCaCertificates_certificates_newList2() unsafe.Pointer {
-	return C.QSslSocket___addDefaultCaCertificates_certificates_newList2(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__addDefaultCaCertificates_certificates_newList2"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __caCertificates_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___caCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__caCertificates_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) __caCertificates_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___caCertificates_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__caCertificates_setList", i})
 }
 
 func (ptr *QSslSocket) __caCertificates_newList() unsafe.Pointer {
-	return C.QSslSocket___caCertificates_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__caCertificates_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __ciphers_atList(i int) *QSslCipher {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCipherFromPointer(C.QSslSocket___ciphers_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ciphers_atList", i}).(*QSslCipher)
 }
 
 func (ptr *QSslSocket) __ciphers_setList(i QSslCipher_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___ciphers_setList(ptr.Pointer(), PointerFromQSslCipher(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ciphers_setList", i})
 }
 
 func (ptr *QSslSocket) __ciphers_newList() unsafe.Pointer {
-	return C.QSslSocket___ciphers_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ciphers_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __defaultCaCertificates_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___defaultCaCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__defaultCaCertificates_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) __defaultCaCertificates_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___defaultCaCertificates_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__defaultCaCertificates_setList", i})
 }
 
 func (ptr *QSslSocket) __defaultCaCertificates_newList() unsafe.Pointer {
-	return C.QSslSocket___defaultCaCertificates_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__defaultCaCertificates_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __defaultCiphers_atList(i int) *QSslCipher {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCipherFromPointer(C.QSslSocket___defaultCiphers_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__defaultCiphers_atList", i}).(*QSslCipher)
 }
 
 func (ptr *QSslSocket) __defaultCiphers_setList(i QSslCipher_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___defaultCiphers_setList(ptr.Pointer(), PointerFromQSslCipher(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__defaultCiphers_setList", i})
 }
 
 func (ptr *QSslSocket) __defaultCiphers_newList() unsafe.Pointer {
-	return C.QSslSocket___defaultCiphers_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__defaultCiphers_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __ignoreSslErrors_errors_atList2(i int) *QSslError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslErrorFromPointer(C.QSslSocket___ignoreSslErrors_errors_atList2(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ignoreSslErrors_errors_atList2", i}).(*QSslError)
 }
 
 func (ptr *QSslSocket) __ignoreSslErrors_errors_setList2(i QSslError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___ignoreSslErrors_errors_setList2(ptr.Pointer(), PointerFromQSslError(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ignoreSslErrors_errors_setList2", i})
 }
 
 func (ptr *QSslSocket) __ignoreSslErrors_errors_newList2() unsafe.Pointer {
-	return C.QSslSocket___ignoreSslErrors_errors_newList2(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ignoreSslErrors_errors_newList2"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __localCertificateChain_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___localCertificateChain_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__localCertificateChain_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) __localCertificateChain_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___localCertificateChain_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__localCertificateChain_setList", i})
 }
 
 func (ptr *QSslSocket) __localCertificateChain_newList() unsafe.Pointer {
-	return C.QSslSocket___localCertificateChain_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__localCertificateChain_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __ocspResponses_atList(i int) *QOcspResponse {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQOcspResponseFromPointer(C.QSslSocket___ocspResponses_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QOcspResponse).DestroyQOcspResponse)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ocspResponses_atList", i}).(*QOcspResponse)
 }
 
 func (ptr *QSslSocket) __ocspResponses_setList(i QOcspResponse_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___ocspResponses_setList(ptr.Pointer(), PointerFromQOcspResponse(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ocspResponses_setList", i})
 }
 
 func (ptr *QSslSocket) __ocspResponses_newList() unsafe.Pointer {
-	return C.QSslSocket___ocspResponses_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__ocspResponses_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __peerCertificateChain_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___peerCertificateChain_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__peerCertificateChain_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) __peerCertificateChain_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___peerCertificateChain_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__peerCertificateChain_setList", i})
 }
 
 func (ptr *QSslSocket) __peerCertificateChain_newList() unsafe.Pointer {
-	return C.QSslSocket___peerCertificateChain_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__peerCertificateChain_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __setCaCertificates_certificates_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___setCaCertificates_certificates_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCaCertificates_certificates_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) __setCaCertificates_certificates_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___setCaCertificates_certificates_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCaCertificates_certificates_setList", i})
 }
 
 func (ptr *QSslSocket) __setCaCertificates_certificates_newList() unsafe.Pointer {
-	return C.QSslSocket___setCaCertificates_certificates_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCaCertificates_certificates_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __setCiphers_ciphers_atList(i int) *QSslCipher {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCipherFromPointer(C.QSslSocket___setCiphers_ciphers_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCiphers_ciphers_atList", i}).(*QSslCipher)
 }
 
 func (ptr *QSslSocket) __setCiphers_ciphers_setList(i QSslCipher_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___setCiphers_ciphers_setList(ptr.Pointer(), PointerFromQSslCipher(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCiphers_ciphers_setList", i})
 }
 
 func (ptr *QSslSocket) __setCiphers_ciphers_newList() unsafe.Pointer {
-	return C.QSslSocket___setCiphers_ciphers_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setCiphers_ciphers_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __setDefaultCaCertificates_certificates_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___setDefaultCaCertificates_certificates_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setDefaultCaCertificates_certificates_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) __setDefaultCaCertificates_certificates_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___setDefaultCaCertificates_certificates_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setDefaultCaCertificates_certificates_setList", i})
 }
 
 func (ptr *QSslSocket) __setDefaultCaCertificates_certificates_newList() unsafe.Pointer {
-	return C.QSslSocket___setDefaultCaCertificates_certificates_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setDefaultCaCertificates_certificates_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __setDefaultCiphers_ciphers_atList(i int) *QSslCipher {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCipherFromPointer(C.QSslSocket___setDefaultCiphers_ciphers_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setDefaultCiphers_ciphers_atList", i}).(*QSslCipher)
 }
 
 func (ptr *QSslSocket) __setDefaultCiphers_ciphers_setList(i QSslCipher_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___setDefaultCiphers_ciphers_setList(ptr.Pointer(), PointerFromQSslCipher(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setDefaultCiphers_ciphers_setList", i})
 }
 
 func (ptr *QSslSocket) __setDefaultCiphers_ciphers_newList() unsafe.Pointer {
-	return C.QSslSocket___setDefaultCiphers_ciphers_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setDefaultCiphers_ciphers_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __setLocalCertificateChain_localChain_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___setLocalCertificateChain_localChain_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setLocalCertificateChain_localChain_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) __setLocalCertificateChain_localChain_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___setLocalCertificateChain_localChain_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setLocalCertificateChain_localChain_setList", i})
 }
 
 func (ptr *QSslSocket) __setLocalCertificateChain_localChain_newList() unsafe.Pointer {
-	return C.QSslSocket___setLocalCertificateChain_localChain_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setLocalCertificateChain_localChain_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __sslErrors_atList(i int) *QSslError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslErrorFromPointer(C.QSslSocket___sslErrors_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_atList", i}).(*QSslError)
 }
 
 func (ptr *QSslSocket) __sslErrors_setList(i QSslError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___sslErrors_setList(ptr.Pointer(), PointerFromQSslError(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_setList", i})
 }
 
 func (ptr *QSslSocket) __sslErrors_newList() unsafe.Pointer {
-	return C.QSslSocket___sslErrors_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __sslErrors_errors_atList2(i int) *QSslError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslErrorFromPointer(C.QSslSocket___sslErrors_errors_atList2(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_errors_atList2", i}).(*QSslError)
 }
 
 func (ptr *QSslSocket) __sslErrors_errors_setList2(i QSslError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___sslErrors_errors_setList2(ptr.Pointer(), PointerFromQSslError(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_errors_setList2", i})
 }
 
 func (ptr *QSslSocket) __sslErrors_errors_newList2() unsafe.Pointer {
-	return C.QSslSocket___sslErrors_errors_newList2(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__sslErrors_errors_newList2"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __supportedCiphers_atList(i int) *QSslCipher {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCipherFromPointer(C.QSslSocket___supportedCiphers_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__supportedCiphers_atList", i}).(*QSslCipher)
 }
 
 func (ptr *QSslSocket) __supportedCiphers_setList(i QSslCipher_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___supportedCiphers_setList(ptr.Pointer(), PointerFromQSslCipher(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__supportedCiphers_setList", i})
 }
 
 func (ptr *QSslSocket) __supportedCiphers_newList() unsafe.Pointer {
-	return C.QSslSocket___supportedCiphers_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__supportedCiphers_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QSslSocket) __systemCaCertificates_atList(i int) *QSslCertificate {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQSslCertificateFromPointer(C.QSslSocket___systemCaCertificates_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__systemCaCertificates_atList", i}).(*QSslCertificate)
 }
 
 func (ptr *QSslSocket) __systemCaCertificates_setList(i QSslCertificate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSslSocket___systemCaCertificates_setList(ptr.Pointer(), PointerFromQSslCertificate(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__systemCaCertificates_setList", i})
 }
 
 func (ptr *QSslSocket) __systemCaCertificates_newList() unsafe.Pointer {
-	return C.QSslSocket___systemCaCertificates_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__systemCaCertificates_newList"}).(unsafe.Pointer)
 }
 
 type QTcpServer struct {
@@ -19492,590 +11635,293 @@ func PointerFromQTcpServer(ptr QTcpServer_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QTcpServer) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QTcpServer) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQTcpServerFromPointer(ptr unsafe.Pointer) (n *QTcpServer) {
 	n = new(QTcpServer)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QTcpServer")
 	return
 }
 func NewQTcpServer(parent core.QObject_ITF) *QTcpServer {
-	tmpValue := NewQTcpServerFromPointer(C.QTcpServer_NewQTcpServer(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQTcpServer_AcceptError
-func callbackQTcpServer_AcceptError(ptr unsafe.Pointer, socketError C.longlong) {
-	if signal := qt.GetSignal(ptr, "acceptError"); signal != nil {
-		(*(*func(QAbstractSocket__SocketError))(signal))(QAbstractSocket__SocketError(socketError))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQTcpServer", "", parent}).(*QTcpServer)
 }
 
 func (ptr *QTcpServer) ConnectAcceptError(f func(socketError QAbstractSocket__SocketError)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "acceptError") {
-			C.QTcpServer_ConnectAcceptError(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "acceptError")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "acceptError"); signal != nil {
-			f := func(socketError QAbstractSocket__SocketError) {
-				(*(*func(QAbstractSocket__SocketError))(signal))(socketError)
-				f(socketError)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "acceptError", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "acceptError", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectAcceptError", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTcpServer) DisconnectAcceptError() {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_DisconnectAcceptError(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "acceptError")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectAcceptError"})
 }
 
 func (ptr *QTcpServer) AcceptError(socketError QAbstractSocket__SocketError) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_AcceptError(ptr.Pointer(), C.longlong(socketError))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AcceptError", socketError})
 }
 
 func (ptr *QTcpServer) AddPendingConnection(socket QTcpSocket_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_AddPendingConnection(ptr.Pointer(), PointerFromQTcpSocket(socket))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "AddPendingConnection", socket})
 }
 
 func (ptr *QTcpServer) Close() {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_Close(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Close"})
 }
 
 func (ptr *QTcpServer) ErrorString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QTcpServer_ErrorString(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQTcpServer_HasPendingConnections
-func callbackQTcpServer_HasPendingConnections(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "hasPendingConnections"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTcpServerFromPointer(ptr).HasPendingConnectionsDefault())))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ErrorString"}).(string)
 }
 
 func (ptr *QTcpServer) ConnectHasPendingConnections(f func() bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "hasPendingConnections"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "hasPendingConnections", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasPendingConnections", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectHasPendingConnections", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTcpServer) DisconnectHasPendingConnections() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "hasPendingConnections")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectHasPendingConnections"})
 }
 
 func (ptr *QTcpServer) HasPendingConnections() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QTcpServer_HasPendingConnections(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasPendingConnections"}).(bool)
 }
 
 func (ptr *QTcpServer) HasPendingConnectionsDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QTcpServer_HasPendingConnectionsDefault(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasPendingConnectionsDefault"}).(bool)
 }
 
 func (ptr *QTcpServer) IsListening() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QTcpServer_IsListening(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsListening"}).(bool)
 }
 
 func (ptr *QTcpServer) Listen(address QHostAddress_ITF, port uint16) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QTcpServer_Listen(ptr.Pointer(), PointerFromQHostAddress(address), C.ushort(port))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Listen", address, port}).(bool)
 }
 
 func (ptr *QTcpServer) MaxPendingConnections() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QTcpServer_MaxPendingConnections(ptr.Pointer())))
-	}
-	return 0
-}
 
-//export callbackQTcpServer_NewConnection
-func callbackQTcpServer_NewConnection(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "newConnection"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MaxPendingConnections"}).(float64))
 }
 
 func (ptr *QTcpServer) ConnectNewConnection(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "newConnection") {
-			C.QTcpServer_ConnectNewConnection(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "newConnection")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "newConnection", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "newConnection", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNewConnection", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTcpServer) DisconnectNewConnection() {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_DisconnectNewConnection(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "newConnection")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNewConnection"})
 }
 
 func (ptr *QTcpServer) NewConnection() {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_NewConnection(ptr.Pointer())
-	}
-}
 
-//export callbackQTcpServer_NextPendingConnection
-func callbackQTcpServer_NextPendingConnection(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "nextPendingConnection"); signal != nil {
-		return PointerFromQTcpSocket((*(*func() *QTcpSocket)(signal))())
-	}
-
-	return PointerFromQTcpSocket(NewQTcpServerFromPointer(ptr).NextPendingConnectionDefault())
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NewConnection"})
 }
 
 func (ptr *QTcpServer) ConnectNextPendingConnection(f func() *QTcpSocket) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "nextPendingConnection"); signal != nil {
-			f := func() *QTcpSocket {
-				(*(*func() *QTcpSocket)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "nextPendingConnection", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "nextPendingConnection", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNextPendingConnection", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTcpServer) DisconnectNextPendingConnection() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "nextPendingConnection")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNextPendingConnection"})
 }
 
 func (ptr *QTcpServer) NextPendingConnection() *QTcpSocket {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQTcpSocketFromPointer(C.QTcpServer_NextPendingConnection(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NextPendingConnection"}).(*QTcpSocket)
 }
 
 func (ptr *QTcpServer) NextPendingConnectionDefault() *QTcpSocket {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQTcpSocketFromPointer(C.QTcpServer_NextPendingConnectionDefault(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "NextPendingConnectionDefault"}).(*QTcpSocket)
 }
 
 func (ptr *QTcpServer) PauseAccepting() {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_PauseAccepting(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PauseAccepting"})
 }
 
 func (ptr *QTcpServer) Proxy() *QNetworkProxy {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkProxyFromPointer(C.QTcpServer_Proxy(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Proxy"}).(*QNetworkProxy)
 }
 
 func (ptr *QTcpServer) ResumeAccepting() {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_ResumeAccepting(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ResumeAccepting"})
 }
 
 func (ptr *QTcpServer) ServerAddress() *QHostAddress {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHostAddressFromPointer(C.QTcpServer_ServerAddress(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ServerAddress"}).(*QHostAddress)
 }
 
 func (ptr *QTcpServer) ServerError() QAbstractSocket__SocketError {
-	if ptr.Pointer() != nil {
-		return QAbstractSocket__SocketError(C.QTcpServer_ServerError(ptr.Pointer()))
-	}
-	return 0
+
+	return QAbstractSocket__SocketError(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ServerError"}).(float64))
 }
 
 func (ptr *QTcpServer) ServerPort() uint16 {
-	if ptr.Pointer() != nil {
-		return uint16(C.QTcpServer_ServerPort(ptr.Pointer()))
-	}
-	return 0
+
+	return uint16(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ServerPort"}).(float64))
 }
 
 func (ptr *QTcpServer) SetMaxPendingConnections(numConnections int) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_SetMaxPendingConnections(ptr.Pointer(), C.int(int32(numConnections)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetMaxPendingConnections", numConnections})
 }
 
 func (ptr *QTcpServer) SetProxy(networkProxy QNetworkProxy_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_SetProxy(ptr.Pointer(), PointerFromQNetworkProxy(networkProxy))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetProxy", networkProxy})
 }
 
 func (ptr *QTcpServer) WaitForNewConnection(msec int, timedOut *bool) bool {
-	if ptr.Pointer() != nil {
-		var timedOutC C.char
-		if timedOut != nil {
-			timedOutC = C.char(int8(qt.GoBoolToInt(*timedOut)))
-			defer func() { *timedOut = int8(timedOutC) != 0 }()
-		}
-		return int8(C.QTcpServer_WaitForNewConnection(ptr.Pointer(), C.int(int32(msec)), &timedOutC)) != 0
-	}
-	return false
-}
 
-//export callbackQTcpServer_DestroyQTcpServer
-func callbackQTcpServer_DestroyQTcpServer(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QTcpServer"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQTcpServerFromPointer(ptr).DestroyQTcpServerDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WaitForNewConnection", msec, timedOut}).(bool)
 }
 
 func (ptr *QTcpServer) ConnectDestroyQTcpServer(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QTcpServer"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QTcpServer", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QTcpServer", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQTcpServer", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTcpServer) DisconnectDestroyQTcpServer() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QTcpServer")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQTcpServer"})
 }
 
 func (ptr *QTcpServer) DestroyQTcpServer() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QTcpServer_DestroyQTcpServer(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQTcpServer"})
 }
 
 func (ptr *QTcpServer) DestroyQTcpServerDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QTcpServer_DestroyQTcpServerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQTcpServerDefault"})
 }
 
 func (ptr *QTcpServer) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTcpServer___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QTcpServer) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QTcpServer) __children_newList() unsafe.Pointer {
-	return C.QTcpServer___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QTcpServer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QTcpServer___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QTcpServer) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QTcpServer) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QTcpServer___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QTcpServer) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTcpServer___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QTcpServer) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QTcpServer) __findChildren_newList() unsafe.Pointer {
-	return C.QTcpServer___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QTcpServer) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTcpServer___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QTcpServer) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QTcpServer) __findChildren_newList3() unsafe.Pointer {
-	return C.QTcpServer___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQTcpServer_ChildEvent
-func callbackQTcpServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQTcpServerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QTcpServer) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQTcpServer_ConnectNotify
-func callbackQTcpServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQTcpServerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QTcpServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQTcpServer_CustomEvent
-func callbackQTcpServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQTcpServerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QTcpServer) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQTcpServer_DeleteLater
-func callbackQTcpServer_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQTcpServerFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QTcpServer) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QTcpServer_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQTcpServer_Destroyed
-func callbackQTcpServer_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQTcpServer_DisconnectNotify
-func callbackQTcpServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQTcpServerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QTcpServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQTcpServer_Event
-func callbackQTcpServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTcpServerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QTcpServer) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QTcpServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQTcpServer_EventFilter
-func callbackQTcpServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTcpServerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QTcpServer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QTcpServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQTcpServer_MetaObject
-func callbackQTcpServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQTcpServerFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QTcpServer) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QTcpServer_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQTcpServer_ObjectNameChanged
-func callbackQTcpServer_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNetwork_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQTcpServer_TimerEvent
-func callbackQTcpServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQTcpServerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QTcpServer) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTcpServer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QTcpSocket struct {
@@ -20111,66 +11957,43 @@ func PointerFromQTcpSocket(ptr QTcpSocket_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QTcpSocket) InitFromInternal(ptr uintptr, name string) {
+	n.QAbstractSocket_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QTcpSocket) ClassNameInternalF() string {
+	return n.QAbstractSocket_PTR().ClassNameInternalF()
+}
+
 func NewQTcpSocketFromPointer(ptr unsafe.Pointer) (n *QTcpSocket) {
 	n = new(QTcpSocket)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QTcpSocket")
 	return
 }
 func NewQTcpSocket(parent core.QObject_ITF) *QTcpSocket {
-	tmpValue := NewQTcpSocketFromPointer(C.QTcpSocket_NewQTcpSocket(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQTcpSocket_DestroyQTcpSocket
-func callbackQTcpSocket_DestroyQTcpSocket(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QTcpSocket"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQTcpSocketFromPointer(ptr).DestroyQTcpSocketDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQTcpSocket", "", parent}).(*QTcpSocket)
 }
 
 func (ptr *QTcpSocket) ConnectDestroyQTcpSocket(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QTcpSocket"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QTcpSocket", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QTcpSocket", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQTcpSocket", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QTcpSocket) DisconnectDestroyQTcpSocket() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QTcpSocket")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQTcpSocket"})
 }
 
 func (ptr *QTcpSocket) DestroyQTcpSocket() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QTcpSocket_DestroyQTcpSocket(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQTcpSocket"})
 }
 
 func (ptr *QTcpSocket) DestroyQTcpSocketDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QTcpSocket_DestroyQTcpSocketDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQTcpSocketDefault"})
 }
 
 type QUdpSocket struct {
@@ -20206,172 +12029,112 @@ func PointerFromQUdpSocket(ptr QUdpSocket_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QUdpSocket) InitFromInternal(ptr uintptr, name string) {
+	n.QAbstractSocket_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QUdpSocket) ClassNameInternalF() string {
+	return n.QAbstractSocket_PTR().ClassNameInternalF()
+}
+
 func NewQUdpSocketFromPointer(ptr unsafe.Pointer) (n *QUdpSocket) {
 	n = new(QUdpSocket)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QUdpSocket")
 	return
 }
 func NewQUdpSocket(parent core.QObject_ITF) *QUdpSocket {
-	tmpValue := NewQUdpSocketFromPointer(C.QUdpSocket_NewQUdpSocket(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQUdpSocket", "", parent}).(*QUdpSocket)
 }
 
 func (ptr *QUdpSocket) HasPendingDatagrams() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QUdpSocket_HasPendingDatagrams(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasPendingDatagrams"}).(bool)
 }
 
 func (ptr *QUdpSocket) JoinMulticastGroup(groupAddress QHostAddress_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QUdpSocket_JoinMulticastGroup(ptr.Pointer(), PointerFromQHostAddress(groupAddress))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "JoinMulticastGroup", groupAddress}).(bool)
 }
 
 func (ptr *QUdpSocket) JoinMulticastGroup2(groupAddress QHostAddress_ITF, iface QNetworkInterface_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QUdpSocket_JoinMulticastGroup2(ptr.Pointer(), PointerFromQHostAddress(groupAddress), PointerFromQNetworkInterface(iface))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "JoinMulticastGroup2", groupAddress, iface}).(bool)
 }
 
 func (ptr *QUdpSocket) LeaveMulticastGroup(groupAddress QHostAddress_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QUdpSocket_LeaveMulticastGroup(ptr.Pointer(), PointerFromQHostAddress(groupAddress))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LeaveMulticastGroup", groupAddress}).(bool)
 }
 
 func (ptr *QUdpSocket) LeaveMulticastGroup2(groupAddress QHostAddress_ITF, iface QNetworkInterface_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QUdpSocket_LeaveMulticastGroup2(ptr.Pointer(), PointerFromQHostAddress(groupAddress), PointerFromQNetworkInterface(iface))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "LeaveMulticastGroup2", groupAddress, iface}).(bool)
 }
 
 func (ptr *QUdpSocket) MulticastInterface() *QNetworkInterface {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkInterfaceFromPointer(C.QUdpSocket_MulticastInterface(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MulticastInterface"}).(*QNetworkInterface)
 }
 
 func (ptr *QUdpSocket) PendingDatagramSize() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_PendingDatagramSize(ptr.Pointer()))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PendingDatagramSize"}).(float64))
 }
 
 func (ptr *QUdpSocket) ReadDatagram(data []byte, maxSize int64, address QHostAddress_ITF, port uint16) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QUdpSocket_ReadDatagram(ptr.Pointer(), dataC, C.longlong(maxSize), PointerFromQHostAddress(address), C.ushort(port)))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReadDatagram", data, maxSize, address, port}).(float64))
 }
 
 func (ptr *QUdpSocket) ReceiveDatagram(maxSize int64) *QNetworkDatagram {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQNetworkDatagramFromPointer(C.QUdpSocket_ReceiveDatagram(ptr.Pointer(), C.longlong(maxSize)))
-		qt.SetFinalizer(tmpValue, (*QNetworkDatagram).DestroyQNetworkDatagram)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReceiveDatagram", maxSize}).(*QNetworkDatagram)
 }
 
 func (ptr *QUdpSocket) SetMulticastInterface(iface QNetworkInterface_ITF) {
-	if ptr.Pointer() != nil {
-		C.QUdpSocket_SetMulticastInterface(ptr.Pointer(), PointerFromQNetworkInterface(iface))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetMulticastInterface", iface})
 }
 
 func (ptr *QUdpSocket) WriteDatagram(data []byte, size int64, address QHostAddress_ITF, port uint16) int64 {
-	if ptr.Pointer() != nil {
-		var dataC *C.char
-		if len(data) != 0 {
-			dataC = (*C.char)(unsafe.Pointer(&data[0]))
-		}
-		return int64(C.QUdpSocket_WriteDatagram(ptr.Pointer(), dataC, C.longlong(size), PointerFromQHostAddress(address), C.ushort(port)))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WriteDatagram", data, size, address, port}).(float64))
 }
 
 func (ptr *QUdpSocket) WriteDatagram2(datagram QNetworkDatagram_ITF) int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_WriteDatagram2(ptr.Pointer(), PointerFromQNetworkDatagram(datagram)))
-	}
-	return 0
+
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WriteDatagram2", datagram}).(float64))
 }
 
 func (ptr *QUdpSocket) WriteDatagram3(datagram core.QByteArray_ITF, host QHostAddress_ITF, port uint16) int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_WriteDatagram3(ptr.Pointer(), core.PointerFromQByteArray(datagram), PointerFromQHostAddress(host), C.ushort(port)))
-	}
-	return 0
-}
 
-//export callbackQUdpSocket_DestroyQUdpSocket
-func callbackQUdpSocket_DestroyQUdpSocket(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QUdpSocket"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQUdpSocketFromPointer(ptr).DestroyQUdpSocketDefault()
-	}
+	return int64(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "WriteDatagram3", datagram, host, port}).(float64))
 }
 
 func (ptr *QUdpSocket) ConnectDestroyQUdpSocket(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QUdpSocket"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QUdpSocket", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QUdpSocket", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQUdpSocket", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QUdpSocket) DisconnectDestroyQUdpSocket() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QUdpSocket")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQUdpSocket"})
 }
 
 func (ptr *QUdpSocket) DestroyQUdpSocket() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QUdpSocket_DestroyQUdpSocket(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQUdpSocket"})
 }
 
 func (ptr *QUdpSocket) DestroyQUdpSocketDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QUdpSocket_DestroyQUdpSocketDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQUdpSocketDefault"})
 }
 
 type QNetworkCacheMetaData_RawHeader struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QNetworkCacheMetaData_RawHeader_ITF interface {
@@ -20384,14 +12147,14 @@ func (ptr *QNetworkCacheMetaData_RawHeader) QNetworkCacheMetaData_RawHeader_PTR(
 
 func (ptr *QNetworkCacheMetaData_RawHeader) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QNetworkCacheMetaData_RawHeader) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -20402,681 +12165,97 @@ func PointerFromQNetworkCacheMetaData_RawHeader(ptr QNetworkCacheMetaData_RawHea
 	return nil
 }
 
+func (n *QNetworkCacheMetaData_RawHeader) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQNetworkCacheMetaData_RawHeaderFromPointer(ptr unsafe.Pointer) (n *QNetworkCacheMetaData_RawHeader) {
 	n = new(QNetworkCacheMetaData_RawHeader)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "network.QNetworkCacheMetaData_RawHeader")
 	return
 }
-func (ptr *QNetworkCacheMetaData_RawHeader) DestroyQNetworkCacheMetaData_RawHeader() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *QNetworkCacheMetaData_RawHeader) DestroyQNetworkCacheMetaData_RawHeader() {
 }
+
 func NewQNetworkCacheMetaData_RawHeader() *QNetworkCacheMetaData_RawHeader {
-	tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.RawHeader_NewRawHeader())
-	qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkCacheMetaData_RawHeader", ""}).(*QNetworkCacheMetaData_RawHeader)
 }
 
 func NewQNetworkCacheMetaData_RawHeader2(first core.QByteArray_ITF, second core.QByteArray_ITF) *QNetworkCacheMetaData_RawHeader {
-	tmpValue := NewQNetworkCacheMetaData_RawHeaderFromPointer(C.RawHeader_NewRawHeader2(core.PointerFromQByteArray(first), core.PointerFromQByteArray(second)))
-	qt.SetFinalizer(tmpValue, (*QNetworkCacheMetaData_RawHeader).DestroyQNetworkCacheMetaData_RawHeader)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "network.NewQNetworkCacheMetaData_RawHeader2", "", first, second}).(*QNetworkCacheMetaData_RawHeader)
 }
 
 func (ptr *QNetworkCacheMetaData_RawHeader) First() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.RawHeader_First(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "First"}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkCacheMetaData_RawHeader) SetFirst(vqb core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.RawHeader_SetFirst(ptr.Pointer(), core.PointerFromQByteArray(vqb))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetFirst", vqb})
 }
 
 func (ptr *QNetworkCacheMetaData_RawHeader) Second() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.RawHeader_Second(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Second"}).(*core.QByteArray)
 }
 
 func (ptr *QNetworkCacheMetaData_RawHeader) SetSecond(vqb core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.RawHeader_SetSecond(ptr.Pointer(), core.PointerFromQByteArray(vqb))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSecond", vqb})
 }
 
 func init() {
-	qt.ItfMap["network.QAbstractNetworkCache_ITF"] = QAbstractNetworkCache{}
-	qt.FuncMap["network.NewQAbstractNetworkCache"] = NewQAbstractNetworkCache
-	qt.ItfMap["network.QAbstractSocket_ITF"] = QAbstractSocket{}
-	qt.FuncMap["network.NewQAbstractSocket"] = NewQAbstractSocket
-	qt.EnumMap["network.QAbstractSocket__TcpSocket"] = int64(QAbstractSocket__TcpSocket)
-	qt.EnumMap["network.QAbstractSocket__UdpSocket"] = int64(QAbstractSocket__UdpSocket)
-	qt.EnumMap["network.QAbstractSocket__SctpSocket"] = int64(QAbstractSocket__SctpSocket)
-	qt.EnumMap["network.QAbstractSocket__UnknownSocketType"] = int64(QAbstractSocket__UnknownSocketType)
-	qt.EnumMap["network.QAbstractSocket__IPv4Protocol"] = int64(QAbstractSocket__IPv4Protocol)
-	qt.EnumMap["network.QAbstractSocket__IPv6Protocol"] = int64(QAbstractSocket__IPv6Protocol)
-	qt.EnumMap["network.QAbstractSocket__AnyIPProtocol"] = int64(QAbstractSocket__AnyIPProtocol)
-	qt.EnumMap["network.QAbstractSocket__UnknownNetworkLayerProtocol"] = int64(QAbstractSocket__UnknownNetworkLayerProtocol)
-	qt.EnumMap["network.QAbstractSocket__ConnectionRefusedError"] = int64(QAbstractSocket__ConnectionRefusedError)
-	qt.EnumMap["network.QAbstractSocket__RemoteHostClosedError"] = int64(QAbstractSocket__RemoteHostClosedError)
-	qt.EnumMap["network.QAbstractSocket__HostNotFoundError"] = int64(QAbstractSocket__HostNotFoundError)
-	qt.EnumMap["network.QAbstractSocket__SocketAccessError"] = int64(QAbstractSocket__SocketAccessError)
-	qt.EnumMap["network.QAbstractSocket__SocketResourceError"] = int64(QAbstractSocket__SocketResourceError)
-	qt.EnumMap["network.QAbstractSocket__SocketTimeoutError"] = int64(QAbstractSocket__SocketTimeoutError)
-	qt.EnumMap["network.QAbstractSocket__DatagramTooLargeError"] = int64(QAbstractSocket__DatagramTooLargeError)
-	qt.EnumMap["network.QAbstractSocket__NetworkError"] = int64(QAbstractSocket__NetworkError)
-	qt.EnumMap["network.QAbstractSocket__AddressInUseError"] = int64(QAbstractSocket__AddressInUseError)
-	qt.EnumMap["network.QAbstractSocket__SocketAddressNotAvailableError"] = int64(QAbstractSocket__SocketAddressNotAvailableError)
-	qt.EnumMap["network.QAbstractSocket__UnsupportedSocketOperationError"] = int64(QAbstractSocket__UnsupportedSocketOperationError)
-	qt.EnumMap["network.QAbstractSocket__UnfinishedSocketOperationError"] = int64(QAbstractSocket__UnfinishedSocketOperationError)
-	qt.EnumMap["network.QAbstractSocket__ProxyAuthenticationRequiredError"] = int64(QAbstractSocket__ProxyAuthenticationRequiredError)
-	qt.EnumMap["network.QAbstractSocket__SslHandshakeFailedError"] = int64(QAbstractSocket__SslHandshakeFailedError)
-	qt.EnumMap["network.QAbstractSocket__ProxyConnectionRefusedError"] = int64(QAbstractSocket__ProxyConnectionRefusedError)
-	qt.EnumMap["network.QAbstractSocket__ProxyConnectionClosedError"] = int64(QAbstractSocket__ProxyConnectionClosedError)
-	qt.EnumMap["network.QAbstractSocket__ProxyConnectionTimeoutError"] = int64(QAbstractSocket__ProxyConnectionTimeoutError)
-	qt.EnumMap["network.QAbstractSocket__ProxyNotFoundError"] = int64(QAbstractSocket__ProxyNotFoundError)
-	qt.EnumMap["network.QAbstractSocket__ProxyProtocolError"] = int64(QAbstractSocket__ProxyProtocolError)
-	qt.EnumMap["network.QAbstractSocket__OperationError"] = int64(QAbstractSocket__OperationError)
-	qt.EnumMap["network.QAbstractSocket__SslInternalError"] = int64(QAbstractSocket__SslInternalError)
-	qt.EnumMap["network.QAbstractSocket__SslInvalidUserDataError"] = int64(QAbstractSocket__SslInvalidUserDataError)
-	qt.EnumMap["network.QAbstractSocket__TemporaryError"] = int64(QAbstractSocket__TemporaryError)
-	qt.EnumMap["network.QAbstractSocket__UnknownSocketError"] = int64(QAbstractSocket__UnknownSocketError)
-	qt.EnumMap["network.QAbstractSocket__UnconnectedState"] = int64(QAbstractSocket__UnconnectedState)
-	qt.EnumMap["network.QAbstractSocket__HostLookupState"] = int64(QAbstractSocket__HostLookupState)
-	qt.EnumMap["network.QAbstractSocket__ConnectingState"] = int64(QAbstractSocket__ConnectingState)
-	qt.EnumMap["network.QAbstractSocket__ConnectedState"] = int64(QAbstractSocket__ConnectedState)
-	qt.EnumMap["network.QAbstractSocket__BoundState"] = int64(QAbstractSocket__BoundState)
-	qt.EnumMap["network.QAbstractSocket__ListeningState"] = int64(QAbstractSocket__ListeningState)
-	qt.EnumMap["network.QAbstractSocket__ClosingState"] = int64(QAbstractSocket__ClosingState)
-	qt.EnumMap["network.QAbstractSocket__LowDelayOption"] = int64(QAbstractSocket__LowDelayOption)
-	qt.EnumMap["network.QAbstractSocket__KeepAliveOption"] = int64(QAbstractSocket__KeepAliveOption)
-	qt.EnumMap["network.QAbstractSocket__MulticastTtlOption"] = int64(QAbstractSocket__MulticastTtlOption)
-	qt.EnumMap["network.QAbstractSocket__MulticastLoopbackOption"] = int64(QAbstractSocket__MulticastLoopbackOption)
-	qt.EnumMap["network.QAbstractSocket__TypeOfServiceOption"] = int64(QAbstractSocket__TypeOfServiceOption)
-	qt.EnumMap["network.QAbstractSocket__SendBufferSizeSocketOption"] = int64(QAbstractSocket__SendBufferSizeSocketOption)
-	qt.EnumMap["network.QAbstractSocket__ReceiveBufferSizeSocketOption"] = int64(QAbstractSocket__ReceiveBufferSizeSocketOption)
-	qt.EnumMap["network.QAbstractSocket__PathMtuSocketOption"] = int64(QAbstractSocket__PathMtuSocketOption)
-	qt.EnumMap["network.QAbstractSocket__DefaultForPlatform"] = int64(QAbstractSocket__DefaultForPlatform)
-	qt.EnumMap["network.QAbstractSocket__ShareAddress"] = int64(QAbstractSocket__ShareAddress)
-	qt.EnumMap["network.QAbstractSocket__DontShareAddress"] = int64(QAbstractSocket__DontShareAddress)
-	qt.EnumMap["network.QAbstractSocket__ReuseAddressHint"] = int64(QAbstractSocket__ReuseAddressHint)
-	qt.EnumMap["network.QAbstractSocket__PauseNever"] = int64(QAbstractSocket__PauseNever)
-	qt.EnumMap["network.QAbstractSocket__PauseOnSslErrors"] = int64(QAbstractSocket__PauseOnSslErrors)
-	qt.ItfMap["network.QAuthenticator_ITF"] = QAuthenticator{}
-	qt.FuncMap["network.NewQAuthenticator"] = NewQAuthenticator
-	qt.FuncMap["network.NewQAuthenticator2"] = NewQAuthenticator2
-	qt.ItfMap["network.QDnsDomainNameRecord_ITF"] = QDnsDomainNameRecord{}
-	qt.FuncMap["network.NewQDnsDomainNameRecord"] = NewQDnsDomainNameRecord
-	qt.FuncMap["network.NewQDnsDomainNameRecord2"] = NewQDnsDomainNameRecord2
-	qt.ItfMap["network.QDnsHostAddressRecord_ITF"] = QDnsHostAddressRecord{}
-	qt.FuncMap["network.NewQDnsHostAddressRecord"] = NewQDnsHostAddressRecord
-	qt.FuncMap["network.NewQDnsHostAddressRecord2"] = NewQDnsHostAddressRecord2
-	qt.ItfMap["network.QDnsLookup_ITF"] = QDnsLookup{}
-	qt.FuncMap["network.NewQDnsLookup"] = NewQDnsLookup
-	qt.FuncMap["network.NewQDnsLookup2"] = NewQDnsLookup2
-	qt.FuncMap["network.NewQDnsLookup3"] = NewQDnsLookup3
-	qt.EnumMap["network.QDnsLookup__NoError"] = int64(QDnsLookup__NoError)
-	qt.EnumMap["network.QDnsLookup__ResolverError"] = int64(QDnsLookup__ResolverError)
-	qt.EnumMap["network.QDnsLookup__OperationCancelledError"] = int64(QDnsLookup__OperationCancelledError)
-	qt.EnumMap["network.QDnsLookup__InvalidRequestError"] = int64(QDnsLookup__InvalidRequestError)
-	qt.EnumMap["network.QDnsLookup__InvalidReplyError"] = int64(QDnsLookup__InvalidReplyError)
-	qt.EnumMap["network.QDnsLookup__ServerFailureError"] = int64(QDnsLookup__ServerFailureError)
-	qt.EnumMap["network.QDnsLookup__ServerRefusedError"] = int64(QDnsLookup__ServerRefusedError)
-	qt.EnumMap["network.QDnsLookup__NotFoundError"] = int64(QDnsLookup__NotFoundError)
-	qt.EnumMap["network.QDnsLookup__A"] = int64(QDnsLookup__A)
-	qt.EnumMap["network.QDnsLookup__AAAA"] = int64(QDnsLookup__AAAA)
-	qt.EnumMap["network.QDnsLookup__ANY"] = int64(QDnsLookup__ANY)
-	qt.EnumMap["network.QDnsLookup__CNAME"] = int64(QDnsLookup__CNAME)
-	qt.EnumMap["network.QDnsLookup__MX"] = int64(QDnsLookup__MX)
-	qt.EnumMap["network.QDnsLookup__NS"] = int64(QDnsLookup__NS)
-	qt.EnumMap["network.QDnsLookup__PTR"] = int64(QDnsLookup__PTR)
-	qt.EnumMap["network.QDnsLookup__SRV"] = int64(QDnsLookup__SRV)
-	qt.EnumMap["network.QDnsLookup__TXT"] = int64(QDnsLookup__TXT)
-	qt.ItfMap["network.QDnsMailExchangeRecord_ITF"] = QDnsMailExchangeRecord{}
-	qt.FuncMap["network.NewQDnsMailExchangeRecord"] = NewQDnsMailExchangeRecord
-	qt.FuncMap["network.NewQDnsMailExchangeRecord2"] = NewQDnsMailExchangeRecord2
-	qt.ItfMap["network.QDnsServiceRecord_ITF"] = QDnsServiceRecord{}
-	qt.FuncMap["network.NewQDnsServiceRecord"] = NewQDnsServiceRecord
-	qt.FuncMap["network.NewQDnsServiceRecord2"] = NewQDnsServiceRecord2
-	qt.ItfMap["network.QDnsTextRecord_ITF"] = QDnsTextRecord{}
-	qt.FuncMap["network.NewQDnsTextRecord"] = NewQDnsTextRecord
-	qt.FuncMap["network.NewQDnsTextRecord2"] = NewQDnsTextRecord2
-	qt.ItfMap["network.QDtls_ITF"] = QDtls{}
-	qt.EnumMap["network.QDtls__NoError"] = int64(QDtls__NoError)
-	qt.EnumMap["network.QDtls__InvalidInputParameters"] = int64(QDtls__InvalidInputParameters)
-	qt.EnumMap["network.QDtls__InvalidOperation"] = int64(QDtls__InvalidOperation)
-	qt.EnumMap["network.QDtls__UnderlyingSocketError"] = int64(QDtls__UnderlyingSocketError)
-	qt.EnumMap["network.QDtls__RemoteClosedConnectionError"] = int64(QDtls__RemoteClosedConnectionError)
-	qt.EnumMap["network.QDtls__PeerVerificationError"] = int64(QDtls__PeerVerificationError)
-	qt.EnumMap["network.QDtls__TlsInitializationError"] = int64(QDtls__TlsInitializationError)
-	qt.EnumMap["network.QDtls__TlsFatalError"] = int64(QDtls__TlsFatalError)
-	qt.EnumMap["network.QDtls__TlsNonFatalError"] = int64(QDtls__TlsNonFatalError)
-	qt.EnumMap["network.QDtls__HandshakeNotStarted"] = int64(QDtls__HandshakeNotStarted)
-	qt.EnumMap["network.QDtls__HandshakeInProgress"] = int64(QDtls__HandshakeInProgress)
-	qt.EnumMap["network.QDtls__PeerVerificationFailed"] = int64(QDtls__PeerVerificationFailed)
-	qt.EnumMap["network.QDtls__HandshakeComplete"] = int64(QDtls__HandshakeComplete)
-	qt.ItfMap["network.QDtlsClientVerifier_ITF"] = QDtlsClientVerifier{}
-	qt.ItfMap["network.QHostAddress_ITF"] = QHostAddress{}
-	qt.FuncMap["network.NewQHostAddress"] = NewQHostAddress
-	qt.FuncMap["network.NewQHostAddress2"] = NewQHostAddress2
-	qt.FuncMap["network.NewQHostAddress3"] = NewQHostAddress3
-	qt.FuncMap["network.NewQHostAddress4"] = NewQHostAddress4
-	qt.FuncMap["network.NewQHostAddress7"] = NewQHostAddress7
-	qt.FuncMap["network.NewQHostAddress8"] = NewQHostAddress8
-	qt.FuncMap["network.NewQHostAddress9"] = NewQHostAddress9
-	qt.EnumMap["network.QHostAddress__Null"] = int64(QHostAddress__Null)
-	qt.EnumMap["network.QHostAddress__Broadcast"] = int64(QHostAddress__Broadcast)
-	qt.EnumMap["network.QHostAddress__LocalHost"] = int64(QHostAddress__LocalHost)
-	qt.EnumMap["network.QHostAddress__LocalHostIPv6"] = int64(QHostAddress__LocalHostIPv6)
-	qt.EnumMap["network.QHostAddress__Any"] = int64(QHostAddress__Any)
-	qt.EnumMap["network.QHostAddress__AnyIPv6"] = int64(QHostAddress__AnyIPv6)
-	qt.EnumMap["network.QHostAddress__AnyIPv4"] = int64(QHostAddress__AnyIPv4)
-	qt.EnumMap["network.QHostAddress__ConvertV4MappedToIPv4"] = int64(QHostAddress__ConvertV4MappedToIPv4)
-	qt.EnumMap["network.QHostAddress__ConvertV4CompatToIPv4"] = int64(QHostAddress__ConvertV4CompatToIPv4)
-	qt.EnumMap["network.QHostAddress__ConvertUnspecifiedAddress"] = int64(QHostAddress__ConvertUnspecifiedAddress)
-	qt.EnumMap["network.QHostAddress__ConvertLocalHost"] = int64(QHostAddress__ConvertLocalHost)
-	qt.EnumMap["network.QHostAddress__TolerantConversion"] = int64(QHostAddress__TolerantConversion)
-	qt.EnumMap["network.QHostAddress__StrictConversion"] = int64(QHostAddress__StrictConversion)
-	qt.ItfMap["network.QHostInfo_ITF"] = QHostInfo{}
-	qt.FuncMap["network.NewQHostInfo"] = NewQHostInfo
-	qt.FuncMap["network.NewQHostInfo2"] = NewQHostInfo2
-	qt.FuncMap["network.QHostInfo_AbortHostLookup"] = QHostInfo_AbortHostLookup
-	qt.FuncMap["network.QHostInfo_FromName"] = QHostInfo_FromName
-	qt.FuncMap["network.QHostInfo_LocalDomainName"] = QHostInfo_LocalDomainName
-	qt.FuncMap["network.QHostInfo_LocalHostName"] = QHostInfo_LocalHostName
-	qt.FuncMap["network.QHostInfo_LookupHost"] = QHostInfo_LookupHost
-	qt.EnumMap["network.QHostInfo__NoError"] = int64(QHostInfo__NoError)
-	qt.EnumMap["network.QHostInfo__HostNotFound"] = int64(QHostInfo__HostNotFound)
-	qt.EnumMap["network.QHostInfo__UnknownError"] = int64(QHostInfo__UnknownError)
-	qt.ItfMap["network.QHstsPolicy_ITF"] = QHstsPolicy{}
-	qt.FuncMap["network.NewQHstsPolicy"] = NewQHstsPolicy
-	qt.FuncMap["network.NewQHstsPolicy2"] = NewQHstsPolicy2
-	qt.FuncMap["network.NewQHstsPolicy3"] = NewQHstsPolicy3
-	qt.EnumMap["network.QHstsPolicy__IncludeSubDomains"] = int64(QHstsPolicy__IncludeSubDomains)
-	qt.ItfMap["network.QHttpMultiPart_ITF"] = QHttpMultiPart{}
-	qt.FuncMap["network.NewQHttpMultiPart"] = NewQHttpMultiPart
-	qt.FuncMap["network.NewQHttpMultiPart2"] = NewQHttpMultiPart2
-	qt.EnumMap["network.QHttpMultiPart__MixedType"] = int64(QHttpMultiPart__MixedType)
-	qt.EnumMap["network.QHttpMultiPart__RelatedType"] = int64(QHttpMultiPart__RelatedType)
-	qt.EnumMap["network.QHttpMultiPart__FormDataType"] = int64(QHttpMultiPart__FormDataType)
-	qt.EnumMap["network.QHttpMultiPart__AlternativeType"] = int64(QHttpMultiPart__AlternativeType)
-	qt.ItfMap["network.QHttpPart_ITF"] = QHttpPart{}
-	qt.FuncMap["network.NewQHttpPart"] = NewQHttpPart
-	qt.FuncMap["network.NewQHttpPart2"] = NewQHttpPart2
-	qt.ItfMap["network.QIPv6Address_ITF"] = QIPv6Address{}
-	qt.ItfMap["network.QLocalServer_ITF"] = QLocalServer{}
-	qt.FuncMap["network.NewQLocalServer"] = NewQLocalServer
-	qt.FuncMap["network.QLocalServer_RemoveServer"] = QLocalServer_RemoveServer
-	qt.EnumMap["network.QLocalServer__NoOptions"] = int64(QLocalServer__NoOptions)
-	qt.EnumMap["network.QLocalServer__UserAccessOption"] = int64(QLocalServer__UserAccessOption)
-	qt.EnumMap["network.QLocalServer__GroupAccessOption"] = int64(QLocalServer__GroupAccessOption)
-	qt.EnumMap["network.QLocalServer__OtherAccessOption"] = int64(QLocalServer__OtherAccessOption)
-	qt.EnumMap["network.QLocalServer__WorldAccessOption"] = int64(QLocalServer__WorldAccessOption)
-	qt.ItfMap["network.QLocalSocket_ITF"] = QLocalSocket{}
-	qt.FuncMap["network.NewQLocalSocket"] = NewQLocalSocket
-	qt.EnumMap["network.QLocalSocket__ConnectionRefusedError"] = int64(QLocalSocket__ConnectionRefusedError)
-	qt.EnumMap["network.QLocalSocket__PeerClosedError"] = int64(QLocalSocket__PeerClosedError)
-	qt.EnumMap["network.QLocalSocket__ServerNotFoundError"] = int64(QLocalSocket__ServerNotFoundError)
-	qt.EnumMap["network.QLocalSocket__SocketAccessError"] = int64(QLocalSocket__SocketAccessError)
-	qt.EnumMap["network.QLocalSocket__SocketResourceError"] = int64(QLocalSocket__SocketResourceError)
-	qt.EnumMap["network.QLocalSocket__SocketTimeoutError"] = int64(QLocalSocket__SocketTimeoutError)
-	qt.EnumMap["network.QLocalSocket__DatagramTooLargeError"] = int64(QLocalSocket__DatagramTooLargeError)
-	qt.EnumMap["network.QLocalSocket__ConnectionError"] = int64(QLocalSocket__ConnectionError)
-	qt.EnumMap["network.QLocalSocket__UnsupportedSocketOperationError"] = int64(QLocalSocket__UnsupportedSocketOperationError)
-	qt.EnumMap["network.QLocalSocket__UnknownSocketError"] = int64(QLocalSocket__UnknownSocketError)
-	qt.EnumMap["network.QLocalSocket__OperationError"] = int64(QLocalSocket__OperationError)
-	qt.EnumMap["network.QLocalSocket__UnconnectedState"] = int64(QLocalSocket__UnconnectedState)
-	qt.EnumMap["network.QLocalSocket__ConnectingState"] = int64(QLocalSocket__ConnectingState)
-	qt.EnumMap["network.QLocalSocket__ConnectedState"] = int64(QLocalSocket__ConnectedState)
-	qt.EnumMap["network.QLocalSocket__ClosingState"] = int64(QLocalSocket__ClosingState)
-	qt.ItfMap["network.QNetworkAccessManager_ITF"] = QNetworkAccessManager{}
-	qt.FuncMap["network.NewQNetworkAccessManager"] = NewQNetworkAccessManager
-	qt.EnumMap["network.QNetworkAccessManager__HeadOperation"] = int64(QNetworkAccessManager__HeadOperation)
-	qt.EnumMap["network.QNetworkAccessManager__GetOperation"] = int64(QNetworkAccessManager__GetOperation)
-	qt.EnumMap["network.QNetworkAccessManager__PutOperation"] = int64(QNetworkAccessManager__PutOperation)
-	qt.EnumMap["network.QNetworkAccessManager__PostOperation"] = int64(QNetworkAccessManager__PostOperation)
-	qt.EnumMap["network.QNetworkAccessManager__DeleteOperation"] = int64(QNetworkAccessManager__DeleteOperation)
-	qt.EnumMap["network.QNetworkAccessManager__CustomOperation"] = int64(QNetworkAccessManager__CustomOperation)
-	qt.EnumMap["network.QNetworkAccessManager__UnknownOperation"] = int64(QNetworkAccessManager__UnknownOperation)
-	qt.EnumMap["network.QNetworkAccessManager__UnknownAccessibility"] = int64(QNetworkAccessManager__UnknownAccessibility)
-	qt.EnumMap["network.QNetworkAccessManager__NotAccessible"] = int64(QNetworkAccessManager__NotAccessible)
-	qt.EnumMap["network.QNetworkAccessManager__Accessible"] = int64(QNetworkAccessManager__Accessible)
-	qt.ItfMap["network.QNetworkAddressEntry_ITF"] = QNetworkAddressEntry{}
-	qt.FuncMap["network.NewQNetworkAddressEntry"] = NewQNetworkAddressEntry
-	qt.FuncMap["network.NewQNetworkAddressEntry2"] = NewQNetworkAddressEntry2
-	qt.EnumMap["network.QNetworkAddressEntry__DnsEligibilityUnknown"] = int64(QNetworkAddressEntry__DnsEligibilityUnknown)
-	qt.EnumMap["network.QNetworkAddressEntry__DnsIneligible"] = int64(QNetworkAddressEntry__DnsIneligible)
-	qt.EnumMap["network.QNetworkAddressEntry__DnsEligible"] = int64(QNetworkAddressEntry__DnsEligible)
-	qt.ItfMap["network.QNetworkCacheMetaData_ITF"] = QNetworkCacheMetaData{}
-	qt.FuncMap["network.NewQNetworkCacheMetaData"] = NewQNetworkCacheMetaData
-	qt.FuncMap["network.NewQNetworkCacheMetaData2"] = NewQNetworkCacheMetaData2
-	qt.ItfMap["network.QNetworkConfiguration_ITF"] = QNetworkConfiguration{}
-	qt.FuncMap["network.NewQNetworkConfiguration"] = NewQNetworkConfiguration
-	qt.FuncMap["network.NewQNetworkConfiguration2"] = NewQNetworkConfiguration2
-	qt.EnumMap["network.QNetworkConfiguration__InternetAccessPoint"] = int64(QNetworkConfiguration__InternetAccessPoint)
-	qt.EnumMap["network.QNetworkConfiguration__ServiceNetwork"] = int64(QNetworkConfiguration__ServiceNetwork)
-	qt.EnumMap["network.QNetworkConfiguration__UserChoice"] = int64(QNetworkConfiguration__UserChoice)
-	qt.EnumMap["network.QNetworkConfiguration__Invalid"] = int64(QNetworkConfiguration__Invalid)
-	qt.EnumMap["network.QNetworkConfiguration__UnknownPurpose"] = int64(QNetworkConfiguration__UnknownPurpose)
-	qt.EnumMap["network.QNetworkConfiguration__PublicPurpose"] = int64(QNetworkConfiguration__PublicPurpose)
-	qt.EnumMap["network.QNetworkConfiguration__PrivatePurpose"] = int64(QNetworkConfiguration__PrivatePurpose)
-	qt.EnumMap["network.QNetworkConfiguration__ServiceSpecificPurpose"] = int64(QNetworkConfiguration__ServiceSpecificPurpose)
-	qt.EnumMap["network.QNetworkConfiguration__Undefined"] = int64(QNetworkConfiguration__Undefined)
-	qt.EnumMap["network.QNetworkConfiguration__Defined"] = int64(QNetworkConfiguration__Defined)
-	qt.EnumMap["network.QNetworkConfiguration__Discovered"] = int64(QNetworkConfiguration__Discovered)
-	qt.EnumMap["network.QNetworkConfiguration__Active"] = int64(QNetworkConfiguration__Active)
-	qt.EnumMap["network.QNetworkConfiguration__BearerUnknown"] = int64(QNetworkConfiguration__BearerUnknown)
-	qt.EnumMap["network.QNetworkConfiguration__BearerEthernet"] = int64(QNetworkConfiguration__BearerEthernet)
-	qt.EnumMap["network.QNetworkConfiguration__BearerWLAN"] = int64(QNetworkConfiguration__BearerWLAN)
-	qt.EnumMap["network.QNetworkConfiguration__Bearer2G"] = int64(QNetworkConfiguration__Bearer2G)
-	qt.EnumMap["network.QNetworkConfiguration__BearerCDMA2000"] = int64(QNetworkConfiguration__BearerCDMA2000)
-	qt.EnumMap["network.QNetworkConfiguration__BearerWCDMA"] = int64(QNetworkConfiguration__BearerWCDMA)
-	qt.EnumMap["network.QNetworkConfiguration__BearerHSPA"] = int64(QNetworkConfiguration__BearerHSPA)
-	qt.EnumMap["network.QNetworkConfiguration__BearerBluetooth"] = int64(QNetworkConfiguration__BearerBluetooth)
-	qt.EnumMap["network.QNetworkConfiguration__BearerWiMAX"] = int64(QNetworkConfiguration__BearerWiMAX)
-	qt.EnumMap["network.QNetworkConfiguration__BearerEVDO"] = int64(QNetworkConfiguration__BearerEVDO)
-	qt.EnumMap["network.QNetworkConfiguration__BearerLTE"] = int64(QNetworkConfiguration__BearerLTE)
-	qt.EnumMap["network.QNetworkConfiguration__Bearer3G"] = int64(QNetworkConfiguration__Bearer3G)
-	qt.EnumMap["network.QNetworkConfiguration__Bearer4G"] = int64(QNetworkConfiguration__Bearer4G)
-	qt.ItfMap["network.QNetworkConfigurationManager_ITF"] = QNetworkConfigurationManager{}
-	qt.FuncMap["network.NewQNetworkConfigurationManager"] = NewQNetworkConfigurationManager
-	qt.EnumMap["network.QNetworkConfigurationManager__CanStartAndStopInterfaces"] = int64(QNetworkConfigurationManager__CanStartAndStopInterfaces)
-	qt.EnumMap["network.QNetworkConfigurationManager__DirectConnectionRouting"] = int64(QNetworkConfigurationManager__DirectConnectionRouting)
-	qt.EnumMap["network.QNetworkConfigurationManager__SystemSessionSupport"] = int64(QNetworkConfigurationManager__SystemSessionSupport)
-	qt.EnumMap["network.QNetworkConfigurationManager__ApplicationLevelRoaming"] = int64(QNetworkConfigurationManager__ApplicationLevelRoaming)
-	qt.EnumMap["network.QNetworkConfigurationManager__ForcedRoaming"] = int64(QNetworkConfigurationManager__ForcedRoaming)
-	qt.EnumMap["network.QNetworkConfigurationManager__DataStatistics"] = int64(QNetworkConfigurationManager__DataStatistics)
-	qt.EnumMap["network.QNetworkConfigurationManager__NetworkSessionRequired"] = int64(QNetworkConfigurationManager__NetworkSessionRequired)
-	qt.ItfMap["network.QNetworkCookie_ITF"] = QNetworkCookie{}
-	qt.FuncMap["network.NewQNetworkCookie"] = NewQNetworkCookie
-	qt.FuncMap["network.NewQNetworkCookie2"] = NewQNetworkCookie2
-	qt.FuncMap["network.QNetworkCookie_ParseCookies"] = QNetworkCookie_ParseCookies
-	qt.EnumMap["network.QNetworkCookie__NameAndValueOnly"] = int64(QNetworkCookie__NameAndValueOnly)
-	qt.EnumMap["network.QNetworkCookie__Full"] = int64(QNetworkCookie__Full)
-	qt.ItfMap["network.QNetworkCookieJar_ITF"] = QNetworkCookieJar{}
-	qt.FuncMap["network.NewQNetworkCookieJar"] = NewQNetworkCookieJar
-	qt.ItfMap["network.QNetworkDatagram_ITF"] = QNetworkDatagram{}
-	qt.FuncMap["network.NewQNetworkDatagram"] = NewQNetworkDatagram
-	qt.FuncMap["network.NewQNetworkDatagram2"] = NewQNetworkDatagram2
-	qt.FuncMap["network.NewQNetworkDatagram3"] = NewQNetworkDatagram3
-	qt.ItfMap["network.QNetworkDiskCache_ITF"] = QNetworkDiskCache{}
-	qt.FuncMap["network.NewQNetworkDiskCache"] = NewQNetworkDiskCache
-	qt.ItfMap["network.QNetworkInterface_ITF"] = QNetworkInterface{}
-	qt.FuncMap["network.NewQNetworkInterface"] = NewQNetworkInterface
-	qt.FuncMap["network.NewQNetworkInterface2"] = NewQNetworkInterface2
-	qt.FuncMap["network.QNetworkInterface_AllAddresses"] = QNetworkInterface_AllAddresses
-	qt.FuncMap["network.QNetworkInterface_AllInterfaces"] = QNetworkInterface_AllInterfaces
-	qt.FuncMap["network.QNetworkInterface_InterfaceFromIndex"] = QNetworkInterface_InterfaceFromIndex
-	qt.FuncMap["network.QNetworkInterface_InterfaceFromName"] = QNetworkInterface_InterfaceFromName
-	qt.FuncMap["network.QNetworkInterface_InterfaceIndexFromName"] = QNetworkInterface_InterfaceIndexFromName
-	qt.FuncMap["network.QNetworkInterface_InterfaceNameFromIndex"] = QNetworkInterface_InterfaceNameFromIndex
-	qt.EnumMap["network.QNetworkInterface__Loopback"] = int64(QNetworkInterface__Loopback)
-	qt.EnumMap["network.QNetworkInterface__Virtual"] = int64(QNetworkInterface__Virtual)
-	qt.EnumMap["network.QNetworkInterface__Ethernet"] = int64(QNetworkInterface__Ethernet)
-	qt.EnumMap["network.QNetworkInterface__Slip"] = int64(QNetworkInterface__Slip)
-	qt.EnumMap["network.QNetworkInterface__CanBus"] = int64(QNetworkInterface__CanBus)
-	qt.EnumMap["network.QNetworkInterface__Ppp"] = int64(QNetworkInterface__Ppp)
-	qt.EnumMap["network.QNetworkInterface__Fddi"] = int64(QNetworkInterface__Fddi)
-	qt.EnumMap["network.QNetworkInterface__Wifi"] = int64(QNetworkInterface__Wifi)
-	qt.EnumMap["network.QNetworkInterface__Ieee80211"] = int64(QNetworkInterface__Ieee80211)
-	qt.EnumMap["network.QNetworkInterface__Phonet"] = int64(QNetworkInterface__Phonet)
-	qt.EnumMap["network.QNetworkInterface__Ieee802154"] = int64(QNetworkInterface__Ieee802154)
-	qt.EnumMap["network.QNetworkInterface__SixLoWPAN"] = int64(QNetworkInterface__SixLoWPAN)
-	qt.EnumMap["network.QNetworkInterface__Ieee80216"] = int64(QNetworkInterface__Ieee80216)
-	qt.EnumMap["network.QNetworkInterface__Ieee1394"] = int64(QNetworkInterface__Ieee1394)
-	qt.EnumMap["network.QNetworkInterface__Unknown"] = int64(QNetworkInterface__Unknown)
-	qt.EnumMap["network.QNetworkInterface__IsUp"] = int64(QNetworkInterface__IsUp)
-	qt.EnumMap["network.QNetworkInterface__IsRunning"] = int64(QNetworkInterface__IsRunning)
-	qt.EnumMap["network.QNetworkInterface__CanBroadcast"] = int64(QNetworkInterface__CanBroadcast)
-	qt.EnumMap["network.QNetworkInterface__IsLoopBack"] = int64(QNetworkInterface__IsLoopBack)
-	qt.EnumMap["network.QNetworkInterface__IsPointToPoint"] = int64(QNetworkInterface__IsPointToPoint)
-	qt.EnumMap["network.QNetworkInterface__CanMulticast"] = int64(QNetworkInterface__CanMulticast)
-	qt.ItfMap["network.QNetworkProxy_ITF"] = QNetworkProxy{}
-	qt.FuncMap["network.NewQNetworkProxy"] = NewQNetworkProxy
-	qt.FuncMap["network.NewQNetworkProxy2"] = NewQNetworkProxy2
-	qt.FuncMap["network.NewQNetworkProxy3"] = NewQNetworkProxy3
-	qt.FuncMap["network.QNetworkProxy_ApplicationProxy"] = QNetworkProxy_ApplicationProxy
-	qt.FuncMap["network.QNetworkProxy_SetApplicationProxy"] = QNetworkProxy_SetApplicationProxy
-	qt.EnumMap["network.QNetworkProxy__DefaultProxy"] = int64(QNetworkProxy__DefaultProxy)
-	qt.EnumMap["network.QNetworkProxy__Socks5Proxy"] = int64(QNetworkProxy__Socks5Proxy)
-	qt.EnumMap["network.QNetworkProxy__NoProxy"] = int64(QNetworkProxy__NoProxy)
-	qt.EnumMap["network.QNetworkProxy__HttpProxy"] = int64(QNetworkProxy__HttpProxy)
-	qt.EnumMap["network.QNetworkProxy__HttpCachingProxy"] = int64(QNetworkProxy__HttpCachingProxy)
-	qt.EnumMap["network.QNetworkProxy__FtpCachingProxy"] = int64(QNetworkProxy__FtpCachingProxy)
-	qt.EnumMap["network.QNetworkProxy__TunnelingCapability"] = int64(QNetworkProxy__TunnelingCapability)
-	qt.EnumMap["network.QNetworkProxy__ListeningCapability"] = int64(QNetworkProxy__ListeningCapability)
-	qt.EnumMap["network.QNetworkProxy__UdpTunnelingCapability"] = int64(QNetworkProxy__UdpTunnelingCapability)
-	qt.EnumMap["network.QNetworkProxy__CachingCapability"] = int64(QNetworkProxy__CachingCapability)
-	qt.EnumMap["network.QNetworkProxy__HostNameLookupCapability"] = int64(QNetworkProxy__HostNameLookupCapability)
-	qt.EnumMap["network.QNetworkProxy__SctpTunnelingCapability"] = int64(QNetworkProxy__SctpTunnelingCapability)
-	qt.EnumMap["network.QNetworkProxy__SctpListeningCapability"] = int64(QNetworkProxy__SctpListeningCapability)
-	qt.ItfMap["network.QNetworkProxyFactory_ITF"] = QNetworkProxyFactory{}
-	qt.FuncMap["network.NewQNetworkProxyFactory"] = NewQNetworkProxyFactory
-	qt.FuncMap["network.QNetworkProxyFactory_ProxyForQuery"] = QNetworkProxyFactory_ProxyForQuery
-	qt.FuncMap["network.QNetworkProxyFactory_SetApplicationProxyFactory"] = QNetworkProxyFactory_SetApplicationProxyFactory
-	qt.FuncMap["network.QNetworkProxyFactory_SetUseSystemConfiguration"] = QNetworkProxyFactory_SetUseSystemConfiguration
-	qt.FuncMap["network.QNetworkProxyFactory_SystemProxyForQuery"] = QNetworkProxyFactory_SystemProxyForQuery
-	qt.FuncMap["network.QNetworkProxyFactory_UsesSystemConfiguration"] = QNetworkProxyFactory_UsesSystemConfiguration
-	qt.ItfMap["network.QNetworkProxyQuery_ITF"] = QNetworkProxyQuery{}
-	qt.FuncMap["network.NewQNetworkProxyQuery"] = NewQNetworkProxyQuery
-	qt.FuncMap["network.NewQNetworkProxyQuery2"] = NewQNetworkProxyQuery2
-	qt.FuncMap["network.NewQNetworkProxyQuery3"] = NewQNetworkProxyQuery3
-	qt.FuncMap["network.NewQNetworkProxyQuery4"] = NewQNetworkProxyQuery4
-	qt.FuncMap["network.NewQNetworkProxyQuery8"] = NewQNetworkProxyQuery8
-	qt.EnumMap["network.QNetworkProxyQuery__TcpSocket"] = int64(QNetworkProxyQuery__TcpSocket)
-	qt.EnumMap["network.QNetworkProxyQuery__UdpSocket"] = int64(QNetworkProxyQuery__UdpSocket)
-	qt.EnumMap["network.QNetworkProxyQuery__SctpSocket"] = int64(QNetworkProxyQuery__SctpSocket)
-	qt.EnumMap["network.QNetworkProxyQuery__TcpServer"] = int64(QNetworkProxyQuery__TcpServer)
-	qt.EnumMap["network.QNetworkProxyQuery__UrlRequest"] = int64(QNetworkProxyQuery__UrlRequest)
-	qt.EnumMap["network.QNetworkProxyQuery__SctpServer"] = int64(QNetworkProxyQuery__SctpServer)
-	qt.ItfMap["network.QNetworkReply_ITF"] = QNetworkReply{}
-	qt.FuncMap["network.NewQNetworkReply"] = NewQNetworkReply
-	qt.EnumMap["network.QNetworkReply__NoError"] = int64(QNetworkReply__NoError)
-	qt.EnumMap["network.QNetworkReply__ConnectionRefusedError"] = int64(QNetworkReply__ConnectionRefusedError)
-	qt.EnumMap["network.QNetworkReply__RemoteHostClosedError"] = int64(QNetworkReply__RemoteHostClosedError)
-	qt.EnumMap["network.QNetworkReply__HostNotFoundError"] = int64(QNetworkReply__HostNotFoundError)
-	qt.EnumMap["network.QNetworkReply__TimeoutError"] = int64(QNetworkReply__TimeoutError)
-	qt.EnumMap["network.QNetworkReply__OperationCanceledError"] = int64(QNetworkReply__OperationCanceledError)
-	qt.EnumMap["network.QNetworkReply__SslHandshakeFailedError"] = int64(QNetworkReply__SslHandshakeFailedError)
-	qt.EnumMap["network.QNetworkReply__TemporaryNetworkFailureError"] = int64(QNetworkReply__TemporaryNetworkFailureError)
-	qt.EnumMap["network.QNetworkReply__NetworkSessionFailedError"] = int64(QNetworkReply__NetworkSessionFailedError)
-	qt.EnumMap["network.QNetworkReply__BackgroundRequestNotAllowedError"] = int64(QNetworkReply__BackgroundRequestNotAllowedError)
-	qt.EnumMap["network.QNetworkReply__TooManyRedirectsError"] = int64(QNetworkReply__TooManyRedirectsError)
-	qt.EnumMap["network.QNetworkReply__InsecureRedirectError"] = int64(QNetworkReply__InsecureRedirectError)
-	qt.EnumMap["network.QNetworkReply__UnknownNetworkError"] = int64(QNetworkReply__UnknownNetworkError)
-	qt.EnumMap["network.QNetworkReply__ProxyConnectionRefusedError"] = int64(QNetworkReply__ProxyConnectionRefusedError)
-	qt.EnumMap["network.QNetworkReply__ProxyConnectionClosedError"] = int64(QNetworkReply__ProxyConnectionClosedError)
-	qt.EnumMap["network.QNetworkReply__ProxyNotFoundError"] = int64(QNetworkReply__ProxyNotFoundError)
-	qt.EnumMap["network.QNetworkReply__ProxyTimeoutError"] = int64(QNetworkReply__ProxyTimeoutError)
-	qt.EnumMap["network.QNetworkReply__ProxyAuthenticationRequiredError"] = int64(QNetworkReply__ProxyAuthenticationRequiredError)
-	qt.EnumMap["network.QNetworkReply__UnknownProxyError"] = int64(QNetworkReply__UnknownProxyError)
-	qt.EnumMap["network.QNetworkReply__ContentAccessDenied"] = int64(QNetworkReply__ContentAccessDenied)
-	qt.EnumMap["network.QNetworkReply__ContentOperationNotPermittedError"] = int64(QNetworkReply__ContentOperationNotPermittedError)
-	qt.EnumMap["network.QNetworkReply__ContentNotFoundError"] = int64(QNetworkReply__ContentNotFoundError)
-	qt.EnumMap["network.QNetworkReply__AuthenticationRequiredError"] = int64(QNetworkReply__AuthenticationRequiredError)
-	qt.EnumMap["network.QNetworkReply__ContentReSendError"] = int64(QNetworkReply__ContentReSendError)
-	qt.EnumMap["network.QNetworkReply__ContentConflictError"] = int64(QNetworkReply__ContentConflictError)
-	qt.EnumMap["network.QNetworkReply__ContentGoneError"] = int64(QNetworkReply__ContentGoneError)
-	qt.EnumMap["network.QNetworkReply__UnknownContentError"] = int64(QNetworkReply__UnknownContentError)
-	qt.EnumMap["network.QNetworkReply__ProtocolUnknownError"] = int64(QNetworkReply__ProtocolUnknownError)
-	qt.EnumMap["network.QNetworkReply__ProtocolInvalidOperationError"] = int64(QNetworkReply__ProtocolInvalidOperationError)
-	qt.EnumMap["network.QNetworkReply__ProtocolFailure"] = int64(QNetworkReply__ProtocolFailure)
-	qt.EnumMap["network.QNetworkReply__InternalServerError"] = int64(QNetworkReply__InternalServerError)
-	qt.EnumMap["network.QNetworkReply__OperationNotImplementedError"] = int64(QNetworkReply__OperationNotImplementedError)
-	qt.EnumMap["network.QNetworkReply__ServiceUnavailableError"] = int64(QNetworkReply__ServiceUnavailableError)
-	qt.EnumMap["network.QNetworkReply__UnknownServerError"] = int64(QNetworkReply__UnknownServerError)
-	qt.ItfMap["network.QNetworkRequest_ITF"] = QNetworkRequest{}
-	qt.FuncMap["network.NewQNetworkRequest"] = NewQNetworkRequest
-	qt.FuncMap["network.NewQNetworkRequest2"] = NewQNetworkRequest2
-	qt.EnumMap["network.QNetworkRequest__HttpStatusCodeAttribute"] = int64(QNetworkRequest__HttpStatusCodeAttribute)
-	qt.EnumMap["network.QNetworkRequest__HttpReasonPhraseAttribute"] = int64(QNetworkRequest__HttpReasonPhraseAttribute)
-	qt.EnumMap["network.QNetworkRequest__RedirectionTargetAttribute"] = int64(QNetworkRequest__RedirectionTargetAttribute)
-	qt.EnumMap["network.QNetworkRequest__ConnectionEncryptedAttribute"] = int64(QNetworkRequest__ConnectionEncryptedAttribute)
-	qt.EnumMap["network.QNetworkRequest__CacheLoadControlAttribute"] = int64(QNetworkRequest__CacheLoadControlAttribute)
-	qt.EnumMap["network.QNetworkRequest__CacheSaveControlAttribute"] = int64(QNetworkRequest__CacheSaveControlAttribute)
-	qt.EnumMap["network.QNetworkRequest__SourceIsFromCacheAttribute"] = int64(QNetworkRequest__SourceIsFromCacheAttribute)
-	qt.EnumMap["network.QNetworkRequest__DoNotBufferUploadDataAttribute"] = int64(QNetworkRequest__DoNotBufferUploadDataAttribute)
-	qt.EnumMap["network.QNetworkRequest__HttpPipeliningAllowedAttribute"] = int64(QNetworkRequest__HttpPipeliningAllowedAttribute)
-	qt.EnumMap["network.QNetworkRequest__HttpPipeliningWasUsedAttribute"] = int64(QNetworkRequest__HttpPipeliningWasUsedAttribute)
-	qt.EnumMap["network.QNetworkRequest__CustomVerbAttribute"] = int64(QNetworkRequest__CustomVerbAttribute)
-	qt.EnumMap["network.QNetworkRequest__CookieLoadControlAttribute"] = int64(QNetworkRequest__CookieLoadControlAttribute)
-	qt.EnumMap["network.QNetworkRequest__AuthenticationReuseAttribute"] = int64(QNetworkRequest__AuthenticationReuseAttribute)
-	qt.EnumMap["network.QNetworkRequest__CookieSaveControlAttribute"] = int64(QNetworkRequest__CookieSaveControlAttribute)
-	qt.EnumMap["network.QNetworkRequest__MaximumDownloadBufferSizeAttribute"] = int64(QNetworkRequest__MaximumDownloadBufferSizeAttribute)
-	qt.EnumMap["network.QNetworkRequest__DownloadBufferAttribute"] = int64(QNetworkRequest__DownloadBufferAttribute)
-	qt.EnumMap["network.QNetworkRequest__SynchronousRequestAttribute"] = int64(QNetworkRequest__SynchronousRequestAttribute)
-	qt.EnumMap["network.QNetworkRequest__BackgroundRequestAttribute"] = int64(QNetworkRequest__BackgroundRequestAttribute)
-	qt.EnumMap["network.QNetworkRequest__SpdyAllowedAttribute"] = int64(QNetworkRequest__SpdyAllowedAttribute)
-	qt.EnumMap["network.QNetworkRequest__SpdyWasUsedAttribute"] = int64(QNetworkRequest__SpdyWasUsedAttribute)
-	qt.EnumMap["network.QNetworkRequest__EmitAllUploadProgressSignalsAttribute"] = int64(QNetworkRequest__EmitAllUploadProgressSignalsAttribute)
-	qt.EnumMap["network.QNetworkRequest__FollowRedirectsAttribute"] = int64(QNetworkRequest__FollowRedirectsAttribute)
-	qt.EnumMap["network.QNetworkRequest__HTTP2AllowedAttribute"] = int64(QNetworkRequest__HTTP2AllowedAttribute)
-	qt.EnumMap["network.QNetworkRequest__HTTP2WasUsedAttribute"] = int64(QNetworkRequest__HTTP2WasUsedAttribute)
-	qt.EnumMap["network.QNetworkRequest__OriginalContentLengthAttribute"] = int64(QNetworkRequest__OriginalContentLengthAttribute)
-	qt.EnumMap["network.QNetworkRequest__RedirectPolicyAttribute"] = int64(QNetworkRequest__RedirectPolicyAttribute)
-	qt.EnumMap["network.QNetworkRequest__Http2DirectAttribute"] = int64(QNetworkRequest__Http2DirectAttribute)
-	qt.EnumMap["network.QNetworkRequest__ResourceTypeAttribute"] = int64(QNetworkRequest__ResourceTypeAttribute)
-	qt.EnumMap["network.QNetworkRequest__User"] = int64(QNetworkRequest__User)
-	qt.EnumMap["network.QNetworkRequest__UserMax"] = int64(QNetworkRequest__UserMax)
-	qt.EnumMap["network.QNetworkRequest__ContentTypeHeader"] = int64(QNetworkRequest__ContentTypeHeader)
-	qt.EnumMap["network.QNetworkRequest__ContentLengthHeader"] = int64(QNetworkRequest__ContentLengthHeader)
-	qt.EnumMap["network.QNetworkRequest__LocationHeader"] = int64(QNetworkRequest__LocationHeader)
-	qt.EnumMap["network.QNetworkRequest__LastModifiedHeader"] = int64(QNetworkRequest__LastModifiedHeader)
-	qt.EnumMap["network.QNetworkRequest__CookieHeader"] = int64(QNetworkRequest__CookieHeader)
-	qt.EnumMap["network.QNetworkRequest__SetCookieHeader"] = int64(QNetworkRequest__SetCookieHeader)
-	qt.EnumMap["network.QNetworkRequest__ContentDispositionHeader"] = int64(QNetworkRequest__ContentDispositionHeader)
-	qt.EnumMap["network.QNetworkRequest__UserAgentHeader"] = int64(QNetworkRequest__UserAgentHeader)
-	qt.EnumMap["network.QNetworkRequest__ServerHeader"] = int64(QNetworkRequest__ServerHeader)
-	qt.EnumMap["network.QNetworkRequest__IfModifiedSinceHeader"] = int64(QNetworkRequest__IfModifiedSinceHeader)
-	qt.EnumMap["network.QNetworkRequest__ETagHeader"] = int64(QNetworkRequest__ETagHeader)
-	qt.EnumMap["network.QNetworkRequest__IfMatchHeader"] = int64(QNetworkRequest__IfMatchHeader)
-	qt.EnumMap["network.QNetworkRequest__IfNoneMatchHeader"] = int64(QNetworkRequest__IfNoneMatchHeader)
-	qt.EnumMap["network.QNetworkRequest__AlwaysNetwork"] = int64(QNetworkRequest__AlwaysNetwork)
-	qt.EnumMap["network.QNetworkRequest__PreferNetwork"] = int64(QNetworkRequest__PreferNetwork)
-	qt.EnumMap["network.QNetworkRequest__PreferCache"] = int64(QNetworkRequest__PreferCache)
-	qt.EnumMap["network.QNetworkRequest__AlwaysCache"] = int64(QNetworkRequest__AlwaysCache)
-	qt.EnumMap["network.QNetworkRequest__Automatic"] = int64(QNetworkRequest__Automatic)
-	qt.EnumMap["network.QNetworkRequest__Manual"] = int64(QNetworkRequest__Manual)
-	qt.EnumMap["network.QNetworkRequest__HighPriority"] = int64(QNetworkRequest__HighPriority)
-	qt.EnumMap["network.QNetworkRequest__NormalPriority"] = int64(QNetworkRequest__NormalPriority)
-	qt.EnumMap["network.QNetworkRequest__LowPriority"] = int64(QNetworkRequest__LowPriority)
-	qt.EnumMap["network.QNetworkRequest__ManualRedirectPolicy"] = int64(QNetworkRequest__ManualRedirectPolicy)
-	qt.EnumMap["network.QNetworkRequest__NoLessSafeRedirectPolicy"] = int64(QNetworkRequest__NoLessSafeRedirectPolicy)
-	qt.EnumMap["network.QNetworkRequest__SameOriginRedirectPolicy"] = int64(QNetworkRequest__SameOriginRedirectPolicy)
-	qt.EnumMap["network.QNetworkRequest__UserVerifiedRedirectPolicy"] = int64(QNetworkRequest__UserVerifiedRedirectPolicy)
-	qt.ItfMap["network.QNetworkSession_ITF"] = QNetworkSession{}
-	qt.FuncMap["network.NewQNetworkSession"] = NewQNetworkSession
-	qt.EnumMap["network.QNetworkSession__Invalid"] = int64(QNetworkSession__Invalid)
-	qt.EnumMap["network.QNetworkSession__NotAvailable"] = int64(QNetworkSession__NotAvailable)
-	qt.EnumMap["network.QNetworkSession__Connecting"] = int64(QNetworkSession__Connecting)
-	qt.EnumMap["network.QNetworkSession__Connected"] = int64(QNetworkSession__Connected)
-	qt.EnumMap["network.QNetworkSession__Closing"] = int64(QNetworkSession__Closing)
-	qt.EnumMap["network.QNetworkSession__Disconnected"] = int64(QNetworkSession__Disconnected)
-	qt.EnumMap["network.QNetworkSession__Roaming"] = int64(QNetworkSession__Roaming)
-	qt.EnumMap["network.QNetworkSession__UnknownSessionError"] = int64(QNetworkSession__UnknownSessionError)
-	qt.EnumMap["network.QNetworkSession__SessionAbortedError"] = int64(QNetworkSession__SessionAbortedError)
-	qt.EnumMap["network.QNetworkSession__RoamingError"] = int64(QNetworkSession__RoamingError)
-	qt.EnumMap["network.QNetworkSession__OperationNotSupportedError"] = int64(QNetworkSession__OperationNotSupportedError)
-	qt.EnumMap["network.QNetworkSession__InvalidConfigurationError"] = int64(QNetworkSession__InvalidConfigurationError)
-	qt.EnumMap["network.QNetworkSession__NoPolicy"] = int64(QNetworkSession__NoPolicy)
-	qt.EnumMap["network.QNetworkSession__NoBackgroundTrafficPolicy"] = int64(QNetworkSession__NoBackgroundTrafficPolicy)
-	qt.ItfMap["network.QOcspResponse_ITF"] = QOcspResponse{}
-	qt.FuncMap["network.NewQOcspResponse"] = NewQOcspResponse
-	qt.FuncMap["network.NewQOcspResponse2"] = NewQOcspResponse2
-	qt.FuncMap["network.NewQOcspResponse3"] = NewQOcspResponse3
-	qt.EnumMap["network.QOcspResponse__Good"] = int64(QOcspResponse__Good)
-	qt.EnumMap["network.QOcspResponse__Revoked"] = int64(QOcspResponse__Revoked)
-	qt.EnumMap["network.QOcspResponse__Unknown"] = int64(QOcspResponse__Unknown)
-	qt.EnumMap["network.QOcspResponse__None"] = int64(QOcspResponse__None)
-	qt.EnumMap["network.QOcspResponse__Unspecified"] = int64(QOcspResponse__Unspecified)
-	qt.EnumMap["network.QOcspResponse__KeyCompromise"] = int64(QOcspResponse__KeyCompromise)
-	qt.EnumMap["network.QOcspResponse__CACompromise"] = int64(QOcspResponse__CACompromise)
-	qt.EnumMap["network.QOcspResponse__AffiliationChanged"] = int64(QOcspResponse__AffiliationChanged)
-	qt.EnumMap["network.QOcspResponse__Superseded"] = int64(QOcspResponse__Superseded)
-	qt.EnumMap["network.QOcspResponse__CessationOfOperation"] = int64(QOcspResponse__CessationOfOperation)
-	qt.EnumMap["network.QOcspResponse__CertificateHold"] = int64(QOcspResponse__CertificateHold)
-	qt.EnumMap["network.QOcspResponse__RemoveFromCRL"] = int64(QOcspResponse__RemoveFromCRL)
-	qt.ItfMap["network.QPasswordDigestor_ITF"] = QPasswordDigestor{}
-	qt.ItfMap["network.QSctpServer_ITF"] = QSctpServer{}
-	qt.ItfMap["network.QSctpSocket_ITF"] = QSctpSocket{}
-	qt.ItfMap["network.QSsl_ITF"] = QSsl{}
-	qt.EnumMap["network.QSsl__PrivateKey"] = int64(QSsl__PrivateKey)
-	qt.EnumMap["network.QSsl__PublicKey"] = int64(QSsl__PublicKey)
-	qt.EnumMap["network.QSsl__Pem"] = int64(QSsl__Pem)
-	qt.EnumMap["network.QSsl__Der"] = int64(QSsl__Der)
-	qt.EnumMap["network.QSsl__Opaque"] = int64(QSsl__Opaque)
-	qt.EnumMap["network.QSsl__Rsa"] = int64(QSsl__Rsa)
-	qt.EnumMap["network.QSsl__Dsa"] = int64(QSsl__Dsa)
-	qt.EnumMap["network.QSsl__Ec"] = int64(QSsl__Ec)
-	qt.EnumMap["network.QSsl__Dh"] = int64(QSsl__Dh)
-	qt.EnumMap["network.QSsl__EmailEntry"] = int64(QSsl__EmailEntry)
-	qt.EnumMap["network.QSsl__DnsEntry"] = int64(QSsl__DnsEntry)
-	qt.EnumMap["network.QSsl__IpAddressEntry"] = int64(QSsl__IpAddressEntry)
-	qt.EnumMap["network.QSsl__SslV3"] = int64(QSsl__SslV3)
-	qt.EnumMap["network.QSsl__SslV2"] = int64(QSsl__SslV2)
-	qt.EnumMap["network.QSsl__TlsV1_0"] = int64(QSsl__TlsV1_0)
-	qt.EnumMap["network.QSsl__TlsV1"] = int64(QSsl__TlsV1)
-	qt.EnumMap["network.QSsl__TlsV1_1"] = int64(QSsl__TlsV1_1)
-	qt.EnumMap["network.QSsl__TlsV1_2"] = int64(QSsl__TlsV1_2)
-	qt.EnumMap["network.QSsl__AnyProtocol"] = int64(QSsl__AnyProtocol)
-	qt.EnumMap["network.QSsl__TlsV1SslV3"] = int64(QSsl__TlsV1SslV3)
-	qt.EnumMap["network.QSsl__SecureProtocols"] = int64(QSsl__SecureProtocols)
-	qt.EnumMap["network.QSsl__TlsV1_0OrLater"] = int64(QSsl__TlsV1_0OrLater)
-	qt.EnumMap["network.QSsl__TlsV1_1OrLater"] = int64(QSsl__TlsV1_1OrLater)
-	qt.EnumMap["network.QSsl__TlsV1_2OrLater"] = int64(QSsl__TlsV1_2OrLater)
-	qt.EnumMap["network.QSsl__DtlsV1_0"] = int64(QSsl__DtlsV1_0)
-	qt.EnumMap["network.QSsl__DtlsV1_0OrLater"] = int64(QSsl__DtlsV1_0OrLater)
-	qt.EnumMap["network.QSsl__DtlsV1_2"] = int64(QSsl__DtlsV1_2)
-	qt.EnumMap["network.QSsl__DtlsV1_2OrLater"] = int64(QSsl__DtlsV1_2OrLater)
-	qt.EnumMap["network.QSsl__TlsV1_3"] = int64(QSsl__TlsV1_3)
-	qt.EnumMap["network.QSsl__TlsV1_3OrLater"] = int64(QSsl__TlsV1_3OrLater)
-	qt.EnumMap["network.QSsl__UnknownProtocol"] = int64(QSsl__UnknownProtocol)
-	qt.EnumMap["network.QSsl__SslOptionDisableEmptyFragments"] = int64(QSsl__SslOptionDisableEmptyFragments)
-	qt.EnumMap["network.QSsl__SslOptionDisableSessionTickets"] = int64(QSsl__SslOptionDisableSessionTickets)
-	qt.EnumMap["network.QSsl__SslOptionDisableCompression"] = int64(QSsl__SslOptionDisableCompression)
-	qt.EnumMap["network.QSsl__SslOptionDisableServerNameIndication"] = int64(QSsl__SslOptionDisableServerNameIndication)
-	qt.EnumMap["network.QSsl__SslOptionDisableLegacyRenegotiation"] = int64(QSsl__SslOptionDisableLegacyRenegotiation)
-	qt.EnumMap["network.QSsl__SslOptionDisableSessionSharing"] = int64(QSsl__SslOptionDisableSessionSharing)
-	qt.EnumMap["network.QSsl__SslOptionDisableSessionPersistence"] = int64(QSsl__SslOptionDisableSessionPersistence)
-	qt.EnumMap["network.QSsl__SslOptionDisableServerCipherPreference"] = int64(QSsl__SslOptionDisableServerCipherPreference)
-	qt.ItfMap["network.QSslCertificate_ITF"] = QSslCertificate{}
-	qt.FuncMap["network.NewQSslCertificate"] = NewQSslCertificate
-	qt.FuncMap["network.NewQSslCertificate2"] = NewQSslCertificate2
-	qt.FuncMap["network.NewQSslCertificate3"] = NewQSslCertificate3
-	qt.FuncMap["network.QSslCertificate_FromData"] = QSslCertificate_FromData
-	qt.FuncMap["network.QSslCertificate_FromDevice"] = QSslCertificate_FromDevice
-	qt.FuncMap["network.QSslCertificate_FromPath"] = QSslCertificate_FromPath
-	qt.FuncMap["network.QSslCertificate_ImportPkcs12"] = QSslCertificate_ImportPkcs12
-	qt.FuncMap["network.QSslCertificate_Verify"] = QSslCertificate_Verify
-	qt.EnumMap["network.QSslCertificate__Organization"] = int64(QSslCertificate__Organization)
-	qt.EnumMap["network.QSslCertificate__CommonName"] = int64(QSslCertificate__CommonName)
-	qt.EnumMap["network.QSslCertificate__LocalityName"] = int64(QSslCertificate__LocalityName)
-	qt.EnumMap["network.QSslCertificate__OrganizationalUnitName"] = int64(QSslCertificate__OrganizationalUnitName)
-	qt.EnumMap["network.QSslCertificate__CountryName"] = int64(QSslCertificate__CountryName)
-	qt.EnumMap["network.QSslCertificate__StateOrProvinceName"] = int64(QSslCertificate__StateOrProvinceName)
-	qt.EnumMap["network.QSslCertificate__DistinguishedNameQualifier"] = int64(QSslCertificate__DistinguishedNameQualifier)
-	qt.EnumMap["network.QSslCertificate__SerialNumber"] = int64(QSslCertificate__SerialNumber)
-	qt.EnumMap["network.QSslCertificate__EmailAddress"] = int64(QSslCertificate__EmailAddress)
-	qt.ItfMap["network.QSslCertificateExtension_ITF"] = QSslCertificateExtension{}
-	qt.FuncMap["network.NewQSslCertificateExtension"] = NewQSslCertificateExtension
-	qt.FuncMap["network.NewQSslCertificateExtension2"] = NewQSslCertificateExtension2
-	qt.ItfMap["network.QSslCipher_ITF"] = QSslCipher{}
-	qt.FuncMap["network.NewQSslCipher"] = NewQSslCipher
-	qt.FuncMap["network.NewQSslCipher2"] = NewQSslCipher2
-	qt.FuncMap["network.NewQSslCipher3"] = NewQSslCipher3
-	qt.FuncMap["network.NewQSslCipher4"] = NewQSslCipher4
-	qt.ItfMap["network.QSslConfiguration_ITF"] = QSslConfiguration{}
-	qt.FuncMap["network.NewQSslConfiguration"] = NewQSslConfiguration
-	qt.FuncMap["network.NewQSslConfiguration2"] = NewQSslConfiguration2
-	qt.FuncMap["network.QSslConfiguration_DefaultConfiguration"] = QSslConfiguration_DefaultConfiguration
-	qt.FuncMap["network.QSslConfiguration_SetDefaultConfiguration"] = QSslConfiguration_SetDefaultConfiguration
-	qt.FuncMap["network.QSslConfiguration_SupportedCiphers"] = QSslConfiguration_SupportedCiphers
-	qt.FuncMap["network.QSslConfiguration_SystemCaCertificates"] = QSslConfiguration_SystemCaCertificates
-	qt.EnumMap["network.QSslConfiguration__NextProtocolNegotiationNone"] = int64(QSslConfiguration__NextProtocolNegotiationNone)
-	qt.EnumMap["network.QSslConfiguration__NextProtocolNegotiationNegotiated"] = int64(QSslConfiguration__NextProtocolNegotiationNegotiated)
-	qt.EnumMap["network.QSslConfiguration__NextProtocolNegotiationUnsupported"] = int64(QSslConfiguration__NextProtocolNegotiationUnsupported)
-	qt.ItfMap["network.QSslDiffieHellmanParameters_ITF"] = QSslDiffieHellmanParameters{}
-	qt.FuncMap["network.NewQSslDiffieHellmanParameters"] = NewQSslDiffieHellmanParameters
-	qt.FuncMap["network.NewQSslDiffieHellmanParameters2"] = NewQSslDiffieHellmanParameters2
-	qt.FuncMap["network.NewQSslDiffieHellmanParameters3"] = NewQSslDiffieHellmanParameters3
-	qt.FuncMap["network.QSslDiffieHellmanParameters_DefaultParameters"] = QSslDiffieHellmanParameters_DefaultParameters
-	qt.FuncMap["network.QSslDiffieHellmanParameters_FromEncoded"] = QSslDiffieHellmanParameters_FromEncoded
-	qt.FuncMap["network.QSslDiffieHellmanParameters_FromEncoded2"] = QSslDiffieHellmanParameters_FromEncoded2
-	qt.EnumMap["network.QSslDiffieHellmanParameters__NoError"] = int64(QSslDiffieHellmanParameters__NoError)
-	qt.EnumMap["network.QSslDiffieHellmanParameters__InvalidInputDataError"] = int64(QSslDiffieHellmanParameters__InvalidInputDataError)
-	qt.EnumMap["network.QSslDiffieHellmanParameters__UnsafeParametersError"] = int64(QSslDiffieHellmanParameters__UnsafeParametersError)
-	qt.ItfMap["network.QSslEllipticCurve_ITF"] = QSslEllipticCurve{}
-	qt.FuncMap["network.NewQSslEllipticCurve"] = NewQSslEllipticCurve
-	qt.FuncMap["network.QSslEllipticCurve_FromLongName"] = QSslEllipticCurve_FromLongName
-	qt.FuncMap["network.QSslEllipticCurve_FromShortName"] = QSslEllipticCurve_FromShortName
-	qt.ItfMap["network.QSslError_ITF"] = QSslError{}
-	qt.FuncMap["network.NewQSslError"] = NewQSslError
-	qt.FuncMap["network.NewQSslError2"] = NewQSslError2
-	qt.FuncMap["network.NewQSslError3"] = NewQSslError3
-	qt.FuncMap["network.NewQSslError4"] = NewQSslError4
-	qt.EnumMap["network.QSslError__NoError"] = int64(QSslError__NoError)
-	qt.EnumMap["network.QSslError__UnableToGetIssuerCertificate"] = int64(QSslError__UnableToGetIssuerCertificate)
-	qt.EnumMap["network.QSslError__UnableToDecryptCertificateSignature"] = int64(QSslError__UnableToDecryptCertificateSignature)
-	qt.EnumMap["network.QSslError__UnableToDecodeIssuerPublicKey"] = int64(QSslError__UnableToDecodeIssuerPublicKey)
-	qt.EnumMap["network.QSslError__CertificateSignatureFailed"] = int64(QSslError__CertificateSignatureFailed)
-	qt.EnumMap["network.QSslError__CertificateNotYetValid"] = int64(QSslError__CertificateNotYetValid)
-	qt.EnumMap["network.QSslError__CertificateExpired"] = int64(QSslError__CertificateExpired)
-	qt.EnumMap["network.QSslError__InvalidNotBeforeField"] = int64(QSslError__InvalidNotBeforeField)
-	qt.EnumMap["network.QSslError__InvalidNotAfterField"] = int64(QSslError__InvalidNotAfterField)
-	qt.EnumMap["network.QSslError__SelfSignedCertificate"] = int64(QSslError__SelfSignedCertificate)
-	qt.EnumMap["network.QSslError__SelfSignedCertificateInChain"] = int64(QSslError__SelfSignedCertificateInChain)
-	qt.EnumMap["network.QSslError__UnableToGetLocalIssuerCertificate"] = int64(QSslError__UnableToGetLocalIssuerCertificate)
-	qt.EnumMap["network.QSslError__UnableToVerifyFirstCertificate"] = int64(QSslError__UnableToVerifyFirstCertificate)
-	qt.EnumMap["network.QSslError__CertificateRevoked"] = int64(QSslError__CertificateRevoked)
-	qt.EnumMap["network.QSslError__InvalidCaCertificate"] = int64(QSslError__InvalidCaCertificate)
-	qt.EnumMap["network.QSslError__PathLengthExceeded"] = int64(QSslError__PathLengthExceeded)
-	qt.EnumMap["network.QSslError__InvalidPurpose"] = int64(QSslError__InvalidPurpose)
-	qt.EnumMap["network.QSslError__CertificateUntrusted"] = int64(QSslError__CertificateUntrusted)
-	qt.EnumMap["network.QSslError__CertificateRejected"] = int64(QSslError__CertificateRejected)
-	qt.EnumMap["network.QSslError__SubjectIssuerMismatch"] = int64(QSslError__SubjectIssuerMismatch)
-	qt.EnumMap["network.QSslError__AuthorityIssuerSerialNumberMismatch"] = int64(QSslError__AuthorityIssuerSerialNumberMismatch)
-	qt.EnumMap["network.QSslError__NoPeerCertificate"] = int64(QSslError__NoPeerCertificate)
-	qt.EnumMap["network.QSslError__HostNameMismatch"] = int64(QSslError__HostNameMismatch)
-	qt.EnumMap["network.QSslError__NoSslSupport"] = int64(QSslError__NoSslSupport)
-	qt.EnumMap["network.QSslError__CertificateBlacklisted"] = int64(QSslError__CertificateBlacklisted)
-	qt.EnumMap["network.QSslError__CertificateStatusUnknown"] = int64(QSslError__CertificateStatusUnknown)
-	qt.EnumMap["network.QSslError__OcspNoResponseFound"] = int64(QSslError__OcspNoResponseFound)
-	qt.EnumMap["network.QSslError__OcspMalformedRequest"] = int64(QSslError__OcspMalformedRequest)
-	qt.EnumMap["network.QSslError__OcspMalformedResponse"] = int64(QSslError__OcspMalformedResponse)
-	qt.EnumMap["network.QSslError__OcspInternalError"] = int64(QSslError__OcspInternalError)
-	qt.EnumMap["network.QSslError__OcspTryLater"] = int64(QSslError__OcspTryLater)
-	qt.EnumMap["network.QSslError__OcspSigRequred"] = int64(QSslError__OcspSigRequred)
-	qt.EnumMap["network.QSslError__OcspUnauthorized"] = int64(QSslError__OcspUnauthorized)
-	qt.EnumMap["network.QSslError__OcspResponseCannotBeTrusted"] = int64(QSslError__OcspResponseCannotBeTrusted)
-	qt.EnumMap["network.QSslError__OcspResponseCertIdUnknown"] = int64(QSslError__OcspResponseCertIdUnknown)
-	qt.EnumMap["network.QSslError__OcspResponseExpired"] = int64(QSslError__OcspResponseExpired)
-	qt.EnumMap["network.QSslError__OcspStatusUnknown"] = int64(QSslError__OcspStatusUnknown)
-	qt.EnumMap["network.QSslError__UnspecifiedError"] = int64(QSslError__UnspecifiedError)
-	qt.ItfMap["network.QSslKey_ITF"] = QSslKey{}
-	qt.FuncMap["network.NewQSslKey"] = NewQSslKey
-	qt.FuncMap["network.NewQSslKey2"] = NewQSslKey2
-	qt.FuncMap["network.NewQSslKey3"] = NewQSslKey3
-	qt.FuncMap["network.NewQSslKey5"] = NewQSslKey5
-	qt.ItfMap["network.QSslPreSharedKeyAuthenticator_ITF"] = QSslPreSharedKeyAuthenticator{}
-	qt.FuncMap["network.NewQSslPreSharedKeyAuthenticator"] = NewQSslPreSharedKeyAuthenticator
-	qt.FuncMap["network.NewQSslPreSharedKeyAuthenticator2"] = NewQSslPreSharedKeyAuthenticator2
-	qt.ItfMap["network.QSslSocket_ITF"] = QSslSocket{}
-	qt.FuncMap["network.NewQSslSocket"] = NewQSslSocket
-	qt.FuncMap["network.QSslSocket_AddDefaultCaCertificate"] = QSslSocket_AddDefaultCaCertificate
-	qt.FuncMap["network.QSslSocket_AddDefaultCaCertificates"] = QSslSocket_AddDefaultCaCertificates
-	qt.FuncMap["network.QSslSocket_AddDefaultCaCertificates2"] = QSslSocket_AddDefaultCaCertificates2
-	qt.FuncMap["network.QSslSocket_SslLibraryBuildVersionNumber"] = QSslSocket_SslLibraryBuildVersionNumber
-	qt.FuncMap["network.QSslSocket_SslLibraryBuildVersionString"] = QSslSocket_SslLibraryBuildVersionString
-	qt.FuncMap["network.QSslSocket_SslLibraryVersionNumber"] = QSslSocket_SslLibraryVersionNumber
-	qt.FuncMap["network.QSslSocket_SslLibraryVersionString"] = QSslSocket_SslLibraryVersionString
-	qt.FuncMap["network.QSslSocket_SupportsSsl"] = QSslSocket_SupportsSsl
-	qt.EnumMap["network.QSslSocket__UnencryptedMode"] = int64(QSslSocket__UnencryptedMode)
-	qt.EnumMap["network.QSslSocket__SslClientMode"] = int64(QSslSocket__SslClientMode)
-	qt.EnumMap["network.QSslSocket__SslServerMode"] = int64(QSslSocket__SslServerMode)
-	qt.EnumMap["network.QSslSocket__VerifyNone"] = int64(QSslSocket__VerifyNone)
-	qt.EnumMap["network.QSslSocket__QueryPeer"] = int64(QSslSocket__QueryPeer)
-	qt.EnumMap["network.QSslSocket__VerifyPeer"] = int64(QSslSocket__VerifyPeer)
-	qt.EnumMap["network.QSslSocket__AutoVerifyPeer"] = int64(QSslSocket__AutoVerifyPeer)
-	qt.ItfMap["network.QTcpServer_ITF"] = QTcpServer{}
-	qt.FuncMap["network.NewQTcpServer"] = NewQTcpServer
-	qt.ItfMap["network.QTcpSocket_ITF"] = QTcpSocket{}
-	qt.FuncMap["network.NewQTcpSocket"] = NewQTcpSocket
-	qt.ItfMap["network.QUdpSocket_ITF"] = QUdpSocket{}
-	qt.FuncMap["network.NewQUdpSocket"] = NewQUdpSocket
-	qt.ItfMap["network.QNetworkCacheMetaData_RawHeader_ITF"] = QNetworkCacheMetaData_RawHeader{}
-	qt.FuncMap["network.NewQNetworkCacheMetaData_RawHeader"] = NewQNetworkCacheMetaData_RawHeader
-	qt.FuncMap["network.NewQNetworkCacheMetaData_RawHeader2"] = NewQNetworkCacheMetaData_RawHeader2
+	internal.ConstructorTable["network.QAbstractNetworkCache"] = NewQAbstractNetworkCacheFromPointer
+	internal.ConstructorTable["network.QAbstractSocket"] = NewQAbstractSocketFromPointer
+	internal.ConstructorTable["network.QAuthenticator"] = NewQAuthenticatorFromPointer
+	internal.ConstructorTable["network.QDnsDomainNameRecord"] = NewQDnsDomainNameRecordFromPointer
+	internal.ConstructorTable["network.QDnsHostAddressRecord"] = NewQDnsHostAddressRecordFromPointer
+	internal.ConstructorTable["network.QDnsLookup"] = NewQDnsLookupFromPointer
+	internal.ConstructorTable["network.QDnsMailExchangeRecord"] = NewQDnsMailExchangeRecordFromPointer
+	internal.ConstructorTable["network.QDnsServiceRecord"] = NewQDnsServiceRecordFromPointer
+	internal.ConstructorTable["network.QDnsTextRecord"] = NewQDnsTextRecordFromPointer
+	internal.ConstructorTable["network.QHostAddress"] = NewQHostAddressFromPointer
+	internal.ConstructorTable["network.QHostInfo"] = NewQHostInfoFromPointer
+	internal.ConstructorTable["network.QHstsPolicy"] = NewQHstsPolicyFromPointer
+	internal.ConstructorTable["network.QHttpMultiPart"] = NewQHttpMultiPartFromPointer
+	internal.ConstructorTable["network.QHttpPart"] = NewQHttpPartFromPointer
+	internal.ConstructorTable["network.QIPv6Address"] = NewQIPv6AddressFromPointer
+	internal.ConstructorTable["network.QLocalServer"] = NewQLocalServerFromPointer
+	internal.ConstructorTable["network.QLocalSocket"] = NewQLocalSocketFromPointer
+	internal.ConstructorTable["network.QNetworkAccessManager"] = NewQNetworkAccessManagerFromPointer
+	internal.ConstructorTable["network.QNetworkAddressEntry"] = NewQNetworkAddressEntryFromPointer
+	internal.ConstructorTable["network.QNetworkCacheMetaData"] = NewQNetworkCacheMetaDataFromPointer
+	internal.ConstructorTable["network.QNetworkConfiguration"] = NewQNetworkConfigurationFromPointer
+	internal.ConstructorTable["network.QNetworkConfigurationManager"] = NewQNetworkConfigurationManagerFromPointer
+	internal.ConstructorTable["network.QNetworkCookie"] = NewQNetworkCookieFromPointer
+	internal.ConstructorTable["network.QNetworkCookieJar"] = NewQNetworkCookieJarFromPointer
+	internal.ConstructorTable["network.QNetworkDatagram"] = NewQNetworkDatagramFromPointer
+	internal.ConstructorTable["network.QNetworkDiskCache"] = NewQNetworkDiskCacheFromPointer
+	internal.ConstructorTable["network.QNetworkInterface"] = NewQNetworkInterfaceFromPointer
+	internal.ConstructorTable["network.QNetworkProxy"] = NewQNetworkProxyFromPointer
+	internal.ConstructorTable["network.QNetworkProxyFactory"] = NewQNetworkProxyFactoryFromPointer
+	internal.ConstructorTable["network.QNetworkProxyQuery"] = NewQNetworkProxyQueryFromPointer
+	internal.ConstructorTable["network.QNetworkReply"] = NewQNetworkReplyFromPointer
+	internal.ConstructorTable["network.QNetworkRequest"] = NewQNetworkRequestFromPointer
+	internal.ConstructorTable["network.QNetworkSession"] = NewQNetworkSessionFromPointer
+	internal.ConstructorTable["network.QOcspResponse"] = NewQOcspResponseFromPointer
+	internal.ConstructorTable["network.QSsl"] = NewQSslFromPointer
+	internal.ConstructorTable["network.QSslCertificate"] = NewQSslCertificateFromPointer
+	internal.ConstructorTable["network.QSslCertificateExtension"] = NewQSslCertificateExtensionFromPointer
+	internal.ConstructorTable["network.QSslCipher"] = NewQSslCipherFromPointer
+	internal.ConstructorTable["network.QSslConfiguration"] = NewQSslConfigurationFromPointer
+	internal.ConstructorTable["network.QSslDiffieHellmanParameters"] = NewQSslDiffieHellmanParametersFromPointer
+	internal.ConstructorTable["network.QSslEllipticCurve"] = NewQSslEllipticCurveFromPointer
+	internal.ConstructorTable["network.QSslError"] = NewQSslErrorFromPointer
+	internal.ConstructorTable["network.QSslKey"] = NewQSslKeyFromPointer
+	internal.ConstructorTable["network.QSslPreSharedKeyAuthenticator"] = NewQSslPreSharedKeyAuthenticatorFromPointer
+	internal.ConstructorTable["network.QSslSocket"] = NewQSslSocketFromPointer
+	internal.ConstructorTable["network.QTcpServer"] = NewQTcpServerFromPointer
+	internal.ConstructorTable["network.QTcpSocket"] = NewQTcpSocketFromPointer
+	internal.ConstructorTable["network.QUdpSocket"] = NewQUdpSocketFromPointer
+	internal.ConstructorTable["network.QNetworkCacheMetaData_RawHeader"] = NewQNetworkCacheMetaData_RawHeaderFromPointer
 }

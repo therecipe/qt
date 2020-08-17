@@ -3,9 +3,9 @@
 package sailfish
 
 import (
-	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
+	"github.com/therecipe/qt/internal"
 	"github.com/therecipe/qt/quick"
 	"strings"
 	"unsafe"
@@ -19,7 +19,7 @@ func unpackStringList(s string) []string {
 }
 
 type SailfishApp struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type SailfishApp_ITF interface {
@@ -32,14 +32,14 @@ func (ptr *SailfishApp) SailfishApp_PTR() *SailfishApp {
 
 func (ptr *SailfishApp) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *SailfishApp) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -50,9 +50,13 @@ func PointerFromSailfishApp(ptr SailfishApp_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *SailfishApp) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewSailfishAppFromPointer(ptr unsafe.Pointer) (n *SailfishApp) {
 	n = new(SailfishApp)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "sailfish.SailfishApp")
 	return
 }
 
@@ -110,10 +114,5 @@ func (ptr *SailfishApp) PathToMainQml() *core.QUrl {
 }
 
 func init() {
-	qt.ItfMap["sailfish.SailfishApp_ITF"] = SailfishApp{}
-	qt.FuncMap["sailfish.SailfishApp_Application"] = SailfishApp_Application
-	qt.FuncMap["sailfish.SailfishApp_Main"] = SailfishApp_Main
-	qt.FuncMap["sailfish.SailfishApp_CreateView"] = SailfishApp_CreateView
-	qt.FuncMap["sailfish.SailfishApp_PathTo"] = SailfishApp_PathTo
-	qt.FuncMap["sailfish.SailfishApp_PathToMainQml"] = SailfishApp_PathToMainQml
+	internal.ConstructorTable["sailfish.SailfishApp"] = NewSailfishAppFromPointer
 }

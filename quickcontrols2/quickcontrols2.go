@@ -2,34 +2,12 @@
 
 package quickcontrols2
 
-//#include <stdint.h>
-//#include <stdlib.h>
-//#include <string.h>
-//#include "quickcontrols2.h"
-import "C"
 import (
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/internal"
 	"strings"
 	"unsafe"
 )
 
-func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
-func cGoUnpackString(s C.struct_QtQuickControls2_PackedString) string {
-	defer cGoFreePacked(s.ptr)
-	if int(s.len) == -1 {
-		return C.GoString(s.data)
-	}
-	return C.GoStringN(s.data, C.int(s.len))
-}
-func cGoUnpackBytes(s C.struct_QtQuickControls2_PackedString) []byte {
-	defer cGoFreePacked(s.ptr)
-	if int(s.len) == -1 {
-		gs := C.GoString(s.data)
-		return []byte(gs)
-	}
-	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
-}
 func unpackStringList(s string) []string {
 	if len(s) == 0 {
 		return make([]string, 0)
@@ -38,7 +16,7 @@ func unpackStringList(s string) []string {
 }
 
 type QQuickStyle struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QQuickStyle_ITF interface {
@@ -51,14 +29,14 @@ func (ptr *QQuickStyle) QQuickStyle_PTR() *QQuickStyle {
 
 func (ptr *QQuickStyle) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QQuickStyle) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -69,112 +47,89 @@ func PointerFromQQuickStyle(ptr QQuickStyle_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QQuickStyle) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQQuickStyleFromPointer(ptr unsafe.Pointer) (n *QQuickStyle) {
 	n = new(QQuickStyle)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "quickcontrols2.QQuickStyle")
 	return
 }
-func (ptr *QQuickStyle) DestroyQQuickStyle() {
-	if ptr != nil {
-		qt.SetFinalizer(ptr, nil)
 
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+func (ptr *QQuickStyle) DestroyQQuickStyle() {
 }
+
 func QQuickStyle_AddStylePath(path string) {
-	var pathC *C.char
-	if path != "" {
-		pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
-	}
-	C.QQuickStyle_QQuickStyle_AddStylePath(C.struct_QtQuickControls2_PackedString{data: pathC, len: C.longlong(len(path))})
+
+	internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_AddStylePath", "", path})
 }
 
 func (ptr *QQuickStyle) AddStylePath(path string) {
-	var pathC *C.char
-	if path != "" {
-		pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
-	}
-	C.QQuickStyle_QQuickStyle_AddStylePath(C.struct_QtQuickControls2_PackedString{data: pathC, len: C.longlong(len(path))})
+
+	internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_AddStylePath", "", path})
 }
 
 func QQuickStyle_AvailableStyles() []string {
-	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_AvailableStyles()))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_AvailableStyles", ""}).([]string)
 }
 
 func (ptr *QQuickStyle) AvailableStyles() []string {
-	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_AvailableStyles()))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_AvailableStyles", ""}).([]string)
 }
 
 func QQuickStyle_Name() string {
-	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Name())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_Name", ""}).(string)
 }
 
 func (ptr *QQuickStyle) Name() string {
-	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Name())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_Name", ""}).(string)
 }
 
 func QQuickStyle_Path() string {
-	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Path())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_Path", ""}).(string)
 }
 
 func (ptr *QQuickStyle) Path() string {
-	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Path())
+
+	return internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_Path", ""}).(string)
 }
 
 func QQuickStyle_SetFallbackStyle(style string) {
-	var styleC *C.char
-	if style != "" {
-		styleC = C.CString(style)
-		defer C.free(unsafe.Pointer(styleC))
-	}
-	C.QQuickStyle_QQuickStyle_SetFallbackStyle(C.struct_QtQuickControls2_PackedString{data: styleC, len: C.longlong(len(style))})
+
+	internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_SetFallbackStyle", "", style})
 }
 
 func (ptr *QQuickStyle) SetFallbackStyle(style string) {
-	var styleC *C.char
-	if style != "" {
-		styleC = C.CString(style)
-		defer C.free(unsafe.Pointer(styleC))
-	}
-	C.QQuickStyle_QQuickStyle_SetFallbackStyle(C.struct_QtQuickControls2_PackedString{data: styleC, len: C.longlong(len(style))})
+
+	internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_SetFallbackStyle", "", style})
 }
 
 func QQuickStyle_SetStyle(style string) {
-	var styleC *C.char
-	if style != "" {
-		styleC = C.CString(style)
-		defer C.free(unsafe.Pointer(styleC))
-	}
-	C.QQuickStyle_QQuickStyle_SetStyle(C.struct_QtQuickControls2_PackedString{data: styleC, len: C.longlong(len(style))})
+
+	internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_SetStyle", "", style})
 }
 
 func (ptr *QQuickStyle) SetStyle(style string) {
-	var styleC *C.char
-	if style != "" {
-		styleC = C.CString(style)
-		defer C.free(unsafe.Pointer(styleC))
-	}
-	C.QQuickStyle_QQuickStyle_SetStyle(C.struct_QtQuickControls2_PackedString{data: styleC, len: C.longlong(len(style))})
+
+	internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_SetStyle", "", style})
 }
 
 func QQuickStyle_StylePathList() []string {
-	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_StylePathList()))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_StylePathList", ""}).([]string)
 }
 
 func (ptr *QQuickStyle) StylePathList() []string {
-	return unpackStringList(cGoUnpackString(C.QQuickStyle_QQuickStyle_StylePathList()))
+
+	return internal.CallLocalFunction([]interface{}{"", "", "quickcontrols2.QQuickStyle_StylePathList", ""}).([]string)
 }
 
 func init() {
-	qt.ItfMap["quickcontrols2.QQuickStyle_ITF"] = QQuickStyle{}
-	qt.FuncMap["quickcontrols2.QQuickStyle_AddStylePath"] = QQuickStyle_AddStylePath
-	qt.FuncMap["quickcontrols2.QQuickStyle_AvailableStyles"] = QQuickStyle_AvailableStyles
-	qt.FuncMap["quickcontrols2.QQuickStyle_Name"] = QQuickStyle_Name
-	qt.FuncMap["quickcontrols2.QQuickStyle_Path"] = QQuickStyle_Path
-	qt.FuncMap["quickcontrols2.QQuickStyle_SetFallbackStyle"] = QQuickStyle_SetFallbackStyle
-	qt.FuncMap["quickcontrols2.QQuickStyle_SetStyle"] = QQuickStyle_SetStyle
-	qt.FuncMap["quickcontrols2.QQuickStyle_StylePathList"] = QQuickStyle_StylePathList
+	internal.ConstructorTable["quickcontrols2.QQuickStyle"] = NewQQuickStyleFromPointer
 }

@@ -2,34 +2,13 @@
 
 package scxml
 
-//#include <stdint.h>
-//#include <stdlib.h>
-//#include <string.h>
-//#include "scxml.h"
-import "C"
 import (
-	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/internal"
 	"strings"
 	"unsafe"
 )
 
-func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }
-func cGoUnpackString(s C.struct_QtScxml_PackedString) string {
-	defer cGoFreePacked(s.ptr)
-	if int(s.len) == -1 {
-		return C.GoString(s.data)
-	}
-	return C.GoStringN(s.data, C.int(s.len))
-}
-func cGoUnpackBytes(s C.struct_QtScxml_PackedString) []byte {
-	defer cGoFreePacked(s.ptr)
-	if int(s.len) == -1 {
-		gs := C.GoString(s.data)
-		return []byte(gs)
-	}
-	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
-}
 func unpackStringList(s string) []string {
 	if len(s) == 0 {
 		return make([]string, 0)
@@ -38,7 +17,7 @@ func unpackStringList(s string) []string {
 }
 
 type QScxmlCompiler struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QScxmlCompiler_ITF interface {
@@ -51,14 +30,14 @@ func (ptr *QScxmlCompiler) QScxmlCompiler_PTR() *QScxmlCompiler {
 
 func (ptr *QScxmlCompiler) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QScxmlCompiler) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -69,87 +48,58 @@ func PointerFromQScxmlCompiler(ptr QScxmlCompiler_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QScxmlCompiler) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQScxmlCompilerFromPointer(ptr unsafe.Pointer) (n *QScxmlCompiler) {
 	n = new(QScxmlCompiler)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlCompiler")
 	return
 }
 func NewQScxmlCompiler(reader core.QXmlStreamReader_ITF) *QScxmlCompiler {
-	tmpValue := NewQScxmlCompilerFromPointer(C.QScxmlCompiler_NewQScxmlCompiler(core.PointerFromQXmlStreamReader(reader)))
-	qt.SetFinalizer(tmpValue, (*QScxmlCompiler).DestroyQScxmlCompiler)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.NewQScxmlCompiler", "", reader}).(*QScxmlCompiler)
 }
 
 func (ptr *QScxmlCompiler) Compile() *QScxmlStateMachine {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlStateMachineFromPointer(C.QScxmlCompiler_Compile(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Compile"}).(*QScxmlStateMachine)
 }
 
 func (ptr *QScxmlCompiler) Errors() []*QScxmlError {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtScxml_PackedList) []*QScxmlError {
-			out := make([]*QScxmlError, int(l.len))
-			tmpList := NewQScxmlCompilerFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__errors_atList(i)
-			}
-			return out
-		}(C.QScxmlCompiler_Errors(ptr.Pointer()))
-	}
-	return make([]*QScxmlError, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Errors"}).([]*QScxmlError)
 }
 
 func (ptr *QScxmlCompiler) FileName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlCompiler_FileName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "FileName"}).(string)
 }
 
 func (ptr *QScxmlCompiler) SetFileName(fileName string) {
-	if ptr.Pointer() != nil {
-		var fileNameC *C.char
-		if fileName != "" {
-			fileNameC = C.CString(fileName)
-			defer C.free(unsafe.Pointer(fileNameC))
-		}
-		C.QScxmlCompiler_SetFileName(ptr.Pointer(), C.struct_QtScxml_PackedString{data: fileNameC, len: C.longlong(len(fileName))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetFileName", fileName})
 }
 
 func (ptr *QScxmlCompiler) DestroyQScxmlCompiler() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QScxmlCompiler_DestroyQScxmlCompiler(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQScxmlCompiler"})
 }
 
 func (ptr *QScxmlCompiler) __errors_atList(i int) *QScxmlError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlErrorFromPointer(C.QScxmlCompiler___errors_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__errors_atList", i}).(*QScxmlError)
 }
 
 func (ptr *QScxmlCompiler) __errors_setList(i QScxmlError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlCompiler___errors_setList(ptr.Pointer(), PointerFromQScxmlError(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__errors_setList", i})
 }
 
 func (ptr *QScxmlCompiler) __errors_newList() unsafe.Pointer {
-	return C.QScxmlCompiler___errors_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__errors_newList"}).(unsafe.Pointer)
 }
 
 type QScxmlCppDataModel struct {
@@ -185,285 +135,117 @@ func PointerFromQScxmlCppDataModel(ptr QScxmlCppDataModel_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QScxmlCppDataModel) InitFromInternal(ptr uintptr, name string) {
+	n.QScxmlDataModel_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QScxmlCppDataModel) ClassNameInternalF() string {
+	return n.QScxmlDataModel_PTR().ClassNameInternalF()
+}
+
 func NewQScxmlCppDataModelFromPointer(ptr unsafe.Pointer) (n *QScxmlCppDataModel) {
 	n = new(QScxmlCppDataModel)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlCppDataModel")
 	return
 }
 
-//export callbackQScxmlCppDataModel_HasScxmlProperty
-func callbackQScxmlCppDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).HasScxmlPropertyDefault(cGoUnpackString(name)))))
+func (ptr *QScxmlCppDataModel) DestroyQScxmlCppDataModel() {
 }
 
 func (ptr *QScxmlCppDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "hasScxmlProperty"); signal != nil {
-			f := func(name string) bool {
-				(*(*func(string) bool)(signal))(name)
-				return f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectHasScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectHasScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "hasScxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectHasScxmlProperty"})
 }
 
 func (ptr *QScxmlCppDataModel) HasScxmlProperty(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QScxmlCppDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasScxmlProperty", name}).(bool)
 }
 
 func (ptr *QScxmlCppDataModel) HasScxmlPropertyDefault(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QScxmlCppDataModel_HasScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasScxmlPropertyDefault", name}).(bool)
 }
 
 func (ptr *QScxmlCppDataModel) InState(stateName string) bool {
-	if ptr.Pointer() != nil {
-		var stateNameC *C.char
-		if stateName != "" {
-			stateNameC = C.CString(stateName)
-			defer C.free(unsafe.Pointer(stateNameC))
-		}
-		return int8(C.QScxmlCppDataModel_InState(ptr.Pointer(), C.struct_QtScxml_PackedString{data: stateNameC, len: C.longlong(len(stateName))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InState", stateName}).(bool)
 }
 
 func (ptr *QScxmlCppDataModel) ScxmlEvent() *QScxmlEvent {
-	if ptr.Pointer() != nil {
-		return NewQScxmlEventFromPointer(C.QScxmlCppDataModel_ScxmlEvent(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQScxmlCppDataModel_ScxmlProperty
-func callbackQScxmlCppDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant((*(*func(string) *core.QVariant)(signal))(cGoUnpackString(name)))
-	}
-
-	return core.PointerFromQVariant(NewQScxmlCppDataModelFromPointer(ptr).ScxmlPropertyDefault(cGoUnpackString(name)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ScxmlEvent"}).(*QScxmlEvent)
 }
 
 func (ptr *QScxmlCppDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "scxmlProperty"); signal != nil {
-			f := func(name string) *core.QVariant {
-				(*(*func(string) *core.QVariant)(signal))(name)
-				return f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "scxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectScxmlProperty"})
 }
 
 func (ptr *QScxmlCppDataModel) ScxmlProperty(name string) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlCppDataModel_ScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ScxmlProperty", name}).(*core.QVariant)
 }
 
 func (ptr *QScxmlCppDataModel) ScxmlPropertyDefault(name string) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlCppDataModel_ScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ScxmlPropertyDefault", name}).(*core.QVariant)
 }
 
 func (ptr *QScxmlCppDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlCppDataModel_SetScxmlEvent(ptr.Pointer(), PointerFromQScxmlEvent(event))
-	}
-}
 
-//export callbackQScxmlCppDataModel_SetScxmlProperty
-func callbackQScxmlCppDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string, *core.QVariant, string) bool)(signal))(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).SetScxmlPropertyDefault(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlEvent", event})
 }
 
 func (ptr *QScxmlCppDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlProperty"); signal != nil {
-			f := func(name string, value *core.QVariant, context string) bool {
-				(*(*func(string, *core.QVariant, string) bool)(signal))(name, value, context)
-				return f(name, value, context)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectSetScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setScxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetScxmlProperty"})
 }
 
 func (ptr *QScxmlCppDataModel) SetScxmlProperty(name string, value core.QVariant_ITF, context string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		var contextC *C.char
-		if context != "" {
-			contextC = C.CString(context)
-			defer C.free(unsafe.Pointer(contextC))
-		}
-		return int8(C.QScxmlCppDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlProperty", name, value, context}).(bool)
 }
 
 func (ptr *QScxmlCppDataModel) SetScxmlPropertyDefault(name string, value core.QVariant_ITF, context string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		var contextC *C.char
-		if context != "" {
-			contextC = C.CString(context)
-			defer C.free(unsafe.Pointer(contextC))
-		}
-		return int8(C.QScxmlCppDataModel_SetScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlCppDataModel_Setup
-func callbackQScxmlCppDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.struct_QtScxml_PackedList) C.char {
-	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(map[string]*core.QVariant) bool)(signal))(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
-			out := make(map[string]*core.QVariant, int(l.len))
-			tmpList := NewQScxmlCppDataModelFromPointer(l.data)
-			for i, v := range tmpList.__setup_initialDataValues_keyList() {
-				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
-			}
-			return out
-		}(initialDataValues)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).SetupDefault(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
-		out := make(map[string]*core.QVariant, int(l.len))
-		tmpList := NewQScxmlCppDataModelFromPointer(l.data)
-		for i, v := range tmpList.__setup_initialDataValues_keyList() {
-			out[v] = tmpList.__setup_initialDataValues_atList(v, i)
-		}
-		return out
-	}(initialDataValues)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlPropertyDefault", name, value, context}).(bool)
 }
 
 func (ptr *QScxmlCppDataModel) ConnectSetup(f func(initialDataValues map[string]*core.QVariant) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setup"); signal != nil {
-			f := func(initialDataValues map[string]*core.QVariant) bool {
-				(*(*func(map[string]*core.QVariant) bool)(signal))(initialDataValues)
-				return f(initialDataValues)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetup", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectSetup() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setup")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetup"})
 }
 
 func (ptr *QScxmlCppDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlCppDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQScxmlCppDataModelFromPointer(NewQScxmlCppDataModelFromPointer(nil).__setup_initialDataValues_newList())
-			for k, v := range initialDataValues {
-				tmpList.__setup_initialDataValues_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Setup", initialDataValues}).(bool)
 }
 
 func (ptr *QScxmlCppDataModel) SetupDefault(initialDataValues map[string]*core.QVariant) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlCppDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQScxmlCppDataModelFromPointer(NewQScxmlCppDataModelFromPointer(nil).__setup_initialDataValues_newList())
-			for k, v := range initialDataValues {
-				tmpList.__setup_initialDataValues_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetupDefault", initialDataValues}).(bool)
 }
 
 type QScxmlDataModel struct {
@@ -499,557 +281,247 @@ func PointerFromQScxmlDataModel(ptr QScxmlDataModel_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QScxmlDataModel) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QScxmlDataModel) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQScxmlDataModelFromPointer(ptr unsafe.Pointer) (n *QScxmlDataModel) {
 	n = new(QScxmlDataModel)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlDataModel")
 	return
 }
 
-//export callbackQScxmlDataModel_HasScxmlProperty
-func callbackQScxmlDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
+func (ptr *QScxmlDataModel) DestroyQScxmlDataModel() {
 }
 
 func (ptr *QScxmlDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "hasScxmlProperty"); signal != nil {
-			f := func(name string) bool {
-				(*(*func(string) bool)(signal))(name)
-				return f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectHasScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlDataModel) DisconnectHasScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "hasScxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectHasScxmlProperty"})
 }
 
 func (ptr *QScxmlDataModel) HasScxmlProperty(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QScxmlDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlDataModel_ScxmlProperty
-func callbackQScxmlDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant((*(*func(string) *core.QVariant)(signal))(cGoUnpackString(name)))
-	}
-
-	return core.PointerFromQVariant(core.NewQVariant())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasScxmlProperty", name}).(bool)
 }
 
 func (ptr *QScxmlDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "scxmlProperty"); signal != nil {
-			f := func(name string) *core.QVariant {
-				(*(*func(string) *core.QVariant)(signal))(name)
-				return f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlDataModel) DisconnectScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "scxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectScxmlProperty"})
 }
 
 func (ptr *QScxmlDataModel) ScxmlProperty(name string) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlDataModel_ScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQScxmlDataModel_SetScxmlProperty
-func callbackQScxmlDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string, *core.QVariant, string) bool)(signal))(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ScxmlProperty", name}).(*core.QVariant)
 }
 
 func (ptr *QScxmlDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlProperty"); signal != nil {
-			f := func(name string, value *core.QVariant, context string) bool {
-				(*(*func(string, *core.QVariant, string) bool)(signal))(name, value, context)
-				return f(name, value, context)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlDataModel) DisconnectSetScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setScxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetScxmlProperty"})
 }
 
 func (ptr *QScxmlDataModel) SetScxmlProperty(name string, value core.QVariant_ITF, context string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		var contextC *C.char
-		if context != "" {
-			contextC = C.CString(context)
-			defer C.free(unsafe.Pointer(contextC))
-		}
-		return int8(C.QScxmlDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlProperty", name, value, context}).(bool)
 }
 
 func (ptr *QScxmlDataModel) SetStateMachine(stateMachine QScxmlStateMachine_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel_SetStateMachine(ptr.Pointer(), PointerFromQScxmlStateMachine(stateMachine))
-	}
-}
 
-//export callbackQScxmlDataModel_Setup
-func callbackQScxmlDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.struct_QtScxml_PackedList) C.char {
-	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(map[string]*core.QVariant) bool)(signal))(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
-			out := make(map[string]*core.QVariant, int(l.len))
-			tmpList := NewQScxmlDataModelFromPointer(l.data)
-			for i, v := range tmpList.__setup_initialDataValues_keyList() {
-				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
-			}
-			return out
-		}(initialDataValues)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetStateMachine", stateMachine})
 }
 
 func (ptr *QScxmlDataModel) ConnectSetup(f func(initialDataValues map[string]*core.QVariant) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setup"); signal != nil {
-			f := func(initialDataValues map[string]*core.QVariant) bool {
-				(*(*func(map[string]*core.QVariant) bool)(signal))(initialDataValues)
-				return f(initialDataValues)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetup", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlDataModel) DisconnectSetup() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setup")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetup"})
 }
 
 func (ptr *QScxmlDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQScxmlDataModelFromPointer(NewQScxmlDataModelFromPointer(nil).__setup_initialDataValues_newList())
-			for k, v := range initialDataValues {
-				tmpList.__setup_initialDataValues_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Setup", initialDataValues}).(bool)
 }
 
 func (ptr *QScxmlDataModel) StateMachine() *QScxmlStateMachine {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlStateMachineFromPointer(C.QScxmlDataModel_StateMachine(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQScxmlDataModel_StateMachineChanged
-func callbackQScxmlDataModel_StateMachineChanged(ptr unsafe.Pointer, stateMachine unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "stateMachineChanged"); signal != nil {
-		(*(*func(*QScxmlStateMachine))(signal))(NewQScxmlStateMachineFromPointer(stateMachine))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StateMachine"}).(*QScxmlStateMachine)
 }
 
 func (ptr *QScxmlDataModel) ConnectStateMachineChanged(f func(stateMachine *QScxmlStateMachine)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "stateMachineChanged") {
-			C.QScxmlDataModel_ConnectStateMachineChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "stateMachineChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "stateMachineChanged"); signal != nil {
-			f := func(stateMachine *QScxmlStateMachine) {
-				(*(*func(*QScxmlStateMachine))(signal))(stateMachine)
-				f(stateMachine)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "stateMachineChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stateMachineChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStateMachineChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlDataModel) DisconnectStateMachineChanged() {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel_DisconnectStateMachineChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "stateMachineChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStateMachineChanged"})
 }
 
 func (ptr *QScxmlDataModel) StateMachineChanged(stateMachine QScxmlStateMachine_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel_StateMachineChanged(ptr.Pointer(), PointerFromQScxmlStateMachine(stateMachine))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StateMachineChanged", stateMachine})
 }
 
 func (ptr *QScxmlDataModel) __setup_initialDataValues_atList(v string, i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var vC *C.char
-		if v != "" {
-			vC = C.CString(v)
-			defer C.free(unsafe.Pointer(vC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlDataModel___setup_initialDataValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setup_initialDataValues_atList", v, i}).(*core.QVariant)
 }
 
 func (ptr *QScxmlDataModel) __setup_initialDataValues_setList(key string, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		C.QScxmlDataModel___setup_initialDataValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setup_initialDataValues_setList", key, i})
 }
 
 func (ptr *QScxmlDataModel) __setup_initialDataValues_newList() unsafe.Pointer {
-	return C.QScxmlDataModel___setup_initialDataValues_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setup_initialDataValues_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlDataModel) __setup_initialDataValues_keyList() []string {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtScxml_PackedList) []string {
-			out := make([]string, int(l.len))
-			tmpList := NewQScxmlDataModelFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setup_initialDataValues_keyList_atList(i)
-			}
-			return out
-		}(C.QScxmlDataModel___setup_initialDataValues_keyList(ptr.Pointer()))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setup_initialDataValues_keyList"}).([]string)
 }
 
 func (ptr *QScxmlDataModel) ____setup_initialDataValues_keyList_atList(i int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlDataModel_____setup_initialDataValues_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____setup_initialDataValues_keyList_atList", i}).(string)
 }
 
 func (ptr *QScxmlDataModel) ____setup_initialDataValues_keyList_setList(i string) {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
-		}
-		C.QScxmlDataModel_____setup_initialDataValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____setup_initialDataValues_keyList_setList", i})
 }
 
 func (ptr *QScxmlDataModel) ____setup_initialDataValues_keyList_newList() unsafe.Pointer {
-	return C.QScxmlDataModel_____setup_initialDataValues_keyList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____setup_initialDataValues_keyList_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlDataModel) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlDataModel) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QScxmlDataModel) __children_newList() unsafe.Pointer {
-	return C.QScxmlDataModel___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlDataModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlDataModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QScxmlDataModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QScxmlDataModel) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QScxmlDataModel___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlDataModel) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlDataModel) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QScxmlDataModel) __findChildren_newList() unsafe.Pointer {
-	return C.QScxmlDataModel___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlDataModel) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlDataModel) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QScxmlDataModel) __findChildren_newList3() unsafe.Pointer {
-	return C.QScxmlDataModel___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQScxmlDataModel_ChildEvent
-func callbackQScxmlDataModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQScxmlDataModelFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlDataModel) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQScxmlDataModel_ConnectNotify
-func callbackQScxmlDataModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQScxmlDataModelFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QScxmlDataModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQScxmlDataModel_CustomEvent
-func callbackQScxmlDataModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQScxmlDataModelFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QScxmlDataModel) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQScxmlDataModel_DeleteLater
-func callbackQScxmlDataModel_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQScxmlDataModelFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QScxmlDataModel) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QScxmlDataModel_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQScxmlDataModel_Destroyed
-func callbackQScxmlDataModel_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQScxmlDataModel_DisconnectNotify
-func callbackQScxmlDataModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQScxmlDataModelFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QScxmlDataModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQScxmlDataModel_Event
-func callbackQScxmlDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlDataModelFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QScxmlDataModel) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlDataModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlDataModel_EventFilter
-func callbackQScxmlDataModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlDataModelFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QScxmlDataModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlDataModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlDataModel_MetaObject
-func callbackQScxmlDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQScxmlDataModelFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QScxmlDataModel) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QScxmlDataModel_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQScxmlDataModel_ObjectNameChanged
-func callbackQScxmlDataModel_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtScxml_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQScxmlDataModel_TimerEvent
-func callbackQScxmlDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQScxmlDataModelFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QScxmlDataModel) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlDataModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QScxmlDynamicScxmlServiceFactory struct {
@@ -1085,71 +557,52 @@ func PointerFromQScxmlDynamicScxmlServiceFactory(ptr QScxmlDynamicScxmlServiceFa
 	return nil
 }
 
+func (n *QScxmlDynamicScxmlServiceFactory) InitFromInternal(ptr uintptr, name string) {
+	n.QScxmlInvokableServiceFactory_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QScxmlDynamicScxmlServiceFactory) ClassNameInternalF() string {
+	return n.QScxmlInvokableServiceFactory_PTR().ClassNameInternalF()
+}
+
 func NewQScxmlDynamicScxmlServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QScxmlDynamicScxmlServiceFactory) {
 	n = new(QScxmlDynamicScxmlServiceFactory)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlDynamicScxmlServiceFactory")
 	return
 }
 
-//export callbackQScxmlDynamicScxmlServiceFactory_Invoke
-func callbackQScxmlDynamicScxmlServiceFactory_Invoke(ptr unsafe.Pointer, parentStateMachine unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "invoke"); signal != nil {
-		return PointerFromQScxmlInvokableService((*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(NewQScxmlStateMachineFromPointer(parentStateMachine)))
-	}
-
-	return PointerFromQScxmlInvokableService(NewQScxmlDynamicScxmlServiceFactoryFromPointer(ptr).InvokeDefault(NewQScxmlStateMachineFromPointer(parentStateMachine)))
+func (ptr *QScxmlDynamicScxmlServiceFactory) DestroyQScxmlDynamicScxmlServiceFactory() {
 }
 
 func (ptr *QScxmlDynamicScxmlServiceFactory) ConnectInvoke(f func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "invoke"); signal != nil {
-			f := func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
-				(*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(parentStateMachine)
-				return f(parentStateMachine)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectInvoke", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlDynamicScxmlServiceFactory) DisconnectInvoke() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "invoke")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectInvoke"})
 }
 
 func (ptr *QScxmlDynamicScxmlServiceFactory) Invoke(parentStateMachine QScxmlStateMachine_ITF) *QScxmlInvokableService {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlDynamicScxmlServiceFactory_Invoke(ptr.Pointer(), PointerFromQScxmlStateMachine(parentStateMachine)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Invoke", parentStateMachine}).(*QScxmlInvokableService)
 }
 
 func (ptr *QScxmlDynamicScxmlServiceFactory) InvokeDefault(parentStateMachine QScxmlStateMachine_ITF) *QScxmlInvokableService {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlDynamicScxmlServiceFactory_InvokeDefault(ptr.Pointer(), PointerFromQScxmlStateMachine(parentStateMachine)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InvokeDefault", parentStateMachine}).(*QScxmlInvokableService)
 }
 
 func (ptr *QScxmlDynamicScxmlServiceFactory) __QScxmlDynamicScxmlServiceFactory_names_newList() unsafe.Pointer {
-	return C.QScxmlDynamicScxmlServiceFactory___QScxmlDynamicScxmlServiceFactory_names_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__QScxmlDynamicScxmlServiceFactory_names_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlDynamicScxmlServiceFactory) __QScxmlDynamicScxmlServiceFactory_parameters_newList() unsafe.Pointer {
-	return C.QScxmlDynamicScxmlServiceFactory___QScxmlDynamicScxmlServiceFactory_parameters_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__QScxmlDynamicScxmlServiceFactory_parameters_newList"}).(unsafe.Pointer)
 }
 
 type QScxmlEcmaScriptDataModel struct {
@@ -1185,314 +638,131 @@ func PointerFromQScxmlEcmaScriptDataModel(ptr QScxmlEcmaScriptDataModel_ITF) uns
 	return nil
 }
 
+func (n *QScxmlEcmaScriptDataModel) InitFromInternal(ptr uintptr, name string) {
+	n.QScxmlDataModel_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QScxmlEcmaScriptDataModel) ClassNameInternalF() string {
+	return n.QScxmlDataModel_PTR().ClassNameInternalF()
+}
+
 func NewQScxmlEcmaScriptDataModelFromPointer(ptr unsafe.Pointer) (n *QScxmlEcmaScriptDataModel) {
 	n = new(QScxmlEcmaScriptDataModel)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlEcmaScriptDataModel")
 	return
 }
-func NewQScxmlEcmaScriptDataModel(parent core.QObject_ITF) *QScxmlEcmaScriptDataModel {
-	tmpValue := NewQScxmlEcmaScriptDataModelFromPointer(C.QScxmlEcmaScriptDataModel_NewQScxmlEcmaScriptDataModel(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+func (ptr *QScxmlEcmaScriptDataModel) DestroyQScxmlEcmaScriptDataModel() {
 }
 
-//export callbackQScxmlEcmaScriptDataModel_HasScxmlProperty
-func callbackQScxmlEcmaScriptDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
-	}
+func NewQScxmlEcmaScriptDataModel(parent core.QObject_ITF) *QScxmlEcmaScriptDataModel {
 
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).HasScxmlPropertyDefault(cGoUnpackString(name)))))
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.NewQScxmlEcmaScriptDataModel", "", parent}).(*QScxmlEcmaScriptDataModel)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "hasScxmlProperty"); signal != nil {
-			f := func(name string) bool {
-				(*(*func(string) bool)(signal))(name)
-				return f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectHasScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectHasScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "hasScxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectHasScxmlProperty"})
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) HasScxmlProperty(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QScxmlEcmaScriptDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasScxmlProperty", name}).(bool)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) HasScxmlPropertyDefault(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QScxmlEcmaScriptDataModel_HasScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlEcmaScriptDataModel_ScxmlProperty
-func callbackQScxmlEcmaScriptDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant((*(*func(string) *core.QVariant)(signal))(cGoUnpackString(name)))
-	}
-
-	return core.PointerFromQVariant(NewQScxmlEcmaScriptDataModelFromPointer(ptr).ScxmlPropertyDefault(cGoUnpackString(name)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasScxmlPropertyDefault", name}).(bool)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "scxmlProperty"); signal != nil {
-			f := func(name string) *core.QVariant {
-				(*(*func(string) *core.QVariant)(signal))(name)
-				return f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "scxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectScxmlProperty"})
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ScxmlProperty(name string) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlEcmaScriptDataModel_ScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ScxmlProperty", name}).(*core.QVariant)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ScxmlPropertyDefault(name string) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlEcmaScriptDataModel_ScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQScxmlEcmaScriptDataModel_SetScxmlEvent
-func callbackQScxmlEcmaScriptDataModel_SetScxmlEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "setScxmlEvent"); signal != nil {
-		(*(*func(*QScxmlEvent))(signal))(NewQScxmlEventFromPointer(event))
-	} else {
-		NewQScxmlEcmaScriptDataModelFromPointer(ptr).SetScxmlEventDefault(NewQScxmlEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ScxmlPropertyDefault", name}).(*core.QVariant)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectSetScxmlEvent(f func(event *QScxmlEvent)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlEvent"); signal != nil {
-			f := func(event *QScxmlEvent) {
-				(*(*func(*QScxmlEvent))(signal))(event)
-				f(event)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetScxmlEvent", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetScxmlEvent() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setScxmlEvent")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetScxmlEvent"})
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlEcmaScriptDataModel_SetScxmlEvent(ptr.Pointer(), PointerFromQScxmlEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlEvent", event})
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlEcmaScriptDataModel_SetScxmlEventDefault(ptr.Pointer(), PointerFromQScxmlEvent(event))
-	}
-}
 
-//export callbackQScxmlEcmaScriptDataModel_SetScxmlProperty
-func callbackQScxmlEcmaScriptDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string, *core.QVariant, string) bool)(signal))(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).SetScxmlPropertyDefault(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlEventDefault", event})
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlProperty"); signal != nil {
-			f := func(name string, value *core.QVariant, context string) bool {
-				(*(*func(string, *core.QVariant, string) bool)(signal))(name, value, context)
-				return f(name, value, context)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setScxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetScxmlProperty"})
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetScxmlProperty(name string, value core.QVariant_ITF, context string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		var contextC *C.char
-		if context != "" {
-			contextC = C.CString(context)
-			defer C.free(unsafe.Pointer(contextC))
-		}
-		return int8(C.QScxmlEcmaScriptDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlProperty", name, value, context}).(bool)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetScxmlPropertyDefault(name string, value core.QVariant_ITF, context string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		var contextC *C.char
-		if context != "" {
-			contextC = C.CString(context)
-			defer C.free(unsafe.Pointer(contextC))
-		}
-		return int8(C.QScxmlEcmaScriptDataModel_SetScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlEcmaScriptDataModel_Setup
-func callbackQScxmlEcmaScriptDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.struct_QtScxml_PackedList) C.char {
-	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(map[string]*core.QVariant) bool)(signal))(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
-			out := make(map[string]*core.QVariant, int(l.len))
-			tmpList := NewQScxmlEcmaScriptDataModelFromPointer(l.data)
-			for i, v := range tmpList.__setup_initialDataValues_keyList() {
-				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
-			}
-			return out
-		}(initialDataValues)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).SetupDefault(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
-		out := make(map[string]*core.QVariant, int(l.len))
-		tmpList := NewQScxmlEcmaScriptDataModelFromPointer(l.data)
-		for i, v := range tmpList.__setup_initialDataValues_keyList() {
-			out[v] = tmpList.__setup_initialDataValues_atList(v, i)
-		}
-		return out
-	}(initialDataValues)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlPropertyDefault", name, value, context}).(bool)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectSetup(f func(initialDataValues map[string]*core.QVariant) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setup"); signal != nil {
-			f := func(initialDataValues map[string]*core.QVariant) bool {
-				(*(*func(map[string]*core.QVariant) bool)(signal))(initialDataValues)
-				return f(initialDataValues)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetup", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetup() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setup")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetup"})
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlEcmaScriptDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQScxmlEcmaScriptDataModelFromPointer(NewQScxmlEcmaScriptDataModelFromPointer(nil).__setup_initialDataValues_newList())
-			for k, v := range initialDataValues {
-				tmpList.__setup_initialDataValues_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Setup", initialDataValues}).(bool)
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetupDefault(initialDataValues map[string]*core.QVariant) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlEcmaScriptDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQScxmlEcmaScriptDataModelFromPointer(NewQScxmlEcmaScriptDataModelFromPointer(nil).__setup_initialDataValues_newList())
-			for k, v := range initialDataValues {
-				tmpList.__setup_initialDataValues_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetupDefault", initialDataValues}).(bool)
 }
 
 type QScxmlError struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QScxmlError_ITF interface {
@@ -1505,14 +775,14 @@ func (ptr *QScxmlError) QScxmlError_PTR() *QScxmlError {
 
 func (ptr *QScxmlError) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QScxmlError) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -1523,93 +793,67 @@ func PointerFromQScxmlError(ptr QScxmlError_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QScxmlError) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQScxmlErrorFromPointer(ptr unsafe.Pointer) (n *QScxmlError) {
 	n = new(QScxmlError)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlError")
 	return
 }
 func NewQScxmlError() *QScxmlError {
-	tmpValue := NewQScxmlErrorFromPointer(C.QScxmlError_NewQScxmlError())
-	qt.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.NewQScxmlError", ""}).(*QScxmlError)
 }
 
 func NewQScxmlError2(fileName string, line int, column int, description string) *QScxmlError {
-	var fileNameC *C.char
-	if fileName != "" {
-		fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
-	}
-	var descriptionC *C.char
-	if description != "" {
-		descriptionC = C.CString(description)
-		defer C.free(unsafe.Pointer(descriptionC))
-	}
-	tmpValue := NewQScxmlErrorFromPointer(C.QScxmlError_NewQScxmlError2(C.struct_QtScxml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.int(int32(line)), C.int(int32(column)), C.struct_QtScxml_PackedString{data: descriptionC, len: C.longlong(len(description))}))
-	qt.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.NewQScxmlError2", "", fileName, line, column, description}).(*QScxmlError)
 }
 
 func NewQScxmlError3(other QScxmlError_ITF) *QScxmlError {
-	tmpValue := NewQScxmlErrorFromPointer(C.QScxmlError_NewQScxmlError3(PointerFromQScxmlError(other)))
-	qt.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.NewQScxmlError3", "", other}).(*QScxmlError)
 }
 
 func (ptr *QScxmlError) Column() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QScxmlError_Column(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Column"}).(float64))
 }
 
 func (ptr *QScxmlError) Description() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlError_Description(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Description"}).(string)
 }
 
 func (ptr *QScxmlError) FileName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlError_FileName(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "FileName"}).(string)
 }
 
 func (ptr *QScxmlError) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlError_IsValid(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsValid"}).(bool)
 }
 
 func (ptr *QScxmlError) Line() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QScxmlError_Line(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Line"}).(float64))
 }
 
 func (ptr *QScxmlError) ToString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlError_ToString(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ToString"}).(string)
 }
 
 func (ptr *QScxmlError) DestroyQScxmlError() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QScxmlError_DestroyQScxmlError(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQScxmlError"})
 }
 
 type QScxmlEvent struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QScxmlEvent_ITF interface {
@@ -1622,14 +866,14 @@ func (ptr *QScxmlEvent) QScxmlEvent_PTR() *QScxmlEvent {
 
 func (ptr *QScxmlEvent) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QScxmlEvent) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -1640,9 +884,13 @@ func PointerFromQScxmlEvent(ptr QScxmlEvent_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QScxmlEvent) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQScxmlEventFromPointer(ptr unsafe.Pointer) (n *QScxmlEvent) {
 	n = new(QScxmlEvent)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlEvent")
 	return
 }
 
@@ -1657,194 +905,123 @@ const (
 )
 
 func NewQScxmlEvent() *QScxmlEvent {
-	tmpValue := NewQScxmlEventFromPointer(C.QScxmlEvent_NewQScxmlEvent())
-	qt.SetFinalizer(tmpValue, (*QScxmlEvent).DestroyQScxmlEvent)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.NewQScxmlEvent", ""}).(*QScxmlEvent)
 }
 
 func NewQScxmlEvent2(other QScxmlEvent_ITF) *QScxmlEvent {
-	tmpValue := NewQScxmlEventFromPointer(C.QScxmlEvent_NewQScxmlEvent2(PointerFromQScxmlEvent(other)))
-	qt.SetFinalizer(tmpValue, (*QScxmlEvent).DestroyQScxmlEvent)
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.NewQScxmlEvent2", "", other}).(*QScxmlEvent)
 }
 
 func (ptr *QScxmlEvent) Clear() {
-	if ptr.Pointer() != nil {
-		C.QScxmlEvent_Clear(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Clear"})
 }
 
 func (ptr *QScxmlEvent) Data() *core.QVariant {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlEvent_Data(ptr.Pointer()))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Data"}).(*core.QVariant)
 }
 
 func (ptr *QScxmlEvent) Delay() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QScxmlEvent_Delay(ptr.Pointer())))
-	}
-	return 0
+
+	return int(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Delay"}).(float64))
 }
 
 func (ptr *QScxmlEvent) ErrorMessage() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlEvent_ErrorMessage(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ErrorMessage"}).(string)
 }
 
 func (ptr *QScxmlEvent) EventType() QScxmlEvent__EventType {
-	if ptr.Pointer() != nil {
-		return QScxmlEvent__EventType(C.QScxmlEvent_EventType(ptr.Pointer()))
-	}
-	return 0
+
+	return QScxmlEvent__EventType(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventType"}).(float64))
 }
 
 func (ptr *QScxmlEvent) InvokeId() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlEvent_InvokeId(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InvokeId"}).(string)
 }
 
 func (ptr *QScxmlEvent) IsErrorEvent() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlEvent_IsErrorEvent(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsErrorEvent"}).(bool)
 }
 
 func (ptr *QScxmlEvent) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlEvent_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QScxmlEvent) Origin() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlEvent_Origin(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Origin"}).(string)
 }
 
 func (ptr *QScxmlEvent) OriginType() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlEvent_OriginType(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "OriginType"}).(string)
 }
 
 func (ptr *QScxmlEvent) ScxmlType() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlEvent_ScxmlType(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ScxmlType"}).(string)
 }
 
 func (ptr *QScxmlEvent) SendId() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlEvent_SendId(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SendId"}).(string)
 }
 
 func (ptr *QScxmlEvent) SetData(data core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlEvent_SetData(ptr.Pointer(), core.PointerFromQVariant(data))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetData", data})
 }
 
 func (ptr *QScxmlEvent) SetDelay(delayInMiliSecs int) {
-	if ptr.Pointer() != nil {
-		C.QScxmlEvent_SetDelay(ptr.Pointer(), C.int(int32(delayInMiliSecs)))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDelay", delayInMiliSecs})
 }
 
 func (ptr *QScxmlEvent) SetErrorMessage(message string) {
-	if ptr.Pointer() != nil {
-		var messageC *C.char
-		if message != "" {
-			messageC = C.CString(message)
-			defer C.free(unsafe.Pointer(messageC))
-		}
-		C.QScxmlEvent_SetErrorMessage(ptr.Pointer(), C.struct_QtScxml_PackedString{data: messageC, len: C.longlong(len(message))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetErrorMessage", message})
 }
 
 func (ptr *QScxmlEvent) SetEventType(ty QScxmlEvent__EventType) {
-	if ptr.Pointer() != nil {
-		C.QScxmlEvent_SetEventType(ptr.Pointer(), C.longlong(ty))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetEventType", ty})
 }
 
 func (ptr *QScxmlEvent) SetInvokeId(invokeid string) {
-	if ptr.Pointer() != nil {
-		var invokeidC *C.char
-		if invokeid != "" {
-			invokeidC = C.CString(invokeid)
-			defer C.free(unsafe.Pointer(invokeidC))
-		}
-		C.QScxmlEvent_SetInvokeId(ptr.Pointer(), C.struct_QtScxml_PackedString{data: invokeidC, len: C.longlong(len(invokeid))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetInvokeId", invokeid})
 }
 
 func (ptr *QScxmlEvent) SetName(name string) {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		C.QScxmlEvent_SetName(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetName", name})
 }
 
 func (ptr *QScxmlEvent) SetOrigin(origin string) {
-	if ptr.Pointer() != nil {
-		var originC *C.char
-		if origin != "" {
-			originC = C.CString(origin)
-			defer C.free(unsafe.Pointer(originC))
-		}
-		C.QScxmlEvent_SetOrigin(ptr.Pointer(), C.struct_QtScxml_PackedString{data: originC, len: C.longlong(len(origin))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetOrigin", origin})
 }
 
 func (ptr *QScxmlEvent) SetOriginType(origintype string) {
-	if ptr.Pointer() != nil {
-		var origintypeC *C.char
-		if origintype != "" {
-			origintypeC = C.CString(origintype)
-			defer C.free(unsafe.Pointer(origintypeC))
-		}
-		C.QScxmlEvent_SetOriginType(ptr.Pointer(), C.struct_QtScxml_PackedString{data: origintypeC, len: C.longlong(len(origintype))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetOriginType", origintype})
 }
 
 func (ptr *QScxmlEvent) SetSendId(sendid string) {
-	if ptr.Pointer() != nil {
-		var sendidC *C.char
-		if sendid != "" {
-			sendidC = C.CString(sendid)
-			defer C.free(unsafe.Pointer(sendidC))
-		}
-		C.QScxmlEvent_SetSendId(ptr.Pointer(), C.struct_QtScxml_PackedString{data: sendidC, len: C.longlong(len(sendid))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetSendId", sendid})
 }
 
 func (ptr *QScxmlEvent) DestroyQScxmlEvent() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QScxmlEvent_DestroyQScxmlEvent(ptr.Pointer())
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQScxmlEvent"})
 }
 
 type QScxmlInvokableService struct {
@@ -1880,411 +1057,192 @@ func PointerFromQScxmlInvokableService(ptr QScxmlInvokableService_ITF) unsafe.Po
 	return nil
 }
 
+func (n *QScxmlInvokableService) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QScxmlInvokableService) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQScxmlInvokableServiceFromPointer(ptr unsafe.Pointer) (n *QScxmlInvokableService) {
 	n = new(QScxmlInvokableService)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlInvokableService")
 	return
 }
 
-//export callbackQScxmlInvokableService_Id
-func callbackQScxmlInvokableService_Id(ptr unsafe.Pointer) C.struct_QtScxml_PackedString {
-	if signal := qt.GetSignal(ptr, "id"); signal != nil {
-		tempVal := (*(*func() string)(signal))()
-		return C.struct_QtScxml_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := ""
-	return C.struct_QtScxml_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+func (ptr *QScxmlInvokableService) DestroyQScxmlInvokableService() {
 }
 
 func (ptr *QScxmlInvokableService) ConnectId(f func() string) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "id"); signal != nil {
-			f := func() string {
-				(*(*func() string)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "id", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "id", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectId", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlInvokableService) DisconnectId() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "id")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectId"})
 }
 
 func (ptr *QScxmlInvokableService) Id() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlInvokableService_Id(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQScxmlInvokableService_Name
-func callbackQScxmlInvokableService_Name(ptr unsafe.Pointer) C.struct_QtScxml_PackedString {
-	if signal := qt.GetSignal(ptr, "name"); signal != nil {
-		tempVal := (*(*func() string)(signal))()
-		return C.struct_QtScxml_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := ""
-	return C.struct_QtScxml_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Id"}).(string)
 }
 
 func (ptr *QScxmlInvokableService) ConnectName(f func() string) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "name"); signal != nil {
-			f := func() string {
-				(*(*func() string)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "name", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "name", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectName", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlInvokableService) DisconnectName() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "name")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectName"})
 }
 
 func (ptr *QScxmlInvokableService) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlInvokableService_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QScxmlInvokableService) ParentStateMachine() *QScxmlStateMachine {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlStateMachineFromPointer(C.QScxmlInvokableService_ParentStateMachine(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQScxmlInvokableService_PostEvent
-func callbackQScxmlInvokableService_PostEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "postEvent"); signal != nil {
-		(*(*func(*QScxmlEvent))(signal))(NewQScxmlEventFromPointer(event))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ParentStateMachine"}).(*QScxmlStateMachine)
 }
 
 func (ptr *QScxmlInvokableService) ConnectPostEvent(f func(event *QScxmlEvent)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "postEvent"); signal != nil {
-			f := func(event *QScxmlEvent) {
-				(*(*func(*QScxmlEvent))(signal))(event)
-				f(event)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "postEvent", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "postEvent", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectPostEvent", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlInvokableService) DisconnectPostEvent() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "postEvent")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectPostEvent"})
 }
 
 func (ptr *QScxmlInvokableService) PostEvent(event QScxmlEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService_PostEvent(ptr.Pointer(), PointerFromQScxmlEvent(event))
-	}
-}
 
-//export callbackQScxmlInvokableService_Start
-func callbackQScxmlInvokableService_Start(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "start"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "PostEvent", event})
 }
 
 func (ptr *QScxmlInvokableService) ConnectStart(f func() bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStart", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlInvokableService) DisconnectStart() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "start")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStart"})
 }
 
 func (ptr *QScxmlInvokableService) Start() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlInvokableService_Start(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Start"}).(bool)
 }
 
 func (ptr *QScxmlInvokableService) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlInvokableService) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QScxmlInvokableService) __children_newList() unsafe.Pointer {
-	return C.QScxmlInvokableService___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableService) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlInvokableService___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QScxmlInvokableService) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QScxmlInvokableService) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QScxmlInvokableService___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableService) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlInvokableService) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QScxmlInvokableService) __findChildren_newList() unsafe.Pointer {
-	return C.QScxmlInvokableService___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableService) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlInvokableService) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QScxmlInvokableService) __findChildren_newList3() unsafe.Pointer {
-	return C.QScxmlInvokableService___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQScxmlInvokableService_ChildEvent
-func callbackQScxmlInvokableService_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQScxmlInvokableServiceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableService) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQScxmlInvokableService_ConnectNotify
-func callbackQScxmlInvokableService_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQScxmlInvokableServiceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QScxmlInvokableService) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQScxmlInvokableService_CustomEvent
-func callbackQScxmlInvokableService_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQScxmlInvokableServiceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QScxmlInvokableService) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQScxmlInvokableService_DeleteLater
-func callbackQScxmlInvokableService_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQScxmlInvokableServiceFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QScxmlInvokableService) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QScxmlInvokableService_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQScxmlInvokableService_Destroyed
-func callbackQScxmlInvokableService_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQScxmlInvokableService_DisconnectNotify
-func callbackQScxmlInvokableService_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQScxmlInvokableServiceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QScxmlInvokableService) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQScxmlInvokableService_Event
-func callbackQScxmlInvokableService_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlInvokableServiceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QScxmlInvokableService) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlInvokableService_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlInvokableService_EventFilter
-func callbackQScxmlInvokableService_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlInvokableServiceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QScxmlInvokableService) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlInvokableService_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlInvokableService_MetaObject
-func callbackQScxmlInvokableService_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQScxmlInvokableServiceFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QScxmlInvokableService) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QScxmlInvokableService_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQScxmlInvokableService_ObjectNameChanged
-func callbackQScxmlInvokableService_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtScxml_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQScxmlInvokableService_TimerEvent
-func callbackQScxmlInvokableService_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQScxmlInvokableServiceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QScxmlInvokableService) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableService_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QScxmlInvokableServiceFactory struct {
@@ -2320,306 +1278,162 @@ func PointerFromQScxmlInvokableServiceFactory(ptr QScxmlInvokableServiceFactory_
 	return nil
 }
 
+func (n *QScxmlInvokableServiceFactory) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QScxmlInvokableServiceFactory) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQScxmlInvokableServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QScxmlInvokableServiceFactory) {
 	n = new(QScxmlInvokableServiceFactory)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlInvokableServiceFactory")
 	return
 }
 
-//export callbackQScxmlInvokableServiceFactory_Invoke
-func callbackQScxmlInvokableServiceFactory_Invoke(ptr unsafe.Pointer, parentStateMachine unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "invoke"); signal != nil {
-		return PointerFromQScxmlInvokableService((*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(NewQScxmlStateMachineFromPointer(parentStateMachine)))
-	}
-
-	return PointerFromQScxmlInvokableService(nil)
+func (ptr *QScxmlInvokableServiceFactory) DestroyQScxmlInvokableServiceFactory() {
 }
 
 func (ptr *QScxmlInvokableServiceFactory) ConnectInvoke(f func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "invoke"); signal != nil {
-			f := func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
-				(*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(parentStateMachine)
-				return f(parentStateMachine)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectInvoke", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) DisconnectInvoke() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "invoke")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectInvoke"})
 }
 
 func (ptr *QScxmlInvokableServiceFactory) Invoke(parentStateMachine QScxmlStateMachine_ITF) *QScxmlInvokableService {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlInvokableServiceFactory_Invoke(ptr.Pointer(), PointerFromQScxmlStateMachine(parentStateMachine)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Invoke", parentStateMachine}).(*QScxmlInvokableService)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __QScxmlInvokableServiceFactory_names_newList() unsafe.Pointer {
-	return C.QScxmlInvokableServiceFactory___QScxmlInvokableServiceFactory_names_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__QScxmlInvokableServiceFactory_names_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __QScxmlInvokableServiceFactory_parameters_newList() unsafe.Pointer {
-	return C.QScxmlInvokableServiceFactory___QScxmlInvokableServiceFactory_parameters_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__QScxmlInvokableServiceFactory_parameters_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __names_newList() unsafe.Pointer {
-	return C.QScxmlInvokableServiceFactory___names_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__names_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __parameters_newList() unsafe.Pointer {
-	return C.QScxmlInvokableServiceFactory___parameters_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__parameters_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __children_newList() unsafe.Pointer {
-	return C.QScxmlInvokableServiceFactory___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlInvokableServiceFactory___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QScxmlInvokableServiceFactory___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __findChildren_newList() unsafe.Pointer {
-	return C.QScxmlInvokableServiceFactory___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __findChildren_newList3() unsafe.Pointer {
-	return C.QScxmlInvokableServiceFactory___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQScxmlInvokableServiceFactory_ChildEvent
-func callbackQScxmlInvokableServiceFactory_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQScxmlInvokableServiceFactoryFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQScxmlInvokableServiceFactory_ConnectNotify
-func callbackQScxmlInvokableServiceFactory_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQScxmlInvokableServiceFactoryFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QScxmlInvokableServiceFactory) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQScxmlInvokableServiceFactory_CustomEvent
-func callbackQScxmlInvokableServiceFactory_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQScxmlInvokableServiceFactoryFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QScxmlInvokableServiceFactory) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQScxmlInvokableServiceFactory_DeleteLater
-func callbackQScxmlInvokableServiceFactory_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQScxmlInvokableServiceFactoryFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QScxmlInvokableServiceFactory) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QScxmlInvokableServiceFactory_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQScxmlInvokableServiceFactory_Destroyed
-func callbackQScxmlInvokableServiceFactory_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQScxmlInvokableServiceFactory_DisconnectNotify
-func callbackQScxmlInvokableServiceFactory_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQScxmlInvokableServiceFactoryFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QScxmlInvokableServiceFactory) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQScxmlInvokableServiceFactory_Event
-func callbackQScxmlInvokableServiceFactory_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlInvokableServiceFactoryFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QScxmlInvokableServiceFactory) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlInvokableServiceFactory_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlInvokableServiceFactory_EventFilter
-func callbackQScxmlInvokableServiceFactory_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlInvokableServiceFactoryFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlInvokableServiceFactory_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlInvokableServiceFactory_MetaObject
-func callbackQScxmlInvokableServiceFactory_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQScxmlInvokableServiceFactoryFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QScxmlInvokableServiceFactory_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQScxmlInvokableServiceFactory_ObjectNameChanged
-func callbackQScxmlInvokableServiceFactory_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtScxml_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQScxmlInvokableServiceFactory_TimerEvent
-func callbackQScxmlInvokableServiceFactory_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQScxmlInvokableServiceFactoryFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QScxmlInvokableServiceFactory) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlInvokableServiceFactory_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QScxmlNullDataModel struct {
@@ -2655,359 +1469,143 @@ func PointerFromQScxmlNullDataModel(ptr QScxmlNullDataModel_ITF) unsafe.Pointer 
 	return nil
 }
 
+func (n *QScxmlNullDataModel) InitFromInternal(ptr uintptr, name string) {
+	n.QScxmlDataModel_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QScxmlNullDataModel) ClassNameInternalF() string {
+	return n.QScxmlDataModel_PTR().ClassNameInternalF()
+}
+
 func NewQScxmlNullDataModelFromPointer(ptr unsafe.Pointer) (n *QScxmlNullDataModel) {
 	n = new(QScxmlNullDataModel)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlNullDataModel")
 	return
 }
 func NewQScxmlNullDataModel(parent core.QObject_ITF) *QScxmlNullDataModel {
-	tmpValue := NewQScxmlNullDataModelFromPointer(C.QScxmlNullDataModel_NewQScxmlNullDataModel(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQScxmlNullDataModel_HasScxmlProperty
-func callbackQScxmlNullDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).HasScxmlPropertyDefault(cGoUnpackString(name)))))
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.NewQScxmlNullDataModel", "", parent}).(*QScxmlNullDataModel)
 }
 
 func (ptr *QScxmlNullDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "hasScxmlProperty"); signal != nil {
-			f := func(name string) bool {
-				(*(*func(string) bool)(signal))(name)
-				return f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectHasScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectHasScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "hasScxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectHasScxmlProperty"})
 }
 
 func (ptr *QScxmlNullDataModel) HasScxmlProperty(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QScxmlNullDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasScxmlProperty", name}).(bool)
 }
 
 func (ptr *QScxmlNullDataModel) HasScxmlPropertyDefault(name string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		return int8(C.QScxmlNullDataModel_HasScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlNullDataModel_ScxmlProperty
-func callbackQScxmlNullDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant((*(*func(string) *core.QVariant)(signal))(cGoUnpackString(name)))
-	}
-
-	return core.PointerFromQVariant(NewQScxmlNullDataModelFromPointer(ptr).ScxmlPropertyDefault(cGoUnpackString(name)))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "HasScxmlPropertyDefault", name}).(bool)
 }
 
 func (ptr *QScxmlNullDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "scxmlProperty"); signal != nil {
-			f := func(name string) *core.QVariant {
-				(*(*func(string) *core.QVariant)(signal))(name)
-				return f(name)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "scxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectScxmlProperty"})
 }
 
 func (ptr *QScxmlNullDataModel) ScxmlProperty(name string) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlNullDataModel_ScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ScxmlProperty", name}).(*core.QVariant)
 }
 
 func (ptr *QScxmlNullDataModel) ScxmlPropertyDefault(name string) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlNullDataModel_ScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQScxmlNullDataModel_SetScxmlEvent
-func callbackQScxmlNullDataModel_SetScxmlEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "setScxmlEvent"); signal != nil {
-		(*(*func(*QScxmlEvent))(signal))(NewQScxmlEventFromPointer(event))
-	} else {
-		NewQScxmlNullDataModelFromPointer(ptr).SetScxmlEventDefault(NewQScxmlEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ScxmlPropertyDefault", name}).(*core.QVariant)
 }
 
 func (ptr *QScxmlNullDataModel) ConnectSetScxmlEvent(f func(event *QScxmlEvent)) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlEvent"); signal != nil {
-			f := func(event *QScxmlEvent) {
-				(*(*func(*QScxmlEvent))(signal))(event)
-				f(event)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetScxmlEvent", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectSetScxmlEvent() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setScxmlEvent")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetScxmlEvent"})
 }
 
 func (ptr *QScxmlNullDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlNullDataModel_SetScxmlEvent(ptr.Pointer(), PointerFromQScxmlEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlEvent", event})
 }
 
 func (ptr *QScxmlNullDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlNullDataModel_SetScxmlEventDefault(ptr.Pointer(), PointerFromQScxmlEvent(event))
-	}
-}
 
-//export callbackQScxmlNullDataModel_SetScxmlProperty
-func callbackQScxmlNullDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
-	if signal := qt.GetSignal(ptr, "setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(string, *core.QVariant, string) bool)(signal))(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).SetScxmlPropertyDefault(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlEventDefault", event})
 }
 
 func (ptr *QScxmlNullDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlProperty"); signal != nil {
-			f := func(name string, value *core.QVariant, context string) bool {
-				(*(*func(string, *core.QVariant, string) bool)(signal))(name, value, context)
-				return f(name, value, context)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetScxmlProperty", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectSetScxmlProperty() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setScxmlProperty")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetScxmlProperty"})
 }
 
 func (ptr *QScxmlNullDataModel) SetScxmlProperty(name string, value core.QVariant_ITF, context string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		var contextC *C.char
-		if context != "" {
-			contextC = C.CString(context)
-			defer C.free(unsafe.Pointer(contextC))
-		}
-		return int8(C.QScxmlNullDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlProperty", name, value, context}).(bool)
 }
 
 func (ptr *QScxmlNullDataModel) SetScxmlPropertyDefault(name string, value core.QVariant_ITF, context string) bool {
-	if ptr.Pointer() != nil {
-		var nameC *C.char
-		if name != "" {
-			nameC = C.CString(name)
-			defer C.free(unsafe.Pointer(nameC))
-		}
-		var contextC *C.char
-		if context != "" {
-			contextC = C.CString(context)
-			defer C.free(unsafe.Pointer(contextC))
-		}
-		return int8(C.QScxmlNullDataModel_SetScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlNullDataModel_Setup
-func callbackQScxmlNullDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.struct_QtScxml_PackedList) C.char {
-	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(map[string]*core.QVariant) bool)(signal))(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
-			out := make(map[string]*core.QVariant, int(l.len))
-			tmpList := NewQScxmlNullDataModelFromPointer(l.data)
-			for i, v := range tmpList.__setup_initialDataValues_keyList() {
-				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
-			}
-			return out
-		}(initialDataValues)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).SetupDefault(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
-		out := make(map[string]*core.QVariant, int(l.len))
-		tmpList := NewQScxmlNullDataModelFromPointer(l.data)
-		for i, v := range tmpList.__setup_initialDataValues_keyList() {
-			out[v] = tmpList.__setup_initialDataValues_atList(v, i)
-		}
-		return out
-	}(initialDataValues)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetScxmlPropertyDefault", name, value, context}).(bool)
 }
 
 func (ptr *QScxmlNullDataModel) ConnectSetup(f func(initialDataValues map[string]*core.QVariant) bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "setup"); signal != nil {
-			f := func(initialDataValues map[string]*core.QVariant) bool {
-				(*(*func(map[string]*core.QVariant) bool)(signal))(initialDataValues)
-				return f(initialDataValues)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectSetup", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectSetup() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "setup")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectSetup"})
 }
 
 func (ptr *QScxmlNullDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlNullDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQScxmlNullDataModelFromPointer(NewQScxmlNullDataModelFromPointer(nil).__setup_initialDataValues_newList())
-			for k, v := range initialDataValues {
-				tmpList.__setup_initialDataValues_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Setup", initialDataValues}).(bool)
 }
 
 func (ptr *QScxmlNullDataModel) SetupDefault(initialDataValues map[string]*core.QVariant) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlNullDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQScxmlNullDataModelFromPointer(NewQScxmlNullDataModelFromPointer(nil).__setup_initialDataValues_newList())
-			for k, v := range initialDataValues {
-				tmpList.__setup_initialDataValues_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}())) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlNullDataModel_DestroyQScxmlNullDataModel
-func callbackQScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QScxmlNullDataModel"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQScxmlNullDataModelFromPointer(ptr).DestroyQScxmlNullDataModelDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetupDefault", initialDataValues}).(bool)
 }
 
 func (ptr *QScxmlNullDataModel) ConnectDestroyQScxmlNullDataModel(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QScxmlNullDataModel"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QScxmlNullDataModel", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QScxmlNullDataModel", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQScxmlNullDataModel", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectDestroyQScxmlNullDataModel() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QScxmlNullDataModel")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQScxmlNullDataModel"})
 }
 
 func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModel() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQScxmlNullDataModel"})
 }
 
 func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModelDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QScxmlNullDataModel_DestroyQScxmlNullDataModelDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQScxmlNullDataModelDefault"})
 }
 
 type QScxmlStateMachine struct {
@@ -3043,1238 +1641,597 @@ func PointerFromQScxmlStateMachine(ptr QScxmlStateMachine_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QScxmlStateMachine) InitFromInternal(ptr uintptr, name string) {
+	n.QObject_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QScxmlStateMachine) ClassNameInternalF() string {
+	return n.QObject_PTR().ClassNameInternalF()
+}
+
 func NewQScxmlStateMachineFromPointer(ptr unsafe.Pointer) (n *QScxmlStateMachine) {
 	n = new(QScxmlStateMachine)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlStateMachine")
 	return
 }
+
+func (ptr *QScxmlStateMachine) DestroyQScxmlStateMachine() {
+}
+
 func (ptr *QScxmlStateMachine) ActiveStateNames(compress bool) []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QScxmlStateMachine_ActiveStateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ActiveStateNames", compress}).([]string)
 }
 
 func (ptr *QScxmlStateMachine) CancelDelayedEvent(sendId string) {
-	if ptr.Pointer() != nil {
-		var sendIdC *C.char
-		if sendId != "" {
-			sendIdC = C.CString(sendId)
-			defer C.free(unsafe.Pointer(sendIdC))
-		}
-		C.QScxmlStateMachine_CancelDelayedEvent(ptr.Pointer(), C.struct_QtScxml_PackedString{data: sendIdC, len: C.longlong(len(sendId))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CancelDelayedEvent", sendId})
 }
 
 func (ptr *QScxmlStateMachine) DataModel() *QScxmlDataModel {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlDataModelFromPointer(C.QScxmlStateMachine_DataModel(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQScxmlStateMachine_DataModelChanged
-func callbackQScxmlStateMachine_DataModelChanged(ptr unsafe.Pointer, model unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "dataModelChanged"); signal != nil {
-		(*(*func(*QScxmlDataModel))(signal))(NewQScxmlDataModelFromPointer(model))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DataModel"}).(*QScxmlDataModel)
 }
 
 func (ptr *QScxmlStateMachine) ConnectDataModelChanged(f func(model *QScxmlDataModel)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "dataModelChanged") {
-			C.QScxmlStateMachine_ConnectDataModelChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "dataModelChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "dataModelChanged"); signal != nil {
-			f := func(model *QScxmlDataModel) {
-				(*(*func(*QScxmlDataModel))(signal))(model)
-				f(model)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "dataModelChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "dataModelChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDataModelChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectDataModelChanged() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DisconnectDataModelChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "dataModelChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDataModelChanged"})
 }
 
 func (ptr *QScxmlStateMachine) DataModelChanged(model QScxmlDataModel_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DataModelChanged(ptr.Pointer(), PointerFromQScxmlDataModel(model))
-	}
-}
 
-//export callbackQScxmlStateMachine_Finished
-func callbackQScxmlStateMachine_Finished(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DataModelChanged", model})
 }
 
 func (ptr *QScxmlStateMachine) ConnectFinished(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QScxmlStateMachine_ConnectFinished(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "finished")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectFinished", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectFinished() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DisconnectFinished(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "finished")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectFinished"})
 }
 
 func (ptr *QScxmlStateMachine) Finished() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_Finished(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Finished"})
 }
 
 func QScxmlStateMachine_FromData(data core.QIODevice_ITF, fileName string) *QScxmlStateMachine {
-	var fileNameC *C.char
-	if fileName != "" {
-		fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
-	}
-	tmpValue := NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromData(core.PointerFromQIODevice(data), C.struct_QtScxml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.QScxmlStateMachine_FromData", "", data, fileName}).(*QScxmlStateMachine)
 }
 
 func (ptr *QScxmlStateMachine) FromData(data core.QIODevice_ITF, fileName string) *QScxmlStateMachine {
-	var fileNameC *C.char
-	if fileName != "" {
-		fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
-	}
-	tmpValue := NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromData(core.PointerFromQIODevice(data), C.struct_QtScxml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.QScxmlStateMachine_FromData", "", data, fileName}).(*QScxmlStateMachine)
 }
 
 func QScxmlStateMachine_FromFile(fileName string) *QScxmlStateMachine {
-	var fileNameC *C.char
-	if fileName != "" {
-		fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
-	}
-	tmpValue := NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromFile(C.struct_QtScxml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
+
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.QScxmlStateMachine_FromFile", "", fileName}).(*QScxmlStateMachine)
 }
 
 func (ptr *QScxmlStateMachine) FromFile(fileName string) *QScxmlStateMachine {
-	var fileNameC *C.char
-	if fileName != "" {
-		fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
-	}
-	tmpValue := NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromFile(C.struct_QtScxml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
 
-//export callbackQScxmlStateMachine_Init
-func callbackQScxmlStateMachine_Init(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "init"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlStateMachineFromPointer(ptr).InitDefault())))
+	return internal.CallLocalFunction([]interface{}{"", "", "scxml.QScxmlStateMachine_FromFile", "", fileName}).(*QScxmlStateMachine)
 }
 
 func (ptr *QScxmlStateMachine) ConnectInit(f func() bool) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "init"); signal != nil {
-			f := func() bool {
-				(*(*func() bool)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "init", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "init", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectInit", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectInit() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "init")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectInit"})
 }
 
 func (ptr *QScxmlStateMachine) Init() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlStateMachine_Init(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Init"}).(bool)
 }
 
 func (ptr *QScxmlStateMachine) InitDefault() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlStateMachine_InitDefault(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InitDefault"}).(bool)
 }
 
 func (ptr *QScxmlStateMachine) InitialValues() map[string]*core.QVariant {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
-			out := make(map[string]*core.QVariant, int(l.len))
-			tmpList := NewQScxmlStateMachineFromPointer(l.data)
-			for i, v := range tmpList.__initialValues_keyList() {
-				out[v] = tmpList.__initialValues_atList(v, i)
-			}
-			return out
-		}(C.QScxmlStateMachine_InitialValues(ptr.Pointer()))
-	}
-	return make(map[string]*core.QVariant, 0)
-}
 
-//export callbackQScxmlStateMachine_InitializedChanged
-func callbackQScxmlStateMachine_InitializedChanged(ptr unsafe.Pointer, initialized C.char) {
-	if signal := qt.GetSignal(ptr, "initializedChanged"); signal != nil {
-		(*(*func(bool))(signal))(int8(initialized) != 0)
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InitialValues"}).(map[string]*core.QVariant)
 }
 
 func (ptr *QScxmlStateMachine) ConnectInitializedChanged(f func(initialized bool)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "initializedChanged") {
-			C.QScxmlStateMachine_ConnectInitializedChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "initializedChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "initializedChanged"); signal != nil {
-			f := func(initialized bool) {
-				(*(*func(bool))(signal))(initialized)
-				f(initialized)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "initializedChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "initializedChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectInitializedChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectInitializedChanged() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DisconnectInitializedChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "initializedChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectInitializedChanged"})
 }
 
 func (ptr *QScxmlStateMachine) InitializedChanged(initialized bool) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_InitializedChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(initialized))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InitializedChanged", initialized})
 }
 
 func (ptr *QScxmlStateMachine) InvokedServices() []*QScxmlInvokableService {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtScxml_PackedList) []*QScxmlInvokableService {
-			out := make([]*QScxmlInvokableService, int(l.len))
-			tmpList := NewQScxmlStateMachineFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__invokedServices_atList(i)
-			}
-			return out
-		}(C.QScxmlStateMachine_InvokedServices(ptr.Pointer()))
-	}
-	return make([]*QScxmlInvokableService, 0)
-}
 
-//export callbackQScxmlStateMachine_InvokedServicesChanged
-func callbackQScxmlStateMachine_InvokedServicesChanged(ptr unsafe.Pointer, invokedServices C.struct_QtScxml_PackedList) {
-	if signal := qt.GetSignal(ptr, "invokedServicesChanged"); signal != nil {
-		(*(*func([]*QScxmlInvokableService))(signal))(func(l C.struct_QtScxml_PackedList) []*QScxmlInvokableService {
-			out := make([]*QScxmlInvokableService, int(l.len))
-			tmpList := NewQScxmlStateMachineFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__invokedServicesChanged_invokedServices_atList(i)
-			}
-			return out
-		}(invokedServices))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InvokedServices"}).([]*QScxmlInvokableService)
 }
 
 func (ptr *QScxmlStateMachine) ConnectInvokedServicesChanged(f func(invokedServices []*QScxmlInvokableService)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "invokedServicesChanged") {
-			C.QScxmlStateMachine_ConnectInvokedServicesChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "invokedServicesChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "invokedServicesChanged"); signal != nil {
-			f := func(invokedServices []*QScxmlInvokableService) {
-				(*(*func([]*QScxmlInvokableService))(signal))(invokedServices)
-				f(invokedServices)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "invokedServicesChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "invokedServicesChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectInvokedServicesChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectInvokedServicesChanged() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DisconnectInvokedServicesChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "invokedServicesChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectInvokedServicesChanged"})
 }
 
 func (ptr *QScxmlStateMachine) InvokedServicesChanged(invokedServices []*QScxmlInvokableService) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_InvokedServicesChanged(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQScxmlStateMachineFromPointer(NewQScxmlStateMachineFromPointer(nil).__invokedServicesChanged_invokedServices_newList())
-			for _, v := range invokedServices {
-				tmpList.__invokedServicesChanged_invokedServices_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InvokedServicesChanged", invokedServices})
 }
 
 func (ptr *QScxmlStateMachine) IsActive(scxmlStateName string) bool {
-	if ptr.Pointer() != nil {
-		var scxmlStateNameC *C.char
-		if scxmlStateName != "" {
-			scxmlStateNameC = C.CString(scxmlStateName)
-			defer C.free(unsafe.Pointer(scxmlStateNameC))
-		}
-		return int8(C.QScxmlStateMachine_IsActive(ptr.Pointer(), C.struct_QtScxml_PackedString{data: scxmlStateNameC, len: C.longlong(len(scxmlStateName))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsActive", scxmlStateName}).(bool)
 }
 
 func (ptr *QScxmlStateMachine) IsActive2(stateIndex int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlStateMachine_IsActive2(ptr.Pointer(), C.int(int32(stateIndex)))) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsActive2", stateIndex}).(bool)
 }
 
 func (ptr *QScxmlStateMachine) IsDispatchableTarget(target string) bool {
-	if ptr.Pointer() != nil {
-		var targetC *C.char
-		if target != "" {
-			targetC = C.CString(target)
-			defer C.free(unsafe.Pointer(targetC))
-		}
-		return int8(C.QScxmlStateMachine_IsDispatchableTarget(ptr.Pointer(), C.struct_QtScxml_PackedString{data: targetC, len: C.longlong(len(target))})) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsDispatchableTarget", target}).(bool)
 }
 
 func (ptr *QScxmlStateMachine) IsInitialized() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlStateMachine_IsInitialized(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsInitialized"}).(bool)
 }
 
 func (ptr *QScxmlStateMachine) IsInvoked() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlStateMachine_IsInvoked(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsInvoked"}).(bool)
 }
 
 func (ptr *QScxmlStateMachine) IsRunning() bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlStateMachine_IsRunning(ptr.Pointer())) != 0
-	}
-	return false
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "IsRunning"}).(bool)
 }
 
-//export callbackQScxmlStateMachine_Log
-func callbackQScxmlStateMachine_Log(ptr unsafe.Pointer, label C.struct_QtScxml_PackedString, msg C.struct_QtScxml_PackedString) {
-	if signal := qt.GetSignal(ptr, "log"); signal != nil {
-		(*(*func(string, string))(signal))(cGoUnpackString(label), cGoUnpackString(msg))
-	}
+func (ptr *QScxmlStateMachine) DisconnectLoaderChanged() {
 
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectLoaderChanged"})
 }
 
 func (ptr *QScxmlStateMachine) ConnectLog(f func(label string, msg string)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "log") {
-			C.QScxmlStateMachine_ConnectLog(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "log")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "log"); signal != nil {
-			f := func(label string, msg string) {
-				(*(*func(string, string))(signal))(label, msg)
-				f(label, msg)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "log", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "log", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectLog", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectLog() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DisconnectLog(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "log")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectLog"})
 }
 
 func (ptr *QScxmlStateMachine) Log(label string, msg string) {
-	if ptr.Pointer() != nil {
-		var labelC *C.char
-		if label != "" {
-			labelC = C.CString(label)
-			defer C.free(unsafe.Pointer(labelC))
-		}
-		var msgC *C.char
-		if msg != "" {
-			msgC = C.CString(msg)
-			defer C.free(unsafe.Pointer(msgC))
-		}
-		C.QScxmlStateMachine_Log(ptr.Pointer(), C.struct_QtScxml_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtScxml_PackedString{data: msgC, len: C.longlong(len(msg))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Log", label, msg})
 }
 
 func (ptr *QScxmlStateMachine) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlStateMachine_Name(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QScxmlStateMachine) ParseErrors() []*QScxmlError {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtScxml_PackedList) []*QScxmlError {
-			out := make([]*QScxmlError, int(l.len))
-			tmpList := NewQScxmlStateMachineFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__parseErrors_atList(i)
-			}
-			return out
-		}(C.QScxmlStateMachine_ParseErrors(ptr.Pointer()))
-	}
-	return make([]*QScxmlError, 0)
-}
 
-//export callbackQScxmlStateMachine_ReachedStableState
-func callbackQScxmlStateMachine_ReachedStableState(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "reachedStableState"); signal != nil {
-		(*(*func())(signal))()
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ParseErrors"}).([]*QScxmlError)
 }
 
 func (ptr *QScxmlStateMachine) ConnectReachedStableState(f func()) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "reachedStableState") {
-			C.QScxmlStateMachine_ConnectReachedStableState(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "reachedStableState")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "reachedStableState"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "reachedStableState", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "reachedStableState", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectReachedStableState", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectReachedStableState() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DisconnectReachedStableState(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "reachedStableState")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectReachedStableState"})
 }
 
 func (ptr *QScxmlStateMachine) ReachedStableState() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_ReachedStableState(ptr.Pointer())
-	}
-}
 
-//export callbackQScxmlStateMachine_RunningChanged
-func callbackQScxmlStateMachine_RunningChanged(ptr unsafe.Pointer, running C.char) {
-	if signal := qt.GetSignal(ptr, "runningChanged"); signal != nil {
-		(*(*func(bool))(signal))(int8(running) != 0)
-	}
-
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ReachedStableState"})
 }
 
 func (ptr *QScxmlStateMachine) ConnectRunningChanged(f func(running bool)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "runningChanged") {
-			C.QScxmlStateMachine_ConnectRunningChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "runningChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "runningChanged"); signal != nil {
-			f := func(running bool) {
-				(*(*func(bool))(signal))(running)
-				f(running)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "runningChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "runningChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectRunningChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectRunningChanged() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DisconnectRunningChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "runningChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectRunningChanged"})
 }
 
 func (ptr *QScxmlStateMachine) RunningChanged(running bool) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_RunningChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(running))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "RunningChanged", running})
 }
 
 func (ptr *QScxmlStateMachine) SessionId() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlStateMachine_SessionId(ptr.Pointer()))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SessionId"}).(string)
 }
 
 func (ptr *QScxmlStateMachine) SetDataModel(model QScxmlDataModel_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_SetDataModel(ptr.Pointer(), PointerFromQScxmlDataModel(model))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetDataModel", model})
 }
 
 func (ptr *QScxmlStateMachine) SetInitialValues(initialValues map[string]*core.QVariant) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_SetInitialValues(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQScxmlStateMachineFromPointer(NewQScxmlStateMachineFromPointer(nil).__setInitialValues_initialValues_newList())
-			for k, v := range initialValues {
-				tmpList.__setInitialValues_initialValues_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetInitialValues", initialValues})
 }
 
 func (ptr *QScxmlStateMachine) SetRunning(running bool) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_SetRunning(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(running))))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetRunning", running})
 }
 
 func (ptr *QScxmlStateMachine) SetTableData(tableData QScxmlTableData_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_SetTableData(ptr.Pointer(), PointerFromQScxmlTableData(tableData))
-	}
-}
 
-//export callbackQScxmlStateMachine_Start
-func callbackQScxmlStateMachine_Start(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "start"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQScxmlStateMachineFromPointer(ptr).StartDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SetTableData", tableData})
 }
 
 func (ptr *QScxmlStateMachine) ConnectStart(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStart", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectStart() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "start")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStart"})
 }
 
 func (ptr *QScxmlStateMachine) Start() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_Start(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Start"})
 }
 
 func (ptr *QScxmlStateMachine) StartDefault() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_StartDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StartDefault"})
 }
 
 func (ptr *QScxmlStateMachine) StateNames(compress bool) []string {
-	if ptr.Pointer() != nil {
-		return unpackStringList(cGoUnpackString(C.QScxmlStateMachine_StateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))))
-	}
-	return make([]string, 0)
-}
 
-//export callbackQScxmlStateMachine_Stop
-func callbackQScxmlStateMachine_Stop(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "stop"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQScxmlStateMachineFromPointer(ptr).StopDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StateNames", compress}).([]string)
 }
 
 func (ptr *QScxmlStateMachine) ConnectStop(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "stop"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectStop", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectStop() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "stop")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectStop"})
 }
 
 func (ptr *QScxmlStateMachine) Stop() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_Stop(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Stop"})
 }
 
 func (ptr *QScxmlStateMachine) StopDefault() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_StopDefault(ptr.Pointer())
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "StopDefault"})
 }
 
 func (ptr *QScxmlStateMachine) SubmitEvent(event QScxmlEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_SubmitEvent(ptr.Pointer(), PointerFromQScxmlEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SubmitEvent", event})
 }
 
 func (ptr *QScxmlStateMachine) SubmitEvent2(eventName string) {
-	if ptr.Pointer() != nil {
-		var eventNameC *C.char
-		if eventName != "" {
-			eventNameC = C.CString(eventName)
-			defer C.free(unsafe.Pointer(eventNameC))
-		}
-		C.QScxmlStateMachine_SubmitEvent2(ptr.Pointer(), C.struct_QtScxml_PackedString{data: eventNameC, len: C.longlong(len(eventName))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SubmitEvent2", eventName})
 }
 
 func (ptr *QScxmlStateMachine) SubmitEvent3(eventName string, data core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		var eventNameC *C.char
-		if eventName != "" {
-			eventNameC = C.CString(eventName)
-			defer C.free(unsafe.Pointer(eventNameC))
-		}
-		C.QScxmlStateMachine_SubmitEvent3(ptr.Pointer(), C.struct_QtScxml_PackedString{data: eventNameC, len: C.longlong(len(eventName))}, core.PointerFromQVariant(data))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SubmitEvent3", eventName, data})
 }
 
 func (ptr *QScxmlStateMachine) TableData() *QScxmlTableData {
-	if ptr.Pointer() != nil {
-		return NewQScxmlTableDataFromPointer(C.QScxmlStateMachine_TableData(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQScxmlStateMachine_TableDataChanged
-func callbackQScxmlStateMachine_TableDataChanged(ptr unsafe.Pointer, tableData unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "tableDataChanged"); signal != nil {
-		(*(*func(*QScxmlTableData))(signal))(NewQScxmlTableDataFromPointer(tableData))
-	}
-
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TableData"}).(*QScxmlTableData)
 }
 
 func (ptr *QScxmlStateMachine) ConnectTableDataChanged(f func(tableData *QScxmlTableData)) {
-	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(ptr.Pointer(), "tableDataChanged") {
-			C.QScxmlStateMachine_ConnectTableDataChanged(ptr.Pointer(), C.longlong(qt.ConnectionType(ptr.Pointer(), "tableDataChanged")))
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "tableDataChanged"); signal != nil {
-			f := func(tableData *QScxmlTableData) {
-				(*(*func(*QScxmlTableData))(signal))(tableData)
-				f(tableData)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "tableDataChanged", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "tableDataChanged", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectTableDataChanged", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectTableDataChanged() {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DisconnectTableDataChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "tableDataChanged")
-	}
+
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectTableDataChanged"})
 }
 
 func (ptr *QScxmlStateMachine) TableDataChanged(tableData QScxmlTableData_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_TableDataChanged(ptr.Pointer(), PointerFromQScxmlTableData(tableData))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TableDataChanged", tableData})
 }
 
 func (ptr *QScxmlStateMachine) __initialValues_atList(v string, i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var vC *C.char
-		if v != "" {
-			vC = C.CString(v)
-			defer C.free(unsafe.Pointer(vC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__initialValues_atList", v, i}).(*core.QVariant)
 }
 
 func (ptr *QScxmlStateMachine) __initialValues_setList(key string, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		C.QScxmlStateMachine___initialValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__initialValues_setList", key, i})
 }
 
 func (ptr *QScxmlStateMachine) __initialValues_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine___initialValues_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__initialValues_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) __initialValues_keyList() []string {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtScxml_PackedList) []string {
-			out := make([]string, int(l.len))
-			tmpList := NewQScxmlStateMachineFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____initialValues_keyList_atList(i)
-			}
-			return out
-		}(C.QScxmlStateMachine___initialValues_keyList(ptr.Pointer()))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__initialValues_keyList"}).([]string)
 }
 
 func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_atList(v string, i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var vC *C.char
-		if v != "" {
-			vC = C.CString(v)
-			defer C.free(unsafe.Pointer(vC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___initialValuesChanged_initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__initialValuesChanged_initialValues_atList", v, i}).(*core.QVariant)
 }
 
 func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_setList(key string, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		C.QScxmlStateMachine___initialValuesChanged_initialValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__initialValuesChanged_initialValues_setList", key, i})
 }
 
 func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine___initialValuesChanged_initialValues_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__initialValuesChanged_initialValues_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_keyList() []string {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtScxml_PackedList) []string {
-			out := make([]string, int(l.len))
-			tmpList := NewQScxmlStateMachineFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____initialValuesChanged_initialValues_keyList_atList(i)
-			}
-			return out
-		}(C.QScxmlStateMachine___initialValuesChanged_initialValues_keyList(ptr.Pointer()))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__initialValuesChanged_initialValues_keyList"}).([]string)
 }
 
 func (ptr *QScxmlStateMachine) __invokedServices_atList(i int) *QScxmlInvokableService {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlStateMachine___invokedServices_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__invokedServices_atList", i}).(*QScxmlInvokableService)
 }
 
 func (ptr *QScxmlStateMachine) __invokedServices_setList(i QScxmlInvokableService_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine___invokedServices_setList(ptr.Pointer(), PointerFromQScxmlInvokableService(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__invokedServices_setList", i})
 }
 
 func (ptr *QScxmlStateMachine) __invokedServices_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine___invokedServices_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__invokedServices_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) __invokedServicesChanged_invokedServices_atList(i int) *QScxmlInvokableService {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlStateMachine___invokedServicesChanged_invokedServices_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__invokedServicesChanged_invokedServices_atList", i}).(*QScxmlInvokableService)
 }
 
 func (ptr *QScxmlStateMachine) __invokedServicesChanged_invokedServices_setList(i QScxmlInvokableService_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine___invokedServicesChanged_invokedServices_setList(ptr.Pointer(), PointerFromQScxmlInvokableService(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__invokedServicesChanged_invokedServices_setList", i})
 }
 
 func (ptr *QScxmlStateMachine) __invokedServicesChanged_invokedServices_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine___invokedServicesChanged_invokedServices_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__invokedServicesChanged_invokedServices_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) __parseErrors_atList(i int) *QScxmlError {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlErrorFromPointer(C.QScxmlStateMachine___parseErrors_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__parseErrors_atList", i}).(*QScxmlError)
 }
 
 func (ptr *QScxmlStateMachine) __parseErrors_setList(i QScxmlError_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine___parseErrors_setList(ptr.Pointer(), PointerFromQScxmlError(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__parseErrors_setList", i})
 }
 
 func (ptr *QScxmlStateMachine) __parseErrors_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine___parseErrors_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__parseErrors_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_atList(v string, i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var vC *C.char
-		if v != "" {
-			vC = C.CString(v)
-			defer C.free(unsafe.Pointer(vC))
-		}
-		tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___setInitialValues_initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setInitialValues_initialValues_atList", v, i}).(*core.QVariant)
 }
 
 func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_setList(key string, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		C.QScxmlStateMachine___setInitialValues_initialValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setInitialValues_initialValues_setList", key, i})
 }
 
 func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine___setInitialValues_initialValues_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setInitialValues_initialValues_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_keyList() []string {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtScxml_PackedList) []string {
-			out := make([]string, int(l.len))
-			tmpList := NewQScxmlStateMachineFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setInitialValues_initialValues_keyList_atList(i)
-			}
-			return out
-		}(C.QScxmlStateMachine___setInitialValues_initialValues_keyList(ptr.Pointer()))
-	}
-	return make([]string, 0)
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__setInitialValues_initialValues_keyList"}).([]string)
 }
 
 func (ptr *QScxmlStateMachine) ____initialValues_keyList_atList(i int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlStateMachine_____initialValues_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____initialValues_keyList_atList", i}).(string)
 }
 
 func (ptr *QScxmlStateMachine) ____initialValues_keyList_setList(i string) {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
-		}
-		C.QScxmlStateMachine_____initialValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____initialValues_keyList_setList", i})
 }
 
 func (ptr *QScxmlStateMachine) ____initialValues_keyList_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine_____initialValues_keyList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____initialValues_keyList_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) ____initialValuesChanged_initialValues_keyList_atList(i int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlStateMachine_____initialValuesChanged_initialValues_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____initialValuesChanged_initialValues_keyList_atList", i}).(string)
 }
 
 func (ptr *QScxmlStateMachine) ____initialValuesChanged_initialValues_keyList_setList(i string) {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
-		}
-		C.QScxmlStateMachine_____initialValuesChanged_initialValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____initialValuesChanged_initialValues_keyList_setList", i})
 }
 
 func (ptr *QScxmlStateMachine) ____initialValuesChanged_initialValues_keyList_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine_____initialValuesChanged_initialValues_keyList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____initialValuesChanged_initialValues_keyList_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) ____setInitialValues_initialValues_keyList_atList(i int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlStateMachine_____setInitialValues_initialValues_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return ""
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____setInitialValues_initialValues_keyList_atList", i}).(string)
 }
 
 func (ptr *QScxmlStateMachine) ____setInitialValues_initialValues_keyList_setList(i string) {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
-		}
-		C.QScxmlStateMachine_____setInitialValues_initialValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____setInitialValues_initialValues_keyList_setList", i})
 }
 
 func (ptr *QScxmlStateMachine) ____setInitialValues_initialValues_keyList_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine_____setInitialValues_initialValues_keyList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "____setInitialValues_initialValues_keyList_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_atList", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlStateMachine) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_setList", i})
 }
 
 func (ptr *QScxmlStateMachine) __children_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine___children_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__children_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlStateMachine___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		qt.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_atList", i}).(*core.QByteArray)
 }
 
 func (ptr *QScxmlStateMachine) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_setList", i})
 }
 
 func (ptr *QScxmlStateMachine) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine___dynamicPropertyNames_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__dynamicPropertyNames_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlStateMachine) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList", i})
 }
 
 func (ptr *QScxmlStateMachine) __findChildren_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine___findChildren_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_atList3", i}).(*core.QObject)
 }
 
 func (ptr *QScxmlStateMachine) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_setList3", i})
 }
 
 func (ptr *QScxmlStateMachine) __findChildren_newList3() unsafe.Pointer {
-	return C.QScxmlStateMachine___findChildren_newList3(ptr.Pointer())
-}
 
-//export callbackQScxmlStateMachine_ChildEvent
-func callbackQScxmlStateMachine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQScxmlStateMachineFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__findChildren_newList3"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStateMachine) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
 
-//export callbackQScxmlStateMachine_ConnectNotify
-func callbackQScxmlStateMachine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQScxmlStateMachineFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ChildEventDefault", event})
 }
 
 func (ptr *QScxmlStateMachine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQScxmlStateMachine_CustomEvent
-func callbackQScxmlStateMachine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
-	} else {
-		NewQScxmlStateMachineFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectNotifyDefault", sign})
 }
 
 func (ptr *QScxmlStateMachine) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
 
-//export callbackQScxmlStateMachine_DeleteLater
-func callbackQScxmlStateMachine_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQScxmlStateMachineFromPointer(ptr).DeleteLaterDefault()
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "CustomEventDefault", event})
 }
 
 func (ptr *QScxmlStateMachine) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
 
-		qt.SetFinalizer(ptr, nil)
-		C.QScxmlStateMachine_DeleteLaterDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQScxmlStateMachine_Destroyed
-func callbackQScxmlStateMachine_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQScxmlStateMachine_DisconnectNotify
-func callbackQScxmlStateMachine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQScxmlStateMachineFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DeleteLaterDefault"})
 }
 
 func (ptr *QScxmlStateMachine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
 
-//export callbackQScxmlStateMachine_Event
-func callbackQScxmlStateMachine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlStateMachineFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectNotifyDefault", sign})
 }
 
 func (ptr *QScxmlStateMachine) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlStateMachine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlStateMachine_EventFilter
-func callbackQScxmlStateMachine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlStateMachineFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventDefault", e}).(bool)
 }
 
 func (ptr *QScxmlStateMachine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QScxmlStateMachine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
-	}
-	return false
-}
 
-//export callbackQScxmlStateMachine_MetaObject
-func callbackQScxmlStateMachine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
-	}
-
-	return core.PointerFromQMetaObject(NewQScxmlStateMachineFromPointer(ptr).MetaObjectDefault())
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "EventFilterDefault", watched, event}).(bool)
 }
 
 func (ptr *QScxmlStateMachine) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QScxmlStateMachine_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
 
-//export callbackQScxmlStateMachine_ObjectNameChanged
-func callbackQScxmlStateMachine_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtScxml_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		(*(*func(string))(signal))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQScxmlStateMachine_TimerEvent
-func callbackQScxmlStateMachine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQScxmlStateMachineFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "MetaObjectDefault"}).(*core.QMetaObject)
 }
 
 func (ptr *QScxmlStateMachine) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScxmlStateMachine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "TimerEventDefault", event})
 }
 
 type QScxmlStaticScxmlServiceFactory struct {
@@ -4310,75 +2267,56 @@ func PointerFromQScxmlStaticScxmlServiceFactory(ptr QScxmlStaticScxmlServiceFact
 	return nil
 }
 
+func (n *QScxmlStaticScxmlServiceFactory) InitFromInternal(ptr uintptr, name string) {
+	n.QScxmlInvokableServiceFactory_PTR().InitFromInternal(uintptr(ptr), name)
+
+}
+
+func (n *QScxmlStaticScxmlServiceFactory) ClassNameInternalF() string {
+	return n.QScxmlInvokableServiceFactory_PTR().ClassNameInternalF()
+}
+
 func NewQScxmlStaticScxmlServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QScxmlStaticScxmlServiceFactory) {
 	n = new(QScxmlStaticScxmlServiceFactory)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlStaticScxmlServiceFactory")
 	return
 }
 
-//export callbackQScxmlStaticScxmlServiceFactory_Invoke
-func callbackQScxmlStaticScxmlServiceFactory_Invoke(ptr unsafe.Pointer, parentStateMachine unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "invoke"); signal != nil {
-		return PointerFromQScxmlInvokableService((*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(NewQScxmlStateMachineFromPointer(parentStateMachine)))
-	}
-
-	return PointerFromQScxmlInvokableService(NewQScxmlStaticScxmlServiceFactoryFromPointer(ptr).InvokeDefault(NewQScxmlStateMachineFromPointer(parentStateMachine)))
+func (ptr *QScxmlStaticScxmlServiceFactory) DestroyQScxmlStaticScxmlServiceFactory() {
 }
 
 func (ptr *QScxmlStaticScxmlServiceFactory) ConnectInvoke(f func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "invoke"); signal != nil {
-			f := func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
-				(*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(parentStateMachine)
-				return f(parentStateMachine)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectInvoke", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlStaticScxmlServiceFactory) DisconnectInvoke() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "invoke")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectInvoke"})
 }
 
 func (ptr *QScxmlStaticScxmlServiceFactory) Invoke(parentStateMachine QScxmlStateMachine_ITF) *QScxmlInvokableService {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlStaticScxmlServiceFactory_Invoke(ptr.Pointer(), PointerFromQScxmlStateMachine(parentStateMachine)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Invoke", parentStateMachine}).(*QScxmlInvokableService)
 }
 
 func (ptr *QScxmlStaticScxmlServiceFactory) InvokeDefault(parentStateMachine QScxmlStateMachine_ITF) *QScxmlInvokableService {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlStaticScxmlServiceFactory_InvokeDefault(ptr.Pointer(), PointerFromQScxmlStateMachine(parentStateMachine)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "InvokeDefault", parentStateMachine}).(*QScxmlInvokableService)
 }
 
 func (ptr *QScxmlStaticScxmlServiceFactory) __QScxmlStaticScxmlServiceFactory_nameList_newList() unsafe.Pointer {
-	return C.QScxmlStaticScxmlServiceFactory___QScxmlStaticScxmlServiceFactory_nameList_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__QScxmlStaticScxmlServiceFactory_nameList_newList"}).(unsafe.Pointer)
 }
 
 func (ptr *QScxmlStaticScxmlServiceFactory) __QScxmlStaticScxmlServiceFactory_parameters_newList() unsafe.Pointer {
-	return C.QScxmlStaticScxmlServiceFactory___QScxmlStaticScxmlServiceFactory_parameters_newList(ptr.Pointer())
+
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "__QScxmlStaticScxmlServiceFactory_parameters_newList"}).(unsafe.Pointer)
 }
 
 type QScxmlTableData struct {
-	ptr unsafe.Pointer
+	internal.Internal
 }
 
 type QScxmlTableData_ITF interface {
@@ -4391,14 +2329,14 @@ func (ptr *QScxmlTableData) QScxmlTableData_PTR() *QScxmlTableData {
 
 func (ptr *QScxmlTableData) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return unsafe.Pointer(ptr.Internal.Pointer())
 	}
 	return nil
 }
 
 func (ptr *QScxmlTableData) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.Internal.SetPointer(uintptr(p))
 	}
 }
 
@@ -4409,163 +2347,77 @@ func PointerFromQScxmlTableData(ptr QScxmlTableData_ITF) unsafe.Pointer {
 	return nil
 }
 
+func (n *QScxmlTableData) ClassNameInternalF() string {
+	return n.Internal.ClassNameInternalF()
+}
+
 func NewQScxmlTableDataFromPointer(ptr unsafe.Pointer) (n *QScxmlTableData) {
 	n = new(QScxmlTableData)
-	n.SetPointer(ptr)
+	n.InitFromInternal(uintptr(ptr), "scxml.QScxmlTableData")
 	return
 }
-
-//export callbackQScxmlTableData_Name
-func callbackQScxmlTableData_Name(ptr unsafe.Pointer) C.struct_QtScxml_PackedString {
-	if signal := qt.GetSignal(ptr, "name"); signal != nil {
-		tempVal := (*(*func() string)(signal))()
-		return C.struct_QtScxml_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-	}
-	tempVal := ""
-	return C.struct_QtScxml_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
-}
-
 func (ptr *QScxmlTableData) ConnectName(f func() string) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "name"); signal != nil {
-			f := func() string {
-				(*(*func() string)(signal))()
-				return f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "name", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "name", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectName", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlTableData) DisconnectName() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "name")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectName"})
 }
 
 func (ptr *QScxmlTableData) Name() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlTableData_Name(ptr.Pointer()))
-	}
-	return ""
-}
 
-//export callbackQScxmlTableData_ServiceFactory
-func callbackQScxmlTableData_ServiceFactory(ptr unsafe.Pointer, id C.int) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "serviceFactory"); signal != nil {
-		return PointerFromQScxmlInvokableServiceFactory((*(*func(int) *QScxmlInvokableServiceFactory)(signal))(int(int32(id))))
-	}
-
-	return PointerFromQScxmlInvokableServiceFactory(nil)
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "Name"}).(string)
 }
 
 func (ptr *QScxmlTableData) ConnectServiceFactory(f func(id int) *QScxmlInvokableServiceFactory) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "serviceFactory"); signal != nil {
-			f := func(id int) *QScxmlInvokableServiceFactory {
-				(*(*func(int) *QScxmlInvokableServiceFactory)(signal))(id)
-				return f(id)
-			}
-			qt.ConnectSignal(ptr.Pointer(), "serviceFactory", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "serviceFactory", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectServiceFactory", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlTableData) DisconnectServiceFactory() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "serviceFactory")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectServiceFactory"})
 }
 
 func (ptr *QScxmlTableData) ServiceFactory(id int) *QScxmlInvokableServiceFactory {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQScxmlInvokableServiceFactoryFromPointer(C.QScxmlTableData_ServiceFactory(ptr.Pointer(), C.int(int32(id))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
-//export callbackQScxmlTableData_DestroyQScxmlTableData
-func callbackQScxmlTableData_DestroyQScxmlTableData(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QScxmlTableData"); signal != nil {
-		(*(*func())(signal))()
-	} else {
-		NewQScxmlTableDataFromPointer(ptr).DestroyQScxmlTableDataDefault()
-	}
+	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ServiceFactory", id}).(*QScxmlInvokableServiceFactory)
 }
 
 func (ptr *QScxmlTableData) ConnectDestroyQScxmlTableData(f func()) {
-	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(ptr.Pointer(), "~QScxmlTableData"); signal != nil {
-			f := func() {
-				(*(*func())(signal))()
-				f()
-			}
-			qt.ConnectSignal(ptr.Pointer(), "~QScxmlTableData", unsafe.Pointer(&f))
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QScxmlTableData", unsafe.Pointer(&f))
-		}
-	}
+	internal.CallLocalAndRegisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "ConnectDestroyQScxmlTableData", "___REMOTE_CALLBACK___"}, f)
 }
 
 func (ptr *QScxmlTableData) DisconnectDestroyQScxmlTableData() {
-	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.Pointer(), "~QScxmlTableData")
-	}
+	internal.CallLocalAndDeregisterRemoteFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DisconnectDestroyQScxmlTableData"})
 }
 
 func (ptr *QScxmlTableData) DestroyQScxmlTableData() {
-	if ptr.Pointer() != nil {
-		C.QScxmlTableData_DestroyQScxmlTableData(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQScxmlTableData"})
 }
 
 func (ptr *QScxmlTableData) DestroyQScxmlTableDataDefault() {
-	if ptr.Pointer() != nil {
-		C.QScxmlTableData_DestroyQScxmlTableDataDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
+
+	internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "DestroyQScxmlTableDataDefault"})
 }
 
 func init() {
-	qt.ItfMap["scxml.QScxmlCompiler_ITF"] = QScxmlCompiler{}
-	qt.FuncMap["scxml.NewQScxmlCompiler"] = NewQScxmlCompiler
-	qt.ItfMap["scxml.QScxmlCppDataModel_ITF"] = QScxmlCppDataModel{}
-	qt.ItfMap["scxml.QScxmlDataModel_ITF"] = QScxmlDataModel{}
-	qt.ItfMap["scxml.QScxmlDynamicScxmlServiceFactory_ITF"] = QScxmlDynamicScxmlServiceFactory{}
-	qt.ItfMap["scxml.QScxmlEcmaScriptDataModel_ITF"] = QScxmlEcmaScriptDataModel{}
-	qt.FuncMap["scxml.NewQScxmlEcmaScriptDataModel"] = NewQScxmlEcmaScriptDataModel
-	qt.ItfMap["scxml.QScxmlError_ITF"] = QScxmlError{}
-	qt.FuncMap["scxml.NewQScxmlError"] = NewQScxmlError
-	qt.FuncMap["scxml.NewQScxmlError2"] = NewQScxmlError2
-	qt.FuncMap["scxml.NewQScxmlError3"] = NewQScxmlError3
-	qt.ItfMap["scxml.QScxmlEvent_ITF"] = QScxmlEvent{}
-	qt.FuncMap["scxml.NewQScxmlEvent"] = NewQScxmlEvent
-	qt.FuncMap["scxml.NewQScxmlEvent2"] = NewQScxmlEvent2
-	qt.EnumMap["scxml.QScxmlEvent__PlatformEvent"] = int64(QScxmlEvent__PlatformEvent)
-	qt.EnumMap["scxml.QScxmlEvent__InternalEvent"] = int64(QScxmlEvent__InternalEvent)
-	qt.EnumMap["scxml.QScxmlEvent__ExternalEvent"] = int64(QScxmlEvent__ExternalEvent)
-	qt.ItfMap["scxml.QScxmlInvokableService_ITF"] = QScxmlInvokableService{}
-	qt.ItfMap["scxml.QScxmlInvokableServiceFactory_ITF"] = QScxmlInvokableServiceFactory{}
-	qt.ItfMap["scxml.QScxmlNullDataModel_ITF"] = QScxmlNullDataModel{}
-	qt.FuncMap["scxml.NewQScxmlNullDataModel"] = NewQScxmlNullDataModel
-	qt.ItfMap["scxml.QScxmlStateMachine_ITF"] = QScxmlStateMachine{}
-	qt.FuncMap["scxml.QScxmlStateMachine_FromData"] = QScxmlStateMachine_FromData
-	qt.FuncMap["scxml.QScxmlStateMachine_FromFile"] = QScxmlStateMachine_FromFile
-	qt.ItfMap["scxml.QScxmlStaticScxmlServiceFactory_ITF"] = QScxmlStaticScxmlServiceFactory{}
-	qt.ItfMap["scxml.QScxmlTableData_ITF"] = QScxmlTableData{}
+	internal.ConstructorTable["scxml.QScxmlCompiler"] = NewQScxmlCompilerFromPointer
+	internal.ConstructorTable["scxml.QScxmlCppDataModel"] = NewQScxmlCppDataModelFromPointer
+	internal.ConstructorTable["scxml.QScxmlDataModel"] = NewQScxmlDataModelFromPointer
+	internal.ConstructorTable["scxml.QScxmlDynamicScxmlServiceFactory"] = NewQScxmlDynamicScxmlServiceFactoryFromPointer
+	internal.ConstructorTable["scxml.QScxmlEcmaScriptDataModel"] = NewQScxmlEcmaScriptDataModelFromPointer
+	internal.ConstructorTable["scxml.QScxmlError"] = NewQScxmlErrorFromPointer
+	internal.ConstructorTable["scxml.QScxmlEvent"] = NewQScxmlEventFromPointer
+	internal.ConstructorTable["scxml.QScxmlInvokableService"] = NewQScxmlInvokableServiceFromPointer
+	internal.ConstructorTable["scxml.QScxmlInvokableServiceFactory"] = NewQScxmlInvokableServiceFactoryFromPointer
+	internal.ConstructorTable["scxml.QScxmlNullDataModel"] = NewQScxmlNullDataModelFromPointer
+	internal.ConstructorTable["scxml.QScxmlStateMachine"] = NewQScxmlStateMachineFromPointer
+	internal.ConstructorTable["scxml.QScxmlStaticScxmlServiceFactory"] = NewQScxmlStaticScxmlServiceFactoryFromPointer
+	internal.ConstructorTable["scxml.QScxmlTableData"] = NewQScxmlTableDataFromPointer
 }
