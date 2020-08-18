@@ -3,6 +3,8 @@ package parser
 import (
 	"fmt"
 	"strings"
+
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func (c *Class) add() {
@@ -59,9 +61,10 @@ func (c *Class) addGeneralFuncs() {
 			}
 		}
 
-	case "QQmlEngine":
+	case "QQmlEngine": //http://doc.qt.io/qt-5/qtqml-cppintegration-overview.html#choosing-the-correct-integration-method-between-c-and-qml
 		{
-			//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonType-2
+
+			//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonType-3
 			//int qmlRegisterSingletonType(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)
 			c.Functions = append(c.Functions, &Function{
 				Name:      "qmlRegisterSingletonType",
@@ -103,7 +106,28 @@ func (c *Class) addGeneralFuncs() {
 				Signature: "(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)",
 			})
 
-			//TODO: 5.14.0 qmlRegisterSingletonInstance + qmlRegisterAnonymousType
+			if utils.QT_API_NUM(utils.QT_VERSION()) >= 5140 {
+				//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonInstance
+				//int qmlRegisterSingletonInstance(const char *uri, int versionMajor, int versionMinor, const char *typeName, QObject *cppObject)
+				c.Functions = append(c.Functions, &Function{
+					Name:      "qmlRegisterSingletonInstance",
+					Fullname:  fmt.Sprintf("%v::qmlRegisterSingletonInstance", c.Name),
+					Access:    "public",
+					Virtual:   "non",
+					Meta:      PLAIN,
+					NonMember: true,
+					Static:    true,
+					Output:    fmt.Sprintf("int"),
+					Parameters: []*Parameter{
+						{Name: "uri", Value: "const char *"},
+						{Name: "versionMajor", Value: "int"},
+						{Name: "versionMinor", Value: "int"},
+						{Name: "typeName", Value: "const char *"},
+						{Name: "cppObject", Value: "QObject *"},
+					},
+					Signature: "(const char *uri, int versionMajor, int versionMinor, const char *typeName, QObject *cppObject)",
+				})
+			}
 		}
 
 	case "QAndroidJniEnvironment":
@@ -246,6 +270,8 @@ func (c *Class) addMocFuncs() {
 		return
 	}
 
+	//http://doc.qt.io/qt-5/qtqml-cppintegration-overview.html#choosing-the-correct-integration-method-between-c-and-qml
+
 	//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterType
 	//int qmlRegisterType()
 	qmlF := &Function{
@@ -276,4 +302,49 @@ func (c *Class) addMocFuncs() {
 	}
 	qmlF2.Signature = "(const char *uri, int versionMajor, int versionMinor, const char *qmlName)"
 	c.Functions = append(c.Functions, &qmlF2)
+
+	//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterUncreatableType
+	//int qmlRegisterUncreatableType(const char *uri, int versionMajor, int versionMinor, const char *qmlName, const QString &message)
+	c.Functions = append(c.Functions, &Function{
+		Name:        "qmlRegisterUncreatableType",
+		Fullname:    fmt.Sprintf("%v::qmlRegisterUncreatableType", c.Name),
+		Access:      "public",
+		Virtual:     "non",
+		Meta:        PLAIN,
+		NonMember:   true,
+		NoMocDeduce: true,
+		Static:      true,
+		Output:      fmt.Sprintf("int"),
+		Parameters: []*Parameter{
+			{Name: "uri", Value: "const char *"},
+			{Name: "versionMajor", Value: "int"},
+			{Name: "versionMinor", Value: "int"},
+			{Name: "qmlName", Value: "const char *"},
+			{Name: "message", Value: "const QString &"},
+		},
+		Signature:      "(const char *uri, int versionMajor, int versionMinor, const char *qmlName, const QString &message)",
+		TemplateModeGo: fmt.Sprintf("%v", c.Name),
+	})
+
+	if utils.QT_API_NUM(utils.QT_VERSION()) >= 5140 {
+		//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterAnonymousType
+		//int qmlRegisterAnonymousType(const char *uri, int versionMajor)
+		c.Functions = append(c.Functions, &Function{
+			Name:        "qmlRegisterAnonymousType",
+			Fullname:    fmt.Sprintf("%v::qmlRegisterAnonymousType", c.Name),
+			Access:      "public",
+			Virtual:     "non",
+			Meta:        PLAIN,
+			NonMember:   true,
+			NoMocDeduce: true,
+			Static:      true,
+			Output:      fmt.Sprintf("int"),
+			Parameters: []*Parameter{
+				{Name: "uri", Value: "const char *"},
+				{Name: "versionMajor", Value: "int"},
+			},
+			Signature:      "(const char *uri, int versionMajor)",
+			TemplateModeGo: fmt.Sprintf("%v", c.Name),
+		})
+	}
 }

@@ -23,7 +23,7 @@ Installation
 
 The following instructions assume that you already installed [Go](https://golang.org/dl/) and [Git](https://git-scm.com/downloads)
 
-#### (Experimental) cgo-less version (try this first, if you are new and want to test this binding)
+#### (Experimental) cgo-less version (try this first, if you are new and want to test the binding)
 
 ##### Windows
 

@@ -39,7 +39,7 @@ func (ptr *Runnable) DisconnectRun() {
 }
 
 //export Java_qt_java_lang_Runnable_qtrun
-func Java_qt_java_lang_Runnable_qtrun(_, _, this unsafe.Pointer) {
+func Java_qt_java_lang_Runnable_qtrun(_, _omit, this unsafe.Pointer) {
 	if signal := qt.GetSignal(androidextras.NewQAndroidJniObject6(this).ToString(), "Runnable::run"); signal != nil {
 		(*(*func())(signal))()
 	}

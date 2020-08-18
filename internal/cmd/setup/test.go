@@ -23,7 +23,7 @@ import (
 func Test(target string, docker, vagrant bool, vagrantsystem string) {
 	utils.Log.Infof("running: 'qtsetup test %v' [docker=%v] [vagrant=%v]", target, docker, vagrant)
 
-	if utils.CI() && target == runtime.GOOS && !(runtime.GOOS == "windows" || utils.QT_STATIC()) { //TODO: test on windows
+	if utils.CI() && target == runtime.GOOS && !(runtime.GOOS == "windows" || utils.QT_STATIC()) && !utils.QT_GEN_GO_WRAPPER() { //TODO: test on windows
 		utils.Log.Infof("running setup/test %v CI", target)
 
 		path := utils.GoQtPkgPath("internal", "cmd", "moc", "test")

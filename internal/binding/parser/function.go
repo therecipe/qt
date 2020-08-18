@@ -448,6 +448,13 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "QQuickTumblerView::wrapChange",
 
+		//5.15
+		f.ClassName() == "Qt" && CleanValue(f.Output) == "QTextStream",
+		f.Fullname == "QHelpEngineCore::documentsForIdentifier",
+		f.Fullname == "QHelpEngineCore::documentsForKeyword",
+		f.Fullname == "QHelpIndexWidget::documentsActivated",
+		//
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {
