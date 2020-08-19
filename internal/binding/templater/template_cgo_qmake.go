@@ -749,6 +749,12 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 					}
 				}
 			}
+			if mode == MOC || mode == RCC {
+				tmp = strings.Replace(tmp, "-Wl,-subsystem,windows", "", -1)
+				tmp = strings.Replace(tmp, "/SUBSYSTEM:WINDOWS", "", -1)
+				tmp = strings.Replace(tmp, "-Wl,-subsystem,console", "", -1)
+				tmp = strings.Replace(tmp, "/SUBSYSTEM:CONSOLE", "", -1)
+			}
 		case "ios":
 			if strings.HasSuffix(file, "darwin_arm.go") {
 				tmp = strings.Replace(tmp, "arm64", "armv7", -1)

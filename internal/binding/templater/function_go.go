@@ -238,14 +238,14 @@ func goFunctionBody(function *parser.Function) string {
 			if function.IsMocFunction && function.SignalMode == "" {
 				for i, p := range function.Parameters {
 					if p.PureGoType != "" && !(p.Value == "QMap<QString, QVariant>" || p.Value == "QList<QVariant>") && !parser.IsBlackListedPureGoType(p.PureGoType) {
-						if !parser.UseWasm() { //TODO: does wasm need "unsafe" pointer arithmetic ?
-							if parser.UseJs() { //TODO: this is potentially broken, does js still need this ?
+						if !parser.UseWasm() {
+							if parser.UseJs() { //TODO: this is potentially broken (mono time), does js still need this ?
 								fmt.Fprintf(bb, "%vTID := (time.Now().UnixNano()-((time.Now().UnixNano()/1e10)*1e10))+(time.Now().UnixNano()/1e10)+(%v*1e5)\n", parser.CleanName(p.Name, p.Value), i)
 							} else {
-								fmt.Fprintf(bb, "%vTID := time.Now().UnixNano()+%v\n", parser.CleanName(p.Name, p.Value), i)
+								fmt.Fprintf(bb, "%[1]vTID := time.Now().UnixNano()+int64(uintptr(unsafe.Pointer(&%[1]v)))\n", parser.CleanName(p.Name, p.Value))
 							}
 							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(%[1]vTID)), unsafe.Pointer(&%[1]v))\n", parser.CleanName(p.Name, p.Value))
-						} else {
+						} else { //TODO: does wasm need "unsafe" pointer arithmetic ?
 							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(&%[1]v), unsafe.Pointer(&%[1]v))\n", parser.CleanName(p.Name, p.Value))
 						}
 					}
@@ -487,15 +487,15 @@ func goFunctionBody(function *parser.Function) string {
 				} else {
 					if function.IsMocFunction && function.PureGoOutput != "" && !(function.Output == "QMap<QString, QVariant>" || function.Output == "QList<QVariant>") && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
 						fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("(*(*%v)(signal))(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)))
-						if !parser.UseWasm() { //TODO: does wasm need "unsafe" pointer arithmetic ?
-							if parser.UseJs() { //TODO: this is potentially broken, does js still need this ?
+						if !parser.UseWasm() {
+							if parser.UseJs() { //TODO: this is potentially broken (mono time), does js still need this ?
 								fmt.Fprint(bb, "rTID := (time.Now().UnixNano()-((time.Now().UnixNano()/1e10)*1e10))+((time.Now().UnixNano()/1e10))\n")
 							} else {
-								fmt.Fprint(bb, "rTID := time.Now().UnixNano()\n")
+								fmt.Fprint(bb, "rTID := time.Now().UnixNano()+int64(uintptr(unsafe.Pointer(&oP)))\n")
 							}
 							fmt.Fprint(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(rTID)), unsafe.Pointer(&oP))\n")
 							fmt.Fprintf(bb, "return %v", converter.GoInput("rTID", function.Output, function, function.PureGoOutput))
-						} else {
+						} else { //TODO: does wasm need "unsafe" pointer arithmetic ?
 							fmt.Fprint(bb, "qt.RegisterTemp(unsafe.Pointer(&oP), unsafe.Pointer(&oP))\n")
 							fmt.Fprintf(bb, "return %v", converter.GoInput("uintptr(unsafe.Pointer(&oP))", function.Output, function, function.PureGoOutput))
 						}
@@ -561,15 +561,15 @@ func goFunctionBody(function *parser.Function) string {
 							} else {
 								fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function)))
 							}
-							if !parser.UseWasm() { //TODO: does wasm need "unsafe" pointer arithmetic ?
-								if parser.UseJs() { //TODO: this is potentially broken, does js still need this ?
+							if !parser.UseWasm() {
+								if parser.UseJs() { //TODO: this is potentially broken (mono time), does js still need this ?
 									fmt.Fprint(bb, "rTID := (time.Now().UnixNano()-((time.Now().UnixNano()/1e10)*1e10))+((time.Now().UnixNano()/1e10))\n")
 								} else {
-									fmt.Fprint(bb, "rTID := time.Now().UnixNano()\n")
+									fmt.Fprint(bb, "rTID := time.Now().UnixNano()+int64(uintptr(unsafe.Pointer(&oP)))\n")
 								}
 								fmt.Fprint(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(rTID)), unsafe.Pointer(&oP))\n")
 								fmt.Fprintf(bb, "return %v", converter.GoInput("rTID", function.Output, function, function.PureGoOutput))
-							} else {
+							} else { //TODO: does wasm need "unsafe" pointer arithmetic ?
 								fmt.Fprint(bb, "qt.RegisterTemp(unsafe.Pointer(&oP), unsafe.Pointer(&oP))\n")
 								fmt.Fprintf(bb, "return %v", converter.GoInput("uintptr(unsafe.Pointer(&oP))", function.Output, function, function.PureGoOutput))
 							}

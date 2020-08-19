@@ -238,7 +238,7 @@ func cppFunctionBodyWithGuards(function *parser.Function) string {
 				return fmt.Sprintf("#ifndef Q_OS_IOS\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
 			}
 
-		case function.Name == "qmlRegisterType" && function.TemplateModeGo != "":
+		case (function.Name == "qmlRegisterType" || function.Name == "qmlRegisterUncreatableType" || function.Name == "qmlRegisterAnonymousType") && function.TemplateModeGo != "":
 			{
 				if c, ok := function.Class(); ok && c.Module == parser.MOC {
 					if c.IsSubClassOf("QSyntaxHighlighter") { //TODO: check for default constructors instead

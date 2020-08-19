@@ -237,7 +237,6 @@ var (
 	stderr io.ReadCloser
 )
 
-// TODO: NewQApplication
 func InitProcess() {
 
 	var runPath string
@@ -261,7 +260,8 @@ func InitProcess() {
 				break
 			}
 
-			if strings.HasPrefix(runPath, "/var/folders/") {
+			if strings.HasPrefix(runPath, "/var/folders/") ||
+				strings.HasPrefix(runPath, "/tmp/go-build") {
 				runPath = filepath.Join(pwd, "qtbox")
 				break
 			}
@@ -271,11 +271,14 @@ func InitProcess() {
 			}
 		}
 
-		println("final qtbox location:", runPath)
-
 		dst := filepath.Dir(runPath)
 		_, err := os.Stat(runPath)
 		_, errF := os.Stat(filepath.Join(dst, "qtbox"))
+		if errF == nil {
+			runPath = filepath.Join(dst, "qtbox", "qtbox"+ending)
+		}
+
+		println("final qtbox location:", runPath)
 
 		if Config.Override || (err != nil && errF != nil) {
 
@@ -384,7 +387,6 @@ func InitProcess() {
 	stderr = rc
 }
 
-// TODO: QApplication_Exec
 func Exec() {
 	scanner := bufio.NewScanner(stderr)
 
