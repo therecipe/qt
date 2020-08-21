@@ -164,7 +164,7 @@ func handleError(err multimedia.QMediaPlayer__Error) {
 	}
 
 	errorLabel.SetText(fmt.Sprintf("File: %v<br>Error: %v<br>Supported MIME-Types: %v %v %v %v %v %v",
-		mediaPlayer.CurrentMedia().Request().Url().ToString(0),
+		mediaPlayer.CurrentMedia().CanonicalUrl().ToString(0),
 		errString,
 		hasSupport("video/avi"),
 		hasSupport("video/mp4"),

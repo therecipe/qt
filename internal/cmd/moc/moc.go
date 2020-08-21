@@ -501,6 +501,9 @@ func parse(path string) ([]*parser.Class, string, error) {
 			}
 			structDecl, ok := typeSpec.Type.(*ast.StructType)
 			if !ok {
+				if _, ok := typeSpec.Type.(*ast.InterfaceType); ok {
+					delete(parser.State.GoClassMap, typeSpec.Name.String())
+				}
 				continue
 			}
 

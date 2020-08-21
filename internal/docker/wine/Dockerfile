@@ -36,7 +36,8 @@ RUN WINEDLLOVERRIDES="mscoree,mshtml=" wineboot && wineserver -w
 
 RUN echo 'REGEDIT4\n\n\
 [HKEY_CURRENT_USER\Environment]\n\
-"QT_DOCKER"="true"' > env.reg && regedit Z:\\env.reg && wineserver -w && rm -f env.reg
+"QT_DOCKER"="true"\n\
+"QT_DEBUG_CONSOLE"="false"' > env.reg && regedit Z:\\env.reg && wineserver -w && rm -f env.reg
 
 RUN wine $GOPATH\\bin\\qtsetup prep
 RUN wine $GOPATH\\bin\\qtsetup check
