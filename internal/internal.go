@@ -251,7 +251,11 @@ func InitProcess() {
 		pwd, _ := os.Getwd()
 		arg, _ := filepath.Abs(filepath.Dir(os.Args[0]))
 
-		for _, path := range []string{pwd, arg} {
+		for i, path := range []string{pwd, arg} {
+			if i == 1 && pwd == arg {
+				continue
+			}
+
 			runPath = filepath.Join(path, fmt.Sprintf("qtbox%v", ending))
 			println("looking for qtbox in:", runPath)
 
@@ -273,8 +277,8 @@ func InitProcess() {
 
 		dst := filepath.Dir(runPath)
 		_, err := os.Stat(runPath)
-		_, errF := os.Stat(filepath.Join(dst, "qtbox"))
-		if errF == nil {
+		f, errF := os.Stat(filepath.Join(dst, "qtbox"))
+		if errF == nil && f.IsDir() {
 			runPath = filepath.Join(dst, "qtbox", "qtbox"+ending)
 		}
 
