@@ -136,9 +136,11 @@ func android_config(target, path, depPath string) string {
 		if utils.ANDROID_EXTRA_LIBS() != "" {
 			jsonStruct.AndroidExtraLibs += "," + utils.ANDROID_EXTRA_LIBS()
 		}
-		modules := strings.Split(utils.ANDROID_MODULES_INCLUDE(), ",")
-		for _, module := range modules {
-			jsonStruct.AndroidExtraLibs += "," + filepath.Join(utils.QT_INSTALL_PREFIX(target), "lib", fmt.Sprintf("libQt5%s.so", module))
+		if utils.ANDROID_MODULES_INCLUDE() != "" {
+			modules := strings.Split(utils.ANDROID_MODULES_INCLUDE(), ",")
+			for _, module := range modules {
+				jsonStruct.AndroidExtraLibs += "," + filepath.Join(utils.QT_INSTALL_PREFIX(target), "lib", fmt.Sprintf("libQt5%s.so", module))
+			}
 		}
 	}
 
