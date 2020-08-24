@@ -858,6 +858,11 @@ extern "C" int32_t __isPlatformVersionAtLeast(int32_t Platform, int32_t Major, i
 					old()
 				}
 			}
+
+			if target == "android" || target == "android-emulator" {
+				utils.ADD_ANDROID_MODULES_INCLUDE(strings.TrimPrefix(module, "Qt"))
+			}
+
 		}
 	}
 

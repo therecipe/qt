@@ -148,3 +148,13 @@ func ANDROID_EXTRA_LIBS() string {
 func ANDROID_MODULES_INCLUDE() string {
 	return os.Getenv("ANDROID_MODULES_INCLUDE")
 }
+
+func ADD_ANDROID_MODULES_INCLUDE(module string) {
+	val := os.Getenv("ANDROID_MODULES_INCLUDE")
+	mod := module
+
+	if val != "" {
+		mod = "," + mod
+	}
+	os.Setenv("ANDROID_MODULES_INCLUDE", val+mod)
+}
