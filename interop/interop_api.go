@@ -9,12 +9,14 @@ import (
 
 var (
 	asyncCallChan = make(chan string, 0)
+	syncCallChan  = make(chan string, 0)
 
 	remoteMainThreadIsBlocked      bool
 	remoteMainThreadIsBlockedMutex = new(sync.Mutex)
 	localMainThreadIsBlocked       bool
 
 	AsyncCallIntoRemote func(string)
+	SyncCallIntoRemote  func(string)
 
 	mainThreadHelperChan        = make(chan func(), 0)
 	syncCallIntoLocalReturnChan = make(chan string, 0)
@@ -82,3 +84,4 @@ br:
 }
 
 func _asyncCallIntoRemoteResponse(s string) { asyncCallChan <- s }
+func _syncCallIntoRemoteResponse(s string)  { syncCallChan <- s }

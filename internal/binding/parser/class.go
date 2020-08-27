@@ -428,6 +428,15 @@ func (c *Class) GetFunction(fname string) *Function {
 	return nil
 }
 
+func (c *Class) GetFunctionWithOverloadNumber(fname string, num string) *Function {
+	for _, f := range c.Functions {
+		if f.Name == fname && f.OverloadNumber == num {
+			return f
+		}
+	}
+	return nil
+}
+
 func (c *Class) GetTitledFunction(fname string) *Function {
 	for _, f := range c.Functions {
 		if strings.Title(f.Name) == strings.Title(fname) {

@@ -31,10 +31,23 @@ func init() {
 		w.Write(nil)
 	})
 
+	http.HandleFunc("/syncCallIntoRemoteResponse", func(w http.ResponseWriter, r *http.Request) {
+		bb := new(bytes.Buffer)
+		io.Copy(bb, r.Body)
+		r.Body.Close()
+
+		_syncCallIntoRemoteResponse(bb.String())
+		w.Write(nil)
+	})
+
 	// into Remote
 
 	AsyncCallIntoRemote = func(i string) {
 		fmt.Fprintln(os.Stderr, "async:"+i)
+	}
+
+	SyncCallIntoRemote = func(i string) {
+		fmt.Fprintln(os.Stderr, "sync:"+i)
 	}
 
 	//

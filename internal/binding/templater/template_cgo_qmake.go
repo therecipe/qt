@@ -623,6 +623,8 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	case "windows":
 		if !utils.QT_MSVC() {
 			fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-multiple-definition\n")
+		} else {
+			fmt.Fprint(bb, "#cgo LDFLAGS: \"notelemetry.obj\"\n")
 		}
 	case "ios":
 		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=11.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())

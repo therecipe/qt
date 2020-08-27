@@ -4,16 +4,8 @@ package quickcontrols2
 
 import (
 	"github.com/therecipe/qt/internal"
-	"strings"
 	"unsafe"
 )
-
-func unpackStringList(s string) []string {
-	if len(s) == 0 {
-		return make([]string, 0)
-	}
-	return strings.Split(s, "¡¦!")
-}
 
 type QQuickStyle struct {
 	internal.Internal

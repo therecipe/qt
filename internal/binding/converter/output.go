@@ -846,7 +846,8 @@ func _cppOutput(name, value string, f *parser.Function) string {
 				f.Fullname == "QGuiApplication::highDpiScaleFactorRoundingPolicy" ||
 				f.Fullname == "QCanBusDevice::busStatus" ||
 				f.Fullname == "QTextBlockFormat::marker" ||
-				f.Fullname == "QActionGroup::exclusionPolicy" {
+				f.Fullname == "QActionGroup::exclusionPolicy" ||
+				f.ClassName() == "QWebEnginePage" {
 				return fmt.Sprintf("static_cast<qint64>(%v)", name)
 			}
 			return name

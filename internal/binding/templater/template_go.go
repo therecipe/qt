@@ -62,7 +62,9 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 		fmt.Fprint(bb, "func jsGoUnpackBytes(s string) []byte { dec, _ := hex.DecodeString(s)\n return dec\n }\n")
 	}
 
-	fmt.Fprint(bb, "func unpackStringList(s string) []string {\nif len(s) == 0 {\nreturn make([]string, 0)\n}\nreturn strings.Split(s, \"¡¦!\")\n}\n")
+	if !utils.QT_GEN_GO_WRAPPER() {
+		fmt.Fprint(bb, "func unpackStringList(s string) []string {\nif len(s) == 0 {\nreturn make([]string, 0)\n}\nreturn strings.Split(s, \"¡¦!\")\n}\n")
+	}
 
 	if module == "QtAndroidExtras" && utils.QT_VERSION_NUM() >= 5060 {
 		fmt.Fprint(bb, "func QAndroidJniEnvironment_ExceptionCatch() error {\n")
@@ -191,7 +193,7 @@ func PointerFrom%[1]v(ptr %[2]v_ITF) unsafe.Pointer {
 
 			if class.Module == parser.MOC {
 				fmt.Fprintf(bb, `
-func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
+func New%[1]vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 	if gPtr, ok := qt.Receive(ptr); !ok {
 		n = new(%[2]v)
 		n.SetPointer(ptr)
@@ -207,17 +209,30 @@ func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 				n = new(%[2]v)
 				n.SetPointer(ptr)
 		}
-	}
+	}%[5]v
 	return
 }
-`, strings.Title(class.Name), class.Name,
+`,
+					strings.Title(class.Name),
+					class.Name,
 					func() string {
 						bc := class.GetBases()[0]
 						if class.Module == parser.State.ClassMap[bc].Module {
 							return bc
 						}
-						return fmt.Sprintf("%v.%v", strings.ToLower(strings.TrimPrefix(parser.State.ClassMap[bc].Module, "Qt")), bc)
-					}(), class.GetBases()[0])
+						return fmt.Sprintf("%v.%v", goModule(parser.State.ClassMap[bc].Module), bc)
+					}(),
+					class.GetBases()[0],
+					func() string {
+						if utils.QT_GEN_GO_WRAPPER() {
+							bc := class.GetBases()[0]
+							if class.Module != parser.State.ClassMap[bc].Module {
+								bc = fmt.Sprintf("%v.%v", goModule(parser.State.ClassMap[bc].Module), bc)
+							}
+							return fmt.Sprintf("\nn.InitFromInternal(uintptr(ptr), \"%v\")", bc)
+						}
+						return ""
+					}())
 			} else {
 				if utils.QT_GEN_GO_WRAPPER() {
 					if len(class.GetBases()) >= 1 {
@@ -310,7 +325,11 @@ func New%[1]vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 					}
 					fmt.Fprintf(bb, "this := New%vFromPointer(unsafe.Pointer(ptr))\nqt.Register(unsafe.Pointer(ptr), this)\n", strings.Title(class.Name))
 				} else {
-					fmt.Fprintf(bb, "//export callback%[1]v_Constructor\nfunc callback%[1]v_Constructor(ptr unsafe.Pointer) {", class.Name)
+					if utils.QT_GEN_GO_WRAPPER() {
+						fmt.Fprintf(bb, "func callback%[1]v_Constructor(ptr unsafe.Pointer) *%[1]v {", class.Name)
+					} else {
+						fmt.Fprintf(bb, "//export callback%[1]v_Constructor\nfunc callback%[1]v_Constructor(ptr unsafe.Pointer) {", class.Name)
+					}
 					fmt.Fprintf(bb, "this := New%vFromPointer(ptr)\nqt.Register(ptr, this)\n", strings.Title(class.Name))
 				}
 
@@ -521,6 +540,10 @@ func New%[1]vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 				}
 
 				connect(class, false)
+
+				if utils.QT_GEN_GO_WRAPPER() {
+					bb.WriteString("\nreturn this\n")
+				}
 
 				if UseJs() {
 					if parser.UseWasm() {
@@ -921,7 +944,7 @@ default:
 			continue
 		}
 
-		if c.IsSupported() && utils.QT_GEN_GO_WRAPPER() {
+		if c.IsSupported() && utils.QT_GEN_GO_WRAPPER() && mode != MOC {
 			bb.WriteString(fmt.Sprintf("internal.ConstructorTable[\"%v.%v\"] = New%vFromPointer\n", goModule(c.Module), c.Name, strings.Title(c.Name)))
 		}
 

@@ -6,16 +6,8 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/internal"
-	"strings"
 	"unsafe"
 )
-
-func unpackStringList(s string) []string {
-	if len(s) == 0 {
-		return make([]string, 0)
-	}
-	return strings.Split(s, "¡¦!")
-}
 
 type Q3DBars struct {
 	internal.Internal

@@ -208,22 +208,36 @@ func (this *PseudoQJSValue) callRemote(in []*PseudoQJSValue) *PseudoQJSValue {
 	remoteMainThreadIsBlockedMutex.Lock()
 	blocked := remoteMainThreadIsBlocked
 	remoteMainThreadIsBlockedMutex.Unlock()
+
+	var (
+		callFunc = AsyncCallIntoRemote
+		callChan = asyncCallChan
+	)
+
 	if blocked {
-		m := make(map[string]interface{})
-		m["___earlyReturn"] = "true"
-		m["___data"] = string(ib)
-		return NewPseudoQJSValue1(m)
+		if !SupportsSyncCallsIntoRemote {
+			//TODO: only for functions that return nothing or if it's requested specifically
+			m := make(map[string]interface{})
+			m["___earlyReturn"] = "true"
+			m["___data"] = string(ib)
+			return NewPseudoQJSValue1(m)
+		}
+
+		callFunc = SyncCallIntoRemote
+		callChan = syncCallChan
 	}
 
-	localMainThreadIsBlocked = true
-	defer func() { localMainThreadIsBlocked = false }()
+	if !localMainThreadIsBlocked {
+		localMainThreadIsBlocked = true
+		defer func() { localMainThreadIsBlocked = false }()
+	}
 
-	AsyncCallIntoRemote(string(ib))
+	callFunc(string(ib))
 
 	var ret string
 	for {
 		select {
-		case ret = <-asyncCallChan:
+		case ret = <-callChan:
 			goto br
 
 		case f := <-mainThreadHelperChan:

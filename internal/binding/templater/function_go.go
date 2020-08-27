@@ -13,7 +13,7 @@ import (
 func goFunction(function *parser.Function) string {
 	var o = fmt.Sprintf("%v{\n%v\n}", goFunctionHeader(function), goFunctionBody(function))
 	var c, _ = function.Class()
-	if !function.IsSupported() || ((c.Stub || utils.QT_GEN_GO_WRAPPER()) && function.SignalMode == parser.CALLBACK) {
+	if !function.IsSupported() || ((c.Stub || utils.QT_GEN_GO_WRAPPER()) && function.SignalMode == parser.CALLBACK) || (utils.QT_GEN_GO_WRAPPER() && parser.State.ClassMap[function.ClassName()].Module == parser.MOC && !(function.IsMocFunction || function.Meta == parser.CONSTRUCTOR)) {
 		return ""
 	}
 	return o
@@ -78,39 +78,80 @@ func goFunctionBody(function *parser.Function) string {
 
 		switch function.SignalMode {
 		case parser.CONNECT:
-			fmt.Fprintf(bb, "\ninternal.CallLocalAndRegisterRemoteFunction([]interface{}{\"\", uintptr(ptr.Pointer()), ptr.%vClassNameInternalF(), \"%v\", \"___REMOTE_CALLBACK___\"}, f)", func() string {
-				if bases := class.GetBases(); len(bases) > 1 {
-					return fmt.Sprintf("%v_PTR().", strings.Title(bases[0]))
-				}
-				return ""
-			}(), fn)
+
+			if function.IsMocFunction {
+
+				fmt.Fprintf(bb, "\nif signal := qt.LendSignal(ptr.Pointer(), \"%v%v\"); signal != nil {\n",
+					function.Name,
+					function.OverloadNumber,
+				)
+
+				fmt.Fprintf(bb, "\tf := %v\n",
+					func() string {
+						var bb = new(bytes.Buffer)
+						defer bb.Reset()
+
+						fmt.Fprintf(bb, "%v {\n", strings.TrimPrefix(converter.GoHeaderInput(function), "f "))
+
+						var f = *function
+						f.SignalMode = ""
+
+						fmt.Fprintf(bb, "(*(*%v%v)(signal))(%v)\n",
+							converter.GoHeaderInputSignalFunction(&f),
+							converter.GoHeaderOutput(&f),
+							converter.GoGoInput(&f),
+						)
+
+						if converter.GoHeaderOutput(&f) != "" {
+							fmt.Fprint(bb, "return ")
+						}
+
+						fmt.Fprintf(bb, "f(%v)\n",
+							converter.GoGoInput(&f),
+						)
+
+						fmt.Fprint(bb, "}")
+
+						return bb.String()
+					}())
+				fmt.Fprintf(bb, "\tqt.%vSignal(ptr.Pointer(), \"%v%v\", unsafe.Pointer(&f))",
+					function.SignalMode,
+					function.Name,
+					function.OverloadNumber)
+				fmt.Fprintf(bb, "} else {\n")
+				fmt.Fprintf(bb, "\tqt.%vSignal(ptr.Pointer(), \"%v%v\", unsafe.Pointer(&f))",
+					function.SignalMode,
+					function.Name,
+					function.OverloadNumber)
+				fmt.Fprintf(bb, "}")
+
+			} else {
+
+				fmt.Fprintf(bb, "\ninternal.CallLocalAndRegisterRemoteFunction([]interface{}{\"\", uintptr(ptr.Pointer()), ptr.%vClassNameInternalF(), \"%v\", \"___REMOTE_CALLBACK___\"}, f)", func() string {
+					if bases := class.GetBases(); len(bases) > 1 {
+						return fmt.Sprintf("%v_PTR().", strings.Title(bases[0]))
+					}
+					return ""
+				}(), fn)
+			}
 
 		case parser.DISCONNECT:
-			fmt.Fprintf(bb, "\ninternal.CallLocalAndDeregisterRemoteFunction([]interface{}{\"\", uintptr(ptr.Pointer()), ptr.%vClassNameInternalF(), \"%v\"})", func() string {
-				if bases := class.GetBases(); len(bases) > 1 {
-					return fmt.Sprintf("%v_PTR().", strings.Title(bases[0]))
-				}
-				return ""
-			}(), fn)
+
+			if function.IsMocFunction {
+				fmt.Fprintf(bb, "\nqt.%vSignal(ptr.Pointer(), \"%v%v\")",
+					function.SignalMode,
+					function.Name,
+					function.OverloadNumber)
+			} else {
+				fmt.Fprintf(bb, "\ninternal.CallLocalAndDeregisterRemoteFunction([]interface{}{\"\", uintptr(ptr.Pointer()), ptr.%vClassNameInternalF(), \"%v\"})", func() string {
+					if bases := class.GetBases(); len(bases) > 1 {
+						return fmt.Sprintf("%v_PTR().", strings.Title(bases[0]))
+					}
+					return ""
+				}(), fn)
+			}
 
 		default:
-
-			//TODO:
-			if class.IsSubClassOf("QCoreApplication") {
-				if function.Meta == parser.CONSTRUCTOR {
-					return fmt.Sprintf("\ngow.InitProcess()\nreturn New%vFromPointer(%vQCoreApplication_Instance().Pointer())", class.Name, func() string {
-						if goModule(class.Module) != "core" {
-							return "core."
-						}
-						return ""
-					}())
-				}
-
-				if function.Name == "exec" {
-					return "\ngow.Exec()\nreturn 0"
-				}
-			}
-			//
 
 			var input []string
 			for _, p := range function.Parameters {
@@ -121,29 +162,141 @@ func goFunctionBody(function *parser.Function) string {
 				in = "," + strings.Join(input, ",")
 			}
 
-			var ret_pre string
-			var ret_suf string
-			if out := converter.GoHeaderOutput(function); out != "" {
-				ret_pre = "return "
-				ret_suf = fmt.Sprintf(".(%v)", out)
+			if class.Module == parser.MOC && function.IsMocFunction {
+				headerOutputFakeFunc := *function
+				headerOutputFakeFunc.SignalMode = ""
 
-				//TODO: is there some better way ?
-				//TODO: support for slices and maps as well
-				if (strings.Contains(ret_suf, "__") || strings.HasPrefix(ret_suf, ".(int") || strings.HasPrefix(ret_suf, ".(uint")) && !strings.Contains(ret_suf, "[") {
-					ret_pre += out + "("
-					ret_suf = ".(float64))"
+				fmt.Fprintf(bb, "if signal := qt.GetSignal(ptr.Pointer(), \"%v%v\"); signal != nil {\n",
+					function.Name,
+					function.OverloadNumber,
+				)
+
+				if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
+					//TODO wasm: wait for fix to https://github.com/golang/go/issues/26045#issuecomment-400017599
+					fmt.Fprintf(bb, "(*(*%v)(signal))(%v)", converter.GoHeaderInputSignalFunction(function), strings.TrimPrefix(in, ","))
+				} else {
+					fmt.Fprintf(bb, "return %v", fmt.Sprintf("(*(*%v)(signal))(%v)", converter.GoHeaderInputSignalFunction(function), strings.TrimPrefix(in, ",")))
 				}
-			}
 
-			if function.Static || function.Meta == parser.CONSTRUCTOR {
-				fmt.Fprintf(bb, "\n%vinternal.CallLocalFunction([]interface{}{\"\", \"\", \"%v.%v\", \"\"%v})%v", ret_pre, goModule(class.Module), fn, in, ret_suf)
-			} else {
-				fmt.Fprintf(bb, "\n%vinternal.CallLocalFunction([]interface{}{\"\", uintptr(ptr.Pointer()), ptr.%vClassNameInternalF(), \"%v\"%v})%v", ret_pre, func() string {
-					if bases := class.GetBases(); len(bases) > 1 {
-						return fmt.Sprintf("%v_PTR().", strings.Title(bases[0]))
+				fmt.Fprintf(bb, "\n}%v\n",
+					func() string {
+						if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
+							if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
+								return "else{"
+							}
+						}
+						return ""
+					}(),
+				)
+
+				if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
+					if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
+						fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 					}
-					return ""
-				}(), fn, in, ret_suf)
+				} else {
+					if converter.GoOutputParametersFromCFailed(function) == "nil" {
+						var (
+							class, _ = function.Class()
+							found    bool
+							c, ok    = parser.State.ClassMap[parser.CleanValue(function.Output)]
+						)
+						if ok && c.IsSupported() && !hasUnimplementedPureVirtualFunctions(c.Name) {
+							for _, f := range c.Functions {
+								if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 0 {
+									if c.Module == class.Module {
+										fmt.Fprintf(bb, "\nreturn %v", fmt.Sprintf("%v()", converter.GoHeaderName(f)))
+									} else {
+										fmt.Fprintf(bb, "\nreturn %v", fmt.Sprintf("%v.%v()", goModule(c.Module), converter.GoHeaderName(f)))
+									}
+									found = true
+									break
+								}
+							}
+							if !found {
+								for _, f := range c.Functions {
+									if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 1 {
+										if c.Module == class.Module {
+											fmt.Fprintf(bb, "\nreturn %v", fmt.Sprintf("%v(%v)", converter.GoHeaderName(f), converter.GoOutputFailed(f.Parameters[0].Value, f, f.Parameters[0].PureGoType)))
+										} else {
+											fmt.Fprintf(bb, "\nreturn %v", fmt.Sprintf("%v.%v(%v)", goModule(c.Module), converter.GoHeaderName(f), converter.GoOutputFailed(f.Parameters[0].Value, f, f.Parameters[0].PureGoType)))
+										}
+										found = true
+										break
+									}
+								}
+							}
+						}
+
+						if !found {
+							//TODO: panic and name the missing virtual function ?
+							//function.Access = fmt.Sprintf("unsupported_FailedNilOutputInCallbacksForPureVirtualFunctions(%v)", function.Output)
+							fmt.Fprintf(bb, "\nreturn %v", converter.GoOutputParametersFromCFailed(function))
+						}
+					} else {
+						fmt.Fprintf(bb, "\nreturn %v", converter.GoOutputParametersFromCFailed(function))
+					}
+				}
+
+				fmt.Fprintf(bb, "%v",
+					func() string {
+						if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
+							if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
+								return "\n}"
+							}
+						}
+						return ""
+					}(),
+				)
+
+			} else {
+
+				//TODO:
+				if class.IsSubClassOf("QCoreApplication") {
+					if function.Meta == parser.CONSTRUCTOR {
+						return fmt.Sprintf("\ngow.InitProcess()\nreturn New%vFromPointer(%vQCoreApplication_Instance().Pointer())", class.Name, func() string {
+							if goModule(class.Module) != "core" {
+								return "core."
+							}
+							return ""
+						}())
+					}
+
+					if function.Name == "exec" {
+						return "\ngow.Exec()\nreturn 0"
+					}
+				}
+				//
+
+				var ret_pre string
+				var ret_suf string
+				if out := converter.GoHeaderOutput(function); out != "" {
+					ret_pre = "return "
+					ret_suf = fmt.Sprintf(".(%v)", out)
+
+					//TODO: is there some better way ?
+					//TODO: support for slices and maps as well
+					if (strings.Contains(ret_suf, "__") || strings.HasPrefix(ret_suf, ".(int") || strings.HasPrefix(ret_suf, ".(uint")) && !strings.Contains(ret_suf, "[") {
+						ret_pre += out + "("
+						ret_suf = ".(float64))"
+					}
+				}
+
+				if function.Static || function.Meta == parser.CONSTRUCTOR {
+					if class.Module == parser.MOC && function.Meta == parser.CONSTRUCTOR {
+						bc := parser.State.ClassMap[class.GetBases()[0]]
+						fn := converter.GoHeaderName(bc.GetFunctionWithOverloadNumber(bc.Name, function.OverloadNumber))
+						fmt.Fprintf(bb, "\n%vcallback%v_Constructor(%v.%v(%v).Pointer())", ret_pre, class.Name, goModule(bc.Module), fn, strings.TrimPrefix(in, ","))
+					} else {
+						fmt.Fprintf(bb, "\n%vinternal.CallLocalFunction([]interface{}{\"\", \"\", \"%v.%v\", \"\"%v})%v", ret_pre, goModule(class.Module), fn, in, ret_suf)
+					}
+				} else {
+					fmt.Fprintf(bb, "\n%vinternal.CallLocalFunction([]interface{}{\"\", uintptr(ptr.Pointer()), ptr.%vClassNameInternalF(), \"%v\"%v})%v", ret_pre, func() string {
+						if bases := class.GetBases(); len(bases) > 1 {
+							return fmt.Sprintf("%v_PTR().", strings.Title(bases[0]))
+						}
+						return ""
+					}(), fn, in, ret_suf)
+				}
 			}
 		}
 

@@ -27,6 +27,7 @@ var (
 
 func init() {
 	interop.ReturnPointersAsStrings = false
+	interop.SupportsSyncCallsIntoRemote = false
 
 	interop.AsyncCallIntoRemote = func(s string) {
 		i := C.CString(s)

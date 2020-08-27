@@ -305,6 +305,8 @@ func (ptr *PseudoQJSEngine) fromJsToRef(tofi reflect.Type, jsval *PseudoQJSValue
 				return nil
 			}
 
+			//TODO: some functions can't return on a chan such as core.QAbstractListModel::RowCount (when called i.e. by the core.QAbstractListModel::Index method); warn about these methods here if the remote lanuage is not supporting "SupportsSyncCallsIntoRemote" ?
+
 			//needed only for interop  --->
 			fromJsToRefReturnsOnChan = true
 
@@ -320,7 +322,7 @@ func (ptr *PseudoQJSEngine) fromJsToRef(tofi reflect.Type, jsval *PseudoQJSValue
 			}()
 
 			if tofi.NumOut() != 0 {
-				return []reflect.Value{reflect.ValueOf("___earlyReturn")}
+				return []reflect.Value{reflect.Zero(tofi.Out(0))} //TODO: (SupportsSyncCallsIntoRemote related); possible to trigger panic's with something like []reflect.Value{reflect.ValueOf("___earlyReturn")}
 			}
 			return nil
 			//needed only for interop  <---

@@ -403,12 +403,19 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	if strings.Contains(staleCheck, "but available in build cache") || strings.Contains(staleCheck, "false|") {
 		utils.Log.WithField("path", path).Debug("skipping already cached moc")
 	} else {
-		if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target, tags)); err != nil {
-			return
-		}
+		if !utils.QT_GEN_GO_WRAPPER() {
+			if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target, tags)); err != nil {
+				return
+			}
 
-		if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC, tags)); err != nil {
-			return
+			if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC, tags)); err != nil {
+				return
+			}
+		} else {
+			utils.RemoveAll(templater.CgoFileNames(path, target, templater.MOC)[0])
+			utils.RemoveAll(filepath.Join(path, "moc.cpp"))
+			utils.RemoveAll(filepath.Join(path, "moc.h"))
+			utils.RemoveAll(filepath.Join(path, "moc_moc.h"))
 		}
 		fixR := templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags)
 
@@ -434,20 +441,22 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 			libs = append(libs, "Qml")
 		}
 
-		rootWg.Add(1)
-		go func() {
-			templater.CgoTemplateSafe(parser.MOC, path, target, templater.MOC, pkg, tags, libs)
-			rootWg.Done()
-		}()
+		if !utils.QT_GEN_GO_WRAPPER() {
+			rootWg.Add(1)
+			go func() {
+				templater.CgoTemplateSafe(parser.MOC, path, target, templater.MOC, pkg, tags, libs)
+				rootWg.Done()
+			}()
 
-		rootWg.Add(1)
-		go func() {
-			utils.RunCmd(exec.Command(utils.ToolPath("moc", target), filepath.Join(path, "moc.cpp"), "-o", filepath.Join(path, "moc_moc.h")), "run moc")
-			if tags != "" {
-				utils.Save(filepath.Join(path, "moc_moc.h"), "// +build "+tags+"\n\n"+utils.Load(filepath.Join(path, "moc_moc.h")))
-			}
-			rootWg.Done()
-		}()
+			rootWg.Add(1)
+			go func() {
+				utils.RunCmd(exec.Command(utils.ToolPath("moc", target), filepath.Join(path, "moc.cpp"), "-o", filepath.Join(path, "moc_moc.h")), "run moc")
+				if tags != "" {
+					utils.Save(filepath.Join(path, "moc_moc.h"), "// +build "+tags+"\n\n"+utils.Load(filepath.Join(path, "moc_moc.h")))
+				}
+				rootWg.Done()
+			}()
+		}
 	}
 
 	//TODO: cleanup state -->

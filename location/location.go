@@ -6,16 +6,8 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/internal"
 	"github.com/therecipe/qt/positioning"
-	"strings"
 	"unsafe"
 )
-
-func unpackStringList(s string) []string {
-	if len(s) == 0 {
-		return make([]string, 0)
-	}
-	return strings.Split(s, "¡¦!")
-}
 
 type QGeoCodeReply struct {
 	core.QObject

@@ -101,8 +101,16 @@ func asyncCallIntoRemoteResponse(msg string) {
 	httpRequest("asyncCallIntoRemoteResponse", msg)
 }
 
+func syncCallIntoRemoteResponse(msg string) {
+	httpRequest("syncCallIntoRemoteResponse", msg)
+}
+
 func asyncCallbackHandler(message string) {
 	asyncCallIntoRemoteResponse(handleCallback(message))
+}
+
+func syncCallbackHandler(message string) {
+	syncCallIntoRemoteResponse(handleCallback(message))
 }
 
 func convertList(l []interface{}) []interface{} {
@@ -169,9 +177,11 @@ func convertToJson(i interface{}) interface{} {
 		}
 
 	case reflect.Ptr:
-		return map[string]interface{}{
-			"___pointer":   uintptr(reflect.ValueOf(i).MethodByName("Pointer").Call(nil)[0].Interface().(unsafe.Pointer)),
-			"___className": reflect.ValueOf(i).MethodByName("ClassNameInternalF").Call(nil)[0].Interface(),
+		if !reflect.ValueOf(i).IsNil() {
+			return map[string]interface{}{
+				"___pointer":   uintptr(reflect.ValueOf(i).MethodByName("Pointer").Call(nil)[0].Interface().(unsafe.Pointer)),
+				"___className": reflect.ValueOf(i).MethodByName("ClassNameInternalF").Call(nil)[0].Interface(),
+			}
 		}
 	}
 	return i
@@ -209,9 +219,14 @@ func CallLocalFunction(l []interface{}) interface{} {
 	json.Unmarshal([]byte(syncCallIntoLocal(string(msg))), &output)
 
 	switch d := output.(type) {
-	case []string:
-		if len(l) == 2 && d[0] == "___block" {
+	case []string: //TODO: dead code?
+		if len(d) == 2 && d[0] == "___block" {
 			return CallLocalFunction([]interface{}{"___return", handleCallback(d[1])})
+		}
+
+	case []interface{}:
+		if s, ok := d[0].(string); ok && len(d) == 2 && s == "___block" {
+			return CallLocalFunction([]interface{}{"___return", handleCallback(d[1].(string))})
 		}
 	}
 
@@ -232,10 +247,7 @@ var Config = &InteropServerConfig{
 	"",
 }
 
-var (
-	proc   *exec.Cmd
-	stderr io.ReadCloser
-)
+var proc *exec.Cmd
 
 func InitProcess() {
 
@@ -387,17 +399,14 @@ func InitProcess() {
 
 	time.Sleep(3 * time.Second) //TODO:
 
-	proc = process
-	stderr = rc
-}
-
-func Exec() {
-	scanner := bufio.NewScanner(stderr)
+	scanner := bufio.NewScanner(rc)
 
 	go func() {
 		for scanner.Scan() {
 			if l := scanner.Text(); strings.Contains(l, "async:") {
-				asyncCallbackHandler(strings.Split(l, "async:")[1])
+				go asyncCallbackHandler(strings.Split(l, "async:")[1])
+			} else if strings.Contains(l, "sync:") {
+				go syncCallbackHandler(strings.Split(l, "sync:")[1])
 			} else {
 				println(l)
 			}
@@ -407,5 +416,9 @@ func Exec() {
 		}
 	}()
 
+	proc = process
+}
+
+func Exec() {
 	proc.Wait()
 }
