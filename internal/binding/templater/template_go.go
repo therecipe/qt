@@ -1272,7 +1272,8 @@ default:
 				if f.Meta != parser.CONSTRUCTOR && !f.Static {
 					continue
 				}
-				if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") { //TODO:
+				if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") ||
+					strings.Contains(f.Name, "QmlRegisterUncreatableType") || strings.Contains(f.Name, "QmlRegisterAnonymousType") { //TODO:
 					continue
 				}
 				var _, e = implemented[fmt.Sprint(f.Name, f.OverloadNumber)]
