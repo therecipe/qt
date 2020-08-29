@@ -21,7 +21,8 @@ var (
 	finalizerMapMutex sync.Mutex
 
 	//needed only for interop  --->
-	ReturnPointersAsStrings bool
+	ReturnPointersAsStrings     bool
+	SupportsSyncCallsIntoRemote bool
 
 	syncCallIntoRemoteChan       = make(chan string, 0)
 	syncCallIntoRemoteReturnChan = make(chan string, 0)
