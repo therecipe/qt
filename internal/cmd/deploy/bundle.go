@@ -252,7 +252,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 			libs := []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor", "QuickControls2", "QuickTemplates2", "QuickWidgets", "QuickParticles", "CLucene", "Concurrent", "Svg", "MultimediaGstTools"}
 			if usesQml {
-				libs = append(libs, []string{"3DCore", "3DExtras", "3DInput", "3DLogic", "3DQuick", "3DQuickExtras", "3DQuickInput", "3DQuickRender", "3DRender", "Gamepad", "Multimedia", "MultimediaQuick"}...)
+				libs = append(libs, []string{"3DCore", "3DExtras", "3DInput", "3DLogic", "3DQuick", "3DQuickExtras", "3DQuickInput", "3DQuickRender", "3DRender", "Gamepad", "Multimedia", "MultimediaQuick", "QmlModels", "QmlWorkerScript"}...)
 			}
 			if usesWebEngine {
 				libs = append(libs, []string{"WebEngine", "WebEngineCore", "WebChannel", "Positioning"}...)
