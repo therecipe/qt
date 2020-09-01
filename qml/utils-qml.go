@@ -22,7 +22,7 @@ var (
 
 	//needed only for interop  --->
 	ReturnPointersAsStrings     bool
-	SupportsSyncCallsIntoRemote bool
+	SupportsSyncCallsIntoRemote = true
 
 	syncCallIntoRemoteChan       = make(chan string, 0)
 	syncCallIntoRemoteReturnChan = make(chan string, 0)
