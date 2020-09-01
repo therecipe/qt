@@ -132,6 +132,18 @@ func android_config(target, path, depPath string) string {
 		}
 	}
 
+	if target == "android" || target == "android-emulator" {
+		if utils.ANDROID_EXTRA_LIBS() != "" {
+			jsonStruct.AndroidExtraLibs += "," + utils.ANDROID_EXTRA_LIBS()
+		}
+		if utils.ANDROID_MODULES_INCLUDE() != "" {
+			modules := strings.Split(utils.ANDROID_MODULES_INCLUDE(), ",")
+			for _, module := range modules {
+				jsonStruct.AndroidExtraLibs += "," + filepath.Join(utils.QT_INSTALL_PREFIX(target), "lib", fmt.Sprintf("libQt5%s.so", module))
+			}
+		}
+	}
+
 	out, err := json.Marshal(jsonStruct)
 	if err != nil {
 		utils.Log.WithError(err).Panicf("failed to create json-config file for androiddeployqt on %v", runtime.GOOS)

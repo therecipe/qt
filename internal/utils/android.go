@@ -140,3 +140,21 @@ func ANDROID_NDK_PLATFORM() string {
 	// to workaround problems with arm64 android builds
 	return "android-21"
 }
+
+func ANDROID_EXTRA_LIBS() string {
+	return os.Getenv("ANDROID_EXTRA_LIBS")
+}
+
+func ANDROID_MODULES_INCLUDE() string {
+	return os.Getenv("ANDROID_MODULES_INCLUDE")
+}
+
+func ADD_ANDROID_MODULES_INCLUDE(module string) {
+	val := os.Getenv("ANDROID_MODULES_INCLUDE")
+	mod := module
+
+	if val != "" {
+		mod = "," + mod
+	}
+	os.Setenv("ANDROID_MODULES_INCLUDE", val+mod)
+}
