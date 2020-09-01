@@ -35,7 +35,7 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		utils.Save(filepath.Join(path, "cgo_main_wrapper.go"), "package main\nimport (\n\"C\"\n\"os\"\n\"unsafe\"\n)\n//export go_main_wrapper\nfunc go_main_wrapper(argc C.int, argv unsafe.Pointer) {\nos.Args=make([]string,int(argc))\nfor i,b := range (*[1<<3]*C.char)(argv)[:int(argc):int(argc)] {\nos.Args[i] = C.GoString(b)\n}\nmain()\n}")
 
 		// Quick fix of problem in library soname experienced with Qt 5.14+ and android
-		if utils.QT_VERSION_NUM() >= 5140 {
+		if utils.QT_VERSION_NUM() >= 5140 && strings.HasPrefix(target, "android") {
 			ldFlags = utils.AppendToFlag(ldFlags, "-extldflags", "-Wl,-soname,libgo_base.so")
 		}
 	case "windows":

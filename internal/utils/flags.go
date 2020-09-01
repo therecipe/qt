@@ -12,10 +12,28 @@ func AppendToFlag(flags []string, flag, content string) []string {
 		return flags
 	}
 
-	var match bool
+	var (
+		extractedFlag     string
+		match, simpleFlag bool
+	)
 	for index, flagEntry := range flags {
-		if strings.Contains(flagEntry, flag) {
-			flagEntry += " " + content
+		// checks if is simple flag or has an assignation
+		if asigIndex := strings.IndexRune(flagEntry, '='); asigIndex != -1 {
+			// extracts flag
+			extractedFlag = flagEntry[:asigIndex]
+			simpleFlag = false
+		} else {
+			extractedFlag = flagEntry
+			simpleFlag = true
+		}
+
+		// if flags are equal appends content to existing assignation
+		if extractedFlag == flag {
+			if !simpleFlag {
+				flagEntry += " " + content
+			} else {
+				flagEntry = fmt.Sprintf("%s=%s", flag, content)
+			}
 			flags[index] = flagEntry
 			match = true
 			break
