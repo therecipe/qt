@@ -1273,7 +1273,7 @@ default:
 					continue
 				}
 				if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") ||
-					strings.Contains(f.Name, "QmlRegisterUncreatableType") || strings.Contains(f.Name, "QmlRegisterAnonymousType") { //TODO:
+					strings.Contains(f.Name, "RegisterUncreatableType") || strings.Contains(f.Name, "RegisterAnonymousType") { //TODO:
 					continue
 				}
 				var _, e = implemented[fmt.Sprint(f.Name, f.OverloadNumber)]
