@@ -662,7 +662,24 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_CFLAGS)", "", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_LFLAGS)", "", -1)
 	case "android", "android-emulator": //TODO:
-		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", filepath.Base(path)), "-Wl,-soname,libgo_base.so", -1)
+		libName := filepath.Base(path)
+		if utils.QT_VERSION_NUM() >= 5140 {
+			libName += "_"
+			// Calculate arch suffix
+			if target == "android-emulator" {
+				// Android emulator is x86
+				libName += "x86"
+			} else if utils.GOARCH() == "arm64" {
+				// AARCH64 on android
+				libName += "arm64-v8a"
+			} else {
+				// ARMv7 on android
+				libName += "armeabi-v7a"
+			}
+		}
+		utils.Log.WithField("module", module).WithField("path", path).WithField("target", target).WithField("mode", mode).WithField("pkg", ipkg).Debugf("cgoTemplate libName: %s", libName)
+
+		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", libName), "-Wl,-soname,libgo_base.so", -1)
 		tmp = strings.Replace(tmp, "-shared", "", -1)
 	case "js", "wasm":
 		tmp = strings.Replace(tmp, "\"", "", -1)
