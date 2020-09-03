@@ -103,7 +103,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 
 		//break the rpath
-		pPath := "/break_the_rpath/"
+		pPath := "/broken/"
 		fn := filepath.Join(depPath, name+".app", "Contents", "MacOS", name)
 		data, err := ioutil.ReadFile(fn)
 		if err != nil {
