@@ -142,7 +142,7 @@ func LoadModule(m string) *Module {
 			err = xml.Unmarshal([]byte(utils.LoadOptional(path)), &module)
 			if err != nil {
 				utils.Log.WithFields(logFields).Debug("falling back to bundled *.index files")
-				err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION_MAJOR()+".0"), "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+				err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION()), "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 			}
 		}
 	}
