@@ -3,11 +3,12 @@
 package widgets
 
 import (
+	"unsafe"
+
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/internal"
 	"github.com/therecipe/qt/interop/gow"
-	"unsafe"
 )
 
 type QAbstractButton struct {
@@ -13049,7 +13050,12 @@ func (ptr *QFileDialog) GetOpenFileName(parent QWidget_ITF, caption string, dir 
 
 func QFileDialog_GetOpenFileNames(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) []string {
 
-	return internal.CallLocalFunction([]interface{}{"", "", "widgets.QFileDialog_GetOpenFileNames", "", parent, caption, dir, filter, selectedFilter, options}).([]string)
+	ifs := internal.CallLocalFunction([]interface{}{"", "", "widgets.QFileDialog_GetOpenFileNames", "", parent, caption, dir, filter, selectedFilter, options}).([]interface{})
+	fs := []string{}
+	for _, f := range ifs {
+		fs = append(fs, f.(string))
+	}
+	return fs
 }
 
 func (ptr *QFileDialog) GetOpenFileNames(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) []string {
