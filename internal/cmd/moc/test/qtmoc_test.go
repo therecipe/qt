@@ -9,15 +9,15 @@ import (
 	tps "time"
 	"unsafe"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/sql"
-	"github.com/therecipe/qt/widgets"
-	"github.com/therecipe/qt/xml"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/gui"
+	"github.com/dev-drprasad/qt/sql"
+	"github.com/dev-drprasad/qt/widgets"
+	"github.com/dev-drprasad/qt/xml"
 
-	"github.com/therecipe/qt/internal/cmd/moc/test/sub"
-	_ "github.com/therecipe/qt/internal/cmd/moc/test/sub/conf"
-	"github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub" //subsubcustom
+	"github.com/dev-drprasad/qt/internal/cmd/moc/test/sub"
+	_ "github.com/dev-drprasad/qt/internal/cmd/moc/test/sub/conf"
+	"github.com/dev-drprasad/qt/internal/cmd/moc/test/sub/subsub" //subsubcustom
 )
 
 type Application struct {

@@ -423,7 +423,7 @@ func QT_GEN_QUICK_EXTRAS() bool {
 func GoList(args ...string) *exec.Cmd {
 	cmd := exec.Command("go", "list")
 	if UseGOMOD("") {
-		if !(strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal") && !strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal/binding/runtime")) {
+		if !(strings.Contains(strings.Join(args, "|"), "github.com/dev-drprasad/qt/internal") && !strings.Contains(strings.Join(args, "|"), "github.com/dev-drprasad/qt/internal/binding/runtime")) {
 			cmd.Args = append(cmd.Args, GOFLAGS())
 		} else if GOVERSION_NUM() >= 114 {
 			cmd.Args = append(cmd.Args, "-mod=mod")

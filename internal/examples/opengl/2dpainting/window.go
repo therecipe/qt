@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/widgets"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/widgets"
 )
 
 type Window struct {

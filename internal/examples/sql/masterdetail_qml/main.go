@@ -5,12 +5,12 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/widgets"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/widgets"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/controller"
+	"github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/controller"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view"
+	"github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/view"
 )
 
 func main() {

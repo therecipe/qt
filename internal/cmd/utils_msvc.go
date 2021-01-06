@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/dev-drprasad/qt/internal/utils"
 )
 
 var rep = map[string]string{

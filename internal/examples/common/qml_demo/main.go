@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/quick"
-	"github.com/therecipe/qt/widgets"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/quick"
+	"github.com/dev-drprasad/qt/widgets"
 )
 
 var (

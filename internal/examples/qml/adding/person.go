@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/therecipe/qt/core"
+	"github.com/dev-drprasad/qt/core"
 )
 
 type Person struct {

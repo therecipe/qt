@@ -3,9 +3,9 @@
 package location
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/positioning"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/internal"
+	"github.com/dev-drprasad/qt/positioning"
 	"unsafe"
 )
 

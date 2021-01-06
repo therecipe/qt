@@ -1,4 +1,6 @@
-module github.com/therecipe/qt
+module github.com/dev-drprasad/qt
+
+go 1.15
 
 require (
 	github.com/gopherjs/gopherjs v0.0.0-20190411002643-bd77b112433e

@@ -18,11 +18,11 @@ import (
 
 	"golang.org/x/tools/imports"
 
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/binding/templater"
+	"github.com/dev-drprasad/qt/internal/binding/parser"
+	"github.com/dev-drprasad/qt/internal/binding/templater"
 
-	"github.com/therecipe/qt/internal/cmd"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/dev-drprasad/qt/internal/cmd"
+	"github.com/dev-drprasad/qt/internal/utils"
 )
 
 var (
@@ -58,7 +58,7 @@ func Moc(path, target, tags string, fast, slow, deploying bool, skipSetup bool) 
 			utils.RunCmd(cmd, "go mod vendor")
 		}
 		if utils.QT_DOCKER() {
-			cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
+			cmd := exec.Command("go", "get", "-v", "-d", "github.com/dev-drprasad/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
 			cmd.Dir = path
 			if !utils.QT_PKG_CONFIG() {
 				utils.RunCmdOptional(cmd, "go get docs") //TODO: this can fail if QT_PKG_CONFIG

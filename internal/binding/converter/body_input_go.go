@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/dev-drprasad/qt/internal/binding/parser"
 )
 
 func GoInputParametersForC(function *parser.Function) string {

@@ -6,10 +6,10 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/gui"
+	"github.com/dev-drprasad/qt/widgets"
 	"github.com/emirpasic/gods/lists/arraylist"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/widgets"
 )
 
 var statusbar *widgets.QStatusBar

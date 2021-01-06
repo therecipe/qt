@@ -3,10 +3,10 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/qml"
-	"github.com/therecipe/qt/quickcontrols2"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/gui"
+	"github.com/dev-drprasad/qt/qml"
+	"github.com/dev-drprasad/qt/quickcontrols2"
 )
 
 func main() {

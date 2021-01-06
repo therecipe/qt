@@ -4,10 +4,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/therecipe/qt/charts"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/widgets"
+	"github.com/dev-drprasad/qt/charts"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/gui"
+	"github.com/dev-drprasad/qt/widgets"
 )
 
 func NewTableWidget() *widgets.QWidget {

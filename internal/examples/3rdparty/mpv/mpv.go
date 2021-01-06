@@ -13,8 +13,8 @@ void initMpv();
 */
 import "C"
 import (
-	"github.com/therecipe/qt/core"
-	_ "github.com/therecipe/qt/quick"
+	"github.com/dev-drprasad/qt/core"
+	_ "github.com/dev-drprasad/qt/quick"
 )
 
 type stub struct{ core.QObject } //TODO: needed for linking at the moment

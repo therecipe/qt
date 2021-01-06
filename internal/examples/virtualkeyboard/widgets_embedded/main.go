@@ -3,11 +3,11 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/qml"
-	"github.com/therecipe/qt/quick"
-	"github.com/therecipe/qt/widgets"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/gui"
+	"github.com/dev-drprasad/qt/qml"
+	"github.com/dev-drprasad/qt/quick"
+	"github.com/dev-drprasad/qt/widgets"
 )
 
 func init() { Embedded_QmlRegisterType2("CustomModule", 1, 0, "Embedded") }

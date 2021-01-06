@@ -3,12 +3,12 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/network"
-	"github.com/therecipe/qt/webchannel"
-	"github.com/therecipe/qt/websockets"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/network"
+	"github.com/dev-drprasad/qt/webchannel"
+	"github.com/dev-drprasad/qt/websockets"
 
-	"github.com/therecipe/qt/internal/examples/webchannel/shared"
+	"github.com/dev-drprasad/qt/internal/examples/webchannel/shared"
 )
 
 func main() {

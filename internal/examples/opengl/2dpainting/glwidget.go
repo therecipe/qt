@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/widgets"
+	"github.com/dev-drprasad/qt/gui"
+	"github.com/dev-drprasad/qt/widgets"
 )
 
 type GLWidget struct {

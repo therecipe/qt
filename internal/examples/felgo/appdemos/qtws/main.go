@@ -4,14 +4,14 @@ import (
 	"os"
 	"strings"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/felgo"
-	"github.com/therecipe/qt/qml"
-	"github.com/therecipe/qt/widgets"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/felgo"
+	"github.com/dev-drprasad/qt/qml"
+	"github.com/dev-drprasad/qt/widgets"
 
-	"github.com/therecipe/qt/internal/examples/3rdparty/qzxing"
+	"github.com/dev-drprasad/qt/internal/examples/3rdparty/qzxing"
 
-	"github.com/therecipe/qt/internal/examples/felgo/appdemos/qtws/cpp"
+	"github.com/dev-drprasad/qt/internal/examples/felgo/appdemos/qtws/cpp"
 )
 
 func main() {

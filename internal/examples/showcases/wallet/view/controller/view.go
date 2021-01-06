@@ -1,6 +1,6 @@
 package controller
 
-import "github.com/therecipe/qt/core"
+import "github.com/dev-drprasad/qt/core"
 
 var Controller *viewController
 

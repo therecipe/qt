@@ -5,10 +5,10 @@ package widgets
 import (
 	"unsafe"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/interop/gow"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/gui"
+	"github.com/dev-drprasad/qt/internal"
+	"github.com/dev-drprasad/qt/interop/gow"
 )
 
 type QAbstractButton struct {

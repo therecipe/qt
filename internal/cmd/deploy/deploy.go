@@ -7,14 +7,14 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/dev-drprasad/qt/internal/binding/parser"
 
-	"github.com/therecipe/qt/internal/cmd"
-	"github.com/therecipe/qt/internal/cmd/minimal"
-	"github.com/therecipe/qt/internal/cmd/moc"
-	"github.com/therecipe/qt/internal/cmd/rcc"
+	"github.com/dev-drprasad/qt/internal/cmd"
+	"github.com/dev-drprasad/qt/internal/cmd/minimal"
+	"github.com/dev-drprasad/qt/internal/cmd/moc"
+	"github.com/dev-drprasad/qt/internal/cmd/rcc"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/dev-drprasad/qt/internal/utils"
 )
 
 func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool, device string, vagrant bool, vagrantsystem string, comply bool, useuic bool, quickcompiler bool) {
@@ -51,7 +51,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 				utils.RunCmd(cmd, "go mod vendor")
 			}
 			if utils.QT_DOCKER() {
-				cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
+				cmd := exec.Command("go", "get", "-v", "-d", "github.com/dev-drprasad/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
 				cmd.Dir = path
 				if !utils.QT_PKG_CONFIG() {
 					utils.RunCmdOptional(cmd, "go get docs") //TODO: this can fail if QT_PKG_CONFIG

@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/dev-drprasad/qt/internal/binding/parser"
+	"github.com/dev-drprasad/qt/internal/utils"
 )
 
 func GoOutput(name, value string, f *parser.Function, p string) string {

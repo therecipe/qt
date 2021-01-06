@@ -1,6 +1,6 @@
 package haxe
 
-import "github.com/therecipe/qt/interop"
+import "github.com/dev-drprasad/qt/interop"
 
 func init() {
 	interop.ReturnPointersAsStrings = true

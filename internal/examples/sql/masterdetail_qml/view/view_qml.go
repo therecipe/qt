@@ -3,14 +3,14 @@
 package view
 
 import (
-	"github.com/therecipe/qt/core"
+	"github.com/dev-drprasad/qt/core"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/controller"
+	"github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/controller"
 
-	_ "github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view/album"
-	_ "github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view/artist"
-	_ "github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view/detail"
-	_ "github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view/dialog"
+	_ "github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/view/album"
+	_ "github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/view/artist"
+	_ "github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/view/detail"
+	_ "github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/view/dialog"
 )
 
 func init() {

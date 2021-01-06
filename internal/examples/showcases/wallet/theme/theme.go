@@ -1,9 +1,9 @@
 package theme
 
 import (
-	"github.com/therecipe/qt/core"
+	"github.com/dev-drprasad/qt/core"
 
-	"github.com/therecipe/qt/internal/examples/showcases/wallet/theme/controller"
+	"github.com/dev-drprasad/qt/internal/examples/showcases/wallet/theme/controller"
 )
 
 func init() { themeTemplate_QmlRegisterType2("ThemeTemplate", 1, 0, "ThemeTemplate") }

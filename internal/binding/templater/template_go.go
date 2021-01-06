@@ -7,18 +7,18 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/converter"
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/cmd"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/dev-drprasad/qt/internal/binding/converter"
+	"github.com/dev-drprasad/qt/internal/binding/parser"
+	"github.com/dev-drprasad/qt/internal/cmd"
+	"github.com/dev-drprasad/qt/internal/utils"
 )
 
 func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []byte {
 
 	if !utils.QT_GEN_GO_WRAPPER() && module == "AndroidExtras" {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "utils-androidextras_android.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-androidextras_android.go")))
+		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "utils-androidextras_android.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/dev-drprasad/qt/internal", "-find", "get files dir")), "/binding/files/utils-androidextras_android.go")))
 	} else if module == "Qml" {
-		cont := utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-qml.go"))
+		cont := utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/dev-drprasad/qt/internal", "-find", "get files dir")), "/binding/files/utils-qml.go"))
 		if utils.QT_API_NUM(utils.QT_VERSION()) < 5060 {
 			cont = strings.Replace(cont, "Property2(", "Property3(", -1)
 		}
@@ -1499,13 +1499,13 @@ import "C"
 				fmt.Fprintln(bb, "\"encoding/hex\"")
 
 			case "qt":
-				fmt.Fprintln(bb, "\"github.com/therecipe/qt\"")
+				fmt.Fprintln(bb, "\"github.com/dev-drprasad/qt\"")
 
 			case "internal":
-				fmt.Fprintln(bb, "\"github.com/therecipe/qt/internal\"")
+				fmt.Fprintln(bb, "\"github.com/dev-drprasad/qt/internal\"")
 
 			case "gow":
-				fmt.Fprintln(bb, "\"github.com/therecipe/qt/interop/gow\"")
+				fmt.Fprintln(bb, "\"github.com/dev-drprasad/qt/interop/gow\"")
 
 			case "js":
 				if parser.UseWasm() {
@@ -1516,9 +1516,9 @@ import "C"
 
 			default:
 				if mode == MOC {
-					fmt.Fprintf(bb, "std_%[1]v \"github.com/therecipe/qt/%[1]v\"\n", mlow)
+					fmt.Fprintf(bb, "std_%[1]v \"github.com/dev-drprasad/qt/%[1]v\"\n", mlow)
 				} else {
-					fmt.Fprintf(bb, "\"github.com/therecipe/qt/%v\"\n", mlow)
+					fmt.Fprintf(bb, "\"github.com/dev-drprasad/qt/%v\"\n", mlow)
 				}
 
 				if utils.QT_GEN_TSD() {
@@ -1589,9 +1589,9 @@ import "C"
 
 		if module == "gui" && utils.QT_API_NUM(utils.QT_VERSION()) >= 5050 && !utils.QT_GEN_GO_WRAPPER() {
 			if mode == NONE {
-				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
+				fmt.Fprintln(bb, "_ \"github.com/dev-drprasad/qt/internal/binding/runtime\"")
 			} else if mode == MINIMAL && (cmd.ImportsQmlOrQuick() || cmd.ImportsInterop()) {
-				fmt.Fprintln(bb, "_ \"github.com/therecipe/qt/internal/binding/runtime\"")
+				fmt.Fprintln(bb, "_ \"github.com/dev-drprasad/qt/internal/binding/runtime\"")
 			}
 		}
 	}

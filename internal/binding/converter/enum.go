@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/dev-drprasad/qt/internal/binding/parser"
 )
 
 func EnumNeedsCppGlue(value string) bool {

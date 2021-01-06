@@ -3,10 +3,10 @@
 package scripttools
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/script"
-	"github.com/therecipe/qt/widgets"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/internal"
+	"github.com/dev-drprasad/qt/script"
+	"github.com/dev-drprasad/qt/widgets"
 	"unsafe"
 )
 

@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/quick"
+	"github.com/dev-drprasad/qt/gui"
+	"github.com/dev-drprasad/qt/quick"
 )
 
 func main() {

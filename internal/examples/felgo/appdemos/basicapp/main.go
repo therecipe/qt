@@ -4,10 +4,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/felgo"
-	"github.com/therecipe/qt/qml"
-	"github.com/therecipe/qt/widgets"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/felgo"
+	"github.com/dev-drprasad/qt/qml"
+	"github.com/dev-drprasad/qt/widgets"
 )
 
 func main() {

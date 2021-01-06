@@ -9,8 +9,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/dev-drprasad/qt/internal/binding/parser"
+	"github.com/dev-drprasad/qt/internal/utils"
 )
 
 func module(input interface{}) string {

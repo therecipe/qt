@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/therecipe/qt/charts"
-	"github.com/therecipe/qt/core"
+	"github.com/dev-drprasad/qt/charts"
+	"github.com/dev-drprasad/qt/core"
 )
 
 type XYSeriesIODevice struct {

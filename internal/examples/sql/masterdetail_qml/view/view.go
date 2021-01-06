@@ -3,14 +3,14 @@
 package view
 
 import (
-	"github.com/therecipe/qt/widgets"
+	"github.com/dev-drprasad/qt/widgets"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/controller"
+	"github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/controller"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view/album"
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view/artist"
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view/detail"
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view/dialog"
+	"github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/view/album"
+	"github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/view/artist"
+	"github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/view/detail"
+	"github.com/dev-drprasad/qt/internal/examples/sql/masterdetail_qml/view/dialog"
 )
 
 var ViewControllerInstance *viewController

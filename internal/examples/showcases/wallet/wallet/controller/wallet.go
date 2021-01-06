@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
+	"github.com/dev-drprasad/qt/core"
+	"github.com/dev-drprasad/qt/gui"
 
-	"github.com/therecipe/qt/internal/examples/showcases/wallet/wallet/model"
+	"github.com/dev-drprasad/qt/internal/examples/showcases/wallet/wallet/model"
 )
 
 var Controller *WalletController

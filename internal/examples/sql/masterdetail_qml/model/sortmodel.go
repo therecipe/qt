@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/therecipe/qt/core"
+	"github.com/dev-drprasad/qt/core"
 )
 
 var SortFilterModel *sortFilterModel

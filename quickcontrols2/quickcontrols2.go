@@ -3,7 +3,7 @@
 package quickcontrols2
 
 import (
-	"github.com/therecipe/qt/internal"
+	"github.com/dev-drprasad/qt/internal"
 	"unsafe"
 )
 
