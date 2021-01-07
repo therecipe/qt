@@ -3,11 +3,12 @@
 package widgets
 
 import (
+	"unsafe"
+
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/internal"
 	"github.com/therecipe/qt/interop/gow"
-	"unsafe"
 )
 
 type QAbstractButton struct {
@@ -17,6 +18,23 @@ type QAbstractButton struct {
 type QAbstractButton_ITF interface {
 	QWidget_ITF
 	QAbstractButton_PTR() *QAbstractButton
+}
+
+func interfaceToStringArray(i interface{}) []string {
+	switch i.(type) {
+	case interface{}:
+		return i.([]string)
+
+	case []interface{}:
+		ifs := i.([]interface{})
+		o := []string{}
+		for _, fn := range ifs {
+			o = append(o, fn.(string))
+		}
+		return o
+	default:
+		panic("expected interface or []interface, but got something else")
+	}
 }
 
 func (ptr *QAbstractButton) QAbstractButton_PTR() *QAbstractButton {
@@ -13049,12 +13067,12 @@ func (ptr *QFileDialog) GetOpenFileName(parent QWidget_ITF, caption string, dir 
 
 func QFileDialog_GetOpenFileNames(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) []string {
 
-	return internal.CallLocalFunction([]interface{}{"", "", "widgets.QFileDialog_GetOpenFileNames", "", parent, caption, dir, filter, selectedFilter, options}).([]string)
+	return interfaceToStringArray(internal.CallLocalFunction([]interface{}{"", "", "widgets.QFileDialog_GetOpenFileNames", "", parent, caption, dir, filter, selectedFilter, options}))
 }
 
 func (ptr *QFileDialog) GetOpenFileNames(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) []string {
 
-	return internal.CallLocalFunction([]interface{}{"", "", "widgets.QFileDialog_GetOpenFileNames", "", parent, caption, dir, filter, selectedFilter, options}).([]string)
+	return interfaceToStringArray(internal.CallLocalFunction([]interface{}{"", "", "widgets.QFileDialog_GetOpenFileNames", "", parent, caption, dir, filter, selectedFilter, options}))
 }
 
 func QFileDialog_GetOpenFileUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
@@ -13189,7 +13207,7 @@ func (ptr *QFileDialog) SelectUrl(url core.QUrl_ITF) {
 
 func (ptr *QFileDialog) SelectedFiles() []string {
 
-	return internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SelectedFiles"}).([]string)
+	return interfaceToStringArray(internal.CallLocalFunction([]interface{}{"", uintptr(ptr.Pointer()), ptr.ClassNameInternalF(), "SelectedFiles"}))
 }
 
 func (ptr *QFileDialog) SelectedMimeTypeFilter() string {
