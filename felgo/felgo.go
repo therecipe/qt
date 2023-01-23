@@ -8,9 +8,9 @@ package felgo
 //#include "felgo.h"
 import "C"
 import (
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/qml"
+	"github.com/bluszcz/cutego"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/qml"
 	"runtime"
 	"strings"
 	"unsafe"

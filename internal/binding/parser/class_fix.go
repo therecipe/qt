@@ -10,7 +10,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/bluszcz/cutego/internal/utils"
 )
 
 func (c *Class) fix() {

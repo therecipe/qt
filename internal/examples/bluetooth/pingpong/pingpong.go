@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/therecipe/qt/bluetooth"
-	"github.com/therecipe/qt/core"
+	"github.com/bluszcz/cutego/bluetooth"
+	"github.com/bluszcz/cutego/core"
 )
 
 const (

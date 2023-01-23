@@ -3,11 +3,12 @@
 package quick
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/qml"
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cutego"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/gui"
+	"github.com/bluszcz/cutego/qml"
+	"github.com/bluszcz/cutego/widgets"
+	"strings"
 	"unsafe"
 )
 

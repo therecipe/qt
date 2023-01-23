@@ -11,7 +11,7 @@ ENV QT_QMAKE_DIR /usr/local/Qt-5.13.0/bin
 
 COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
 COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
-COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
+COPY --from=therecipe/qt:linux $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
 COPY --from=therecipe/qt:js_base_thread $HOME/emsdk $HOME/emsdk
 COPY --from=therecipe/qt:js_base_thread $HOME/.emscripten $HOME/.emscripten
 COPY --from=therecipe/qt:js_base_thread /usr/local/Qt-5.13.0 /usr/local/Qt-5.13.0
@@ -24,6 +24,6 @@ RUN $GOPATH/bin/qtsetup check wasm
 RUN QT_STUB=true $GOPATH/bin/qtsetup generate
 RUN $GOPATH/bin/qtsetup generate wasm
 RUN $GOPATH/bin/qtsetup install wasm
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build wasm && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/StarAurryon/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build wasm && rm -rf ./deploy
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config

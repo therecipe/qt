@@ -5,7 +5,7 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cutego/widgets"
 )
 
 func main() {

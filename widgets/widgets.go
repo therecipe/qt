@@ -3,10 +3,10 @@
 package widgets
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/interop/gow"
+	"github.com/bluszcz/cutego"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/gui"
+	"strings"
 	"unsafe"
 )
 

@@ -3,9 +3,10 @@
 package uitools
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cutego"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/widgets"
+	"strings"
 	"unsafe"
 )
 

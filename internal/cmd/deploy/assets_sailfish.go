@@ -10,7 +10,7 @@ import (
 
 	"golang.org/x/crypto/ssh"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/bluszcz/cutego/internal/utils"
 )
 
 func sailfish_ssh(port, login string, cmd ...string) error {

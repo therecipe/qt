@@ -5,10 +5,10 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/qml"
-	"github.com/therecipe/qt/quickcontrols2"
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/qml"
+	"github.com/bluszcz/cutego/quickcontrols2"
+	"github.com/bluszcz/cutego/widgets"
 )
 
 func main() {

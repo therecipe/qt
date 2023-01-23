@@ -6,13 +6,13 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/qml"
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/qml"
+	"github.com/bluszcz/cutego/widgets"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/controller"
+	"github.com/bluszcz/cutego/internal/examples/sql/masterdetail_qml/controller"
 
-	_ "github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view"
+	_ "github.com/bluszcz/cutego/internal/examples/sql/masterdetail_qml/view"
 )
 
 const PRODUCTION = true

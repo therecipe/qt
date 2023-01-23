@@ -14,7 +14,7 @@ ENV QT_UBPORTS_VERSION vivid
 RUN rm -rf /usr/local/go || true
 COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
 COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
-COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
+COPY --from=therecipe/qt:linux $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install qt*5-doc-html && apt-get -qq clean
 
@@ -22,6 +22,6 @@ RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check ubports
 RUN $GOPATH/bin/qtsetup generate ubports
 RUN $GOPATH/bin/qtsetup install ubports
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/ubports/view && $GOPATH/bin/qtdeploy build ubports && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/StarAurryon/qt/internal/examples/ubports/view && $GOPATH/bin/qtdeploy build ubports && rm -rf ./deploy
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config

@@ -1,7 +1,7 @@
 package dialog
 
 import (
-	"github.com/therecipe/qt/internal/examples/showcases/wallet/wallet/dialog/controller"
+	"github.com/bluszcz/cutego/internal/examples/showcases/wallet/wallet/dialog/controller"
 )
 
 func init() { receiveTemplate_QmlRegisterType2("DialogTemplate", 1, 0, "ReceiveTemplate") }

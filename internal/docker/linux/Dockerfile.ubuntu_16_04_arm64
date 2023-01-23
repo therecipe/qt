@@ -5,7 +5,7 @@ ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 RUN [ "cross-build-start" ]
 
-RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
+RUN /usr/local/go/bin/go get -tags=no_env github.com/StarAurryon/qt/cmd/...
 
 FROM balenalib/generic-aarch64-ubuntu:xenial
 LABEL maintainer therecipe
@@ -20,7 +20,7 @@ RUN [ "cross-build-start" ]
 
 COPY --from=base /usr/local/go /usr/local/go
 COPY --from=base $GOPATH/bin $GOPATH/bin
-COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
+COPY --from=base $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install build-essential libglib2.0-dev libglu1-mesa-dev libpulse-dev && apt-get -qq clean
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libqt*5-dev qt*5-dev qt*5-doc-html && apt-get -qq clean
@@ -28,7 +28,7 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libqt*5
 RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check
 RUN $GOPATH/bin/qtsetup generate
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/bridge2 && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/StarAurryon/qt/internal/examples/widgets/bridge2 && $GOPATH/bin/qtdeploy build linux && rm -rf ./deploy
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config
 

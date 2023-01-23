@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/therecipe/qt/core"
+	"github.com/bluszcz/cutego/core"
 )
 
 var ListModel *listModel

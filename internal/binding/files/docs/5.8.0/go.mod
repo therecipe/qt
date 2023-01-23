@@ -1,1 +1,1 @@
-module github.com/therecipe/qt/internal/binding/files/docs/5.8.0
+module github.com/StarAurryon/qt/internal/binding/files/docs/5.8.0

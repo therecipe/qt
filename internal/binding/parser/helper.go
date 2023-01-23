@@ -9,8 +9,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/therecipe/qt/internal/cmd"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/bluszcz/cutego/internal/cmd"
+	"github.com/bluszcz/cutego/internal/utils"
 )
 
 const (

@@ -3,7 +3,9 @@
 package webview
 
 import (
-	"github.com/therecipe/qt/internal"
+	"github.com/bluszcz/cutego"
+	"github.com/bluszcz/cutego/core"
+	"strings"
 	"unsafe"
 )
 

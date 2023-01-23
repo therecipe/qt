@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/bluszcz/cutego/internal/utils"
 )
 
 type Module struct {

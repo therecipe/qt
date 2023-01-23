@@ -8,10 +8,10 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/therecipe/qt/internal/cmd"
-	"github.com/therecipe/qt/internal/cmd/moc"
+	"github.com/bluszcz/cutego/internal/cmd"
+	"github.com/bluszcz/cutego/internal/cmd/moc"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/bluszcz/cutego/internal/utils"
 )
 
 func main() {

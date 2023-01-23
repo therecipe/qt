@@ -3,9 +3,9 @@ package main
 import (
 	"runtime"
 
-	"github.com/therecipe/qt/androidextras"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/quick"
+	"github.com/bluszcz/cutego/androidextras"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/quick"
 )
 
 type ShareUtils struct {

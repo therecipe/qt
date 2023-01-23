@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/uitools"
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/uitools"
+	"github.com/bluszcz/cutego/widgets"
 )
 
 func main() {
