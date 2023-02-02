@@ -7,6 +7,8 @@ import (
 
 	"github.com/bluszcz/cutego/internal/binding/converter"
 	"github.com/bluszcz/cutego/internal/binding/parser"
+	"github.com/bluszcz/cutego/internal/utils"
+
 )
 
 func goEnum(e *parser.Enum, _ *parser.Value) string {
