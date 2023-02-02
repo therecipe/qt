@@ -9,7 +9,7 @@ RUN GO=go1.13.4.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O ht
 RUN /usr/local/go/bin/go get -tags=no_env github.com/StarAurryon/qt/cmd/...
 
 
-FROM therecipe/qt:linux_static_base as fcitx
+FROM bluszcz/cutego:linux_static_base as fcitx
 
 ENV CMAKE_PREFIX_PATH /opt/Qt/5.13.0/gcc_64/lib/cmake/Qt5/
 
@@ -41,7 +41,7 @@ ENV QT_STATIC true
 COPY --from=base /usr/local/go /usr/local/go
 COPY --from=base $GOPATH/bin $GOPATH/bin
 COPY --from=base $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
-COPY --from=therecipe/qt:linux_static_base /opt/Qt/5.13.0 /opt/Qt/5.13.0
+COPY --from=bluszcz/cutego:linux_static_base /opt/Qt/5.13.0 /opt/Qt/5.13.0
 COPY --from=fcitx /fcitx-qt5/platforminputcontext/libfcitxplatforminputcontextplugin.a /opt/Qt/5.13.0/gcc_64/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.a
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install build-essential libglib2.0-dev libglu1-mesa-dev libpulse-dev \

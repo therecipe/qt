@@ -271,7 +271,7 @@ func Vagrant(arg []string, target, path string, writeCacheToHost bool, system st
 }
 
 func virtual(arg []string, target, path string, writeCacheToHost bool, docker bool, system string) {
-	dUser := "therecipe/qt"
+	dUser := "bluszcz/cutego"
 	if strings.Contains(target, ":") {
 		dUser = strings.Split(target, ":")[0]
 		target = strings.Split(target, ":")[1]

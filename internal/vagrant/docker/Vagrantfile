@@ -13,85 +13,85 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "linux" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:linux"
+      d.pull_images "bluszcz/cutego:linux"
     end
   end
 
   config.vm.define "android" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:android"
+      d.pull_images "bluszcz/cutego:android"
     end
   end
 
   config.vm.define "windows_32_shared" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:windows_32_shared"
+      d.pull_images "bluszcz/cutego:windows_32_shared"
     end
   end
 
   config.vm.define "windows_32_static" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:windows_32_static"
+      d.pull_images "bluszcz/cutego:windows_32_static"
     end
   end
 
   config.vm.define "windows_64_shared" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:windows_64_shared"
+      d.pull_images "bluszcz/cutego:windows_64_shared"
     end
   end
 
   config.vm.define "windows_64_static" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:windows_64_static"
+      d.pull_images "bluszcz/cutego:windows_64_static"
     end
   end
 
   config.vm.define "rpi1" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:rpi1"
+      d.pull_images "bluszcz/cutego:rpi1"
     end
   end
 
   config.vm.define "rpi2" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:rpi2"
+      d.pull_images "bluszcz/cutego:rpi2"
     end
   end
 
   config.vm.define "rpi3" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:rpi3"
+      d.pull_images "bluszcz/cutego:rpi3"
     end
   end
 
   config.vm.define "sailfish" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:sailfish"
+      d.pull_images "bluszcz/cutego:sailfish"
     end
   end
 
   config.vm.define "ubports_arm_vivid" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:ubports_arm_vivid"
+      d.pull_images "bluszcz/cutego:ubports_arm_vivid"
     end
   end
 
   config.vm.define "ubports_64_vivid" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:ubports_64_vivid"
+      d.pull_images "bluszcz/cutego:ubports_64_vivid"
     end
   end
 
   config.vm.define "ubports_arm_xenial" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:ubports_arm_xenial"
+      d.pull_images "bluszcz/cutego:ubports_arm_xenial"
     end
   end
 
   config.vm.define "ubports_64_xenial" do |m|
     config.vm.provision "docker" do |d|
-      d.pull_images "therecipe/qt:ubports_64_xenial"
+      d.pull_images "bluszcz/cutego:ubports_64_xenial"
     end
   end
 

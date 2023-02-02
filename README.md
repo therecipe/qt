@@ -5,9 +5,9 @@ Introduction
 
 [Go](https://en.wikipedia.org/wiki/Go_(programming_language)), also known as Golang, is a programming language designed at Google.
 
-[therecipe/qt](https://github.com/bluszcz/cutego) allows you to write Qt applications entirely in Go or JavaScript.
+[bluszcz/cutego](https://github.com/bluszcz/cutego) allows you to write Qt applications entirely in Go or JavaScript.
 
-Beside the language bindings provided, `therecipe/qt` also greatly simplifies the deployment of Qt applications to various software and hardware platforms.
+Beside the language bindings provided, `bluszcz/cutego` also greatly simplifies the deployment of Qt applications to various software and hardware platforms.
 
 At the time of writing, almost all Qt functions and classes are accessible, and you should be able to find everything you need to build fully featured Qt applications.
 

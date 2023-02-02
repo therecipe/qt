@@ -1,4 +1,4 @@
-FROM therecipe/qt:wine_base as base
+FROM bluszcz/cutego:wine_base as base
 
 #TODO: use pacman instead
 
@@ -110,7 +110,7 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install winehq-
 RUN WINEDLLOVERRIDES="mscoree,mshtml=" wineboot && wineserver -w
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install patch && apt-get -qq clean
-ADD https://raw.githubusercontent.com/therecipe/qt/master/internal/docker/wine/rspfile.patch $HOME/.wine/drive_c/go/rspfile.patch
+ADD https://raw.githubusercontent.com/bluszcz/cutego/master/internal/docker/wine/rspfile.patch $HOME/.wine/drive_c/go/rspfile.patch
 RUN cd $HOME/.wine/drive_c/go && patch -p 1 < rspfile.patch
 RUN wine go install cmd/go cmd/link
 

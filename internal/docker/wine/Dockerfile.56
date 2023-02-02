@@ -1,4 +1,4 @@
-FROM therecipe/qt:wine_base as base
+FROM bluszcz/cutego:wine_base as base
 
 ENV QT qt-opensource-windows-x86-mingw492-5.6.3.exe
 RUN curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/new_archive/qt/5.6/5.6.3/$QT

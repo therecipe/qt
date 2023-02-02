@@ -53,4 +53,4 @@ zip -r ${PREF}.zip $PREF && rm -rf $PREF
 
 du -sh ${PREF}.zip
 
-docker build -f Dockerfile.static_base -t therecipe/qt:darwin_static_base .
+docker build -f Dockerfile.static_base -t bluszcz/cutego:darwin_static_base .

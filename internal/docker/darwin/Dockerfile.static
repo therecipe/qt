@@ -14,7 +14,7 @@ RUN cd /osxcross && OSX_VERSION_MIN=10.12 UNATTENDED=1 ./build.sh
 RUN cd /osxcross && ./target/bin/o64-clang++-libc++ -o osxcross ./oclang/test_libcxx.cpp
 
 
-FROM therecipe/qt:darwin_static_base
+FROM bluszcz/cutego:darwin_static_base
 LABEL maintainer therecipe
 
 ENV USER user

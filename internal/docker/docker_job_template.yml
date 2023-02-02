@@ -9,6 +9,6 @@ jobs:
       -
         script: 'sudo df -h; sudo rm -rf /usr/share/dotnet; sudo df -h;'
       -
-        script: 'docker build --force-rm -f internal/docker/${{ parameters.file }} -t therecipe/qt:${{ parameters.tag }} .'
+        script: 'docker build --force-rm -f internal/docker/${{ parameters.file }} -t bluszcz/cutego:${{ parameters.tag }} .'
       -
-        script: 'docker login -u therecipe -p $(DOCKER_PASSWORD) && docker push therecipe/qt:${{ parameters.tag }} && docker logout'
+        script: 'docker login -u therecipe -p $(DOCKER_PASSWORD) && docker push bluszcz/cutego:${{ parameters.tag }} && docker logout'

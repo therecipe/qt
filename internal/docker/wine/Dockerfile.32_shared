@@ -1,4 +1,4 @@
-FROM therecipe/qt:wine_base as base
+FROM bluszcz/cutego:wine_base as base
 
 #TODO: use pacman instead
 

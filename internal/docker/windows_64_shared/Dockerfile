@@ -10,10 +10,10 @@ ENV QT_MXE true
 ENV QT_MXE_ARCH amd64
 ENV QT_MXE_STATIC false
 
-COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
-COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
-COPY --from=therecipe/qt:linux $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
-COPY --from=therecipe/qt:windows_64_shared_base /usr/lib/mxe /usr/lib/mxe
+COPY --from=bluszcz/cutego:linux /usr/local/go /usr/local/go
+COPY --from=bluszcz/cutego:linux $GOPATH/bin $GOPATH/bin
+COPY --from=bluszcz/cutego:linux $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
+COPY --from=bluszcz/cutego:windows_64_shared_base /usr/lib/mxe /usr/lib/mxe
 
 RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check windows

@@ -1502,10 +1502,10 @@ import "C"
 				fmt.Fprintln(bb, "\"github.com/bluszcz/cutego\"")
 
 			case "internal":
-				fmt.Fprintln(bb, "\"github.com/therecipe/qt/internal\"")
+				fmt.Fprintln(bb, "\"github.com/bluszcz/cutego/internal\"")
 
 			case "gow":
-				fmt.Fprintln(bb, "\"github.com/therecipe/qt/interop/gow\"")
+				fmt.Fprintln(bb, "\"github.com/bluszcz/cutego/interop/gow\"")
 
 			case "js":
 				if parser.UseWasm() {

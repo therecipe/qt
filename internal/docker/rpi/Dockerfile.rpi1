@@ -1,4 +1,4 @@
-FROM therecipe/qt:rpi_base
+FROM bluszcz/cutego:rpi_base
 LABEL maintainer therecipe
 
 

@@ -23,9 +23,9 @@ ENV QT_QMAKE_DIR /usr/local/Qt-5.13.0/bin
 COPY --from=base /usr/local/go /usr/local/go
 COPY --from=base $GOPATH/bin $GOPATH/bin
 COPY --from=base $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
-COPY --from=therecipe/qt:js_base $HOME/emsdk $HOME/emsdk
-COPY --from=therecipe/qt:js_base $HOME/.emscripten $HOME/.emscripten
-COPY --from=therecipe/qt:js_base /usr/local/Qt-5.13.0 /usr/local/Qt-5.13.0
+COPY --from=bluszcz/cutego:js_base $HOME/emsdk $HOME/emsdk
+COPY --from=bluszcz/cutego:js_base $HOME/.emscripten $HOME/.emscripten
+COPY --from=bluszcz/cutego:js_base /usr/local/Qt-5.13.0 /usr/local/Qt-5.13.0
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install python2.7 nodejs cmake default-jre && apt-get -qq clean
 RUN ln -s /usr/bin/python2.7 /usr/bin/python

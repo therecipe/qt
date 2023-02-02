@@ -39,13 +39,13 @@ ENV QT_VERSION 5.13.0
 ENV QT_DIR /opt/Qt5.13.0
 ENV QT_DOCKER true
 
-COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
-COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
-COPY --from=therecipe/qt:linux $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
-COPY --from=therecipe/qt:linux /opt/Qt5.13.0/5.13.0/android_armv7 /opt/Qt5.13.0/5.13.0/android_armv7
-COPY --from=therecipe/qt:linux /opt/Qt5.13.0/5.13.0/android_x86 /opt/Qt5.13.0/5.13.0/android_x86
-COPY --from=therecipe/qt:linux /opt/Qt5.13.0/5.13.0/android_arm64_v8a /opt/Qt5.13.0/5.13.0/android_arm64_v8a
-COPY --from=therecipe/qt:linux /opt/Qt5.13.0/Docs /opt/Qt5.13.0/Docs
+COPY --from=bluszcz/cutego:linux /usr/local/go /usr/local/go
+COPY --from=bluszcz/cutego:linux $GOPATH/bin $GOPATH/bin
+COPY --from=bluszcz/cutego:linux $GOPATH/src/github.com/StarAurryon/qt $GOPATH/src/github.com/StarAurryon/qt
+COPY --from=bluszcz/cutego:linux /opt/Qt5.13.0/5.13.0/android_armv7 /opt/Qt5.13.0/5.13.0/android_armv7
+COPY --from=bluszcz/cutego:linux /opt/Qt5.13.0/5.13.0/android_x86 /opt/Qt5.13.0/5.13.0/android_x86
+COPY --from=bluszcz/cutego:linux /opt/Qt5.13.0/5.13.0/android_arm64_v8a /opt/Qt5.13.0/5.13.0/android_arm64_v8a
+COPY --from=bluszcz/cutego:linux /opt/Qt5.13.0/Docs /opt/Qt5.13.0/Docs
 COPY --from=base $HOME/android-sdk-linux $HOME/android-sdk-linux
 COPY --from=base $HOME/android-ndk-r18b $HOME/android-ndk-r18b
 COPY --from=base $HOME/openssl-1.1.1a-arm $HOME/openssl-1.1.1a-arm
