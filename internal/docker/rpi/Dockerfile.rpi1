@@ -1,4 +1,4 @@
-FROM therecipe/qt:rpi_base
+FROM bluszcz/cutego:rpi_base
 LABEL maintainer therecipe
 
 
@@ -13,6 +13,6 @@ RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check rpi1
 RUN $GOPATH/bin/qtsetup generate rpi1
 RUN $GOPATH/bin/qtsetup install rpi1
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && sed -i -e 's/AddWidget2/AddWidget/g' line_edits.go && $GOPATH/bin/qtdeploy build rpi1 && rm -rf ./deploy
+RUN cd $GOPATH/src/github.com/StarAurryon/qt/internal/examples/widgets/line_edits && sed -i -e 's/AddWidget2/AddWidget/g' line_edits.go && $GOPATH/bin/qtdeploy build rpi1 && rm -rf ./deploy
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git pkg-config

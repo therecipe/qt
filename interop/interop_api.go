@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"sync"
 
-	"github.com/therecipe/qt/core"
+	"github.com/bluszcz/cutego/core"
 )
 
 var (

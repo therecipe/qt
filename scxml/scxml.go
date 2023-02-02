@@ -3,8 +3,9 @@
 package scxml
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/internal"
+	"github.com/bluszcz/cutego"
+	"github.com/bluszcz/cutego/core"
+	"strings"
 	"unsafe"
 )
 

@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/bluszcz/cutego/internal/binding/parser"
+	"github.com/bluszcz/cutego/internal/utils"
 )
 
 func cleanLibs(module string, mode int) []string {

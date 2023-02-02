@@ -14,7 +14,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/bluszcz/cutego/internal/utils"
 )
 
 var buildVersion = "no build version"
@@ -51,13 +51,13 @@ func ParseFlags() bool {
 
 	_, err := exec.LookPath("go")
 	if api := utils.QT_API(""); api != "" && err == nil && !utils.QT_DOCKER() && !forDocker {
-		if utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+api, "-find", "get doc dir") == "" {
+		if utils.GoListOptional("{{.Dir}}", "github.com/bluszcz/cutego/internal/binding/files/docs/"+api, "-find", "get doc dir") == "" {
 			utils.Log.Errorf("invalid api version provided: '%v'", api)
 			fmt.Println("valid api versions are:") //TODO: if only one api version is available, use it
 			if !utils.UseGOMOD("") {
-				if o := utils.GoListOptional("{{join .Imports \"|\"}}", "github.com/therecipe/qt/internal/binding/files/docs", "get doc dir"); o != "" {
+				if o := utils.GoListOptional("{{join .Imports \"|\"}}", "github.com/bluszcz/cutego/internal/binding/files/docs", "get doc dir"); o != "" {
 					for _, v := range strings.Split(o, "|") {
-						fmt.Println(strings.TrimPrefix(strings.TrimSpace(strings.Replace(v, "'", "", -1)), "github.com/therecipe/qt/internal/binding/files/docs/"))
+						fmt.Println(strings.TrimPrefix(strings.TrimSpace(strings.Replace(v, "'", "", -1)), "github.com/bluszcz/cutego/internal/binding/files/docs/"))
 					}
 				}
 			} else {
@@ -67,7 +67,7 @@ func ParseFlags() bool {
 						wg.Add(1)
 						go func(mid, min int) {
 							v := fmt.Sprintf("5.%v.%v", mid, min)
-							if utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+v, "-find", "get doc dir") != "" {
+							if utils.GoListOptional("{{.Dir}}", "github.com/bluszcz/cutego/internal/binding/files/docs/"+v, "-find", "get doc dir") != "" {
 								fmt.Println(v)
 							}
 							wg.Done()
@@ -271,7 +271,7 @@ func Vagrant(arg []string, target, path string, writeCacheToHost bool, system st
 }
 
 func virtual(arg []string, target, path string, writeCacheToHost bool, docker bool, system string) {
-	dUser := "therecipe/qt"
+	dUser := "bluszcz/cutego"
 	if strings.Contains(target, ":") {
 		dUser = strings.Split(target, ":")[0]
 		target = strings.Split(target, ":")[1]
@@ -390,7 +390,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			gpath += pathseperator + gpfs
 			args = append(args, []string{"-e", "QT_STUB=true"}...) //TODO: won't work with wine images atm
 		} else {
-			if strings.Contains(path, "github.com/therecipe/qt/internal/examples") && !strings.Contains(path, "github.com/therecipe/qt/internal/examples/androidextras") {
+			if strings.Contains(path, "github.com/bluszcz/cutego/internal/examples") && !strings.Contains(path, "github.com/bluszcz/cutego/internal/examples/androidextras") {
 				gpath += pathseperator + gpfs
 			} else {
 				gpath = gpfs + pathseperator + gpath

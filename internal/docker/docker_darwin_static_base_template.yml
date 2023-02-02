@@ -17,4 +17,4 @@ jobs:
       -
         script: 'cd internal/docker/darwin && ./build_static_base.sh'
       -
-        script: 'docker login -u therecipe -p $(DOCKER_PASSWORD) && docker push therecipe/qt:${{ parameters.tag }} && docker logout'
+        script: 'docker login -u therecipe -p $(DOCKER_PASSWORD) && docker push bluszcz/cutego:${{ parameters.tag }} && docker logout'

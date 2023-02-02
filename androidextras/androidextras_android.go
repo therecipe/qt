@@ -9,8 +9,8 @@ package androidextras
 import "C"
 import (
 	"errors"
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
+	"github.com/bluszcz/cutego"
+	"github.com/bluszcz/cutego/core"
 	"strings"
 	"unsafe"
 )

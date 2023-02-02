@@ -24,7 +24,7 @@ else
   QT=qt-unified-linux-x64-online.run
   curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT https://download.qt.io/official_releases/online_installers/$QT
   chmod +x /tmp/$QT
-  /tmp/$QT -v --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs LINUX=true
+  /tmp/$QT -v --script $GOPATH/src/github.com/StarAurryon/qt/internal/ci/iscript.qs LINUX=true
   rm -f /tmp/$QT
 fi
 

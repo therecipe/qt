@@ -3,9 +3,10 @@
 package location
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/positioning"
+	"github.com/bluszcz/cutego"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/positioning"
+	"strings"
 	"unsafe"
 )
 

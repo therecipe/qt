@@ -11,13 +11,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/binding/templater"
+	"github.com/bluszcz/cutego/internal/binding/parser"
+	"github.com/bluszcz/cutego/internal/binding/templater"
 
-	"github.com/therecipe/qt/internal/cmd"
-	"github.com/therecipe/qt/internal/cmd/moc"
-	"github.com/therecipe/qt/internal/cmd/rcc"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/bluszcz/cutego/internal/cmd"
+	"github.com/bluszcz/cutego/internal/cmd/moc"
+	"github.com/bluszcz/cutego/internal/cmd/rcc"
+	"github.com/bluszcz/cutego/internal/utils"
 )
 
 func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bool) {
@@ -943,7 +943,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			}
 			for _, l := range strings.Split(strings.TrimSpace(utils.RunCmd(lcmd, "go list deps")), "|") {
 				for _, ml := range parser.GetLibs() {
-					if strings.HasSuffix(strings.ToLower(l), "github.com/therecipe/qt/"+strings.ToLower(ml)) {
+					if strings.HasSuffix(strings.ToLower(l), "github.com/bluszcz/cutego/"+strings.ToLower(ml)) {
 						cmd.Args = append(cmd.Args, utils.GoQtPkgPath(strings.ToLower(ml), strings.ToLower(ml)+"-minimal.cpp"))
 						break
 					}

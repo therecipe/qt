@@ -3,10 +3,10 @@
 package dialog
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/widgets"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/controller"
+	"github.com/bluszcz/cutego/internal/examples/sql/masterdetail_qml/controller"
 )
 
 type addDialogController struct {

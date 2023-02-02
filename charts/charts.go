@@ -3,10 +3,11 @@
 package charts
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cute"
+	"github.com/bluszcz/cute/core"
+	"github.com/bluszcz/cute/gui"
+	"github.com/bluszcz/cute/widgets"
+	"strings"
 	"unsafe"
 )
 

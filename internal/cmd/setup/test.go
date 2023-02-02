@@ -8,16 +8,16 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/binding/templater"
+	"github.com/bluszcz/cutego/internal/binding/parser"
+	"github.com/bluszcz/cutego/internal/binding/templater"
 
-	"github.com/therecipe/qt/internal/cmd"
-	"github.com/therecipe/qt/internal/cmd/deploy"
-	"github.com/therecipe/qt/internal/cmd/minimal"
-	"github.com/therecipe/qt/internal/cmd/moc"
-	"github.com/therecipe/qt/internal/cmd/rcc"
+	"github.com/bluszcz/cutego/internal/cmd"
+	"github.com/bluszcz/cutego/internal/cmd/deploy"
+	"github.com/bluszcz/cutego/internal/cmd/minimal"
+	"github.com/bluszcz/cutego/internal/cmd/moc"
+	"github.com/bluszcz/cutego/internal/cmd/rcc"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/bluszcz/cutego/internal/utils"
 )
 
 func Test(target string, docker, vagrant bool, vagrantsystem string) {
@@ -161,7 +161,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 			example := filepath.Join(cat, example)
 
-			path := filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/examples", "-find", "get doc dir")), example)
+			path := filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/bluszcz/cutego/internal/examples", "-find", "get doc dir")), example)
 			utils.Log.Infof("testing %v", example)
 			deploy.Deploy(
 				mode,

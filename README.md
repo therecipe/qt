@@ -5,16 +5,16 @@ Introduction
 
 [Go](https://en.wikipedia.org/wiki/Go_(programming_language)), also known as Golang, is a programming language designed at Google.
 
-[therecipe/qt](https://github.com/therecipe/qt) allows you to write Qt applications entirely in Go, [JavaScript/TypeScript](https://github.com/therecipe/entry), [Dart/Flutter](https://github.com/therecipe/flutter), [Haxe](https://github.com/therecipe/haxe) and [Swift](https://github.com/therecipe/swift)
+[bluszcz/cutego](https://github.com/bluszcz/cutego) allows you to write Qt applications entirely in Go or JavaScript.
 
-Beside the language bindings provided, `therecipe/qt` also greatly simplifies the deployment of Qt applications to various software and hardware platforms.
+Beside the language bindings provided, `bluszcz/cutego` also greatly simplifies the deployment of Qt applications to various software and hardware platforms.
 
 At the time of writing, almost all Qt functions and classes are accessible, and you should be able to find everything you need to build fully featured Qt applications.
 
 Impressions
 -----------
 
-[Gallery](https://github.com/therecipe/qt/wiki/Gallery) of example applications.
+[Gallery](https://github.com/bluszcz/cutego/wiki/Gallery) of example applications.
 
 [JavaScript Demo](https://therecipe.github.io/entry) | *[source](https://github.com/therecipe/entry)*
 
@@ -23,49 +23,33 @@ Installation
 
 The following instructions assume that you already installed [Go](https://golang.org/dl/) and [Git](https://git-scm.com/downloads)
 
-#### (Experimental) cgo-less version (try this first, if you are new and want to test the binding)
-
-##### Windows
-
-```powershell
-go get -ldflags="-w" github.com/therecipe/examples/basic/widgets && for /f %v in ('go env GOPATH') do %v\bin\widgets.exe
-```
-
-##### macOS/Linux
-
-```bash
-go get -ldflags="-w" github.com/therecipe/examples/basic/widgets && $(go env GOPATH)/bin/widgets
-```
-
-#### Default version
-
-##### Windows [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
+##### Windows [(more info)](https://github.com/bluszcz/cutego/wiki/Installation-on-Windows)
 
 ```powershell
 set GO111MODULE=off
-go get -v github.com/therecipe/qt/cmd/... && for /f %v in ('go env GOPATH') do %v\bin\qtsetup test && %v\bin\qtsetup -test=false
+go get -v github.com/bluszcz/cutego/cmd/... && for /f %v in ('go env GOPATH') do %v\bin\qtsetup test && %v\bin\qtsetup -test=false
 ```
 
-##### macOS [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-macOS)
+##### macOS [(more info)](https://github.com/bluszcz/cutego/wiki/Installation-on-macOS)
 
 ```bash
-export GO111MODULE=off; xcode-select --install; go get -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
+export GO111MODULE=off; xcode-select --install; go get -v github.com/bluszcz/cutego/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
 ```
 
-##### Linux [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Linux)
+##### Linux [(more info)](https://github.com/bluszcz/cutego/wiki/Installation-on-Linux)
 
 ```bash
-export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
+export GO111MODULE=off; go get -v github.com/bluszcz/cutego/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup -test=false
 ```
 
 Resources
 ---------
 
--	[Installation](https://github.com/therecipe/qt/wiki/Installation)
--	[Getting Started](https://github.com/therecipe/qt/wiki/Getting-Started)
--	[Wiki](https://github.com/therecipe/qt/wiki)
+-	[Installation](https://github.com/bluszcz/cutego/wiki/Installation)
+-	[Getting Started](https://github.com/bluszcz/cutego/wiki/Getting-Started)
+-	[Wiki](https://github.com/bluszcz/cutego/wiki)
 -	[Qt Documentation](https://doc.qt.io/qt-5/classes.html)
--	[FAQ](https://github.com/therecipe/qt/wiki/FAQ)
+-	[FAQ](https://github.com/bluszcz/cutego/wiki/FAQ)
 -	[#qt-binding](https://gophers.slack.com/messages/qt-binding/details) Slack channel ([invite](https://invite.slack.golangbridge.org)\)
 
 Deployment Targets

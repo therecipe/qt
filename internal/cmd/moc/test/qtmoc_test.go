@@ -9,15 +9,15 @@ import (
 	tps "time"
 	"unsafe"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/sql"
-	"github.com/therecipe/qt/widgets"
-	"github.com/therecipe/qt/xml"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/gui"
+	"github.com/bluszcz/cutego/sql"
+	"github.com/bluszcz/cutego/widgets"
+	"github.com/bluszcz/cutego/xml"
 
-	"github.com/therecipe/qt/internal/cmd/moc/test/sub"
-	_ "github.com/therecipe/qt/internal/cmd/moc/test/sub/conf"
-	"github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub" //subsubcustom
+	"github.com/bluszcz/cutego/internal/cmd/moc/test/sub"
+	_ "github.com/bluszcz/cutego/internal/cmd/moc/test/sub/conf"
+	"github.com/bluszcz/cutego/internal/cmd/moc/test/sub/subsub" //subsubcustom
 )
 
 type Application struct {

@@ -5,7 +5,7 @@ package main
 import (
 	"unsafe"
 
-	"github.com/therecipe/qt"
+	"github.com/bluszcz/cutego"
 )
 
 var (

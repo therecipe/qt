@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/therecipe/qt/charts"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/multimedia"
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cutego/charts"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/multimedia"
+	"github.com/bluszcz/cutego/widgets"
 )
 
 type Widget struct {

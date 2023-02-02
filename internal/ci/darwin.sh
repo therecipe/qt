@@ -23,9 +23,9 @@ else
   QT=qt-unified-mac-x64-3.0.5-online
   if [ "$IOS" == "true" ] || [ "$IOS_SIMULATOR" == "true" ]
   then
-    /Volumes/$QT/$QT.app/Contents/MacOS/$QT -v --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs IOS=true
+    /Volumes/$QT/$QT.app/Contents/MacOS/$QT -v --script $GOPATH/src/github.com/StarAurryon/qt/internal/ci/iscript.qs IOS=true
   else
-    /Volumes/$QT/$QT.app/Contents/MacOS/$QT -v --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs DARWIN=true
+    /Volumes/$QT/$QT.app/Contents/MacOS/$QT -v --script $GOPATH/src/github.com/StarAurryon/qt/internal/ci/iscript.qs DARWIN=true
   fi
   diskutil unmountDisk disk1
   rm -f /tmp/$QT.dmg

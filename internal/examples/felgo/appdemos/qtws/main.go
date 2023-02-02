@@ -4,14 +4,14 @@ import (
 	"os"
 	"strings"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/felgo"
-	"github.com/therecipe/qt/qml"
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/felgo"
+	"github.com/bluszcz/cutego/qml"
+	"github.com/bluszcz/cutego/widgets"
 
-	"github.com/therecipe/qt/internal/examples/3rdparty/qzxing"
+	"github.com/bluszcz/cutego/internal/examples/3rdparty/qzxing"
 
-	"github.com/therecipe/qt/internal/examples/felgo/appdemos/qtws/cpp"
+	"github.com/bluszcz/cutego/internal/examples/felgo/appdemos/qtws/cpp"
 )
 
 func main() {

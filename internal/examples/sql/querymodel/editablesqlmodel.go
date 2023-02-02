@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/sql"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/sql"
 )
 
 type EditableSqlModel struct {

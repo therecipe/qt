@@ -7,8 +7,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/gui"
 )
 
 func main() {

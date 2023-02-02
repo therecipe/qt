@@ -5,11 +5,11 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/qml"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/gui"
+	"github.com/bluszcz/cutego/qml"
 
-	"github.com/therecipe/qt/internal/examples/3rdparty/qzxing"
+	"github.com/bluszcz/cutego/internal/examples/3rdparty/qzxing"
 )
 
 func main() {

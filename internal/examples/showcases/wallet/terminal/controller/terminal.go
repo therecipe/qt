@@ -4,10 +4,10 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/therecipe/qt/core"
+	"github.com/bluszcz/cutego/core"
 
-	"github.com/therecipe/qt/internal/examples/showcases/wallet/controller"
-	wcontroller "github.com/therecipe/qt/internal/examples/showcases/wallet/wallet/dialog/controller"
+	"github.com/bluszcz/cutego/internal/examples/showcases/wallet/controller"
+	wcontroller "github.com/bluszcz/cutego/internal/examples/showcases/wallet/wallet/dialog/controller"
 )
 
 var PathToWalletDaemon string

@@ -3,13 +3,14 @@
 package webengine
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/network"
-	"github.com/therecipe/qt/printsupport"
-	"github.com/therecipe/qt/webchannel"
-	"github.com/therecipe/qt/widgets"
+	"github.com/bluszcz/cutego"
+	"github.com/bluszcz/cutego/core"
+	"github.com/bluszcz/cutego/gui"
+	"github.com/bluszcz/cutego/network"
+	"github.com/bluszcz/cutego/printsupport"
+	"github.com/bluszcz/cutego/webchannel"
+	"github.com/bluszcz/cutego/widgets"
+	"strings"
 	"unsafe"
 )
 
