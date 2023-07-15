@@ -5,7 +5,7 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/gui"
+	"github.com/akiyosi/qt/gui"
 )
 
 const (

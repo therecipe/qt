@@ -1,12 +1,14 @@
+//go:build !minimal
 // +build !minimal
 
 package xmlpatterns
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/network"
 	"unsafe"
+
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/internal"
+	"github.com/akiyosi/qt/network"
 )
 
 type QAbstractMessageHandler struct {

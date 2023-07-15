@@ -1,3 +1,4 @@
+//go:build ignore
 // +build ignore
 
 package main
@@ -110,8 +111,8 @@ func main() {
 const quickflux_stub = `package quickflux
 
 import (
-	"github.com/therecipe/qt/core"
-	_ "github.com/therecipe/qt/quick"
+	"github.com/akiyosi/qt/core"
+	_ "github.com/akiyosi/qt/quick"
 )
 
 type quickflux_stub struct {

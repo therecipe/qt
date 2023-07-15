@@ -1,13 +1,15 @@
+//go:build !minimal
 // +build !minimal
 
 package widgets
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/interop/gow"
 	"unsafe"
+
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/gui"
+	"github.com/akiyosi/qt/internal"
+	"github.com/akiyosi/qt/interop/gow"
 )
 
 type QAbstractButton struct {

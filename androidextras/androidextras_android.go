@@ -1,3 +1,4 @@
+//go:build android || android_emulator
 // +build android android_emulator
 
 package androidextras
@@ -9,10 +10,11 @@ package androidextras
 import "C"
 import (
 	"errors"
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
 	"strings"
 	"unsafe"
+
+	"github.com/akiyosi/qt"
+	"github.com/akiyosi/qt/core"
 )
 
 func cGoFreePacked(ptr unsafe.Pointer) { core.NewQByteArrayFromPointer(ptr).DestroyQByteArray() }

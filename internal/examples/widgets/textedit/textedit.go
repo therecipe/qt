@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/printsupport"
-	"github.com/therecipe/qt/widgets"
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/gui"
+	"github.com/akiyosi/qt/printsupport"
+	"github.com/akiyosi/qt/widgets"
 )
 
 var rsrcPath string

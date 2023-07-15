@@ -10,8 +10,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
+	"github.com/akiyosi/qt"
+	"github.com/akiyosi/qt/core"
 )
 
 var (

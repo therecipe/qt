@@ -1,16 +1,18 @@
+//go:build !minimal
 // +build !minimal
 
 package core
 
 import (
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/interop/gow"
 	"math"
 	"reflect"
 	"runtime"
 	"strings"
 	"unsafe"
+
+	"github.com/akiyosi/qt"
+	"github.com/akiyosi/qt/internal"
+	"github.com/akiyosi/qt/interop/gow"
 )
 
 type QAbstractAnimation struct {

@@ -4,9 +4,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/quick"
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/gui"
+	"github.com/akiyosi/qt/quick"
 )
 
 func main() {

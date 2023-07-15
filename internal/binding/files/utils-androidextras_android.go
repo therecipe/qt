@@ -5,7 +5,7 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/therecipe/qt"
+	"github.com/akiyosi/qt"
 )
 
 func assertion(key int, input ...interface{}) (unsafe.Pointer, func()) {

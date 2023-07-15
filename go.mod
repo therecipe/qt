@@ -1,4 +1,4 @@
-module github.com/therecipe/qt
+module github.com/akiyosi/qt
 
 require (
 	github.com/gopherjs/gopherjs v0.0.0-20190411002643-bd77b112433e

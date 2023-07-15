@@ -1,13 +1,15 @@
+//go:build !minimal
 // +build !minimal
 
 package designer
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/widgets"
 	"unsafe"
+
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/gui"
+	"github.com/akiyosi/qt/internal"
+	"github.com/akiyosi/qt/widgets"
 )
 
 type AppFontDialog struct {

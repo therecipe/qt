@@ -1,9 +1,9 @@
 package left
 
 import (
-	"github.com/therecipe/qt/quick"
+	"github.com/akiyosi/qt/quick"
 
-	"github.com/therecipe/qt/internal/examples/showcases/wallet/view/left/controller"
+	"github.com/akiyosi/qt/internal/examples/showcases/wallet/view/left/controller"
 )
 
 func init() { progressBarTemplate_QmlRegisterType2("LeftTemplate", 1, 0, "ProgressBarTemplate") }

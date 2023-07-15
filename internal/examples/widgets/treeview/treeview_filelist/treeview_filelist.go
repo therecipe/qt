@@ -8,8 +8,8 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/widgets"
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/widgets"
 )
 
 var (

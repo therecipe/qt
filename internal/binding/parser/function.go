@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/akiyosi/qt/internal/utils"
 )
 
 type Function struct {

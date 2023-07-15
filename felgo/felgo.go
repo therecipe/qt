@@ -1,3 +1,4 @@
+//go:build !minimal
 // +build !minimal
 
 package felgo
@@ -8,12 +9,13 @@ package felgo
 //#include "felgo.h"
 import "C"
 import (
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/qml"
 	"runtime"
 	"strings"
 	"unsafe"
+
+	"github.com/akiyosi/qt"
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/qml"
 )
 
 func cGoUnpackString(s C.struct_QtFelgo_PackedString) string {

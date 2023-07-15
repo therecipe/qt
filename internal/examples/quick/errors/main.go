@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/qml"
-	"github.com/therecipe/qt/quick"
-	"github.com/therecipe/qt/widgets"
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/qml"
+	"github.com/akiyosi/qt/quick"
+	"github.com/akiyosi/qt/widgets"
 )
 
 //this example demonstrates one possible way to deal with qml errors/warnings

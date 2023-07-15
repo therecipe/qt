@@ -1,3 +1,4 @@
+//go:build qml
 // +build qml
 
 package main
@@ -6,13 +7,13 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/qml"
-	"github.com/therecipe/qt/widgets"
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/qml"
+	"github.com/akiyosi/qt/widgets"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/controller"
+	"github.com/akiyosi/qt/internal/examples/sql/masterdetail_qml/controller"
 
-	_ "github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view"
+	_ "github.com/akiyosi/qt/internal/examples/sql/masterdetail_qml/view"
 )
 
 const PRODUCTION = true
@@ -28,7 +29,7 @@ func main() {
 	if PRODUCTION {
 		path = "qrc:/qml/view.qml"
 	} else {
-		path = filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", "internal", "examples", "sql", "masterdetail_qml", "view", "qml", "view.qml")
+		path = filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "akiyosi", "qt", "internal", "examples", "sql", "masterdetail_qml", "view", "qml", "view.qml")
 	}
 
 	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)

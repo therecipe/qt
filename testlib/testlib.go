@@ -1,12 +1,14 @@
+//go:build !minimal
 // +build !minimal
 
 package testlib
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/widgets"
 	"unsafe"
+
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/internal"
+	"github.com/akiyosi/qt/widgets"
 )
 
 type QAbstractItemModelTester struct {

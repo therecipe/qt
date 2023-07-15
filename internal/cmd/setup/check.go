@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/akiyosi/qt/internal/utils"
 )
 
 func Check(target string, docker, vagrant bool) {
@@ -28,7 +28,7 @@ func Check(target string, docker, vagrant bool) {
 
 	hash := "please install git"
 	if utils.UseGOMOD("") {
-		hash = utils.GoListOptional("{{.Version}}", "github.com/therecipe/qt", "-m", "get qt hash")
+		hash = utils.GoListOptional("{{.Version}}", "github.com/akiyosi/qt", "-m", "get qt hash")
 	} else {
 		if _, err := exec.LookPath("git"); err == nil {
 			cmd := exec.Command("git", "rev-parse", "--verify", "HEAD")

@@ -1,10 +1,12 @@
+//go:build !minimal
 // +build !minimal
 
 package quickcontrols2
 
 import (
-	"github.com/therecipe/qt/internal"
 	"unsafe"
+
+	"github.com/akiyosi/qt/internal"
 )
 
 type QQuickStyle struct {

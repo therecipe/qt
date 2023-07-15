@@ -1,9 +1,9 @@
 package d
 
 import (
-	"github.com/therecipe/qt/core"
+	"github.com/akiyosi/qt/core"
 
-	_ "github.com/therecipe/qt/internal/cmd/moc/test/sub/conf"
+	_ "github.com/akiyosi/qt/internal/cmd/moc/test/sub/conf"
 )
 
 type StructSubGoD struct{}

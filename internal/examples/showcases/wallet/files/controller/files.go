@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/therecipe/qt/core"
+	"github.com/akiyosi/qt/core"
 
-	"github.com/therecipe/qt/internal/examples/showcases/wallet/files/model"
+	"github.com/akiyosi/qt/internal/examples/showcases/wallet/files/model"
 )
 
 var FilesController *filesController

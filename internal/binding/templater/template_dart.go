@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/akiyosi/qt/internal/binding/parser"
 )
 
 func convertToDart(className string, l string, convertClassMethods bool) string {

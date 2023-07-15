@@ -8,12 +8,12 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/binding/templater"
+	"github.com/akiyosi/qt/internal/binding/parser"
+	"github.com/akiyosi/qt/internal/binding/templater"
 
-	"github.com/therecipe/qt/internal/cmd"
-	"github.com/therecipe/qt/internal/cmd/moc"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/akiyosi/qt/internal/cmd"
+	"github.com/akiyosi/qt/internal/cmd/moc"
+	"github.com/akiyosi/qt/internal/utils"
 )
 
 func Generate(target string, docker, vagrant bool) {
@@ -71,6 +71,6 @@ func Generate(target string, docker, vagrant bool) {
 	runtimePath := utils.GoQtPkgPath("internal/binding/runtime")
 	utils.RemoveAll(runtimePath)
 	utils.MkdirAll(runtimePath)
-	utils.Save(filepath.Join(runtimePath, "utils-runtime.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-runtime.go")))
+	utils.Save(filepath.Join(runtimePath, "utils-runtime.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/akiyosi/qt/internal", "-find", "get files dir")), "/binding/files/utils-runtime.go")))
 	moc.Moc(runtimePath, target, "", true, false, false, true)
 }

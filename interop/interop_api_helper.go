@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/therecipe/qt/core"
+	"github.com/akiyosi/qt/core"
 )
 
 func genPseudoIn(s string) *PseudoQJSValue {

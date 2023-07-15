@@ -12,11 +12,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/therecipe/qt/internal/binding/templater"
+	"github.com/akiyosi/qt/internal/binding/templater"
 
-	"github.com/therecipe/qt/internal/cmd"
+	"github.com/akiyosi/qt/internal/cmd"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/akiyosi/qt/internal/utils"
 )
 
 var (
@@ -32,7 +32,7 @@ func Rcc(path, target, tagsCustom, output_dir string, useuic, quickcompiler, dep
 			utils.RunCmd(cmd, "go mod vendor")
 		}
 		if utils.QT_DOCKER() {
-			cmd := exec.Command("go", "get", "-v", "-d", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
+			cmd := exec.Command("go", "get", "-v", "-d", "github.com/akiyosi/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
 			cmd.Dir = path
 			if !utils.QT_PKG_CONFIG() {
 				utils.RunCmdOptional(cmd, "go get docs") //TODO: this can fail if QT_PKG_CONFIG
@@ -695,7 +695,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 					if i == 0 {
 						fmt.Fprintln(bb, "\""+p+"\"")
 					} else {
-						fmt.Fprintln(bb, "\"github.com/therecipe/qt/"+p+"\"")
+						fmt.Fprintln(bb, "\"github.com/akiyosi/qt/"+p+"\"")
 					}
 				}
 				fmt.Fprintln(bb, "\n)")

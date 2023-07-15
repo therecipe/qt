@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/therecipe/qt/quick"
+	"github.com/akiyosi/qt/quick"
 )
 
 func init() {

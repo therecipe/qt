@@ -4,8 +4,8 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/androidextras"
+	"github.com/akiyosi/qt"
+	"github.com/akiyosi/qt/androidextras"
 )
 
 type Runnable struct {

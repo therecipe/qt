@@ -1,13 +1,15 @@
+//go:build sailfish || sailfish_emulator
 // +build sailfish sailfish_emulator
 
 package sailfish
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/quick"
 	"unsafe"
+
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/gui"
+	"github.com/akiyosi/qt/internal"
+	"github.com/akiyosi/qt/quick"
 )
 
 type SailfishApp struct {

@@ -1,12 +1,14 @@
+//go:build !android && !android_emulator
 // +build !android,!android_emulator
 
 package androidextras
 
 import (
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
 	"strings"
 	"unsafe"
+
+	"github.com/akiyosi/qt"
+	"github.com/akiyosi/qt/core"
 )
 
 func unpackStringList(s string) []string {

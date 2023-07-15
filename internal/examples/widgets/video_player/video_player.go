@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/multimedia"
-	"github.com/therecipe/qt/widgets"
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/multimedia"
+	"github.com/akiyosi/qt/widgets"
 )
 
 var (

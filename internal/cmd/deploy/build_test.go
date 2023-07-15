@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/akiyosi/qt/internal/utils"
 )
 
 func Test_escapeFlags(t *testing.T) {

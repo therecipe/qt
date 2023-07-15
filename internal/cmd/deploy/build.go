@@ -13,8 +13,8 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/therecipe/qt/internal/cmd"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/akiyosi/qt/internal/cmd"
+	"github.com/akiyosi/qt/internal/utils"
 )
 
 func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, fast, comply bool) {

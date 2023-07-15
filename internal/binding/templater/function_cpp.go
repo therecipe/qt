@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/converter"
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/akiyosi/qt/internal/binding/converter"
+	"github.com/akiyosi/qt/internal/binding/parser"
+	"github.com/akiyosi/qt/internal/utils"
 )
 
 func cppFunctionCallback(function *parser.Function) string {

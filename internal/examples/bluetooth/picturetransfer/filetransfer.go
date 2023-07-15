@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/therecipe/qt/bluetooth"
-	"github.com/therecipe/qt/core"
+	"github.com/akiyosi/qt/bluetooth"
+	"github.com/akiyosi/qt/core"
 )
 
 type FileTransfer struct {

@@ -1,6 +1,6 @@
 package converter
 
-import "github.com/therecipe/qt/internal/binding/parser"
+import "github.com/akiyosi/qt/internal/binding/parser"
 
 func GoOutputParametersFromC(function *parser.Function, name string) string {
 	if function.Meta == parser.CONSTRUCTOR {

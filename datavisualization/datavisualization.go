@@ -1,12 +1,14 @@
+//go:build !minimal
 // +build !minimal
 
 package datavisualization
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/internal"
 	"unsafe"
+
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/gui"
+	"github.com/akiyosi/qt/internal"
 )
 
 type Q3DBars struct {

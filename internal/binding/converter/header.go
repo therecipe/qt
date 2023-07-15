@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/akiyosi/qt/internal/binding/parser"
 )
 
 func GoHeaderName(f *parser.Function) string {

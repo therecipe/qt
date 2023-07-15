@@ -1,3 +1,4 @@
+//go:build js
 // +build js
 
 package main
@@ -5,7 +6,7 @@ package main
 import (
 	"unsafe"
 
-	"github.com/therecipe/qt"
+	"github.com/akiyosi/qt"
 )
 
 var (

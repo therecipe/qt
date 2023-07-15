@@ -1,12 +1,14 @@
+//go:build !minimal
 // +build !minimal
 
 package gui
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/internal"
-	"github.com/therecipe/qt/interop/gow"
 	"unsafe"
+
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/internal"
+	"github.com/akiyosi/qt/interop/gow"
 )
 
 type QAbstractOpenGLFunctions struct {

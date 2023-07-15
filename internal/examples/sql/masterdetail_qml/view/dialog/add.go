@@ -1,12 +1,13 @@
+//go:build !qml
 // +build !qml
 
 package dialog
 
 import (
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/widgets"
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/widgets"
 
-	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/controller"
+	"github.com/akiyosi/qt/internal/examples/sql/masterdetail_qml/controller"
 )
 
 type addDialogController struct {

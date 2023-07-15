@@ -1,3 +1,4 @@
+//go:build !minimal
 // +build !minimal
 
 package webkit
@@ -8,15 +9,16 @@ package webkit
 //#include "webkit.h"
 import "C"
 import (
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
-	"github.com/therecipe/qt/network"
-	"github.com/therecipe/qt/printsupport"
-	"github.com/therecipe/qt/widgets"
 	"runtime"
 	"strings"
 	"unsafe"
+
+	"github.com/akiyosi/qt"
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/gui"
+	"github.com/akiyosi/qt/network"
+	"github.com/akiyosi/qt/printsupport"
+	"github.com/akiyosi/qt/widgets"
 )
 
 func cGoUnpackString(s C.struct_QtWebKit_PackedString) string {

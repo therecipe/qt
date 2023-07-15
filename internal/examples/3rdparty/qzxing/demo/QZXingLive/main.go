@@ -5,10 +5,10 @@ package main
 import (
 	"os"
 
-	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
+	"github.com/akiyosi/qt/core"
+	"github.com/akiyosi/qt/gui"
 
-	"github.com/therecipe/qt/internal/examples/3rdparty/qzxing"
+	"github.com/akiyosi/qt/internal/examples/3rdparty/qzxing"
 )
 
 func main() {

@@ -10,7 +10,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/therecipe/qt/internal/utils"
+	"github.com/akiyosi/qt/internal/utils"
 )
 
 type Class struct {

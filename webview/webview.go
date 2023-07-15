@@ -1,10 +1,12 @@
+//go:build !minimal
 // +build !minimal
 
 package webview
 
 import (
-	"github.com/therecipe/qt/internal"
 	"unsafe"
+
+	"github.com/akiyosi/qt/internal"
 )
 
 type QtWebView struct {

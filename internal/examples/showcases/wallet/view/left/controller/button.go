@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"github.com/therecipe/qt/core"
+	"github.com/akiyosi/qt/core"
 
-	"github.com/therecipe/qt/internal/examples/showcases/wallet/view/controller"
+	"github.com/akiyosi/qt/internal/examples/showcases/wallet/view/controller"
 )
 
 type buttonController struct {
