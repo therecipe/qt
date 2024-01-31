@@ -299,7 +299,13 @@ func createMakefile(module, path, target string, mode int) {
 	cmd.Dir = path
 	switch target {
 	case "darwin":
-		cmd.Args = append(cmd.Args, []string{"-spec", "macx-clang", "CONFIG+=x86_64"}...)
+		// // cmd.Args = append(cmd.Args, []string{"-spec", "macx-clang", `QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64"`}...)
+		// if utils.GOARCH() == "arm64" {
+		// 	cmd.Args = append(cmd.Args, []string{"-spec", "macx-clang", `QMAKE_APPLE_DEVICE_ARCHS="arm64"`}...)
+		// } else {
+		// 	cmd.Args = append(cmd.Args, []string{"-spec", "macx-clang", "CONFIG+=x86_64"}...)
+		// }
+		cmd.Args = append(cmd.Args, []string{"-spec", "macx-clang"}...)
 	case "windows":
 		subsystem := "windows"
 		if utils.QT_DEBUG_CONSOLE() {
@@ -652,7 +658,11 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 
 	switch target {
 	case "darwin":
-		tmp = strings.Replace(tmp, "$(EXPORT_ARCH_ARGS)", "-arch x86_64", -1)
+		if utils.GOARCH() == "arm64" {
+			tmp = strings.Replace(tmp, "$(EXPORT_ARCH_ARGS)", "-arch arm64", -1)
+		} else {
+			tmp = strings.Replace(tmp, "$(EXPORT_ARCH_ARGS)", "-arch x86_64", -1)
+		}
 	case "ios":
 		tmp = strings.Replace(tmp, "$(EXPORT_ARCH_ARGS)", "-arch arm64", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_CFLAGS)", "", -1)
@@ -826,7 +836,8 @@ func cgoFileNamesRecursive(path string, target string, mode int, recursive bool)
 	var sFixes []string
 	switch target {
 	case "darwin":
-		sFixes = []string{"darwin_amd64"}
+		//sFixes = []string{"darwin_amd64"}
+		sFixes = []string{"darwin_" + utils.GOARCH()}
 	case "linux":
 		sFixes = []string{"linux_" + utils.GOARCH()}
 	case "freebsd":
