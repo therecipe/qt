@@ -140,7 +140,10 @@ func qT_DARWIN_DIR() string {
 		if isHomeBrewQtDir() {
 			return QT_DIR()
 		}
-		return "/usr/local/opt/qt5"
+		if GOARCH() == "arm64" {
+			return "/opt/homebrew/opt/qt@5"
+		}
+		return "/usr/local/opt/qt@5"
 	}
 	if QT_MACPORTS() {
 		return "/opt/local/libexec/qt5"

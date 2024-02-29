@@ -104,6 +104,8 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 	}
 
+	// fmt.Println("build command:", cmd.String())
+
 	utils.RunCmd(cmd, fmt.Sprintf("build for %v on %v", target, runtime.GOOS))
 
 	if target == "darwin" && !fast {
@@ -114,12 +116,17 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 			strip = exec.Command(strings.TrimSuffix(env["CC"], "clang")+"strip", "-x", out) //TODO: -u -r
 		}
 		strip.Dir = path
+		// fmt.Println("strip cmd:", strip.String())
 		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", target, runtime.GOOS))
 	}
+
+	// copyCmd := exec.Command("cp", "-pR", out+ending, "/Users/akiyosi/test/")
+	// utils.RunCmd(copyCmd, "copy binary")
 
 	utils.RemoveAll(filepath.Join(path, "cgo_main_wrapper.go"))
 
 	if comply {
+		// fmt.Println("comply")
 		dirs, err := ioutil.ReadDir(depPath + "_obj")
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to read object dir")

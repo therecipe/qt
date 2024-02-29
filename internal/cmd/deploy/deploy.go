@@ -49,18 +49,21 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 				cmd := exec.Command("go", "mod", "vendor")
 				cmd.Dir = path
 				utils.RunCmd(cmd, "go mod vendor")
+				// fmt.Println(cmd.String())
 			}
 			if utils.QT_DOCKER() {
 				cmd := exec.Command("go", "get", "-v", "-d", "github.com/akiyosi/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION())+"@"+cmd.QtModVersion(filepath.Dir(utils.GOMOD(path)))) //TODO: needs to pull 5.8.0 if QT_WEBKIT
 				cmd.Dir = path
 				if !utils.QT_PKG_CONFIG() {
 					utils.RunCmdOptional(cmd, "go get docs") //TODO: this can fail if QT_PKG_CONFIG
+					// fmt.Println(cmd.String())
 				}
 
 				if strings.HasPrefix(target, "sailfish") || strings.HasPrefix(target, "android") { //TODO: generate android and sailfish minimal instead
 					cmd := exec.Command(filepath.Join(utils.GOBIN(), "qtsetup"), "generate", target)
 					cmd.Dir = path
 					utils.RunCmd(cmd, "run setup")
+					// fmt.Println(cmd.String())
 				}
 			}
 		}
@@ -94,35 +97,44 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 		}
 
 		if (utils.QT_FELGO() && fast) || utils.QT_FELGO_LIVE() {
+			// fmt.Println("felgo")
 			utils.Save(filepath.Join(path, "live.pro"), "")
 		}
 
 		if utils.ExistsDir(depPath + "_obj") {
+			// fmt.Println("remove _obj")
 			utils.RemoveAll(depPath + "_obj")
 		}
 
 		if !(utils.QT_GEN_GO_WRAPPER() && !utils.QT_FAT()) {
+			// fmt.Println("rcc")
 			rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), useuic, quickcompiler, true, true)
 		}
 		if cmd.ImportsFlutter() {
+			// fmt.Println("flutter")
 			flutter(target, path)
 		}
 		if !fast && !(utils.QT_GEN_GO_WRAPPER() && !utils.QT_FAT()) {
+			// fmt.Println("moc")
 			moc.Moc(path, target, tags, false, false, true, true)
 		}
 
 		if ((!fast || utils.QT_STUB()) || ((target == "js" || target == "wasm") && (utils.QT_DOCKER() || utils.QT_VAGRANT()))) && !utils.QT_FAT() {
+			// fmt.Println("minimal")
 			minimal.Minimal(path, target, tags, true)
 		}
 
+		// fmt.Println("build: ", mode, target, path, ldFlags, tags, name, depPath, fast, comply)
 		build(mode, target, path, ldFlags, tags, name, depPath, fast, comply)
 
 		if !(fast || ((utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) && target == runtime.GOOS)) && !(utils.QT_GEN_GO_WRAPPER() && !utils.QT_FAT()) || (target == "js" || target == "wasm") {
+			// fmt.Println("bundle: ", mode, target, path, name, depPath, tags, fast)
 			bundle(mode, target, path, name, depPath, tags, fast)
 		} else if fast || (utils.QT_DEBUG_QML() || utils.QT_FELGO_LIVE()) || utils.QT_GEN_GO_WRAPPER() {
 			switch target {
 			case "darwin":
 				if fn := filepath.Join(depPath, name+".app", "Contents", "Info.plist"); !utils.ExistsFile(fn) {
+					// fmt.Println("save")
 					utils.Save(fn, darwin_plist(name))
 				}
 			case "windows":
@@ -135,6 +147,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 	}
 
 	if (mode == "run" || mode == "test") && !(fast && (strings.HasPrefix(target, "js") || strings.HasPrefix(target, "wasm"))) {
+		// fmt.Println("run")
 		run(target, name, depPath, device)
 	}
 }
